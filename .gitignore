@@ -39,3 +39,7 @@
 .vscode/
 */.vs/
 .vs/
+
+# Doxygen
+doxygen/html
+doxygen/latex
