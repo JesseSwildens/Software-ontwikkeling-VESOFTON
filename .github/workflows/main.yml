@@ -1,0 +1,32 @@
+name: C/C++ CI
+
+on:
+    push:
+        branches:
+            - *
+    pull_request:
+        branches: [ "main" ]
+    schedule:
+        - cron: "0 0 * * 1-5"
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v3
+        - name: Install toolchain
+            run: |
+                sudo apt install gcc-arm-none-eabi
+        - name: make build (debug)
+            run: |
+                mkdir app/build-debug && cd app/build-debug
+                cmake .. -DCMAKE_BUILD_TYPE=Debug
+                make all -j$(nproc)
+                cd ../../
+        - name: make build (release)
+            run: |
+                mkdir app/build-release && cd app/build-release
+                cmake .. -DCMAKE_BUILD_TYPE=Release
+                make all -j$(nproc)
+                cd ../../

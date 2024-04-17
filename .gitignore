@@ -33,3 +33,9 @@
 
 # Build folder for app
 */build/
+
+# User settings for the editor
+*/.vscode/
+.vscode/
+*/.vs/
+.vs/
