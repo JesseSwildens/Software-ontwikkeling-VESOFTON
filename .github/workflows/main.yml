@@ -15,19 +15,42 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - name: Install toolchain
+            - uses: actions/checkout@v4
+
+            - name: Install toolchain & Doxygen
               run: |
-                sudo apt install gcc-arm-none-eabi
+                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz
+
+            - name: Build doxygen documentation
+              run: |
+                doxygen Doxyfile
+
+            - name: Store doxygen artefacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: Doxygen artefacts
+                path: doxygen
+                retention-days: 5
+
             - name: make build (debug)
               run: |
                     mkdir app/build-debug && cd app/build-debug
                     cmake .. -DCMAKE_BUILD_TYPE=Debug
                     make all -j$(nproc)
                     cd ../../
+
             - name: make build (release)
               run: |
                     mkdir app/build-release && cd app/build-release
                     cmake .. -DCMAKE_BUILD_TYPE=Release
                     make all -j$(nproc)
                     cd ../../
+
+            - name: Store build artefacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: Build artefacts
+                path: |
+                  app/build-debug
+                  app/build-release
+                retention-days: 5
