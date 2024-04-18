@@ -15,10 +15,22 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
-            - name: Install toolchain
+            - uses: actions/checkout@v4
+
+            - name: Install toolchain & Doxygen
               run: |
-                sudo apt install gcc-arm-none-eabi
+                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz
+
+            - name: Build doxygen documentation
+              run: |
+                doxygen Doxyfile
+
+            - name: Store doxygen artefacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: Doxygen artefacts
+                path: doxygen
+                retention-days: 5
 
             - name: make build (debug)
               run: |
