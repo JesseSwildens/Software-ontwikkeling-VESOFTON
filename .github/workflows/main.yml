@@ -45,7 +45,6 @@ jobs:
                     cmake .. -DCMAKE_BUILD_TYPE=Release
                     make all -j$(nproc)
                     cd ../../
-
             - name: Store build artefacts
               uses: actions/upload-artifact@v4
               with:
