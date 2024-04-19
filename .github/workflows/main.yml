@@ -58,6 +58,7 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/3-automatic-wiki-on-github'
+        needs: build
         steps:
             - uses: actions/download-artifact@v4
               with:
