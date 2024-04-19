@@ -59,7 +59,7 @@ jobs:
         permissions:
           contents: write
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/3-automatic-wiki-on-github'
+        if: github.ref == 'refs/heads/main'
         needs: build
         steps:
             - name: Checkout repository
