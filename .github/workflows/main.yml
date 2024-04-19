@@ -62,18 +62,20 @@ jobs:
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/3-automatic-wiki-on-github'
         needs: build
         steps:
-            - uses: actions/download-artifact@v4
-              with:
-                name: Doxygen artefacts
-                path: doxygen
-            - name: Create .nojekyll (ensures pages with underscores work on gh pages)
-              run: touch doxygen/html/.nojekyll
-              shell: bash
-
             - name: Checkout repository
               uses: actions/checkout@v4
               with:
                 submodules: "true"
+
+            - uses: actions/download-artifact@v4
+              with:
+                name: Doxygen artefacts
+                path: doxygen
+
+            - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+              run: touch doxygen/html/.nojekyll
+              shell: bash
+
             - name: Deploy to GitHub Pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
