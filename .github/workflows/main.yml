@@ -54,3 +54,17 @@ jobs:
                   app/build-debug
                   app/build-release
                 retention-days: 5
+
+    deploy:
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+        steps:
+            - uses: actions/download-artifact@v4
+              with:
+                name: Doxygen artefacts
+                path: doxygen
+            - uses: DenverCoder1/doxygen-github-pages-action@v1.3.0
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  folder: doxygen/html
+                  branch: Wikipage-DO-NOT-EDIT
