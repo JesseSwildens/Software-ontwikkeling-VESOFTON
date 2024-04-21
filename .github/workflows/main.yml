@@ -54,3 +54,31 @@ jobs:
                   app/build-debug
                   app/build-release
                 retention-days: 5
+
+    deploy:
+        permissions:
+          contents: write
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main'
+        needs: build
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                submodules: "true"
+
+            - uses: actions/download-artifact@v4
+              with:
+                name: Doxygen artefacts
+                path: doxygen
+
+            - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+              run: touch doxygen/html/.nojekyll
+              shell: bash
+
+            - name: Deploy to GitHub Pages
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                token: ${{ github.token }}
+                branch: Wikipage-DO-NOT-EDIT
+                folder: doxygen/html
