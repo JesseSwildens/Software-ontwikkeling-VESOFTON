@@ -14,10 +14,10 @@ Create an issue, or assign one from the scrumboard. This issue has a number and 
 ## Branches
 After issue creation, a branch can be created linked to the issue. All branches follow the same naming convention: `[branch number]-[relevant title]`. Any changes relevant to the issue can be made on this branch. Commit often to keep a clear history.
 
-### Commits
-Commits must include two things:
-- \# Issue number
-- A short description of the commit
+## Commits
+The commit description must include two things:
+1. \# Issue number
+2. A short description of the commit
 
 An example: `#16 fixed stuck in inf loop in API_Draw_line`.
 
@@ -29,10 +29,12 @@ After the issue is deemed complete, it can be merged via a pull request (PR). A 
 1. (Automatic) The project must build
 2. (Automatic) The unit tests must pass (WIP)
 3. (Automatic) The style checker must pass (WIP)
-4. A manual review must approve.
-    - Check for naming convention
+4. A manual review must approve of the following:
+    - Check for code coherence
     - Check for code clarity
-    - Check for comment contents
+    - Check for naming convention
+    - Check for comment contents and style
+    - Crosscheck code with the issue description
 
 After all these checks are passed, the issue owner may merge the branch with the main branch.
 
