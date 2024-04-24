@@ -38,3 +38,13 @@ After the issue is deemed complete, it can be merged via a pull request (PR). A 
 
 After all these checks are passed, the issue owner may merge the branch with the main branch.
 
+## Other standards
+
+### Files
+All filles follow the following naming convention:
+
+Source files: `\src\*.cpp\` or `\src\*.c`
+
+Header files: `\inc\*.h`
+
+The name of the file must be in snake_case and cover its contents. It's encouraged to keep files as simple as possible. 
