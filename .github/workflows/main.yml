@@ -19,7 +19,7 @@ jobs:
 
             - name: Install toolchain, Doxygen & cppcheck
               run: |
-                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz
+                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz cppcheck
 
             - name: Build doxygen documentation
               run: |
