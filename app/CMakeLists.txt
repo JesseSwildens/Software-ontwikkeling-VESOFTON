@@ -70,6 +70,8 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 # which can be run as a custom target or using all
 find_program(CPPCHECK_EXE NAMES "cppcheck")
 if (CPPCHECK_EXE)
+    message("System name: " ${CMAKE_HOST_SYSTEM_NAME})
+
     get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
 
     list(APPEND SOURCES_LIST "${CMAKE_SOURCE_DIR}/Core")
