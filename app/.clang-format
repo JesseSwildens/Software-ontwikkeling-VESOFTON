@@ -1,0 +1,12 @@
+---
+Language: Cpp
+BasedOnStyle: WebKit
+
+IndentWidth: 4
+
+BreakAdjacentStringLiterals: true
+
+BreakAfterReturnType: RTBS_ExceptShortType
+
+BreakBeforeBraces: Allman
+---
