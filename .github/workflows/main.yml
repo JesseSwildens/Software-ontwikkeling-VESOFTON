@@ -55,6 +55,28 @@ jobs:
                   app/build-release
                 retention-days: 5
 
+    quality-gate:
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v4
+
+          - name: Install CPPCheck
+            run: sudo apt install cppcheck
+
+          - name: Run cppcheck
+            run: |
+              mkdir app/build-cppcheck && mkdir app/build && cd app/build
+              cmake ..
+              make cppcheck
+              cd ../../
+          - name: Store build artefacts
+            uses: actions/upload-artifact@v4
+            with:
+              name: Build artefacts
+              path: |
+                app/cppcheck-result.log
+              retention-days: 5
+
     deploy:
         permissions:
           contents: write

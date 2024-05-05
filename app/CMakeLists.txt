@@ -75,15 +75,11 @@ if (CPPCHECK_EXE)
     list(APPEND SOURCES_LIST "${CMAKE_SOURCE_DIR}/Core")
 
     if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
-        add_custom_target("${PROJECT_NAME}-cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.bat" ${SOURCES_LIST}
+        add_custom_target("cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.bat" ${SOURCES_LIST}
         DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
     endif()
     if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
-        add_custom_target("${PROJECT_NAME}-cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.sh" ${SOURCES_LIST}
-        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
-    endif()
-    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
-        add_custom_target("${PROJECT_NAME}-cppcheck-no-file" ALL COMMAND "${CMAKE_SOURCE_DIR}/cppcheck-no-file.sh" ${SOURCES_LIST}
+        add_custom_target("cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.sh" ${SOURCES_LIST}
         DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
     endif()
 endif()
