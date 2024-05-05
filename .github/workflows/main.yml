@@ -61,7 +61,7 @@ jobs:
                 path: |
                   app/build-debug
                   app/build-release
-                  app/cppcheck-result.log
+                  app/cppcheck-result.xml
                 retention-days: 5
 
     deploy:
