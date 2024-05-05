@@ -17,7 +17,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Install toolchain & Doxygen
+            - name: Install toolchain, Doxygen & cppcheck
               run: |
                 sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz
 
@@ -46,36 +46,23 @@ jobs:
                     make all -j$(nproc)
                     cd ../../
 
+            - name: Run cppcheck
+              run: |
+                    mkdir app/build-cppcheck && mkdir app/build-cmake-cppcheck && cd app/build-cmake-cppcheck
+                    cmake ..
+                    make cppcheck
+                    cd ../../
+
             - name: Store build artefacts
               uses: actions/upload-artifact@v4
+              continue-on-error: true
               with:
                 name: Build artefacts
                 path: |
                   app/build-debug
                   app/build-release
+                  app/cppcheck-result.log
                 retention-days: 5
-
-    quality-gate:
-      runs-on: ubuntu-latest
-      steps:
-          - uses: actions/checkout@v4
-
-          - name: Install CPPCheck
-            run: sudo apt install cppcheck
-
-          - name: Run cppcheck
-            run: |
-              mkdir app/build-cppcheck && mkdir app/build && cd app/build
-              cmake ..
-              make cppcheck
-              cd ../../
-          - name: Store build artefacts
-            uses: actions/upload-artifact@v4
-            with:
-              name: Build artefacts
-              path: |
-                app/cppcheck-result.log
-              retention-days: 5
 
     deploy:
         permissions:
