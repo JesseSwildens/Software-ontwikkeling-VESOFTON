@@ -6,7 +6,7 @@
 https://jesseswildens.github.io/Software-ontwikkeling-VESOFTON/
 
 # Style guide in IDE
-In VSCode add the following lines to ```.vscode/settings.json``` <\br>
+In VSCode add the following lines to ```.vscode/settings.json```
 ```
     "C_Cpp.formatting": "clangFormat",
     "C_Cpp.clang_format_style": "file:${workspaceFolder}/app/.clang-format",
