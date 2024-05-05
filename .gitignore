@@ -43,3 +43,7 @@
 # Doxygen
 doxygen/html
 doxygen/latex
+
+# CPPCheck
+*/build-cppcheck/
+app/cppcheck-result.xml

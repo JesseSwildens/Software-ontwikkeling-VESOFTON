@@ -1,0 +1,1 @@
+cppcheck %1 --cppcheck-build-dir=%~dp0\build-cppcheck --check-level=exhaustive --force --xml 2> %~dp0\cppcheck-result.xml

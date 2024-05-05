@@ -68,10 +68,22 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
 # If clang-tidy is installed make a custom target,
 # which can be run as a custom target or using all
-find_program(CLANG_TIDY_EXE NAMES "clang-tidy")
-if (CLANG_TIDY_EXE)
-    # Enable the compile_commands.json as this is necessary for Clang-tidy
-    # set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-    set(CLANG_TIDY_COMMAND "${CLANG_TIDY_EXE}" "-checks=-*,modernize-*")
-    set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
+find_program(CPPCHECK_EXE NAMES "cppcheck")
+if (CPPCHECK_EXE)
+    get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
+
+    list(APPEND SOURCES_LIST "${CMAKE_SOURCE_DIR}/Core")
+
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+        add_custom_target("${PROJECT_NAME}-cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.bat" ${SOURCES_LIST}
+        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
+    endif()
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+        add_custom_target("${PROJECT_NAME}-cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.sh" ${SOURCES_LIST}
+        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
+    endif()
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+        add_custom_target("${PROJECT_NAME}-cppcheck-no-file" ALL COMMAND "${CMAKE_SOURCE_DIR}/cppcheck-no-file.sh" ${SOURCES_LIST}
+        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
+    endif()
 endif()
