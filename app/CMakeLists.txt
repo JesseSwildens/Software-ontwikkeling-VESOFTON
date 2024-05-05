@@ -47,11 +47,17 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
+    ${CMAKE_SOURCE_DIR}/Core/Src/main.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
+    ${CMAKE_SOURCE_DIR}/Core/Inc
 )
 
 # Add project symbols (macros)
@@ -74,7 +80,7 @@ if (CPPCHECK_EXE)
 
     get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
 
-    list(APPEND SOURCES_LIST "${CMAKE_SOURCE_DIR}/Core")
+    message("Sources: " ${SOURCES_LIST})
 
     if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
         add_custom_target("cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.bat" ${SOURCES_LIST}
