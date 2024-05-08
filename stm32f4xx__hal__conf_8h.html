@@ -81,6 +81,8 @@ $(function() {
 <code>#include &quot;stm32f4xx_hal_cortex.h&quot;</code><br />
 <code>#include &quot;stm32f4xx_hal_flash.h&quot;</code><br />
 <code>#include &quot;stm32f4xx_hal_pwr.h&quot;</code><br />
+<code>#include &quot;stm32f4xx_hal_tim.h&quot;</code><br />
+<code>#include &quot;stm32f4xx_hal_uart.h&quot;</code><br />
 </div>
 <p><a href="stm32f4xx__hal__conf_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -89,6 +91,10 @@ Macros</h2></td></tr>
 <tr class="memitem:a877ae99e8c47a609ea97c888912bf75f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#a877ae99e8c47a609ea97c888912bf75f">HAL_MODULE_ENABLED</a></td></tr>
 <tr class="memdesc:a877ae99e8c47a609ea97c888912bf75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the list of modules to be used in the HAL driver.  <a href="stm32f4xx__hal__conf_8h.html#a877ae99e8c47a609ea97c888912bf75f">More...</a><br /></td></tr>
 <tr class="separator:a877ae99e8c47a609ea97c888912bf75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23382b8f04b3e6db2c59dfa1ef5ea4a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#a23382b8f04b3e6db2c59dfa1ef5ea4a2">HAL_TIM_MODULE_ENABLED</a></td></tr>
+<tr class="separator:a23382b8f04b3e6db2c59dfa1ef5ea4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167269406e73327b95c3bb7b9cfe6d89"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#a167269406e73327b95c3bb7b9cfe6d89">HAL_UART_MODULE_ENABLED</a></td></tr>
+<tr class="separator:a167269406e73327b95c3bb7b9cfe6d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86165f80d6078719ee0715afe13febf5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#a86165f80d6078719ee0715afe13febf5">HAL_GPIO_MODULE_ENABLED</a></td></tr>
 <tr class="separator:a86165f80d6078719ee0715afe13febf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb359e861d8a92c233c3229657dbcd74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#aeb359e861d8a92c233c3229657dbcd74">HAL_EXTI_MODULE_ENABLED</a></td></tr>
@@ -103,7 +109,7 @@ Macros</h2></td></tr>
 <tr class="separator:ab51923c3716977d7923f49cc9d081aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9b5a3a425901e097de70092dbe31e0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#aa9b5a3a425901e097de70092dbe31e0f">HAL_CORTEX_MODULE_ENABLED</a></td></tr>
 <tr class="separator:aa9b5a3a425901e097de70092dbe31e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeafcff4f57440c60e64812dddd13e7cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#aeafcff4f57440c60e64812dddd13e7cb">HSE_VALUE</a>&#160;&#160;&#160;25000000U</td></tr>
+<tr class="memitem:aeafcff4f57440c60e64812dddd13e7cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#aeafcff4f57440c60e64812dddd13e7cb">HSE_VALUE</a>&#160;&#160;&#160;8000000U</td></tr>
 <tr class="memdesc:aeafcff4f57440c60e64812dddd13e7cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjust the value of External High Speed oscillator (HSE) used in your application. This value is used by the RCC HAL module to compute the system frequency (when HSE is used as system clock source, directly or through the PLL).  <a href="stm32f4xx__hal__conf_8h.html#aeafcff4f57440c60e64812dddd13e7cb">More...</a><br /></td></tr>
 <tr class="separator:aeafcff4f57440c60e64812dddd13e7cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68ecbc9b0a1a40a1ec9d18d5e9747c4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stm32f4xx__hal__conf_8h.html#a68ecbc9b0a1a40a1ec9d18d5e9747c4f">HSE_STARTUP_TIMEOUT</a>&#160;&#160;&#160;100U</td></tr>
@@ -522,6 +528,34 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="a23382b8f04b3e6db2c59dfa1ef5ea4a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23382b8f04b3e6db2c59dfa1ef5ea4a2">&#9670;&nbsp;</a></span>HAL_TIM_MODULE_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAL_TIM_MODULE_ENABLED</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a167269406e73327b95c3bb7b9cfe6d89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a167269406e73327b95c3bb7b9cfe6d89">&#9670;&nbsp;</a></span>HAL_UART_MODULE_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HAL_UART_MODULE_ENABLED</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a68ecbc9b0a1a40a1ec9d18d5e9747c4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a68ecbc9b0a1a40a1ec9d18d5e9747c4f">&#9670;&nbsp;</a></span>HSE_STARTUP_TIMEOUT</h2>
 
@@ -544,7 +578,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define HSE_VALUE&#160;&#160;&#160;25000000U</td>
+          <td class="memname">#define HSE_VALUE&#160;&#160;&#160;8000000U</td>
         </tr>
       </table>
 </div><div class="memdoc">
