@@ -1,16 +1,5 @@
 import dearpygui.dearpygui as dpg
-
-def add_str(tag, string):
-    if string is None or string == "":
-        return
-
-    old_string = dpg.get_value("Display")
-    count = old_string.count("\n")
-    if count > 21:
-        token = old_string.split("\n")
-        token.pop(0)
-        old_string = "\n".join(token)
-    dpg.set_value(tag,  old_string + "\n" + string)
+from helpers import add_str
 
 def command_callback():
     command = dpg.get_value("Command")
@@ -42,5 +31,8 @@ with dpg.window(tag="Primary"):
 dpg.setup_dearpygui()
 dpg.show_viewport()
 dpg.set_primary_window("Primary", True)
-dpg.start_dearpygui()
+
+while dpg.is_dearpygui_running():
+    dpg.render_dearpygui_frame()
+
 dpg.destroy_context()
