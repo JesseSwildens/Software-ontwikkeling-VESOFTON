@@ -35,7 +35,7 @@ After the issue is deemed complete, it must be merged via a pull request (PR). A
 
 1. (Automatic) The project must build
 2. (Automatic) The unit tests must pass (WIP)
-3. (Automatic) The style checker must pass (WIP)
+3. (Automatic) The style checker must pass 
 4. A manual review must approve of the following:
     - Check for code functionality
     - Check for code coherence
