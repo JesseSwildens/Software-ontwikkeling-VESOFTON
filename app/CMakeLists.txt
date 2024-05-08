@@ -12,7 +12,6 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
-
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
@@ -27,8 +26,8 @@ include("cmake/gcc-arm-none-eabi.cmake")
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
-# Enable CMake support for ASM and C languages
-enable_language(C ASM)
+# Enable CMake support for C++, C and ASM languages
+enable_language(CXX C ASM)
 
 # Core project settings
 project(${CMAKE_PROJECT_NAME})
@@ -47,12 +46,18 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user sources here
+    ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
+    ${CMAKE_SOURCE_DIR}/Core/Src/main.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined include paths
+    ${CMAKE_SOURCE_DIR}/Core/Inc
 )
 
 # Add project symbols (macros)
@@ -66,3 +71,23 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
     # Add user defined libraries
 )
+
+# If clang-tidy is installed make a custom target,
+# which can be run as a custom target or using all
+find_program(CPPCHECK_EXE NAMES "cppcheck")
+if (CPPCHECK_EXE)
+    message("System name: " ${CMAKE_HOST_SYSTEM_NAME})
+
+    get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
+
+    message("Sources: " ${SOURCES_LIST})
+
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+        add_custom_target("cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.bat" ${SOURCES_LIST}
+        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
+    endif()
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+        add_custom_target("cppcheck" COMMAND "${CMAKE_SOURCE_DIR}/cppcheck.sh" ${SOURCES_LIST}
+        DEPENDS ${SOURCES_LIST} COMMENT "Analyzing ${CMAKE_PROJECT_NAME}" VERBATIM )
+    endif()
+endif()
