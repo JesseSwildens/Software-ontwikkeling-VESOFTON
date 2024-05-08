@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define VSync_Pin GPIO_PIN_11
+#define VSync_GPIO_Port GPIOB
+#define HSync_Pin GPIO_PIN_12
+#define HSync_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
