@@ -62,4 +62,4 @@ All *functions* part of the API must contain the prefix `API_`.
 
 Other important prefixes:
 - `BL_`, Business Layer
-- `AL`, Application Layer
+- `AL_`, Application Layer
