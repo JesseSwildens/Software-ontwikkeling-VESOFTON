@@ -9,9 +9,11 @@ https://jesseswildens.github.io/Software-ontwikkeling-VESOFTON/
 Contributing to the project comes with the following steps:
 
 ## Glossary
-*Must*: Rule must be followed at all times. Excpetions are exceptionally rare and must be discussed with the team.
+Two words will be used to strictness of the guidelines below. These two words are to be interepeted as follows:
 
-*Should*: Rule should be followed as much as possible. Exceptions are possible.
+*Must*: Guideline must be followed at all times. Excpetions are exceptionally rare and must be discussed with the team.
+
+*Should*: Guideline should be followed as much as possible. Exceptions are possible.
 
 ## Issues
 Create an issue, or assign one from the scrumboard. This issue has a number and a description. All the documentation, comments or other relevant documentation must be posted under the issue. It is important to keep information bundled together.
@@ -55,7 +57,7 @@ Source files: `*.cpp\` or `*.c`
 
 Header files: `*.h`
 
-The name of the file must be in snake_case and cover its contents. It's encouraged to keep files as simple as possible. 
+The name of the file must be in snake_case and cover its contents. It's encouraged to keep a single feature per file, when possible. 
 
 ### Naming convention
 All *functions* part of the API must contain the prefix `API_`. 
