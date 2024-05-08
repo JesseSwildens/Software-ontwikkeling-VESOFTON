@@ -28,6 +28,8 @@ An example: `#16 fixed stuck in inf loop in API_Draw_line`.
 
 The issue number links the commit to the relevant issue and adds it to its history.
 
+"Temporary" or "Syncing" commits like "Latest WIP" are explicitly not allowed.
+
 ## Merging
 After the issue is deemed complete, it must be merged via a pull request (PR). A PR must pass several  checks (some automatic) before it can be merged into the main branch:
 
@@ -35,22 +37,23 @@ After the issue is deemed complete, it must be merged via a pull request (PR). A
 2. (Automatic) The unit tests must pass (WIP)
 3. (Automatic) The style checker must pass (WIP)
 4. A manual review must approve of the following:
+    - Check for code functionality
     - Check for code coherence
     - Check for code clarity
     - Check for naming convention
     - Check for comment contents and style
     - Crosscheck code with the issue description!
 
-After all these checks are passed, the issue owner should merge the branch with the main branch.
+After all these checks are passed, the PR owner should merge the branch with the main branch.
 
 ## Other standards
 
 ### Files
 All files must follow the following naming convention:
 
-Source files: `\src\*.cpp\` or `\src\*.c`
+Source files: `*.cpp\` or `*.c`
 
-Header files: `\inc\*.h`
+Header files: `*.h`
 
 The name of the file must be in snake_case and cover its contents. It's encouraged to keep files as simple as possible. 
 
@@ -58,5 +61,5 @@ The name of the file must be in snake_case and cover its contents. It's encourag
 All *functions* part of the API must contain the prefix `API_`. 
 
 Other important prefixes:
-- `LL_`, Logic Layer
-- `AL`, Aplication Layer
+- `BL_`, Business Layer
+- `AL`, Application Layer
