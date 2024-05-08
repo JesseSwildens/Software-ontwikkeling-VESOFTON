@@ -1,21 +1,21 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    tim.c
-  * @brief   This file provides code for the configuration
-  *          of the TIM instances.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    tim.c
+ * @brief   This file provides code for the configuration
+ *          of the TIM instances.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "tim.h"
@@ -88,12 +88,12 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     hdma_tim1_up.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tim1_up.Init.MemInc = DMA_MINC_ENABLE;
     hdma_tim1_up.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-    hdma_tim1_up.Init.MemDataAlignment = DMA_MDATAALIGN_WORD;
+    hdma_tim1_up.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_tim1_up.Init.Mode = DMA_CIRCULAR;
-    hdma_tim1_up.Init.Priority = DMA_PRIORITY_HIGH;
+    hdma_tim1_up.Init.Priority = DMA_PRIORITY_VERY_HIGH;
     hdma_tim1_up.Init.FIFOMode = DMA_FIFOMODE_ENABLE;
-    hdma_tim1_up.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_FULL;
-    hdma_tim1_up.Init.MemBurst = DMA_MBURST_INC4;
+    hdma_tim1_up.Init.FIFOThreshold = DMA_FIFO_THRESHOLD_HALFFULL;
+    hdma_tim1_up.Init.MemBurst = DMA_MBURST_SINGLE;
     hdma_tim1_up.Init.PeriphBurst = DMA_PBURST_SINGLE;
     if (HAL_DMA_Init(&hdma_tim1_up) != HAL_OK)
     {
