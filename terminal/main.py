@@ -1,24 +1,11 @@
 import dearpygui.dearpygui as dpg
-from helpers import add_str
+
+import callbacks
 from serial_handler import get_available_ports
-
-def command_callback():
-    command = dpg.get_value("Command")
-    dpg.set_value("Command", "")
-    dpg.focus_item("Command")
-    add_str("Display", "\t"+command)
-
-def button_callback():
-    add_str("Display", dpg.get_value("Command"))
-
-def resize_callback():
-    dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
-    dpg.set_item_pos("Command", (75, dpg.get_viewport_height()-75))
-    dpg.set_item_pos("Display", (20, 20))
 
 dpg.create_context()
 dpg.create_viewport(title="Terminal", width=600, height=400, resizable=True)
-dpg.set_viewport_resize_callback(resize_callback)
+dpg.set_viewport_resize_callback(callbacks.resize_callback)
 
 # Main window
 with dpg.window(tag="Primary"):
@@ -29,8 +16,8 @@ with dpg.window(tag="Primary"):
     button_send = dpg.add_button(tag="Send", label="Send")
 
     # Attach callbacks
-    dpg.set_item_callback("Send", button_callback)
-    dpg.set_item_callback("Command", command_callback)
+    dpg.set_item_callback("Send", callbacks.button_callback)
+    dpg.set_item_callback("Command", callbacks.command_callback)
 
     # Item positioning
     dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
