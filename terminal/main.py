@@ -2,7 +2,6 @@ import sys
 import dearpygui.dearpygui as dpg
 
 import callbacks
-from serial_handler import get_available_ports
 from serial_handler import SerialHandler
 from helpers import add_str
 
@@ -49,13 +48,12 @@ with dpg.viewport_menu_bar():
         dpg.add_menu_item(label="Save (WIP)")
         dpg.add_menu_item(label="Save as (WIP)")
     with dpg.menu(label="Port"):
-        ports = get_available_ports()
-        for port in ports:
+        for port in ser.available_ports:
             dpg.add_menu_item(
-                tag = f"{port.name}",
-                label=f"{port.name} {port.description}",
+                tag = f"{port.device}",
+                label=f"{port.device} {port.description}",
                 callback=callbacks.menu_callback)
-            dpg.set_item_user_data(f"{port.name}", ser)
+            dpg.set_item_user_data(f"{port.device}", ser)
 
 dpg.show_metrics()
 dpg.show_style_editor()

@@ -1,13 +1,10 @@
 import serial
 import serial.tools.list_ports
 
-def get_available_ports():
-    ports = sorted(serial.tools.list_ports.comports())
-    return ports
-
 class SerialHandler():
     def __init__(self) -> None:
         self.ser = serial.Serial(baudrate=115200, timeout=1)
+        self.available_ports = self.get_available_ports()
 
     def connect(self, port : str) -> bool:
         """Toggles a connection to a comport
@@ -51,5 +48,12 @@ class SerialHandler():
             string = string + '\n'
         self.ser.write(string.encode())
 
+    def get_available_ports(self):
+        ports = sorted(serial.tools.list_ports.comports())
+        return ports
+
 if __name__ == "__main__":
-    get_available_ports()
+    ser = SerialHandler()
+
+    for prt in ser.available_ports:
+        print(prt.device)
