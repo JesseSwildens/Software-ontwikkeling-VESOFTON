@@ -33,6 +33,7 @@ def menu_callback(sender, _app_data, user_data : SerialHandler):
     if user_data.connect(sender):
         dpg.set_value("Status", "Connected")
         dpg.configure_item("Status", color=(0, 255, 0, 255)) # Red
+        dpg.set_value("Display", "")
         enable = True
     else:
         dpg.set_value("Status", "Disconnected")

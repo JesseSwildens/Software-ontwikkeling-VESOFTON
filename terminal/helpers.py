@@ -4,7 +4,7 @@ def add_str(tag, string):
     if string is None or string == "":
         return
 
-    old_string = dpg.get_value("Display")
+    old_string = dpg.get_value(tag)
     count = old_string.count("\n")
     while count > ((dpg.get_viewport_height() - 130) // 13):
         token = old_string.split("\n")
