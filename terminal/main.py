@@ -1,9 +1,13 @@
+import sys
 import dearpygui.dearpygui as dpg
 
 import callbacks
 from serial_handler import get_available_ports
 from serial_handler import SerialHandler
 from helpers import add_str
+
+if not sys.version_info >= (3, 6):
+    raise EnvironmentError("Python version too old")
 
 # Serial
 ser = SerialHandler()
