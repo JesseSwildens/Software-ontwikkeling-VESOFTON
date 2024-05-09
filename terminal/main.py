@@ -5,6 +5,7 @@ from serial_handler import get_available_ports
 from serial_handler import SerialHandler
 from helpers import add_str
 
+# Serial
 ser = SerialHandler()
 
 # set up a viewport
@@ -15,13 +16,14 @@ dpg.set_viewport_resize_callback(callbacks.resize_callback)
 # Main window
 with dpg.window(tag="Primary"):
     # Create Items
-    display_text = dpg.add_text("Lorem ipsum dolor sit amet", tag="Display")
+    display_text = dpg.add_text(
+        "Lorem ipsum dolor sit amet", tag="Display")
     input_text = dpg.add_input_text(
         tag="Command", on_enter=True, hint="Command", enabled=False, width=500)
     button_send = dpg.add_button(
         tag="Send", label="Send", enabled=False, width=100)
-    status_text = dpg.add_text("Disconnected", tag="Status")
-    dpg.configure_item("Status", color=(255, 0, 0, 255))
+    status_text = dpg.add_text(
+        "Disconnected", tag="Status", color=(255, 0, 0, 255))
 
     # Attach callbacks
     dpg.set_item_callback("Send", callbacks.button_callback)
