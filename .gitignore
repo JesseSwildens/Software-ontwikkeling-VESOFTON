@@ -50,4 +50,5 @@ app/cppcheck-result.xml
 
 
 # CPython
+.venv
 __pycache__
