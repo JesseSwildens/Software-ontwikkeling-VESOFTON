@@ -7,7 +7,7 @@ def add_str(tag, string):
     old_string = dpg.get_value("Display")
     count = old_string.count("\n")
     # BUG: Doesn't adjust to screen size
-    if count > 20:
+    if count > ((dpg.get_viewport_height() - 130) // (13)):
         token = old_string.split("\n")
         token.pop(0)
         old_string = "\n".join(token)
