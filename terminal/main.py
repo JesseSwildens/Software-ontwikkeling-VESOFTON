@@ -17,10 +17,10 @@ with dpg.window(tag="Primary"):
     # Create Items
     display_text = dpg.add_text("Lorem ipsum dolor sit amet", tag="Display")
     input_text = dpg.add_input_text(
-        tag="Command", on_enter=True, hint="Command")
-    button_send = dpg.add_button(tag="Send", label="Send")
-    status_text = dpg.add_text(
-        "Disconnected", tag="Status")
+        tag="Command", on_enter=True, hint="Command", enabled=False, width=500)
+    button_send = dpg.add_button(
+        tag="Send", label="Send", enabled=False, width=100)
+    status_text = dpg.add_text("Disconnected", tag="Status")
     dpg.configure_item("Status", color=(255, 0, 0, 255))
 
     # Attach callbacks
@@ -51,7 +51,7 @@ with dpg.viewport_menu_bar():
                 callback=callbacks.menu_callback)
             dpg.set_item_user_data(f"{port.name}", ser)
 
-
+dpg.show_metrics()
 dpg.show_style_editor()
 dpg.setup_dearpygui()
 dpg.show_viewport()
