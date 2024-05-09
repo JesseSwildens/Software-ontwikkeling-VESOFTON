@@ -3,16 +3,20 @@ import dearpygui.dearpygui as dpg
 from helpers import add_str
 from serial_handler import SerialHandler
 
-def command_callback():
+def command_callback(_sender, _app_data, _user_data : SerialHandler):
     command = dpg.get_value("Command")
+    _user_data.send(command)
+    add_str("Display", "\t"+command)
     dpg.set_value("Command", "")
     dpg.focus_item("Command")
+
+def button_callback(_sender, _app_data, _user_data : SerialHandler):
+    command = dpg.get_value("Command")
+    _user_data.send(command)
     add_str("Display", "\t"+command)
+    dpg.set_value("Command", "")
 
-def button_callback():
-    add_str("Display", dpg.get_value("Command"))
-
-def resize_callback():
+def resize_callback(_sender, _app_data, _user_data : SerialHandler):
     dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
     dpg.set_item_pos("Command", (75, dpg.get_viewport_height()-75))
     dpg.set_item_pos("Display", (20, 20))

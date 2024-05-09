@@ -3,6 +3,7 @@ import dearpygui.dearpygui as dpg
 import callbacks
 from serial_handler import get_available_ports
 from serial_handler import SerialHandler
+from helpers import add_str
 
 ser = SerialHandler()
 
@@ -24,7 +25,9 @@ with dpg.window(tag="Primary"):
 
     # Attach callbacks
     dpg.set_item_callback("Send", callbacks.button_callback)
+    dpg.set_item_user_data("Send", ser)
     dpg.set_item_callback("Command", callbacks.command_callback)
+    dpg.set_item_user_data("Command", ser)
 
     # Item positioning
     dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
@@ -55,6 +58,9 @@ dpg.show_viewport()
 dpg.set_primary_window("Primary", True)
 
 while dpg.is_dearpygui_running():
+    data = ser.poll()
+    if data is not None:
+        add_str("Display", data)
     dpg.render_dearpygui_frame()
 
 dpg.destroy_context()
