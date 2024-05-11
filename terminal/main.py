@@ -17,12 +17,13 @@ dpg.create_viewport(title="Terminal", width=1280, height=960, resizable=True)
 dpg.set_viewport_resize_callback(callbacks.resize_callback)
 
 # Main window
-with dpg.window(tag="Primary"):
+with dpg.window(tag="_primary"):
     # Create Items
     dpg.add_input_text(
-        tag="Command", on_enter=True, hint="Command", enabled=False, width=500)
-    dpg.add_button(tag="Send", label="Send", enabled=False, width=100)
-    dpg.add_text("Disconnected", tag="Status", color=(255, 0, 0, 255))
+        tag="_command", on_enter=True, hint="_command", 
+        enabled=False, width=500)
+    dpg.add_button(tag="_send", label="_send", enabled=False, width=100)
+    dpg.add_text("Disconnected", tag="_status", color=(255, 0, 0, 255))
 
     # Create display box
     init_display()
@@ -31,18 +32,17 @@ with dpg.window(tag="Primary"):
         pass
 
     # Attach callbacks
-    dpg.set_item_callback("Send", callbacks.button_callback)
-    dpg.set_item_user_data("Send", ser)
-    dpg.set_item_callback("Command", callbacks.command_callback)
-    dpg.set_item_user_data("Command", ser)
+    dpg.set_item_callback("_send", callbacks.button_callback)
+    dpg.set_item_user_data("_send", ser)
+    dpg.set_item_callback("_command", callbacks.command_callback)
+    dpg.set_item_user_data("_command", ser)
 
     # Item positioning
-    dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
-    dpg.set_item_pos("Command", (70, dpg.get_viewport_height()-75))
-    # dpg.set_item_pos("Display", (20, 20))
+    dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))
+    dpg.set_item_pos("_command", (70, dpg.get_viewport_height()-75))
     dpg.set_item_pos(
-        "Status", 
-        (dpg.get_viewport_width()-len(dpg.get_value("Status"))-100, 20))
+        "_status", 
+        (dpg.get_viewport_width()-len(dpg.get_value("_status"))-100, 20))
 
 # Menu bar
 with dpg.viewport_menu_bar():
@@ -79,7 +79,7 @@ with dpg.viewport_menu_bar():
 
 dpg.setup_dearpygui()
 dpg.show_viewport()
-dpg.set_primary_window("Primary", True)
+dpg.set_primary_window("_primary", True)
 
 while dpg.is_dearpygui_running():
     data = ser.poll()
