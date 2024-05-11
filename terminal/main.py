@@ -58,13 +58,8 @@ with dpg.viewport_menu_bar():
             dpg.set_item_user_data(f"{port.device}", ser)
     with dpg.menu(label="Tools"):
         dpg.add_menu_item(
-            label="Show About", callback=lambda:dpg.show_tool(dpg.mvTool_About))
-        dpg.add_menu_item(
             label="Show Metrics",
             callback=lambda:dpg.show_tool(dpg.mvTool_Metrics))
-        dpg.add_menu_item(
-            label="Show Documentation",
-            callback=lambda:dpg.show_tool(dpg.mvTool_Doc))
         dpg.add_menu_item(
             label="Show Debug", callback=lambda:dpg.show_tool(dpg.mvTool_Debug))
         dpg.add_menu_item(
