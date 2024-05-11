@@ -3,7 +3,7 @@ import dearpygui.dearpygui as dpg
 
 import callbacks
 from serial_handler import SerialHandler
-from helpers import add_str
+from display import init_display, add_display
 
 if not sys.version_info >= (3, 6):
     raise EnvironmentError("Python version too old")
@@ -19,14 +19,16 @@ dpg.set_viewport_resize_callback(callbacks.resize_callback)
 # Main window
 with dpg.window(tag="Primary"):
     # Create Items
-    display_text = dpg.add_text(
-        "Lorem ipsum dolor sit amet", tag="Display")
-    input_text = dpg.add_input_text(
+    dpg.add_input_text(
         tag="Command", on_enter=True, hint="Command", enabled=False, width=500)
-    button_send = dpg.add_button(
-        tag="Send", label="Send", enabled=False, width=100)
-    status_text = dpg.add_text(
-        "Disconnected", tag="Status", color=(255, 0, 0, 255))
+    dpg.add_button(tag="Send", label="Send", enabled=False, width=100)
+    dpg.add_text("Disconnected", tag="Status", color=(255, 0, 0, 255))
+
+    # Create display box
+    init_display()
+    while not add_display(""):
+        # Add empty lines to start displaying text at the bottom instead of top
+        pass
 
     # Attach callbacks
     dpg.set_item_callback("Send", callbacks.button_callback)
@@ -37,7 +39,7 @@ with dpg.window(tag="Primary"):
     # Item positioning
     dpg.set_item_pos("Send", (10, dpg.get_viewport_height()-75))
     dpg.set_item_pos("Command", (70, dpg.get_viewport_height()-75))
-    dpg.set_item_pos("Display", (20, 20))
+    # dpg.set_item_pos("Display", (20, 20))
     dpg.set_item_pos(
         "Status", 
         (dpg.get_viewport_width()-len(dpg.get_value("Status"))-100, 20))
@@ -82,7 +84,7 @@ dpg.set_primary_window("Primary", True)
 while dpg.is_dearpygui_running():
     data = ser.poll()
     if data is not None:
-        add_str("Display", data)
+        add_display(data)
     dpg.render_dearpygui_frame()
 
 dpg.destroy_context()
