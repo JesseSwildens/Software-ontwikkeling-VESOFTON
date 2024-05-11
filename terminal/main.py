@@ -20,9 +20,9 @@ dpg.set_viewport_resize_callback(callbacks.resize_callback)
 with dpg.window(tag="_primary"):
     # Create Items
     dpg.add_input_text(
-        tag="_command", on_enter=True, hint="_command", 
+        tag="_command", on_enter=True, hint="Command",
         enabled=False, width=500)
-    dpg.add_button(tag="_send", label="_send", enabled=False, width=100)
+    dpg.add_button(tag="_send", label="Send", enabled=False, width=100)
     dpg.add_text("Disconnected", tag="_status", color=(255, 0, 0, 255))
 
     # Create display box
