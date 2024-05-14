@@ -1,3 +1,5 @@
+import time
+
 import serial
 import serial.tools.list_ports
 
@@ -18,6 +20,8 @@ class SerialHandler():
         if not self.ser.is_open:
             self.ser.port = port
             self.ser.open()
+            time.sleep(0.75) # delay to avoid bug that shows old data
+            self.ser.flush()
         else:
             self.ser.close()
         return self.ser.is_open
