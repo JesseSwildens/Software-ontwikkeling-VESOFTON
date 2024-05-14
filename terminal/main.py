@@ -44,11 +44,23 @@ with dpg.window(tag="_primary"):
         "_status", 
         (dpg.get_viewport_width()-len(dpg.get_value("_status"))-100, 20))
 
+# File dialog
+with dpg.file_dialog(directory_selector=False, show=False, 
+                    callback=callbacks.ok_callback, tag="_file_dialog",
+                    cancel_callback=callbacks.cancel_callback, 
+                    width=700 ,height=400):
+    dpg.add_file_extension(".txt")
+
+# Window for imported text.
+with dpg.window(tag="_imported_text", show=False):
+    for idx in range(100):
+        dpg.add_text("", tag=f"_import_{idx}", pos=(10, 10+idx*13))
+
 # Menu bar
 with dpg.viewport_menu_bar():
     with dpg.menu(label="File"):
-        dpg.add_menu_item(label="Save (WIP)")
-        dpg.add_menu_item(label="Save as (WIP)")
+        dpg.add_menu_item(label="Open", 
+                          callback=lambda:dpg.show_item("_file_dialog"))
     with dpg.menu(label="Port"):
         for port in ser.available_ports:
             dpg.add_menu_item(
@@ -71,6 +83,7 @@ with dpg.viewport_menu_bar():
         dpg.add_menu_item(
             label="Show Item Registry",
             callback=lambda:dpg.show_tool(dpg.mvTool_ItemRegistry))
+        
 
 dpg.setup_dearpygui()
 dpg.show_viewport()

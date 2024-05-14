@@ -41,3 +41,17 @@ def menu_callback(sender, _app_data, user_data : SerialHandler):
 
     for item in enable_items:
         dpg.configure_item(item, enabled=enable)
+
+def ok_callback(_sender, app_data):
+    print('OK was clicked.')
+
+    with open(app_data['file_path_name']) as file:
+        for idx, line in enumerate(file):
+            print(line.strip("\r").strip('\n'))
+            dpg.set_value(f"_import_{idx}", line.strip("\r").strip('\n'))
+        dpg.configure_item("_imported_text", show=True)
+
+def cancel_callback(_sender, _app_data):
+    print('Cancel was clicked.')
+    # print("Sender: ", sender)
+    # print("App Data: ", app_data)
