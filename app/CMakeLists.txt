@@ -36,24 +36,29 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
-# Add STM32CubeMX generated sources
-add_subdirectory(cmake/stm32cubemx)
-
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
+)
+
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE 
+	USE_HAL_DRIVER 
+	STM32F407xx
+    $<$<CONFIG:Debug>:DEBUG>
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/misc.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32_ub_vga_screen.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_dma.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_gpio.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_rcc.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_tim.c
     ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/screen.c
+    ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32f407vgtx.s
 )
 
 # Add include paths
@@ -68,8 +73,6 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
-    stm32cubemx
-
     # Add user defined libraries
 )
 
