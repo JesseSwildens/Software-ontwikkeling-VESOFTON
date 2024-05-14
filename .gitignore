@@ -47,3 +47,8 @@ doxygen/latex
 # CPPCheck
 */build-cppcheck/
 app/cppcheck-result.xml
+
+
+# CPython
+.venv
+__pycache__
