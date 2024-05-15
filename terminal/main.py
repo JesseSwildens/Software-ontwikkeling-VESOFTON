@@ -105,8 +105,17 @@ with dpg.viewport_menu_bar():
                     callback=callbacks.menu_callback)
                 dpg.set_item_user_data(f"{port.device}", ser)
         with dpg.menu(label="Interval"):
-            dpg.add_slider_int(label="ms", tag="_interval_slider", 
-                               min_value=0, max_value=100)
+            dpg.add_slider_int(
+                label="ms", 
+                tag="_interval_slider", 
+                min_value=0, 
+                max_value=100, 
+                callback=
+                lambda:dpg.set_value("_interval_slider", 0) 
+                    if dpg.get_value("_interval_slider") < 0
+                    else dpg.set_value(
+                        "_interval_slider", 
+                        dpg.get_value("_interval_slider")))
     with dpg.menu(label="Tools"):
         dpg.add_menu_item(
             label="Show Metrics",
