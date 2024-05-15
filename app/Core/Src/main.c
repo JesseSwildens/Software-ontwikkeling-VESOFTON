@@ -19,6 +19,8 @@ int i = 0;
 
 int main(void)
 {
+    CHAL_init_uart();
+
     SystemInit(); // System speed to 168MHz
 
     UB_VGA_Screen_Init(); // Init VGA-Screen
