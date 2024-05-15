@@ -84,6 +84,8 @@ if (CPPCHECK_EXE)
 
     get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
 
+    list(FILTER SOURCES_LIST INCLUDE REGEX "^.\.cpp|\.c$")
+
     message("Sources: " ${SOURCES_LIST})
 
     if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
