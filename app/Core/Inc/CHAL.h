@@ -48,80 +48,89 @@
 #define CHAL_DMA_IT_DME 0x00000002
 #define CHAL_DMA_IT_HT 0x00000008
 
-static const uint32_t USART2_BASE_ADDRESS = 0x40004400UL;
-static const uint32_t USART3_BASE_ADDRESS = 0x40004800UL;
-
-typedef struct
+#ifdef __cplusplus
+extern "C"
 {
-    volatile uint32_t CR; /*!< DMA stream x configuration register      */
-    volatile uint32_t NDTR; /*!< DMA stream x number of data register     */
-    volatile uint32_t PAR; /*!< DMA stream x peripheral address register */
-    volatile uint32_t M0AR; /*!< DMA stream x memory 0 address register   */
-    volatile uint32_t M1AR; /*!< DMA stream x memory 1 address register   */
-    volatile uint32_t FCR; /*!< DMA stream x FIFO control register       */
-} CHAL_DMA_Stream_TypeDef;
+#endif
 
-typedef struct
-{
-    CHAL_DMA_Stream_TypeDef* Instance;
-    uint32_t StreamIndex;
-    uint32_t StreamBaseAddress;
-    uint32_t Direction;
-    uint8_t lock;
-} CHAL_DMA_handler;
+    static const uint32_t USART2_BASE_ADDRESS = 0x40004400UL;
+    static const uint32_t USART3_BASE_ADDRESS = 0x40004800UL;
 
-// Define the UART initialization struct
-typedef struct
-{
-    uint32_t BaudRate;
-    uint32_t WordLength;
-    uint32_t StopBits;
-    uint32_t Parity;
-    uint32_t Mode;
-    uint32_t HwFlowCtl;
-    uint32_t OverSampling;
-} CHAL_UART_InitTypeDef;
+    typedef struct
+    {
+        volatile uint32_t CR; /*!< DMA stream x configuration register      */
+        volatile uint32_t NDTR; /*!< DMA stream x number of data register     */
+        volatile uint32_t PAR; /*!< DMA stream x peripheral address register */
+        volatile uint32_t M0AR; /*!< DMA stream x memory 0 address register   */
+        volatile uint32_t M1AR; /*!< DMA stream x memory 1 address register   */
+        volatile uint32_t FCR; /*!< DMA stream x FIFO control register       */
+    } CHAL_DMA_Stream_TypeDef;
 
-typedef struct
-{
-    USART_TypeDef* Instance;
+    typedef struct
+    {
+        CHAL_DMA_Stream_TypeDef* Instance;
+        uint32_t StreamIndex;
+        uint32_t StreamBaseAddress;
+        uint32_t Direction;
+        uint8_t lock;
+    } CHAL_DMA_handler;
 
-    CHAL_UART_InitTypeDef init;
+    // Define the UART initialization struct
+    typedef struct
+    {
+        uint32_t BaudRate;
+        uint32_t WordLength;
+        uint32_t StopBits;
+        uint32_t Parity;
+        uint32_t Mode;
+        uint32_t HwFlowCtl;
+        uint32_t OverSampling;
+    } CHAL_UART_InitTypeDef;
 
-} CHAL_UART_HandleTypeDef;
+    typedef struct
+    {
+        USART_TypeDef* Instance;
 
-typedef enum
-{
-    CHAL_OK = 0x00U,
-    CHAL_ERROR = 0x01U,
-    CHAL_BUSY = 0x02U,
-    CHAL_TIMEOUT = 0x03U
-} CHAL_StatusTypeDef;
+        CHAL_UART_InitTypeDef init;
 
-typedef struct
-{
-    uint32_t Pin;
-    uint32_t Mode;
-    uint32_t Pull;
-    uint32_t Speed;
-    uint32_t Alternate;
-} CHAL_GPIO_InitTypeDef;
+    } CHAL_UART_HandleTypeDef;
 
-typedef struct
-{
-    volatile uint32_t ISR; /*!< DMA interrupt status register */
-    volatile uint32_t Reserved0;
-    volatile uint32_t IFCR; /*!< DMA interrupt flag clear register */
-} CHAL_DMA_Base_Registers;
+    typedef enum
+    {
+        CHAL_OK = 0x00U,
+        CHAL_ERROR = 0x01U,
+        CHAL_BUSY = 0x02U,
+        CHAL_TIMEOUT = 0x03U
+    } CHAL_StatusTypeDef;
 
-CHAL_StatusTypeDef CHAL_init_reg_uart(CHAL_UART_HandleTypeDef* uart);
-void CHAL_init_uart(void);
+    typedef struct
+    {
+        uint32_t Pin;
+        uint32_t Mode;
+        uint32_t Pull;
+        uint32_t Speed;
+        uint32_t Alternate;
+    } CHAL_GPIO_InitTypeDef;
 
-uint8_t CHAL_UART2_get_char(void);
-CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate);
-CHAL_StatusTypeDef ll_GPIO_UART_init(void);
-uint8_t CHAL_NVIC_EnableIRQ(IRQn_Type IRQn);
-uint8_t CHAL_set_priority_NVIC(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority);
-uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma);
-void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+    typedef struct
+    {
+        volatile uint32_t ISR; /*!< DMA interrupt status register */
+        volatile uint32_t Reserved0;
+        volatile uint32_t IFCR; /*!< DMA interrupt flag clear register */
+    } CHAL_DMA_Base_Registers;
+
+    CHAL_StatusTypeDef CHAL_init_reg_uart(CHAL_UART_HandleTypeDef* uart);
+    void CHAL_init_uart(void);
+
+    uint8_t CHAL_UART2_get_char(void);
+    CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate);
+    CHAL_StatusTypeDef ll_GPIO_UART_init(void);
+    uint8_t CHAL_NVIC_EnableIRQ(IRQn_Type IRQn);
+    uint8_t CHAL_set_priority_NVIC(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority);
+    uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma);
+    void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+    CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+
+#ifdef __cplusplus
+}
+#endif
