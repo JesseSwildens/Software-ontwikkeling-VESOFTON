@@ -52,11 +52,11 @@ def button_callback(sender, _app_data, user_data : SerialHandler):
     elif sender == "_send_all":
         idx = find_current_string()
         while(highlight_next("_import_", idx) != 0):
-            idx = find_current_string()
             command = dpg.get_value(f"_import_{idx}")
             user_data.send(command)
             add_display(command, True)
             time.sleep(dpg.get_value("_interval_slider")/1000)
+            idx = find_current_string()
 
 def viewport_resize_callback(_sender):
     dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))
