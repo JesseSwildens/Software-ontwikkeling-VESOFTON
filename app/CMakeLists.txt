@@ -58,6 +58,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_rcc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_tim.c
     ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/CHAL.cpp
     ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32f407vgtx.s
 )
 

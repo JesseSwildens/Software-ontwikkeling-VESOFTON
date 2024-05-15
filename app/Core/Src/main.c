@@ -14,6 +14,9 @@
 #include "stm32_ub_vga_screen.h"
 #include <math.h>
 
+uint8_t test_array[100];
+int i = 0;
+
 int main(void)
 {
     SystemInit(); // System speed to 168MHz
@@ -24,5 +27,8 @@ int main(void)
 
     while (1)
     {
+        uint8_t test = CHAL_UART2_get_char();
+        test_array[i] = test;
+        i++;
     }
 }
