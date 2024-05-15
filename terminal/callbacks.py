@@ -1,3 +1,5 @@
+import time
+
 import dearpygui.dearpygui as dpg
 
 from display import add_display, clear_display
@@ -14,7 +16,8 @@ def find_current_string():
 def highlight_next(tag_without_idx, idx):
     next = 1
     try:
-        while dpg.get_value(tag_without_idx + str(idx+next)).strip("\n").strip("\r") == "":
+        while dpg.get_value(tag_without_idx + str(idx+next))\
+                           .strip("\n").strip("\r") == "":
             next += 1
     except AttributeError:
         next = -idx
@@ -53,6 +56,7 @@ def button_callback(sender, _app_data, user_data : SerialHandler):
             command = dpg.get_value(f"_import_{idx}")
             user_data.send(command)
             add_display(command, True)
+            time.sleep(dpg.get_value("_interval_slider")/1000)
 
 def viewport_resize_callback(_sender):
     dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))

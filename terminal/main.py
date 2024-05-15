@@ -96,13 +96,17 @@ with dpg.viewport_menu_bar():
     with dpg.menu(label="File"):
         dpg.add_menu_item(label="Open",
                           callback=lambda:dpg.show_item("_file_dialog"))
-    with dpg.menu(label="Port"):
-        for port in ser.available_ports:
-            dpg.add_menu_item(
-                tag = f"{port.device}",
-                label=f"{port.device} {port.description}",
-                callback=callbacks.menu_callback)
-            dpg.set_item_user_data(f"{port.device}", ser)
+    with dpg.menu(label="Serial"):
+        with dpg.menu(label="Port"):
+            for port in ser.available_ports:
+                dpg.add_menu_item(
+                    tag = f"{port.device}",
+                    label=f"{port.device} {port.description}",
+                    callback=callbacks.menu_callback)
+                dpg.set_item_user_data(f"{port.device}", ser)
+        with dpg.menu(label="Interval"):
+            dpg.add_slider_int(label="ms", tag="_interval_slider", 
+                               min_value=0, max_value=100)
     with dpg.menu(label="Tools"):
         dpg.add_menu_item(
             label="Show Metrics",
