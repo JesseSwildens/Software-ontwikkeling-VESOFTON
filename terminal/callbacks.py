@@ -93,8 +93,16 @@ def menu_callback(sender, _app_data, user_data : SerialHandler):
         dpg.configure_item(item, enabled=enable)
 
 def ok_callback(_sender, app_data):
-    with open(app_data['file_path_name'], 'r') as file:
-        for idx, line in enumerate(file):
-            dpg.set_value(f"_import_{idx}", line.strip("\r").strip('\n'))
-        dpg.configure_item("_imported_text", show=True)
-        dpg.configure_item("_import_0", color=(255, 255, 0, 255))
+    try:
+        with open(app_data['file_path_name'], 'r') as file:
+            for idx, line in enumerate(file):
+                dpg.set_value(f"_import_{idx}", line.strip("\r").strip('\n'))
+            dpg.configure_item("_imported_text", show=True)
+            dpg.configure_item("_import_0", color=(255, 255, 0, 255))
+    except FileNotFoundError:
+        with dpg.window(label="Warning", modal=True, tag="_warning", width=150,
+                        height=150):
+            dpg.add_text("File does not exist")
+            dpg.add_button(
+                label="OK", 
+                callback=lambda:dpg.delete_item("_warning"))
