@@ -48,7 +48,8 @@ with dpg.window(tag="_primary"):
 with dpg.file_dialog(directory_selector=False, show=False,
                     callback=callbacks.ok_callback, tag="_file_dialog",
                     width=700 ,height=400):
-    dpg.add_file_extension(".txt", color=(255, 255, 0, 255))
+    dpg.add_file_extension("Scripts (*.txt){.txt}")
+    dpg.add_file_extension("Images (*.png *.jpeg){.png,.jpeg}")
 
 # Window for imported text.
 with dpg.window(tag="_imported_text", show=False, autosize=False,

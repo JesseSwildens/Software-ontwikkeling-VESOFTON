@@ -1,9 +1,11 @@
 import time
+import os.path
 
 import dearpygui.dearpygui as dpg
 
 from display import add_display, clear_display
 from serial_handler import SerialHandler
+from bitmap import convert_to_bitmap
 
 def find_current_string():
     for idx in range(100):
@@ -57,6 +59,10 @@ def button_callback(sender, _app_data, user_data : SerialHandler):
             add_display(command, True)
             time.sleep(dpg.get_value("_interval_slider")/1000)
             idx = find_current_string()
+    elif sender == "_convert":
+        convert_to_bitmap()
+    else:
+        print("_sender")
 
 def viewport_resize_callback(_sender):
     dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))
@@ -92,17 +98,45 @@ def menu_callback(sender, _app_data, user_data : SerialHandler):
     for item in enable_items:
         dpg.configure_item(item, enabled=enable)
 
+def warning_popup():
+    with dpg.window(label="Warning", modal=True, tag="_warning", width=150,
+                                height=150):
+        dpg.add_text("Something went wrong!")
+        dpg.add_button(
+            label="OK", 
+            callback=lambda:dpg.delete_item("_warning"))
+
 def ok_callback(_sender, app_data):
-    try:
+    path = app_data['file_path_name']
+    
+    # Generic check if a file exists
+    if not os.path.isfile(path):
+        warning_popup()
+        return
+
+    if path.endswith(".txt"):
         with open(app_data['file_path_name'], 'r') as file:
             for idx, line in enumerate(file):
                 dpg.set_value(f"_import_{idx}", line.strip("\r").strip('\n'))
             dpg.configure_item("_imported_text", show=True)
             dpg.configure_item("_import_0", color=(255, 255, 0, 255))
-    except FileNotFoundError:
-        with dpg.window(label="Warning", modal=True, tag="_warning", width=150,
-                        height=150):
-            dpg.add_text("File does not exist")
-            dpg.add_button(
-                label="OK", 
-                callback=lambda:dpg.delete_item("_warning"))
+
+    elif path.endswith('.jpeg') or path.endswith('.png'):
+        width, height, _channels, data = dpg.load_image(path)
+        with dpg.texture_registry(show=False):
+            dpg.add_static_texture(
+                width=width, height=height, default_value=data, tag='_image')
+
+        w_factor = 320/dpg.get_item_width('_image')
+        h_factor = 240/dpg.get_item_height('_image')
+        scale_factor = min(w_factor, h_factor)
+        with dpg.window(label=app_data['file_name'], width=400, height=300, 
+                        no_resize=True):
+            dpg.add_image(
+                '_image',
+                width=int(dpg.get_item_width('_image')*scale_factor),
+                height=int(dpg.get_item_width('_image')*scale_factor))
+            dpg.add_button(label="Convert", pos=(320, 260), tag='_convert')
+
+    else:
+        warning_popup()
