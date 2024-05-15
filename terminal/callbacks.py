@@ -4,37 +4,55 @@ from display import add_display, clear_display
 from serial_handler import SerialHandler
 
 def find_current_string():
-    tag = ""
     for idx in range(100):
         color = dpg.get_item_configuration(f"_import_{idx}")['color']
         color = [int(x*255) for x in color] # wonky color :)
-        print(color)
         if color == [255, 255, 0, 255]:
             break
+    return idx
 
-    return tag
+def highlight_next(tag_without_idx, idx):
+    next = 1
+    try:
+        while dpg.get_value(tag_without_idx + str(idx+next)).strip("\n").strip("\r") == "":
+            next += 1
+    except AttributeError:
+        next = -idx
 
-def command_callback(_sender, _app_data, _user_data : SerialHandler):
+    dpg.configure_item(tag_without_idx + str(idx+next), color = [
+            int(x*255) for x in 
+            dpg.get_item_configuration(tag_without_idx + str(idx))['color']])
+    dpg.configure_item(tag_without_idx + str(idx), color = [255, 255, 255, 255])
+    return idx+next
+
+def command_callback(_sender, _app_data, user_data : SerialHandler):
     command = dpg.get_value("_command")
-    _user_data.send(command)
+    user_data.send(command)
     add_display(command, True)
     dpg.set_value("_command", "")
     dpg.focus_item("_command")
 
-def button_callback(_sender, _app_data, _user_data : SerialHandler):
-    print(_sender)
-    if _sender == "_send":
+def button_callback(sender, _app_data, user_data : SerialHandler):
+    if sender == "_send":
         command = dpg.get_value("_command")
-        _user_data.send(command)
+        user_data.send(command)
         add_display(command, True)
         dpg.set_value("_command", "")
-    elif _sender == "_step_over":
-        print("_step_over called")
-        find_current_string()
-    elif _sender == "_skip":
-        pass
-    elif _sender == "_send_all":
-        pass
+    elif sender == "_step_over":
+        idx = find_current_string()
+        add_display(dpg.get_value(f"_import_{idx}"), True)
+        user_data.send(dpg.get_value(f"_import_{idx}"))
+        highlight_next("_import_", idx)
+    elif sender == "_skip":
+        idx = find_current_string()
+        highlight_next("_import_", idx)
+    elif sender == "_send_all":
+        idx = find_current_string()
+        while(highlight_next("_import_", idx) != 0):
+            idx = find_current_string()
+            command = dpg.get_value(f"_import_{idx}")
+            user_data.send(command)
+            add_display(command, True)
 
 def viewport_resize_callback(_sender):
     dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))

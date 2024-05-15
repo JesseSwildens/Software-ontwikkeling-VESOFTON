@@ -13,7 +13,7 @@ ser = SerialHandler()
 
 # set up a viewport
 dpg.create_context()
-dpg.create_viewport(title="Terminal", width=1280, height=960, resizable=True)
+dpg.create_viewport(title="Terminal", width=960, height=720, resizable=True)
 dpg.set_viewport_resize_callback(callbacks.viewport_resize_callback)
 
 # Main window
