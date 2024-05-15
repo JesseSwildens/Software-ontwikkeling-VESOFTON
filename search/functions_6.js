@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['main_230',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main.c']]],
-  ['memmanage_5fhandler_231',['MemManage_Handler',['../stm32f4xx__it_8h.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a3150f74512510287a942624aa9b44cc5',1,'MemManage_Handler(void):&#160;stm32f4xx_it.c']]],
-  ['mx_5fdma_5finit_232',['MX_DMA_Init',['../dma_8h.html#a323249dac769f9855c10b4ec9446b707',1,'MX_DMA_Init(void):&#160;dma.c'],['../dma_8c.html#a323249dac769f9855c10b4ec9446b707',1,'MX_DMA_Init(void):&#160;dma.c']]],
-  ['mx_5fgpio_5finit_233',['MX_GPIO_Init',['../gpio_8h.html#ac724e431d2af879252de35615be2bdea',1,'MX_GPIO_Init(void):&#160;gpio.c'],['../gpio_8c.html#ac724e431d2af879252de35615be2bdea',1,'MX_GPIO_Init(void):&#160;gpio.c']]],
-  ['mx_5ftim1_5finit_234',['MX_TIM1_Init',['../tim_8h.html#ad1f9d42690163f73f73e5b820c81ca14',1,'MX_TIM1_Init(void):&#160;tim.c'],['../tim_8c.html#ad1f9d42690163f73f73e5b820c81ca14',1,'MX_TIM1_Init(void):&#160;tim.c']]],
-  ['mx_5fusart2_5fuart_5finit_235',['MX_USART2_UART_Init',['../usart_8h.html#a052088fe5bb3f807a4b2502e664fd4fd',1,'MX_USART2_UART_Init(void):&#160;usart.c'],['../usart_8c.html#a052088fe5bb3f807a4b2502e664fd4fd',1,'MX_USART2_UART_Init(void):&#160;usart.c']]]
+  ['systemcoreclockupdate_6933',['SystemCoreClockUpdate',['../group__STM32F4xx__System__Exported__Functions.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'SystemCoreClockUpdate(void):&#160;system_stm32f4xx.c'],['../group__STM32F4xx__System__Private__Functions.html#gae0c36a9591fe6e9c45ecb21a794f0f0f',1,'SystemCoreClockUpdate(void):&#160;system_stm32f4xx.c']]],
+  ['systeminit_6934',['SystemInit',['../group__STM32F4xx__System__Exported__Functions.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;system_stm32f4xx.c'],['../group__STM32F4xx__System__Private__Functions.html#ga93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;system_stm32f4xx.c']]],
+  ['systick_5fclksourceconfig_6935',['SysTick_CLKSourceConfig',['../group__MISC.html#ga2777d255bb06ad62bb6372a9db1ff385',1,'SysTick_CLKSourceConfig(uint32_t SysTick_CLKSource):&#160;misc.c'],['../group__MISC__Private__Functions.html#ga2777d255bb06ad62bb6372a9db1ff385',1,'SysTick_CLKSourceConfig(uint32_t SysTick_CLKSource):&#160;misc.c']]]
 ];

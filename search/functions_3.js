@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['error_5fhandler_222',['Error_Handler',['../main_8h.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c'],['../main_8c.html#a1730ffe1e560465665eb47d9264826f9',1,'Error_Handler(void):&#160;main.c']]]
+  ['nvic_5finit_6881',['NVIC_Init',['../group__MISC.html#ga4ab373ed0870c06fca5eb51d639adf41',1,'NVIC_Init(NVIC_InitTypeDef *NVIC_InitStruct):&#160;misc.c'],['../group__MISC__Private__Functions.html#ga4ab373ed0870c06fca5eb51d639adf41',1,'NVIC_Init(NVIC_InitTypeDef *NVIC_InitStruct):&#160;misc.c']]],
+  ['nvic_5fprioritygroupconfig_6882',['NVIC_PriorityGroupConfig',['../group__MISC.html#gadfb1f34f803ce54c976643db8c484442',1,'NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup):&#160;misc.c'],['../group__MISC__Private__Functions.html#gadfb1f34f803ce54c976643db8c484442',1,'NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup):&#160;misc.c']]],
+  ['nvic_5fsetvectortable_6883',['NVIC_SetVectorTable',['../group__MISC.html#ga1145208ad70edfc2fab19b8b8ef1b1a1',1,'NVIC_SetVectorTable(uint32_t NVIC_VectTab, uint32_t Offset):&#160;misc.c'],['../group__MISC__Private__Functions.html#ga1145208ad70edfc2fab19b8b8ef1b1a1',1,'NVIC_SetVectorTable(uint32_t NVIC_VectTab, uint32_t Offset):&#160;misc.c']]],
+  ['nvic_5fsystemlpconfig_6884',['NVIC_SystemLPConfig',['../group__MISC.html#gae21011c5232f5b8f366acbecd12a1d4a',1,'NVIC_SystemLPConfig(uint8_t LowPowerMode, FunctionalState NewState):&#160;misc.c'],['../group__MISC__Private__Functions.html#gae21011c5232f5b8f366acbecd12a1d4a',1,'NVIC_SystemLPConfig(uint8_t LowPowerMode, FunctionalState NewState):&#160;misc.c']]]
 ];

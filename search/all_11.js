@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['vdd_5fvalue_178',['VDD_VALUE',['../stm32f4xx__hal__conf_8h.html#aae550dad9f96d52cfce5e539adadbbb4',1,'stm32f4xx_hal_conf.h']]],
-  ['vsync_5fgpio_5fport_179',['VSync_GPIO_Port',['../main_8h.html#a2a97227e8650a87dce2700ba9487b082',1,'main.h']]],
-  ['vsync_5fpin_180',['VSync_Pin',['../main_8h.html#a3450e72851cdbc1438f311982b8d2a85',1,'main.h']]]
+  ['q_4449',['Q',['../group__CMSIS__core__DebugFunctions.html#ga22d10913489d24ab08bd83457daa88de',1,'APSR_Type::Q()'],['../group__CMSIS__core__DebugFunctions.html#gaebf336ed17f711353ef40d16b9fcc305',1,'APSR_Type::@0::Q()'],['../group__CMSIS__core__DebugFunctions.html#gadd7cbd2b0abd8954d62cd7831796ac7c',1,'xPSR_Type::Q()'],['../group__CMSIS__core__DebugFunctions.html#ga0713a6888c5b556e9050aa82d2c1b0e1',1,'xPSR_Type::@2::Q()']]]
 ];

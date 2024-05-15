@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['hal_5fmspinit_223',['HAL_MspInit',['../stm32f4xx__hal__msp_8c.html#ae4fb8e66865c87d0ebab74a726a6891f',1,'stm32f4xx_hal_msp.c']]],
-  ['hal_5ftim_5fbase_5fmspdeinit_224',['HAL_TIM_Base_MspDeInit',['../tim_8c.html#adee8ed7d3ebb3a217c27ac10af86ce2f',1,'tim.c']]],
-  ['hal_5ftim_5fbase_5fmspinit_225',['HAL_TIM_Base_MspInit',['../tim_8c.html#a59716af159bfbbb6023b31354fb23af8',1,'tim.c']]],
-  ['hal_5fuart_5fmspdeinit_226',['HAL_UART_MspDeInit',['../usart_8c.html#a94cd2c58add4f2549895a03bf267622e',1,'usart.c']]],
-  ['hal_5fuart_5fmspinit_227',['HAL_UART_MspInit',['../usart_8c.html#a62a25476866998c7aadfb5c0864fa349',1,'usart.c']]],
-  ['hardfault_5fhandler_228',['HardFault_Handler',['../stm32f4xx__it_8h.html#a2bffc10d5bd4106753b7c30e86903bea',1,'HardFault_Handler(void):&#160;stm32f4xx_it.c'],['../stm32f4xx__it_8c.html#a2bffc10d5bd4106753b7c30e86903bea',1,'HardFault_Handler(void):&#160;stm32f4xx_it.c']]]
+  ['p_5fvga_5finitdma_6885',['P_VGA_InitDMA',['../stm32__ub__vga__screen_8c.html#a2f3c1c5b8a9b5ef0d8ab5a48e2c4cca5',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finitint_6886',['P_VGA_InitINT',['../stm32__ub__vga__screen_8c.html#afe8daf9f33c8ab8da35662edf6d10820',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finitio_6887',['P_VGA_InitIO',['../stm32__ub__vga__screen_8c.html#ab52b01d4e210ce9518b1a7dfb3a9261a',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finittim_6888',['P_VGA_InitTIM',['../stm32__ub__vga__screen_8c.html#a55f532846e217203b3c23d9e59216cac',1,'stm32_ub_vga_screen.c']]]
 ];
