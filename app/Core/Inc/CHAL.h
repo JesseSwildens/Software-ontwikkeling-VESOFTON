@@ -1,4 +1,5 @@
 #include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
 
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 // periphiral base + AP1 adress + DMA base + stream 5 base
@@ -123,9 +124,13 @@ extern "C"
     void CHAL_init_uart(void);
 
     uint8_t CHAL_UART2_get_char(void);
-    CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate);
+    void CHAL_UART2_SendString(char* string);
+    void CHAL_UART2_SendChar(char c);
+
+    CHAL_StatusTypeDef ll_GPIO_UART_init(void);
     CHAL_StatusTypeDef ll_GPIO_UART_init(void);
     uint8_t CHAL_NVIC_EnableIRQ(IRQn_Type IRQn);
+    CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate);
     uint8_t CHAL_set_priority_NVIC(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority);
     uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma);
     void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);

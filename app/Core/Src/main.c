@@ -25,11 +25,12 @@ int main(void)
 
     UB_VGA_Screen_Init(); // Init VGA-Screen
 
-    UB_VGA_FillScreen(0x49); // Grey
+    UB_VGA_FillScreen(0x49); // Greyhhhhh
 
     while (1)
     {
         uint8_t test = CHAL_UART2_get_char();
+        CHAL_UART2_SendChar(test);
         test_array[i] = test;
         i++;
     }

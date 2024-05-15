@@ -7,25 +7,31 @@ CHAL_DMA_Stream_TypeDef stream5;
 void CHAL_init_uart(void)
 {
     ll_GPIO_UART_init();
-    if (ll_uart_init(115200) != CHAL_OK)
-        __NOP(); // add error handler?
+    ll_uart_init(115200);
+    // if ( != CHAL_OK)
+    //     __NOP(); // add error handler?
 }
 
 CHAL_StatusTypeDef ll_GPIO_UART_init(void)
 {
 
-    SET_BIT(RCC->AHB1ENR, RCC_APB1ENR_USART2EN);
+    // SET_BIT(RCC->AHB1ENR, RCC_APB1ENR_USART2EN);
+    // // could add a temp check to check if valid
+    RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+    // SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN);
     // could add a temp check to check if valid
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 
-    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOAEN);
-    // could add a temp check to check if valid
-
-    SET_BIT(GPIOA->MODER, 0x20); // 8.4.1 reference manual alternate function PA2
-    SET_BIT(GPIOA->MODER, 0x80); // 8.4.1 reference manual alternate function PA3
+    // SET_BIT(GPIOA->MODER, 0x20); // 8.4.1 reference manual alternate function PA2
+    // SET_BIT(GPIOA->MODER, 0x80); // 8.4.1 reference manual alternate function PA3
+    GPIOA->MODER |= (2 << 4);
+    GPIOA->MODER |= (2 << 6);
 
     // adress offset 0x20
-    SET_BIT(GPIOA->AFR[0], 0x0000700); //(7 << 8)
-    SET_BIT(GPIOA->AFR[0], 0x0007000); //(7 << 12)
+    // SET_BIT(GPIOA->AFR[0], 0x0000700); //(7 << 8)
+    // SET_BIT(GPIOA->AFR[0], 0x0007000); //(7 << 12)
+    GPIOA->AFR[0] |= (7 << 8);
+    GPIOA->AFR[0] |= (7 << 12);
 
     return CHAL_OK;
 }
@@ -36,19 +42,20 @@ CHAL_StatusTypeDef ll_GPIO_UART_init(void)
 */
 CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate)
 {
-    SET_BIT(USART2->CR1, 0x00000); // clear all bits
-    SET_BIT(USART2->CR1, 0x2000); //(1<<13)
+    USART2->CR1 = 0x00;
+    USART2->CR1 |= (1 << 13);
 
-#ifndef APBPrescTable
-    const uint8_t APBPrescTable[8] = { 0, 0, 0, 0, 1, 2, 3, 4 };
-#endif
+    // Program the M bit in USART_CR1 to define the word length.
+    USART2->CR1 &= ~(1 << 12);
+
     // Not sure if the below works
-    uint32_t pclk = (SystemCoreClock >> APBPrescTable[(RCC->CFGR & RCC_CFGR_PPRE1) >> 10U]); // RCC_CFGR_PPRE1_Pos
-    uint32_t tempreg = CHAL_UART_BRR_SAMPLING16(pclk, BaudRate); // check the 16 times oversampling
-    USART2->BRR = tempreg;
+    RCC_ClocksTypeDef clocks;
+    RCC_ClocksTypeDef* clocks_ptr = &clocks;
+    RCC_GetClocksFreq(clocks_ptr);
+    USART2->BRR = clocks.PCLK1_Frequency / BaudRate;
 
-    SET_BIT(USART2->CR1, 0x4); // enable RE
-    SET_BIT(USART2->CR1, 0x8); // enable TE
+    USART2->CR1 |= (1 << 2);
+    USART2->CR1 |= (1 << 3);
 
     return CHAL_OK;
 }
@@ -59,10 +66,22 @@ uint8_t CHAL_UART2_get_char(void)
     uint8_t Temp;
 
     while (!(USART2->SR & (1 << 5)))
-    {
-    }
+        ; // Wait for RXNE to SET.. This indicates that the data has been Received
     Temp = USART2->DR; // Read the data.
     return Temp;
+}
+
+void CHAL_UART2_SendChar(char c)
+{
+    USART2->DR = c; // LOad the Data
+    while (!(USART2->SR & (1 << 6)))
+        ; // Wait for TC to SET.. This indicates that the data has been transmitted
+}
+
+void CHAL_UART2_SendString(char* string)
+{
+    while (*string)
+        CHAL_UART2_SendChar(*string++);
 }
 
 // set CR register of the DMA
