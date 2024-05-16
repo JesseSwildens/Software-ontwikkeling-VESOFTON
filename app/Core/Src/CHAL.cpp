@@ -205,7 +205,7 @@ void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag
     *flag = 0;
     for (uint16_t i = 0; i < bufferlength; i++)
     {
-        if (rx_buff[i] == '\n')
+        if ((rx_buff[i] == '\n') || (rx_buff[i] == '\r'))
         {
             strcpy((char*)(tempMainBuffer) + offset, (char*)rx_buff);
 #ifdef ECHO_RMESSAGES
@@ -225,105 +225,4 @@ void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag
             i++;
         }
     }
-}
-
-// DMA_CalcBaseAndBitshift
-
-// set CR register of the DMA
-uint8_t CHAL_DMA_init(CHAL_DMA_handler* dma, CHAL_DMA_Stream_TypeDef* stream, uint32_t Direction) // CHAL_DMA_PERIPH_TO_MEMORY for stream 5
-{
-    CHAL_DMA_Base_Registers* regs;
-    uint32_t tmp = 0U;
-
-    dma->Instance = stream;
-    dma->Direction = Direction;
-
-    __CHAL_DMA_DISABLE(dma->Instance);
-
-    tmp = dma->Instance->CR;
-
-    tmp &= ((uint32_t) ~(CHAL_DMA_SxCR_CHSEL | CHAL_DMA_SxCR_MBURST | CHAL_DMA_SxCR_PBURST | CHAL_DMA_SxCR_PL | CHAL_DMA_SxCR_MSIZE | CHAL_DMA_SxCR_PSIZE | CHAL_DMA_SxCR_MINC | CHAL_DMA_SxCR_PINC | CHAL_DMA_SxCR_CIRC | CHAL_DMA_SxCR_DIR | CHAL_DMA_SxCR_CT | CHAL_DMA_SxCR_DBM));
-
-    tmp |= CHAL_DMA_CHANNEL_4 | dma->Direction | CHAL_DMA_PINC_DISABLE | CHAL_DMA_MINC_DISABLE | CHAL_DMA_PDATAALIGN_BYTE | CHAL_DMA_MDATAALIGN_BYTE | CHAL_DMA_CIRCULAR | CHAL_DMA_PRIORITY;
-    dma->Instance->CR = tmp;
-
-    /* Get the FCR register value */
-    tmp = dma->Instance->FCR;
-    /* Clear Direct mode and FIFO threshold bits */
-    tmp &= (uint32_t) ~(DMA_SxFCR_DMDIS | DMA_SxFCR_FTH);
-    /* Prepare the DMA Stream FIFO configuration */
-    tmp |= CHAL_DMA_FIFOMODE_DISABLE;
-    dma->Instance->FCR = tmp;
-
-    regs = (CHAL_DMA_Base_Registers*)CHAL_DMA_CalcBaseAndBitshift(&CHAL_DMA2_Stream5);
-
-    regs->IFCR = 0x3FU << dma->StreamIndex;
-
-    return CHAL_OK;
-}
-
-CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength)
-{
-    if (dma->lock == true)
-        return CHAL_BUSY;
-
-    dma->lock = true;
-    CHAL_DMA_Base_Registers* regs = (CHAL_DMA_Base_Registers*)dma->StreamBaseAddress;
-    CHAL_DMA_SetConfig(dma, SrcAddress, DstAddress, DataLength);
-    regs->IFCR = 0x3FU << dma->StreamIndex;
-    dma->Instance->CR |= CHAL_DMA_IT_TC | CHAL_DMA_IT_TE | CHAL_DMA_IT_DME;
-    dma->Instance->CR |= CHAL_DMA_IT_HT;
-    __CHAL_DMA_ENABLE(dma->Instance);
-
-    return CHAL_OK;
-}
-
-void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength)
-{
-    /* Clear DBM bit */
-    dma->Instance->CR &= (uint32_t)(~CHAL_DMA_SxCR_DBM);
-
-    /* Configure DMA Stream data length */
-    dma->Instance->NDTR = DataLength;
-
-    /* Memory to Peripheral */
-    if ((dma->Direction) == CHAL_DMA_PERIPH_TO_MEMORY)
-    {
-        /* Configure DMA Stream destination address */
-        dma->Instance->PAR = DstAddress;
-
-        /* Configure DMA Stream source address */
-        dma->Instance->M0AR = SrcAddress;
-    }
-    /* Peripheral to Memory */
-    else
-    {
-        /* Configure DMA Stream source address */
-        dma->Instance->PAR = SrcAddress;
-
-        /* Configure DMA Stream destination address */
-        dma->Instance->M0AR = DstAddress;
-    }
-}
-
-uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma)
-{
-    uint32_t stream_number = (((uint32_t)dma->Instance & 0xFFU) - 16U) / 24U;
-
-    /* lookup table for necessary bitshift of flags within status registers */
-    static const uint8_t flagBitshiftOffset[8U] = { 0U, 6U, 16U, 22U, 0U, 6U, 16U, 22U };
-    dma->StreamIndex = flagBitshiftOffset[stream_number]; // i think this can just be 6U
-
-    if (stream_number > 3U)
-    {
-        /* return pointer to HISR and HIFCR */
-        dma->StreamBaseAddress = (((uint32_t)dma->Instance & (uint32_t)(~0x3FFU)) + 4U);
-    }
-    else
-    {
-        /* return pointer to LISR and LIFCR */
-        dma->StreamBaseAddress = ((uint32_t)dma->Instance & (uint32_t)(~0x3FFU));
-    }
-
-    return dma->StreamBaseAddress;
 }
