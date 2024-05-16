@@ -42,7 +42,7 @@ int main(void)
 
     while (1)
     {
-        if ((eventflagUART == 1) && (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP))
+        if ((eventflagUART == 1) && (((VGA.hsync_cnt < VGA_VSYNC_BILD_START - TIMING_PADDING) || (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP + TIMING_PADDING))))
         {
             CHAL_event_call_back(rx_buff, BUFFER_SIZE);
             eventflagUART = 0;

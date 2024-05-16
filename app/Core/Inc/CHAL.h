@@ -11,6 +11,8 @@
 extern uint8_t in_inactive_region_flag;
 extern VGA_t VGA;
 
+#define TIMING_PADDING 5
+
 #define MASK_25_23 (0b11111 << 23)
 #define MASK_21_19 (0b111 << 19)
 #define MASK_18_16 (0b111 << 16)
