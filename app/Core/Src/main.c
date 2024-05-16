@@ -38,7 +38,7 @@ int main(void)
 
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
-    UB_VGA_FillScreen(VGA_COL_RED); // Greyhhhhh
+    UB_VGA_FillScreen(VGA_COL_WHITE); // Greyhhhhh
 
     while (1)
     {

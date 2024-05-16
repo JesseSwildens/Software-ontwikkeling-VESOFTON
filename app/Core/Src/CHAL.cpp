@@ -202,22 +202,11 @@ void CHAL_clear_idledetect()
 
 void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength)
 {
-    for (uint16_t i = 0; i < bufferlength; i++)
-    {
-        if ((rx_buff[i] == '\n') || (rx_buff[i] == '\r'))
-        {
-            strcpy((char*)(tempMainBuffer) + offset, (char*)rx_buff);
-#ifdef ECHO_RMESSAGES
-            std::cout
-                << incoming_commands_q.back() << std::endl;
-#endif
-            CHAL_disable_DMA(DMA1_Stream5);
-            DMA1_Stream5->NDTR = bufferlength;
-            memset(rx_buff, 0, bufferlength);
-            offset += i + 1;
-            CHAL_enable_DMA(DMA1_Stream5);
-            break;
-        }
-    }
+    strcpy((char*)(tempMainBuffer) + offset, (char*)rx_buff);
+    CHAL_disable_DMA(DMA1_Stream5);
+    offset += (bufferlength - DMA1_Stream5->NDTR) + 1;
+    DMA1_Stream5->NDTR = bufferlength;
+    memset(rx_buff, 0, bufferlength);
+    CHAL_enable_DMA(DMA1_Stream5);
     in_inactive_region_flag = 0;
 }

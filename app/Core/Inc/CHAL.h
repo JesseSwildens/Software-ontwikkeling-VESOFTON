@@ -11,7 +11,7 @@
 extern uint8_t in_inactive_region_flag;
 extern VGA_t VGA;
 
-#define TIMING_PADDING 5
+#define TIMING_PADDING 10
 
 #define MASK_25_23 (0b11111 << 23)
 #define MASK_21_19 (0b111 << 19)
@@ -168,6 +168,7 @@ extern "C"
     uint8_t CHAL_clear_status_regs();
     void CHAL_clear_idledetect();
     void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength);
+    void CHAL_disable_DMA(DMA_Stream_TypeDef* stream);
 
 #ifdef __cplusplus
 }
