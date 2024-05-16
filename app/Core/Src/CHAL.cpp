@@ -1,4 +1,16 @@
 #include "CHAL.h"
+#include "string.h"
+// #include <cstdio>
+// #include <queue>
+// #include <string>
+// #include <vector>
+
+// using namespace std;
+// std::queue<std::string> incoming_commands_q;
+
+// both temp until cpp is fixed
+uint8_t tempMainBuffer[2048];
+int offset = 0;
 
 CHAL_UART_HandleTypeDef CHAL_UART2;
 CHAL_DMA_handler CHAL_DMA2_Stream5;
@@ -42,11 +54,17 @@ CHAL_StatusTypeDef ll_GPIO_UART_init(void)
 */
 CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate)
 {
+
+    NVIC_InitTypeDef NVIC_InitStructure;
+
     USART2->CR1 = 0x00;
     USART2->CR1 |= (1 << 13);
 
     // Program the M bit in USART_CR1 to define the word length.
     USART2->CR1 &= ~(1 << 12);
+
+    USART2->CR1 |= (1 << 4); // enable IDLE line detection in UART
+    USART2->CR3 |= (1 << 6); // enable DMA Receiver
 
     // Not sure if the below works
     RCC_ClocksTypeDef clocks;
@@ -56,6 +74,12 @@ CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate)
 
     USART2->CR1 |= (1 << 2);
     USART2->CR1 |= (1 << 3);
+
+    NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
 
     return CHAL_OK;
 }
@@ -83,6 +107,127 @@ void CHAL_UART2_SendString(char* string)
     while (*string)
         CHAL_UART2_SendChar(*string++);
 }
+
+void CHAL_disable_DMA(DMA_Stream_TypeDef* stream)
+{
+    while ((stream->CR & 0x1) == 1)
+        stream->CR &= ~(1 << 0);
+}
+
+void CHAL_enable_DMA(DMA_Stream_TypeDef* stream)
+{
+    stream->CR |= (1 << 0);
+}
+
+uint8_t CHAL_DMA_Init(void)
+{
+
+    // 1. Enable DMA1 Clock
+    CHAL_init_DMA_timers();
+
+    // if DMA is on, turn it off and wait till it is sure it is turned off
+    CHAL_disable_DMA(DMA1_Stream5);
+
+    DMA_DeInit(DMA1_Stream5);
+
+    // stap 1 of stream configuration procedure
+    // Clear bits 25-23, 21-19, 18-16, 15, 13-11, 10-8, 6, and 5
+    DMA1_Stream5->CR &= ~(MASK_25_23 | MASK_21_19 | MASK_18_16 | MASK_15 | MASK_13_11 | MASK_10_8 | MASK_6 | MASK_5 | MASK_4_1);
+
+    // Set bits 25-23, 21-19, 18-16, 15, 13-11, 10-8, 6, and 5 to desired values
+    DMA1_Stream5->CR |= (4 << 25) | (3 << 23) | (3 << 21) | (0 << 19) | (3 << 16) | (1 << 15) | (1 << 10) | (1 << 8);
+
+    // Enable DMA Interrupts
+    DMA1_Stream5->CR |= CHAL_DMA_IT_TC; // | CHAL_DMA_IT_TE | CHAL_DMA_IT_DME;
+    // DMA1_Stream5->CR |= CHAL_DMA_IT_HT;
+
+    return CHAL_OK; // MBURST? 16 beats; same for PBURST;
+}
+
+void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize)
+{
+    // 1. Set the data size in CNDTR Register
+    DMA1_Stream5->NDTR = datasize;
+
+    // 2. Set the  peripheral address in PAR Register
+    DMA1_Stream5->PAR = srcAdd;
+
+    // 3. Set the  Memory address in MAR Register
+    DMA1_Stream5->M0AR = destAdd;
+
+    // 4. Enable the DMA1
+    DMA1_Stream5->CR |= 1 << 0;
+}
+
+uint8_t CHAL_clear_status_regs()
+{
+    DMA1->HIFCR |= 0xBEF0BEF;
+    DMA1->LIFCR |= 0xBEF0BEF;
+
+    while ((DMA1->LISR != 0x0) | (DMA1->HISR != 0x0))
+    {
+    }
+
+    return CHAL_OK;
+}
+
+uint8_t CHAL_init_DMA_timers()
+{
+
+    // maybe disable the DMA first
+    // RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
+    // RCC->AHB1ENR |= RCC_AHB1ENR_DMA2EN;
+
+    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+
+    NVIC_SetPriority(DMA1_Stream5_IRQn, 0);
+    NVIC_EnableIRQ(DMA1_Stream5_IRQn);
+
+    NVIC_SetPriority(DMA2_Stream5_IRQn, 0);
+    NVIC_EnableIRQ(DMA2_Stream5_IRQn);
+
+    return CHAL_OK;
+}
+
+// register CR2 has an iterupt for linebreak detection... maybe that is useable
+
+void CHAL_clear_idledetect()
+{
+    volatile uint32_t tmpreg;
+    tmpreg = USART2->SR;
+    (void)tmpreg;
+    tmpreg = USART2->DR;
+    (void)tmpreg;
+}
+
+void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag)
+{
+    *flag = 0;
+    for (uint16_t i = 0; i < bufferlength; i++)
+    {
+        if (rx_buff[i] == '\n')
+        {
+            strcpy((char*)(tempMainBuffer) + offset, (char*)rx_buff);
+#ifdef ECHO_RMESSAGES
+            std::cout
+                << incoming_commands_q.back() << std::endl;
+#endif
+            CHAL_disable_DMA(DMA1_Stream5);
+            DMA1_Stream5->NDTR = bufferlength;
+            memset(rx_buff, 0, bufferlength);
+            offset += i + 1;
+            CHAL_enable_DMA(DMA1_Stream5);
+            break;
+        }
+
+        if (tempMainBuffer[256] != 0)
+        {
+            i++;
+        }
+    }
+}
+
+// DMA_CalcBaseAndBitshift
 
 // set CR register of the DMA
 uint8_t CHAL_DMA_init(CHAL_DMA_handler* dma, CHAL_DMA_Stream_TypeDef* stream, uint32_t Direction) // CHAL_DMA_PERIPH_TO_MEMORY for stream 5
@@ -161,31 +306,6 @@ void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t Dst
     }
 }
 
-uint8_t CHAL_init_DMA_timers()
-{
-
-    // maybe disable the DMA first
-    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_DMA1EN);
-    SET_BIT(RCC->AHB1ENR, RCC_AHB1ENR_DMA2EN);
-
-    CHAL_set_priority_NVIC(DMA1_Stream5_IRQn, 0, 0);
-    NVIC_EnableIRQ(DMA1_Stream5_IRQn);
-
-    CHAL_set_priority_NVIC(DMA2_Stream5_IRQn, 0, 0);
-    NVIC_EnableIRQ(DMA2_Stream5_IRQn);
-
-    return CHAL_OK;
-}
-
-uint8_t CHAL_set_priority_NVIC(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
-{
-    uint32_t prioritygroup = 0x00U;
-    prioritygroup = NVIC_GetPriorityGrouping();
-    NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, PreemptPriority, SubPriority));
-
-    return CHAL_OK;
-}
-
 uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma)
 {
     uint32_t stream_number = (((uint32_t)dma->Instance & 0xFFU) - 16U) / 24U;
@@ -207,10 +327,3 @@ uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma)
 
     return dma->StreamBaseAddress;
 }
-
-void DMA1_Stream5_IRQHandler(void)
-{
-    CHAL_DMA2_Stream5.lock = false;
-}
-
-// DMA_CalcBaseAndBitshift

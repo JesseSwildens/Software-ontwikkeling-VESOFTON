@@ -1,9 +1,25 @@
+#include "misc.h"
 #include "stm32f4xx.h"
+#include "stm32f4xx_dma.h"
 #include "stm32f4xx_rcc.h"
 
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 // periphiral base + AP1 adress + DMA base + stream 5 base
 #endif
+
+#define MASK_25_23 (0b11111 << 23)
+#define MASK_21_19 (0b111 << 19)
+#define MASK_18_16 (0b111 << 16)
+#define MASK_15 (1 << 15)
+#define MASK_13_11 (0b1111 << 11)
+#define MASK_10_8 (0b111 << 8)
+#define MASK_6 (1 << 6)
+#define MASK_5 (1 << 5)
+#define MASK_4_1 (0b1111 << 1)
+
+#define DMA_Stream0_IT_MASK (uint32_t)(DMA_LISR_FEIF0 | DMA_LISR_DMEIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 | DMA_LISR_TCIF0)
+#define DMA_Stream1_IT_MASK (uint32_t)(DMA_Stream0_IT_MASK << 6)
+#define DMA_Stream5_IT_MASK (uint32_t)(DMA_Stream1_IT_MASK | (uint32_t)0x20000000)
 
 #define GPIO_PIN_PA2 ((uint16_t)0x0004) /* Pin 2 selected    */
 #define GPIO_PIN_PA3 ((uint16_t)0x0008) /* Pin 3 selected    */
@@ -15,6 +31,8 @@
 
 #define __CHAL_DMA_DISABLE(__HANDLE__) ((__HANDLE__)->CR &= ~CHAL_DMA_SxCR_EN)
 #define __CHAL_DMA_ENABLE(__HANDLE__) ((__HANDLE__)->CR |= CHAL_DMA_SxCR_EN)
+
+#define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
 
 #define CHAL_DMA_SxCR_CHSEL 0x0E000000 /*!< 0x0E000000 */
 #define CHAL_DMA_SxCR_MBURST 0x01800000
@@ -135,6 +153,15 @@ extern "C"
     uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma);
     void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
     CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+    uint8_t CHAL_DMA_init(CHAL_DMA_handler* dma, CHAL_DMA_Stream_TypeDef* stream, uint32_t Direction);
+    CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+    uint8_t CHAL_init_DMA_timers();
+
+    uint8_t CHAL_DMA_Init(void);
+    void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize);
+    uint8_t CHAL_clear_status_regs();
+    void CHAL_clear_idledetect();
+    void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag);
 
 #ifdef __cplusplus
 }
