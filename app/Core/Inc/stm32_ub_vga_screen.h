@@ -81,8 +81,8 @@ extern uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y];
 
 #define VGA_TIM2_HSYNC_IMP 320 // HSync-length (3,81us)
 #define VGA_TIM2_HTRIGGER_START 480 // HSync+BackPorch (5,71us)
-#define VGA_TIM2_DMA_DELAY 60 // ease the delay when DMA START (Optimization = none)
-// #define  VGA_TIM2_DMA_DELAY        30  // ease the delay when DMA START (Optimization = -O1)
+// #define VGA_TIM2_DMA_DELAY 60 // ease the delay when DMA START (Optimization = none)
+#define VGA_TIM2_DMA_DELAY 30 // ease the delay when DMA START (Optimization = -O1)
 
 //--------------------------------------------------------------
 // VSync-Signal
@@ -120,4 +120,5 @@ void UB_VGA_FillScreen(uint8_t color);
 void UB_VGA_SetPixel(uint16_t xp, uint16_t yp, uint8_t color);
 
 //--------------------------------------------------------------
+
 #endif // __STM32F4_UB_VGA_SCREEN_H

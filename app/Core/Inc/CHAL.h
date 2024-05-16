@@ -1,4 +1,5 @@
 #include "misc.h"
+#include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_rcc.h"
@@ -6,6 +7,9 @@
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 // periphiral base + AP1 adress + DMA base + stream 5 base
 #endif
+
+extern uint8_t in_inactive_region_flag;
+extern VGA_t VGA;
 
 #define MASK_25_23 (0b11111 << 23)
 #define MASK_21_19 (0b111 << 19)
@@ -161,7 +165,7 @@ extern "C"
     void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize);
     uint8_t CHAL_clear_status_regs();
     void CHAL_clear_idledetect();
-    void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag);
+    void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength);
 
 #ifdef __cplusplus
 }

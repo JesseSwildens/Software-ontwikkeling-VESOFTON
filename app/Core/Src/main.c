@@ -19,8 +19,8 @@
 
 uint8_t test_array[100];
 uint8_t rx_buff[BUFFER_SIZE];
-uint8_t eventflagUART = 0;
 int i = 0;
+uint8_t eventflagUART = 0;
 
 extern CHAL_UART_HandleTypeDef CHAL_UART2;
 extern CHAL_DMA_handler CHAL_DMA2_Stream5;
@@ -42,9 +42,10 @@ int main(void)
 
     while (1)
     {
-        if (eventflagUART == 1)
+        if ((eventflagUART == 1) && (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP))
         {
-            CHAL_event_call_back(rx_buff, BUFFER_SIZE, &eventflagUART);
+            CHAL_event_call_back(rx_buff, BUFFER_SIZE);
+            eventflagUART = 0;
         }
 
 #ifdef DEBUG_UART

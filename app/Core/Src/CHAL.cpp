@@ -76,8 +76,8 @@ CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate)
     USART2->CR1 |= (1 << 3);
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 5;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 5;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
@@ -180,7 +180,7 @@ uint8_t CHAL_init_DMA_timers()
 
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
 
-    NVIC_SetPriority(DMA1_Stream5_IRQn, 0);
+    NVIC_SetPriority(DMA1_Stream5_IRQn, 5);
     NVIC_EnableIRQ(DMA1_Stream5_IRQn);
 
     NVIC_SetPriority(DMA2_Stream5_IRQn, 0);
@@ -200,9 +200,8 @@ void CHAL_clear_idledetect()
     (void)tmpreg;
 }
 
-void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag)
+void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength)
 {
-    *flag = 0;
     for (uint16_t i = 0; i < bufferlength; i++)
     {
         if ((rx_buff[i] == '\n') || (rx_buff[i] == '\r'))
@@ -219,10 +218,6 @@ void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength, uint8_t* flag
             CHAL_enable_DMA(DMA1_Stream5);
             break;
         }
-
-        if (tempMainBuffer[256] != 0)
-        {
-            i++;
-        }
     }
+    in_inactive_region_flag = 0;
 }

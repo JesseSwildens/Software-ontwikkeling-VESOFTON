@@ -33,7 +33,7 @@ void P_VGA_InitDMA(void);
 //--------------------------------------------------------------
 uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y];
 VGA_t VGA;
-
+uint8_t in_inactive_region_flag = 0;
 //--------------------------------------------------------------
 // Init VGA-Module
 //--------------------------------------------------------------
@@ -391,5 +391,7 @@ void DMA2_Stream5_IRQHandler(void)
         DMA2_Stream5->CR = 0;
         // switch on black
         GPIOE->BSRRH = VGA_GPIO_HINIBBLE;
+
+        in_inactive_region_flag = 1;
     }
 }
