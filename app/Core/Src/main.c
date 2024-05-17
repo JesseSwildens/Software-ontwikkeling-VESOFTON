@@ -26,6 +26,17 @@ extern CHAL_UART_HandleTypeDef CHAL_UART2;
 extern CHAL_DMA_handler CHAL_DMA2_Stream5;
 extern CHAL_DMA_Stream_TypeDef stream5;
 
+void set_screen_lines()
+{
+    for (int yp = 0; yp < VGA_DISPLAY_Y; yp++)
+    {
+        for (int xp = 0; xp < (VGA_DISPLAY_X); xp++)
+        {
+            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? VGA_COL_BLACK : VGA_COL_WHITE;
+        }
+    }
+}
+
 int main(void)
 {
     SystemInit(); // System speed to 168MHz
@@ -39,6 +50,7 @@ int main(void)
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
     UB_VGA_FillScreen(VGA_COL_WHITE); // Greyhhhhh
+    set_screen_lines();
 
     while (1)
     {

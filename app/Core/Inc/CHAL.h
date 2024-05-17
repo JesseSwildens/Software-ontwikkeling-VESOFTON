@@ -144,32 +144,20 @@ extern "C"
         volatile uint32_t IFCR; /*!< DMA interrupt flag clear register */
     } CHAL_DMA_Base_Registers;
 
-    CHAL_StatusTypeDef CHAL_init_reg_uart(CHAL_UART_HandleTypeDef* uart);
     void CHAL_init_uart(void);
-
+    CHAL_StatusTypeDef ll_GPIO_UART_init(void);
+    CHAL_StatusTypeDef ll_uart_config(uint32_t BaudRate);
     uint8_t CHAL_UART2_get_char(void);
-    void CHAL_UART2_SendString(char* string);
     void CHAL_UART2_SendChar(char c);
-
-    CHAL_StatusTypeDef ll_GPIO_UART_init(void);
-    CHAL_StatusTypeDef ll_GPIO_UART_init(void);
-    uint8_t CHAL_NVIC_EnableIRQ(IRQn_Type IRQn);
-    CHAL_StatusTypeDef ll_uart_init(uint32_t BaudRate);
-    uint8_t CHAL_set_priority_NVIC(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority);
-    uint32_t CHAL_DMA_CalcBaseAndBitshift(CHAL_DMA_handler* dma);
-    void CHAL_DMA_SetConfig(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-    CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-    uint8_t CHAL_DMA_init(CHAL_DMA_handler* dma, CHAL_DMA_Stream_TypeDef* stream, uint32_t Direction);
-    CHAL_StatusTypeDef CHAL_DMA_Start_IT(CHAL_DMA_handler* dma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-    uint8_t CHAL_init_DMA_timers();
-
+    void CHAL_UART2_SendString(char* string);
+    void CHAL_disable_DMA(DMA_Stream_TypeDef* stream);
+    void CHAL_enable_DMA(DMA_Stream_TypeDef* stream);
     uint8_t CHAL_DMA_Init(void);
     void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize);
     uint8_t CHAL_clear_status_regs();
+    uint8_t CHAL_init_DMA_timers();
     void CHAL_clear_idledetect();
     void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength);
-    void CHAL_disable_DMA(DMA_Stream_TypeDef* stream);
-
 #ifdef __cplusplus
 }
 #endif
