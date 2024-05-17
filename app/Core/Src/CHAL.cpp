@@ -6,7 +6,6 @@
  */
 
 #include "CHAL.h"
-// #include "ASM_CHAL.h"
 #include "string.h"
 // #include <cstdio>
 // #include <queue>
@@ -306,7 +305,7 @@ void CHAL_clear_idledetect()
     volatile uint32_t tmpreg;
     tmpreg = USART2->SR;
     (void)tmpreg;
-    tmpreg = USART2->DR;
+    tmpreg = USART2->DR; // data register;
     (void)tmpreg;
 }
 

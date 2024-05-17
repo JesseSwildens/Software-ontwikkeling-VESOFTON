@@ -17,14 +17,8 @@
 #define BUFFER_SIZE 128
 // #define DEBUG_UART
 
-uint8_t test_array[100];
 uint8_t rx_buff[BUFFER_SIZE];
-int i = 0;
 uint8_t eventflagUART = 0;
-
-extern CHAL_UART_HandleTypeDef CHAL_UART2;
-extern CHAL_DMA_handler CHAL_DMA2_Stream5;
-extern CHAL_DMA_Stream_TypeDef stream5;
 
 void set_screen_lines()
 {
@@ -32,7 +26,7 @@ void set_screen_lines()
     {
         for (int xp = 0; xp < (VGA_DISPLAY_X); xp++)
         {
-            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? VGA_COL_BLACK : VGA_COL_WHITE;
+            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? VGA_COL_RED : VGA_COL_BLACK;
         }
     }
 }
@@ -56,11 +50,11 @@ int main(void)
     {
         if ((eventflagUART == 1) && (((VGA.hsync_cnt < VGA_VSYNC_BILD_START - TIMING_PADDING) || (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP + TIMING_PADDING))))
         {
-            CHAL_event_call_back(rx_buff, BUFFER_SIZE);
+            CHAL_event_call_back_ASM(rx_buff, BUFFER_SIZE);
             eventflagUART = 0;
         }
 
-#ifdef DEBUG_UART
+#ifdef DEBUG_UART1
         uint8_t test
             = CHAL_UART2_get_char();
         CHAL_UART2_SendChar(test);
