@@ -1,2 +1,2 @@
-def convert_to_bitmap():
-    print("convert_to_bitmap")
+def convert_to_bitmap(path : str):
+    print(path)
