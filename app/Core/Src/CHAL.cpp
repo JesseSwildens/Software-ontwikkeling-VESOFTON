@@ -7,13 +7,13 @@
 
 #include "CHAL.h"
 #include "string.h"
-// #include <cstdio>
-// #include <queue>
-// #include <string>
-// #include <vector>
+#include <cstdio>
+#include <queue>
+#include <string>
+#include <vector>
 
-// using namespace std;
-// std::queue<std::string> incoming_commands_q;
+using namespace std;
+std::queue<std::string> incoming_commands_q;
 
 // both temp until cpp is fixed
 uint8_t tempMainBuffer[2048];
