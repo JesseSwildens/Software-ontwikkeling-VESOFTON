@@ -33,6 +33,10 @@ void P_VGA_InitDMA(void);
 //--------------------------------------------------------------
 uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y];
 VGA_t VGA;
+
+bitmap_position previous_bitmap;
+uint16_t x = 50, y = 50;
+uint16_t x_speed = 1, y_speed = 1;
 //--------------------------------------------------------------
 // Init VGA-Module
 //--------------------------------------------------------------
@@ -303,8 +307,8 @@ void P_VGA_InitDMA(void)
     DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
     DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
     DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
-    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+    DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
+    DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC16;
     DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
     DMA_Init(DMA2_Stream5, &DMA_InitStructure);
 
@@ -323,10 +327,11 @@ void TIM2_IRQHandler(void)
 
     // Interrupt of Timer2 CH3 occurred (for Trigger start)
     TIM_ClearITPendingBit(TIM2, TIM_IT_CC3);
-    //  TIM2->SR |= ~TIM_SR_CC3IF; //Clear pending bit interrupt
-    //  NVIC->ISPR[0] = 0x10000000;
-    //  NVIC->ICPR[0] = 0x10000000;
-    //  TIM2->SR = (uint16_t)~((uint16_t)0x0008);
+    // TIM2->SR &= ~TIM_IT_CC3;
+    // TIM2->SR &= ~TIM_SR_CC3IF; // Clear pending bit interrupt
+    // NVIC->ISPR[0] = 0x10000000;
+    // NVIC->ICPR[0] = 0x10000000;
+    // TIM2->SR = (uint16_t) ~((uint16_t)0x0008);
 
     VGA.hsync_cnt++;
     if (VGA.hsync_cnt >= VGA_VSYNC_PERIODE)
@@ -370,6 +375,101 @@ void TIM2_IRQHandler(void)
     }
 }
 
+bitmap_position UB_VGA_DrawBitmapWithBackground(uint8_t bgColor, unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)
+{
+    uint16_t xp, yp;
+    bitmap_position _bitmap;
+
+    // Fill the entire screen with the background color
+    UB_VGA_FillScreen(bgColor);
+
+    // Draw the bitmap at the top-left corner
+    for (yp = 0; yp < bitmapHeight; yp++)
+    {
+        for (xp = 0; xp < bitmapWidth; xp++)
+        {
+            // Calculate the pixel index in the bitmap array
+            uint16_t index = yp * bitmapWidth + xp;
+            // Get the color value from the bitmap
+            uint8_t color = bitmap[index];
+            // Set the pixel on the screen
+            UB_VGA_SetPixel(xp + x_offset, yp + y_offset, color);
+        }
+    }
+    _bitmap.x = xp + x_offset;
+    _bitmap.y = yp + y_offset;
+    return _bitmap;
+}
+
+bitmap_position UB_VGA_DrawBitmap(unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)
+{
+    uint16_t xp, yp;
+    bitmap_position _bitmap;
+    _bitmap.width = bitmapWidth;
+    _bitmap.height = bitmapHeight;
+
+    // Draw the bitmap at the top-left corner
+    for (yp = 0; yp < bitmapHeight; yp++)
+    {
+        for (xp = 0; xp < bitmapWidth; xp++)
+        {
+            // Calculate the pixel index in the bitmap array
+            uint16_t index = yp * bitmapWidth + xp;
+            // Get the color value from the bitmap
+            uint8_t color = bitmap[index];
+            // Set the pixel on the screen
+            UB_VGA_SetPixel(xp + x_offset, yp + y_offset, color);
+        }
+    }
+    _bitmap.x = xp + x_offset;
+    _bitmap.y = yp + y_offset;
+    return _bitmap;
+}
+
+void clear_previous_bitmap(bitmap_position* bitmap)
+{
+    uint16_t xp, yp;
+
+    for (yp = bitmap->y - bitmap->width; yp < bitmap->width / 80 + bitmap->y; yp++)
+    {
+        for (xp = bitmap->x - bitmap->height; xp < bitmap->height / 80 + bitmap->x; xp++)
+        {
+            UB_VGA_SetPixel(xp, yp, VGA_COL_BLACK);
+        }
+    }
+}
+
+void UB_VGA_DVD_Screensaver(unsigned char* bitmap)
+{
+    uint16_t bmp_width = 32;
+    uint16_t bmp_height = 32;
+    uint32_t rage_against_the_compiler;
+
+    // Clear previous bitmap position
+    clear_previous_bitmap(&previous_bitmap);
+
+    // Update position
+    x += x_speed;
+    y += y_speed;
+
+    // Bounce off walls
+    if (x <= 0 || x >= VGA_DISPLAY_X - bmp_width)
+    {
+        x_speed = -x_speed;
+    }
+    if (y <= 0 || y >= VGA_DISPLAY_Y - bmp_height)
+    {
+        y_speed = -y_speed;
+    }
+
+    // Draw new bitmap position
+    previous_bitmap = UB_VGA_DrawBitmap(bitmap, bmp_width, bmp_height, (uint16_t)x, (uint16_t)y);
+
+    // Delay
+    for (rage_against_the_compiler = 0; rage_against_the_compiler < 200000; rage_against_the_compiler++)
+        ;
+}
+
 //--------------------------------------------------------------
 // DMA Interrupt ISR
 //   after TransferCompleteInterrupt -> stop DMA
@@ -392,3 +492,11 @@ void DMA2_Stream5_IRQHandler(void)
         GPIOE->BSRRH = VGA_GPIO_HINIBBLE;
     }
 }
+
+//    for (int i = 0; i < 200; i++)
+//     {
+//         clear_previous_bitmap(&previous_bitmap);
+//         previous_bitmap = UB_VGA_DrawBitmap(bitmap_calib, 32, 32, i, i);
+//         for (int wait = 0; wait < 100000 * 1.2; wait++)
+//             rage_against_the_compiler++;
+//     }

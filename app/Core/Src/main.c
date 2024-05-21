@@ -11,6 +11,9 @@
 //--------------------------------------------------------------
 
 #include "main.h"
+#include "bitmap.h"
+#include "bitmap_calib_large.h"
+#include "bitmap_dvd.h"
 #include "stm32_ub_vga_screen.h"
 #include <math.h>
 
@@ -26,7 +29,7 @@ void set_screen_lines()
     {
         for (int xp = 0; xp < (VGA_DISPLAY_X); xp++)
         {
-            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? VGA_COL_RED : VGA_COL_BLACK;
+            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? 0x49 : VGA_COL_BLACK;
         }
     }
 }
@@ -43,15 +46,22 @@ int main(void)
 
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
-    UB_VGA_FillScreen(VGA_COL_WHITE); // Greyhhhhh
-    set_screen_lines();
+    UB_VGA_FillScreen(VGA_COL_BLACK); // Greyhhhhh
+    UB_VGA_DrawBitmap((unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
+    // set_screen_lines();
+    // UB_VGA_DrawBitmap(bitmap_calib, 32, 32, 10, 10);
 
     while (1)
     {
-        if ((eventflagUART == 1) && (((VGA.hsync_cnt < VGA_VSYNC_BILD_START - TIMING_PADDING) || (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP + TIMING_PADDING))))
+        if ((((VGA.hsync_cnt < VGA_VSYNC_BILD_START - TIMING_PADDING) || (VGA.hsync_cnt > VGA_VSYNC_BILD_STOP + TIMING_PADDING))))
         {
-            CHAL_event_call_back_ASM(rx_buff, BUFFER_SIZE);
-            eventflagUART = 0;
+            if (eventflagUART == 1)
+            {
+                CHAL_event_call_back(rx_buff, BUFFER_SIZE);
+                eventflagUART = 0;
+            }
+
+            // UB_VGA_DVD_Screensaver(bitmap_dvd);
         }
 
 #ifdef DEBUG_UART1
