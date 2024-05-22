@@ -27,6 +27,7 @@
 #define MAX_CIRCLE_POINTS 100
 
 static int (*loggerCallback)(const char* message, int length) = nullptr;
+static void log_message(std::string message);
 static void API_setPixel(int, int, uint8_t);
 
 /**
@@ -110,6 +111,8 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
             err += dx;
         }
     }
+
+    return 0;
 }
 
 /**
@@ -149,6 +152,8 @@ int API_draw_circle(int x, int y, int radius, int color, int reserved)
         float angle = i * 2 * (PI / 100);
         API_setPixel(x + (cosf(angle) * radius), y + (sinf(angle) * radius), (uint8_t)color);
     }
+
+    return 0;
 }
 
 /**
@@ -178,7 +183,10 @@ int API_register_logger_callback(int (*pFunction)(const char* string, int len))
     if (pFunction != nullptr)
     {
         loggerCallback = pFunction;
+        return 0;
     }
+
+    return -1;
 }
 
 /**
@@ -208,11 +216,11 @@ static void API_setPixel(int x, int y, uint8_t color)
  * @param Weight Weight of the lines in the unfilled rectangle. Unused in filled
  * @param reserved Currently unused. Reserved for future use.
  *
- * @return 0 if succesfull, otherwise -1 if error occured
+ * @return 0 if succesfull, otherwise >= -1 if error occured
  */
 int API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved)
 {
-
+    int ret = 0;
     if (filled)
     {
         for (int i = x; i < width; i++)
@@ -225,11 +233,13 @@ int API_draw_rectangle(int x, int y, int width, int height, int color, int fille
     }
     else
     {
-        API_draw_line(x, y, (x + width), y, color, 1, 0);
-        API_draw_line((x + width), y, (x + width), (y + height), color, 1, 0);
-        API_draw_line(x, (y + height), (x + width), (y + height), color, 1, 0);
-        API_draw_line(x, y, x, (y + height), color, 1, 0);
+        ret += API_draw_line(x, y, (x + width), y, color, 1, 0);
+        ret += API_draw_line((x + width), y, (x + width), (y + height), color, 1, 0);
+        ret += API_draw_line(x, (y + height), (x + width), (y + height), color, 1, 0);
+        ret += API_draw_line(x, y, x, (y + height), color, 1, 0);
     }
+
+    return ret;
 }
 
 /**
@@ -244,4 +254,5 @@ int API_clearscreen(int color)
         log_message("Color outside the range of the display");
     }
     UB_VGA_FillScreen((uint8_t)color);
+    return 0;
 }
