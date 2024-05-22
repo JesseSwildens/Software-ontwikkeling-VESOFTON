@@ -52,7 +52,7 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
         return -1;
     }
 
-    for (size_t i = 1; i < weight; i++)
+    for (int i = 1; i < weight; i++)
     {
         API_draw_circle(x0, y0, i, color, 0);
     }
@@ -147,7 +147,7 @@ int API_draw_circle(int x, int y, int radius, int color, int reserved)
         return -1;
     }
 
-    for (size_t i = 0; i < MAX_CIRCLE_POINTS; i++)
+    for (int i = 0; i < MAX_CIRCLE_POINTS; i++)
     {
         float angle = i * 2 * (PI / 100);
         API_setPixel(x + (cosf(angle) * radius), y + (sinf(angle) * radius), (uint8_t)color);
@@ -220,6 +220,7 @@ static void API_setPixel(int x, int y, uint8_t color)
  */
 int API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved)
 {
+    (void)reserved;
     int ret = 0;
     if (filled)
     {
@@ -233,10 +234,10 @@ int API_draw_rectangle(int x, int y, int width, int height, int color, int fille
     }
     else
     {
-        ret += API_draw_line(x, y, (x + width), y, color, 1, 0);
-        ret += API_draw_line((x + width), y, (x + width), (y + height), color, 1, 0);
-        ret += API_draw_line(x, (y + height), (x + width), (y + height), color, 1, 0);
-        ret += API_draw_line(x, y, x, (y + height), color, 1, 0);
+        ret += API_draw_line(x, y, (x + width), y, color, weight, 0);
+        ret += API_draw_line((x + width), y, (x + width), (y + height), color, weight, 0);
+        ret += API_draw_line(x, (y + height), (x + width), (y + height), color, weight, 0);
+        ret += API_draw_line(x, y, x, (y + height), color, weight, 0);
     }
 
     return ret;
