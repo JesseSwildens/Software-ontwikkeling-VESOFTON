@@ -51,7 +51,7 @@ jobs:
                     mkdir app/build-cppcheck && mkdir app/build-cmake-cppcheck && cd app/build-cmake-cppcheck
                     cmake ..
                     make cppcheck
-                    echo cppcheck --version
+                    cppcheck --version
                     cd ../../
 
             - name: Store build artefacts
