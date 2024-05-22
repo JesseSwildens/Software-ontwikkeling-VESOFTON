@@ -19,7 +19,7 @@ jobs:
 
             - name: Install toolchain, Doxygen & cppcheck
               run: |
-                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz cppcheck
+                sudo apt install gcc-arm-none-eabi doxygen doxygen-doc doxygen-latex graphviz
 
             - name: Build doxygen documentation
               run: |
@@ -48,6 +48,12 @@ jobs:
 
             - name: Run cppcheck
               run: |
+                    git clone https://github.com/danmar/cppcheck.git
+                    cd cppcheck && mkdir build
+                    cd build && cmake .. -D CMAKE_C_COMPILER=gcc -D CMAKE_CXX_COMPILER=g++
+                    make all
+                    make install
+                    cd ../../
                     mkdir app/build-cppcheck && mkdir app/build-cmake-cppcheck && cd app/build-cmake-cppcheck
                     cmake ..
                     make cppcheck
