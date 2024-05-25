@@ -31,43 +31,7 @@ extern VGA_t VGA;
 #define GPIO_PIN_PA2 ((uint16_t)0x0004) /* Pin 2 selected    */
 #define GPIO_PIN_PA3 ((uint16_t)0x0008) /* Pin 3 selected    */
 
-#define CHAL_UART_DIV_SAMPLING16(_PCLK_, _BAUD_) ((uint32_t)((((uint64_t)(_PCLK_)) * 25U) / (4U * ((uint64_t)(_BAUD_)))))
-#define CHAL_UART_DIVMANT_SAMPLING16(_PCLK_, _BAUD_) (CHAL_UART_DIV_SAMPLING16((_PCLK_), (_BAUD_)) / 100U)
-#define CHAL_UART_DIVFRAQ_SAMPLING16(_PCLK_, _BAUD_) ((((CHAL_UART_DIV_SAMPLING16((_PCLK_), (_BAUD_)) - (CHAL_UART_DIVMANT_SAMPLING16((_PCLK_), (_BAUD_)) * 100U)) * 16U) + 50U) / 100U)
-#define CHAL_UART_BRR_SAMPLING16(_PCLK_, _BAUD_) ((CHAL_UART_DIVMANT_SAMPLING16((_PCLK_), (_BAUD_)) << 4U) + (CHAL_UART_DIVFRAQ_SAMPLING16((_PCLK_), (_BAUD_)) & 0xF0U) + (CHAL_UART_DIVFRAQ_SAMPLING16((_PCLK_), (_BAUD_)) & 0x0FU))
-
-#define __CHAL_DMA_DISABLE(__HANDLE__) ((__HANDLE__)->CR &= ~CHAL_DMA_SxCR_EN)
-#define __CHAL_DMA_ENABLE(__HANDLE__) ((__HANDLE__)->CR |= CHAL_DMA_SxCR_EN)
-
 #define ARRAY_LEN(x) (sizeof(x) / sizeof((x)[0]))
-
-#define CHAL_DMA_SxCR_CHSEL 0x0E000000 /*!< 0x0E000000 */
-#define CHAL_DMA_SxCR_MBURST 0x01800000
-#define CHAL_DMA_SxCR_PBURST 0x00600000
-#define CHAL_DMA_SxCR_PL 0x00030000
-#define CHAL_DMA_SxCR_MSIZE 0x00006000
-#define CHAL_DMA_SxCR_PSIZE 0x00001800
-#define CHAL_DMA_SxCR_MINC 0x00000400
-#define CHAL_DMA_SxCR_PINC 0x00000200
-#define CHAL_DMA_SxCR_CIRC 0x00000100
-#define CHAL_DMA_SxCR_DIR 0x000000C0
-#define CHAL_DMA_SxCR_CT 0x00080000
-#define CHAL_DMA_SxCR_DBM 0x00040000
-#define CHAL_DMA_SxCR_EN 0x00000001
-
-#define CHAL_DMA_CHANNEL_4 0x08000000U
-#define CHAL_DMA_PERIPH_TO_MEMORY 0x00000000U
-#define CHAL_DMA_PINC_DISABLE 0x00000000U
-#define CHAL_DMA_MINC_DISABLE 0x00000400U
-#define CHAL_DMA_PDATAALIGN_BYTE 0x00000000U
-#define CHAL_DMA_MDATAALIGN_BYTE 0x00000000U
-#define CHAL_DMA_CIRCULAR 0x00000100
-#define CHAL_DMA_PRIORITY 0x00010000
-
-#define CHAL_DMA_SxFCR_FTH 0x00000003
-#define CHAL_DMA_SxFCR_DMDIS 0x00000004
-
-#define CHAL_DMA_FIFOMODE_DISABLE 0x00000000U
 
 #define CHAL_DMA_IT_TC 0x00000010
 #define CHAL_DMA_IT_TE 0x00000004
@@ -159,6 +123,7 @@ extern "C"
     uint8_t CHAL_init_DMA_timers();
     void CHAL_clear_idledetect();
     void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength);
+    void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength);
 #ifdef __cplusplus
 }
 #endif

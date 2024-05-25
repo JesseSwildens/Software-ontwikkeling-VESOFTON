@@ -55,7 +55,7 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                CHAL_event_call_back(rx_buff, BUFFER_SIZE);
+                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
                 eventflagUART = 0;
             }
         }

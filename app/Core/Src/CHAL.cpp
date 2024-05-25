@@ -12,16 +12,14 @@
 #include <string>
 #include <vector>
 
+// #define ECHO_INCOMMING
+
 using namespace std;
 std::queue<std::string> incoming_commands_q;
 
 // both temp until cpp is fixed
 uint8_t tempMainBuffer[2048];
 int offset = 0;
-
-CHAL_UART_HandleTypeDef CHAL_UART2;
-CHAL_DMA_handler CHAL_DMA2_Stream5;
-CHAL_DMA_Stream_TypeDef stream5;
 
 /**
  * @brief Initializes the UART and GPIO interface by calling the GPIO and UART init functions.
@@ -310,7 +308,7 @@ void CHAL_clear_idledetect()
 }
 
 /**
- * @brief A polled function to move the data from the DMA receive buffer to a larger array.
+ * @brief An older polled function to move the data from the DMA receive buffer to a larger array.
  *
  * This should be replaced with CPP queue, but for now: The data is send to a larger array to form a queue that can be used by the following layers.
  * The DMA receive buffer can also just be larger, but it needs to be put into a queue in the future
@@ -325,6 +323,31 @@ void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength)
     strcpy((char*)(tempMainBuffer) + offset, (char*)rx_buff); // copy uart/dma receive buffer into new (larger) buffer. Offset is used to prevent wrinting over previous data
     CHAL_disable_DMA(DMA1_Stream5); // to change the NDTR register the DMA NEEDS to be disabled first.
     offset += (bufferlength - DMA1_Stream5->NDTR) + 1;
+    DMA1_Stream5->NDTR = bufferlength; // reset RX-buff pointer to start
+    memset(rx_buff, 0, bufferlength); // reset rx_buff for new reception
+    CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
+}
+
+/**
+ * @brief A new polled function to move the data from the DMA receive buffer to a queue.
+ *
+ * The data is send to a larger array to form a queue that can be used by the following layers.
+ *
+ * The function can handle one line at a time (until LF)
+ *
+ * @return void This function does not return a value.
+ */
+void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
+{
+    string s = string((char*)rx_buff);
+    incoming_commands_q.push(s);
+
+#ifdef ECHO_INCOMMING
+    const std::string& back_command = incoming_commands_q.back();
+    const char* back_command_cstr = back_command.c_str();
+    CHAL_UART2_SendString((char*)back_command_cstr);
+#endif
+    CHAL_disable_DMA(DMA1_Stream5); // to change the NDTR register the DMA NEEDS to be disabled first.
     DMA1_Stream5->NDTR = bufferlength; // reset RX-buff pointer to start
     memset(rx_buff, 0, bufferlength); // reset rx_buff for new reception
     CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
