@@ -375,35 +375,18 @@ void TIM2_IRQHandler(void)
     }
 }
 
+// Needs to be moved to API layer
 bitmap_position UB_VGA_DrawBitmapWithBackground(uint8_t bgColor, unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)
 {
-    uint16_t xp, yp;
-    bitmap_position _bitmap;
-
     // Fill the entire screen with the background color
     UB_VGA_FillScreen(bgColor);
-
-    // Draw the bitmap at the top-left corner
-    for (yp = 0; yp < bitmapHeight; yp++)
-    {
-        for (xp = 0; xp < bitmapWidth; xp++)
-        {
-            // Calculate the pixel index in the bitmap array
-            uint16_t index = yp * bitmapWidth + xp;
-            // Get the color value from the bitmap
-            uint8_t color = bitmap[index];
-            // Set the pixel on the screen
-            UB_VGA_SetPixel(xp + x_offset, yp + y_offset, color);
-        }
-    }
-    _bitmap.x = xp + x_offset;
-    _bitmap.y = yp + y_offset;
-    return _bitmap;
+    return UB_VGA_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
 }
 
+// Needs to be moved to API layer
 bitmap_position UB_VGA_DrawBitmap(unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)
 {
-    uint16_t xp, yp;
+    uint16_t xp, yp = 0;
     bitmap_position _bitmap;
     _bitmap.width = bitmapWidth;
     _bitmap.height = bitmapHeight;
@@ -426,6 +409,7 @@ bitmap_position UB_VGA_DrawBitmap(unsigned char* bitmap, uint16_t bitmapWidth, u
     return _bitmap;
 }
 
+// Needs to be moved to API layer
 void clear_previous_bitmap(bitmap_position* bitmap)
 {
     uint16_t xp, yp;
@@ -439,6 +423,7 @@ void clear_previous_bitmap(bitmap_position* bitmap)
     }
 }
 
+// Needs to be moved to API layer
 void UB_VGA_DVD_Screensaver(unsigned char* bitmap)
 {
     uint16_t bmp_width = 32;
@@ -492,11 +477,3 @@ void DMA2_Stream5_IRQHandler(void)
         GPIOE->BSRRH = VGA_GPIO_HINIBBLE;
     }
 }
-
-//    for (int i = 0; i < 200; i++)
-//     {
-//         clear_previous_bitmap(&previous_bitmap);
-//         previous_bitmap = UB_VGA_DrawBitmap(bitmap_calib, 32, 32, i, i);
-//         for (int wait = 0; wait < 100000 * 1.2; wait++)
-//             rage_against_the_compiler++;
-//     }
