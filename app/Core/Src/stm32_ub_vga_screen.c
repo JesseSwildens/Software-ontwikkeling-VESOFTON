@@ -386,7 +386,7 @@ bitmap_position UB_VGA_DrawBitmapWithBackground(uint8_t bgColor, unsigned char* 
 // Needs to be moved to API layer
 bitmap_position UB_VGA_DrawBitmap(unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)
 {
-    uint16_t xp, yp = 0;
+    uint16_t xp = 0, yp = 0;
     bitmap_position _bitmap;
     _bitmap.width = bitmapWidth;
     _bitmap.height = bitmapHeight;
