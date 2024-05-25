@@ -1,29 +1,22 @@
 import numpy as np
 import cv2 as cv
 
-import os
-import os.path
-
-MAX_RES = 32
+MAX_RES = 16
 
 # Load an image
-raw_img = cv.imread('data/img/dvd.png')
+raw_img = cv.imread('data/img/calib_image.png')
 assert raw_img is not None, "Image failed to load; Image is None"
 
 # Get the current height and width
 height = raw_img.shape[0]
 width = raw_img.shape[1]
 
-# Calculate which factor is needed for the maximum size of 64
+# Calculate which factor is needed for the maximum size of MAX_RES
 height_factor = MAX_RES/height
 width_factor = MAX_RES/width
 factor = min(height_factor, width_factor)
 
-# Get the ratio between height and width
-ratio = height/width
-
-# Calculate the new size (adjust for ratio)
-height = height*factor/ratio
+height = height*factor
 width = width*factor
 new_size = (int(height), int(width))
 print(new_size)
@@ -33,7 +26,7 @@ resized_img = cv.resize(raw_img, new_size, interpolation=cv.INTER_LINEAR)
 
 # Recolor image
 def remap_channel(channel, bit_out : int):
-    factor = 2**bit_out/256
+    factor = (2**bit_out-1)/256
     out = np.array(channel)
     rows = out.shape[0]
     columns = out.shape[1]
@@ -60,14 +53,11 @@ for i in range(recoloured_img.shape[0]):
                            (recoloured_img[i][j][1] << 2) | \
                            (recoloured_img[i][j][2] << 5)
 
-for row in recoloured_img:
-    print(row)
-
-with open('./experiments/bitmap_dvd.h', 'w') as file:
+with open('./experiments/bitmap_calib.h', 'w') as file:
     file.write("#ifndef BITMAP_H\n")
     file.write("#define BITMAP_H\n")
     file.write("\n")
-    file.write("unsigned char bitmap_dvd[] = {\n")
+    file.write("const unsigned char bitmap_calib[] = {\n")
 
     for i in range(compressed.shape[0]):
         for j in range(compressed.shape[1]):
@@ -76,7 +66,6 @@ with open('./experiments/bitmap_dvd.h', 'w') as file:
 
     file.write("};\n")
     file.write("#endif")
-    
 
 # cv.imshow('raw', raw_img)
 cv.imshow('resized', resized_img)

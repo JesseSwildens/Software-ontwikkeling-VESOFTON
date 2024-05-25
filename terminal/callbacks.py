@@ -37,7 +37,7 @@ def command_callback(_sender, _app_data, user_data : SerialHandler):
     dpg.set_value("_command", "")
     dpg.focus_item("_command")
 
-def button_callback(sender, _app_data, user_data : SerialHandler):
+def button_callback(sender, _app_data, user_data):
     if sender == "_send":
         command = dpg.get_value("_command")
         user_data.send(command)
@@ -60,7 +60,7 @@ def button_callback(sender, _app_data, user_data : SerialHandler):
             time.sleep(dpg.get_value("_interval_slider")/1000)
             idx = find_current_string()
     elif sender == "_convert":
-        convert_to_bitmap()
+        convert_to_bitmap(user_data)
     else:
         print("_sender")
 
@@ -136,7 +136,8 @@ def ok_callback(_sender, app_data):
                 '_image',
                 width=int(dpg.get_item_width('_image')*scale_factor),
                 height=int(dpg.get_item_width('_image')*scale_factor))
-            dpg.add_button(label="Convert", pos=(320, 260), tag='_convert')
+            dpg.add_button(label="Convert", pos=(320, 260), tag='_convert', 
+                           user_data=path, callback=button_callback)
 
     else:
         warning_popup()
