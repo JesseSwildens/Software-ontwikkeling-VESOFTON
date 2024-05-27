@@ -17,18 +17,12 @@ def resize_image(img : cv.typing.MatLike, max_size : int):
 
     # Resize the raw image
     resized_img = cv.resize(img, new_size, interpolation=cv.INTER_LINEAR)
+    print("Resized shape", resized_img.shape)
     return resized_img
 
 def remap_channel(channel, bit_out : int):
-    factor = (2**bit_out-1)/256
-    out = np.array(channel)
-    rows = out.shape[0]
-    columns = out.shape[1]
-
-    for i in range(rows):
-        for j in range(columns):
-            out[i][j] = round(channel[i][j]*factor)
-    return out
+    shift = 8 - bit_out
+    return channel >> shift
 
 def recolour_image(img : cv.typing.MatLike):
     b, g, r = cv.split(img)
@@ -40,22 +34,18 @@ def recolour_image(img : cv.typing.MatLike):
     recoloured_img = cv.merge((new_b, new_g, new_r))
     return recoloured_img
 
-def compress_image(img : cv.typing.MatLike):
-    compressed = np.zeros((16, 16))
-
-    for i in range(img.shape[0]):
-        for j in range(img.shape[1]):
-            compressed[i][j] = (img[i][j][0] << 0) | \
-                               (img[i][j][1] << 2) | \
-                               (img[i][j][2] << 5)
+def compress_image(img : cv.typing.MatLike) -> np.ndarray:
+    compressed = (img[:, :, 0] << 0) + (img[:, :, 1] << 2) + (img[:, :, 2] << 5)
     return compressed
 
 def write_to_file(img, filename : str):
-    with open('./experiments/'+ filename + '.h', 'w') as file:
-        file.write("#ifndef BITMAP_H\n")
-        file.write("#define BITMAP_H\n")
+    name = filename.split('.')[0]
+
+    with open(f'./experiments/{name}.h', 'w') as file:
+        file.write(f"#ifndef {name.upper()}_H\n")
+        file.write(f"#define {name.upper()}_H\n")
         file.write("\n")
-        file.write("const unsigned char bitmap_calib[] = {\n")
+        file.write(f"const unsigned char bitmap_{name}[] = {{ \n")
 
         for i in range(img.shape[0]):
             for j in range(img.shape[1]):
@@ -69,8 +59,7 @@ def convert_to_bitmap(path : str):
     raw_img = cv.imread(path)
     assert raw_img is not None, "Image failed to load; Image is None"
 
-    resized_img = resize_image(raw_img, 16)
+    resized_img = resize_image(raw_img, 32)
     recolour_img = recolour_image(resized_img)
     compressed_img = compress_image(recolour_img)
-    
-    
+    return compressed_img

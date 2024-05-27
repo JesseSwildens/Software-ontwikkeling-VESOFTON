@@ -1,8 +1,10 @@
 import numpy as np
 import cv2 as cv
+import time
 
-MAX_RES = 16
+MAX_RES = 64
 
+start = time.time()
 # Load an image
 raw_img = cv.imread('data/img/calib_image.png')
 assert raw_img is not None, "Image failed to load; Image is None"
@@ -19,7 +21,6 @@ factor = min(height_factor, width_factor)
 height = height*factor
 width = width*factor
 new_size = (int(height), int(width))
-print(new_size)
 
 # Resize the raw image
 resized_img = cv.resize(raw_img, new_size, interpolation=cv.INTER_LINEAR)
@@ -37,23 +38,26 @@ def remap_channel(channel, bit_out : int):
     return out
 
 b, g, r = cv.split(resized_img)
-new_b = remap_channel(b, 2) # Possibly need to do 3 also, then remove the last bit
-                            # We shall see
-new_g = remap_channel(g, 3)
-new_r = remap_channel(r, 3)
 
-recoloured_img = cv.merge((new_b, new_g, new_r))
+new_b = b >> 6
+new_g = g >> 5
+new_r = r >> 5
+
+compressed = (new_b << 0) + (new_g << 2) + (new_r << 5)
+# recoloured_img = cv.merge((new_b, new_g, new_r))
 
 # merge the channels into one byte
-compressed = np.zeros((MAX_RES, MAX_RES))
+# compressed = np.zeros((MAX_RES, MAX_RES))
 
-for i in range(recoloured_img.shape[0]):
-    for j in range(recoloured_img.shape[1]):
-        compressed[i][j] = (recoloured_img[i][j][0] << 0) | \
-                           (recoloured_img[i][j][1] << 2) | \
-                           (recoloured_img[i][j][2] << 5)
+# for i in range(recoloured_img.shape[0]):
+#     for j in range(recoloured_img.shape[1]):
+#         compressed[i][j] = (recoloured_img[i][j][0] << 0) | \
+#                            (recoloured_img[i][j][1] << 2) | \
+#                            (recoloured_img[i][j][2] << 5)
+print(time.time() - start)
 
-with open('./experiments/bitmap_calib.h', 'w') as file:
+
+with open('./experiments/bitmap_calib2.h', 'w') as file:
     file.write("#ifndef BITMAP_H\n")
     file.write("#define BITMAP_H\n")
     file.write("\n")
@@ -69,5 +73,5 @@ with open('./experiments/bitmap_calib.h', 'w') as file:
 
 # cv.imshow('raw', raw_img)
 cv.imshow('resized', resized_img)
-cv.imshow('recoloured', recoloured_img)
+# cv.imshow('recoloured', recoloured_img)
 cv.waitKey(0)

@@ -25,7 +25,7 @@ def highlight_next(tag_without_idx, idx):
         next = -idx
 
     dpg.configure_item(tag_without_idx + str(idx+next), color = [
-            int(x*255) for x in 
+            int(x*255) for x in
             dpg.get_item_configuration(tag_without_idx + str(idx))['color']])
     dpg.configure_item(tag_without_idx + str(idx), color = [255, 255, 255, 255])
     return idx+next
@@ -60,17 +60,18 @@ def button_callback(sender, _app_data, user_data):
             time.sleep(dpg.get_value("_interval_slider")/1000)
             idx = find_current_string()
     elif sender == "_convert":
-        convert_to_bitmap(user_data)
+        # user_data is a path in this case
+        img = convert_to_bitmap(user_data)
     else:
-        print("_sender")
+        print(sender)
 
 def viewport_resize_callback(_sender):
     dpg.set_item_pos("_send", (10, dpg.get_viewport_height()-75))
     dpg.set_item_pos(
-        "_command", 
+        "_command",
         (dpg.get_item_width("_send") + 25, dpg.get_viewport_height()-75))
     dpg.set_item_pos(
-        "_status", 
+        "_status",
         (dpg.get_item_width("_send") + dpg.get_item_width("_command") + 50,
          dpg.get_viewport_height()-75))
 
@@ -103,12 +104,12 @@ def warning_popup():
                                 height=150):
         dpg.add_text("Something went wrong!")
         dpg.add_button(
-            label="OK", 
+            label="OK",
             callback=lambda:dpg.delete_item("_warning"))
 
 def ok_callback(_sender, app_data):
     path = app_data['file_path_name']
-    
+
     # Generic check if a file exists
     if not os.path.isfile(path):
         warning_popup()
@@ -130,13 +131,13 @@ def ok_callback(_sender, app_data):
         w_factor = 320/dpg.get_item_width('_image')
         h_factor = 240/dpg.get_item_height('_image')
         scale_factor = min(w_factor, h_factor)
-        with dpg.window(label=app_data['file_name'], width=400, height=300, 
+        with dpg.window(label=app_data['file_name'], width=400, height=300,
                         no_resize=True):
             dpg.add_image(
                 '_image',
                 width=int(dpg.get_item_width('_image')*scale_factor),
                 height=int(dpg.get_item_width('_image')*scale_factor))
-            dpg.add_button(label="Convert", pos=(320, 260), tag='_convert', 
+            dpg.add_button(label="Convert", pos=(320, 260), tag='_convert',
                            user_data=path, callback=button_callback)
 
     else:
