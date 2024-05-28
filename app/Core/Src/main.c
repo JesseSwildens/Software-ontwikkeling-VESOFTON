@@ -11,6 +11,7 @@
 //--------------------------------------------------------------
 
 #include "main.h"
+#include "LL_parser.h"
 #include <math.h>
 
 #include "API_graphics.h"
@@ -47,7 +48,8 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
+                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
+                function();
                 eventflagUART = 0;
             }
         }
