@@ -1,4 +1,5 @@
 import numpy as np
+import bitmap
 
 class RLE():
     def __init__(self) -> None:
@@ -7,7 +8,7 @@ class RLE():
     def encode_1d(self, input : np.ndarray) -> list:
         if input.ndim > 1:
             raise TypeError("Received ndim > 1")
-        
+
         count = 0
         current_val = input[0]
         output = []
@@ -22,7 +23,7 @@ class RLE():
 
         output.append(count)
         output.append(current_val)
-                
+
         return output
 
     def encode_2d(self, input : np.ndarray) -> list:
@@ -30,27 +31,37 @@ class RLE():
 
         for data in input:
             output.append(self.encode_1d(data))
-        
+
         return output
-    
-    def encode_img(self, input : np.ndarray) -> bytes:
-        header_raw = 0xC0
-        header_rle = 0xDE
 
+    def encode_img(self, input : np.ndarray) -> list:
+        header_raw = 0x00
+        header_rle = 0x01
+        output = []
 
+        rle_data = self.encode_2d(input)
+        for line in rle_data:
+            # if the compressed line is shorter then the original data, use
+            # the compressed variant
+            if len(line) < input.shape[0]:
+                line.insert(0, header_rle) # This might be slow!
+                output.append(line)
+            else:
+                line.insert(0, header_raw)
+                output.append(line)
 
-        return
+        return output
 
 if __name__ == "__main__":
     rle = RLE()
+    bmap = bitmap.BitmapGenerator()
 
-    input = np.array([1, 1, 1, 1, 4, 2, 3, 3, 3, 3, 4, 5, 6, 6, 6, 6, 6])
-    output = rle.encode_1d(input)
-    print("Expected result:\n [4, 1, 1, 4, 1, 2, 4, 3, 1, 4, 1, 5, 4, 6]")
-    print("Result: \n", output)
-    print()
+    raw_data = bmap.convert_to_bitmap('./data/img/webcam.jpg', 512)
+    data = rle.encode_img(raw_data)
 
-    input = np.array([[1, 1, 1, 1], [2, 3, 4, 4]])
-    output = rle.encode_2d(input)
-    print("Expected result:\n [[4, 1], [1, 2, 1, 3, 2, 4]]")
-    print("Result: \n", output)
+    total = 0
+    for line in data:
+        print(line)
+        total += len(line)
+    print(total)
+
