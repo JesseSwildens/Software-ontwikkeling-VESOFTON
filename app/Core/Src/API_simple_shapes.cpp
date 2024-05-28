@@ -1,4 +1,4 @@
-#include "API_simpleShapes.h"
+#include "API_simple_shapes.h"
 #include "stm32_ub_vga_screen.h"
 
 #include <math.h>
@@ -28,7 +28,7 @@
 
 static int (*loggerCallback)(const char* message, int length) = nullptr;
 static void log_message(std::string message);
-static void API_setPixel(int, int, uint8_t);
+static void API_set_pixel(int, int, uint8_t);
 
 /**
  * @brief Drawing line
@@ -150,7 +150,7 @@ int API_draw_circle(int x, int y, int radius, int color, int reserved)
     for (int i = 0; i < MAX_CIRCLE_POINTS; i++)
     {
         float angle = i * 2 * (PI / 100);
-        API_setPixel(x + (cosf(angle) * radius), y + (sinf(angle) * radius), (uint8_t)color);
+        API_set_pixel(x + (cosf(angle) * radius), y + (sinf(angle) * radius), (uint8_t)color);
     }
 
     return 0;
@@ -198,7 +198,7 @@ int API_register_logger_callback(int (*pFunction)(const char* string, int len))
  *
  * @return None
  */
-static void API_setPixel(int x, int y, uint8_t color)
+static void API_set_pixel(int x, int y, uint8_t color)
 {
     if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
         return;
@@ -228,7 +228,7 @@ int API_draw_rectangle(int x, int y, int width, int height, int color, int fille
         {
             for (int j = 0; j < height; j++)
             {
-                API_setPixel(i, j, color);
+                API_set_pixel(i, j, color);
             }
         }
     }
