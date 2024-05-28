@@ -70,15 +70,11 @@ if __name__ == "__main__":
     while True:
         ret, frame = vid.read()
 
-        # raw_data = bmap.convert_path_bitmap('./data/img/webcam.jpg', 256)
-        resized_frame = bmap.resize_image(frame, 256)
-        recolour_frame = bmap.recolour_image(resized_frame)
-        compressed_frame = bmap.compress_image(recolour_frame)
+        compressed_frame = bmap.convert_frame_bitmap(frame, 256)
         data = rle.encode_img(compressed_frame)
 
         print(f"{rle.get_bytes_encoded()} bytes encoded with a rate of {rle.get_compression()*100:.2f}%")
 
-        cv.imshow('Resized', resized_frame)
         cv.imshow('Frame', frame)
         if cv.waitKey(1) & 0xFF == ord('q'):
             break
