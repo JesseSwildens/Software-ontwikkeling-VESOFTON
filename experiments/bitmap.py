@@ -5,11 +5,14 @@ class BitmapGenerator():
     def __init__(self) -> None:
         pass
 
-    def convert_to_bitmap(self, path : str, size : int):
+    def convert_path_bitmap(self, path : str, size : int):
         raw_img = cv.imread(path)
         assert raw_img is not None, "Image failed to load; Image is None"
+        compressed_img = self.convert_frame_bitmap(raw_img, size)
+        return compressed_img
 
-        resized_img = self.resize_image(raw_img, size)
+    def convert_frame_bitmap(self, data : np.ndarray, size : int):
+        resized_img = self.resize_image(data, size)
         recolour_img = self.recolour_image(resized_img)
         compressed_img = self.compress_image(recolour_img)
         return compressed_img
@@ -20,17 +23,14 @@ class BitmapGenerator():
         width = img.shape[1]
 
         # Calculate which factor is needed for the maximum size of MAX_RES
-        height_factor = max_size/height
-        width_factor = max_size/width
-        factor = min(height_factor, width_factor)
-
-        height = height*factor
-        width = width*factor
-        new_size = (int(height), int(width))
-        print(new_size)
+        if height > width:
+            factor = max_size/height
+        else:
+            factor = max_size/width
 
         # Resize the raw image
-        resized_img = cv.resize(img, new_size, interpolation=cv.INTER_LINEAR)
+        resized_img = cv.resize(img, None, fx=factor, fy=factor,
+                                interpolation=cv.INTER_LINEAR)
         return resized_img
 
     def remap_channel(self, channel, bit_out : int):
