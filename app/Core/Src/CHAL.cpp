@@ -27,8 +27,8 @@ int offset = 0;
  * This function initializes the GPIO pins for UART functionality and
  * enables RCC clock for USART.
  *
- * It calls the low-level initialization functions `ll_GPIO_UART_init`
- * and `ll_uart_init` to configure the hardware.
+ * It calls the low-level initialization functions `CHAL_GPIO_UART_init`
+ * and `CHAL_uart_init` to configure the hardware.
  *
  * @return void
  */
@@ -39,13 +39,9 @@ void CHAL_init_uart(void)
 }
 
 /**
- * @brief Initializes the GPIO for UART (Sets PA2 and PA3 for alternate functionality).
+ * @brief Initializes the GPIO for UART (Sets P2 and P3 for alternate functionality).
  *
- *
- * @note The baud rate is hardcoded to 115200 in this function.
- *       For different baud rates, modify the function accordingly.
- *
- * @return void
+ * @return CHAL_StatusTypeDef returns 0
  */
 CHAL_StatusTypeDef CHAL_GPIO_UART_init(void)
 {
@@ -92,7 +88,6 @@ CHAL_StatusTypeDef CHAL_uart_config(uint32_t BaudRate)
     USART2->CR1 |= (1 << 4); // enable IDLE line detection in UART
     USART2->CR3 |= (1 << 6); // enable DMA Receiver
 
-    // Not sure if the below works
     RCC_ClocksTypeDef clocks;
     RCC_ClocksTypeDef* clocks_ptr = &clocks;
     RCC_GetClocksFreq(clocks_ptr);
@@ -123,7 +118,9 @@ CHAL_StatusTypeDef CHAL_uart_config(uint32_t BaudRate)
 uint8_t CHAL_UART2_get_char(void)
 {
     while (!(USART2->SR & (1 << 5)))
-        ; // Wait for RXNE to SET.. This indicates that the data has been Received
+    {
+    }
+    // Wait for RXNE to SET.. This indicates that the data has been Received
     return USART2->DR;
 }
 
@@ -142,7 +139,7 @@ void CHAL_UART2_SendChar(char c)
     USART2->DR = c; // Load the Data
     while (!(USART2->SR & (1 << 6)))
     {
-    }; // Wait for TC to SET.. This indicates that the data has been transmitted
+    } // Wait for TC to SET.. This indicates that the data has been transmitted
 }
 
 /**
@@ -151,14 +148,26 @@ void CHAL_UART2_SendChar(char c)
  *
  * @note This is a blocking function and needs to be avoided
  *
+ * @param string
+ * @param length length of string
+ *
  * @return void
  *
  * @todo Create a non-blocking version
  */
-void CHAL_UART2_SendString(char* string)
+void CHAL_UART2_SendString(char* string, uint16_t length)
 {
-    while (*string)
-        CHAL_UART2_SendChar(*string++);
+    // Check for null pointer
+    if (string == NULL)
+    {
+        return;
+    }
+
+    // Send each character up to the specified length
+    for (uint16_t i = 0; i < length; ++i)
+    {
+        CHAL_UART2_SendChar(string[i]);
+    }
 }
 
 /**
@@ -259,10 +268,10 @@ void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize)
     // 1. Set the data size in CNDTR Register
     DMA1_Stream5->NDTR = datasize;
 
-    // 2. Set the  peripheral address in PAR Register
+    // 2. Set the peripheral address in PAR Register
     DMA1_Stream5->PAR = srcAdd;
 
-    // 3. Set the  Memory address in MAR Register
+    // 3. Set the Memory address in MAR Register
     DMA1_Stream5->M0AR = destAdd;
 
     // 4. Enable the DMA1

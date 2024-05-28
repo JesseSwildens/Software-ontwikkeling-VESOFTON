@@ -26,7 +26,7 @@
 .equ DMA_DISABLE_BIT, (1 << 0)    // Bit position to disable DMA
 .equ DMA_ENABLE_BIT,  (1 << 0)    // Bit position to enable DMA
 
-ll_GPIO_UART_init_ASM:
+ASMCHAL_GPIO_UART_init_ASM:
     // Enable USART2 clock
     ldr r0, =RCC_APB1ENR        // Load the address of RCC_APB1ENR
     ldr r1, [r0]                // Load the current value of RCC_APB1ENR

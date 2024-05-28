@@ -100,7 +100,7 @@ extern "C"
     CHAL_StatusTypeDef CHAL_uart_config(uint32_t BaudRate);
     uint8_t CHAL_UART2_get_char(void);
     void CHAL_UART2_SendChar(char c);
-    void CHAL_UART2_SendString(char* string);
+    void CHAL_UART2_SendString(char* string, uint16_t length);
     void CHAL_disable_DMA(DMA_Stream_TypeDef* stream);
     void CHAL_enable_DMA(DMA_Stream_TypeDef* stream);
     uint8_t CHAL_DMA_Init(void);
