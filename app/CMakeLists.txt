@@ -80,7 +80,6 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     # Add user defined libraries
 )
 
-set(CXX_)
 
 # If clang-tidy is installed make a custom target,
 # which can be run as a custom target or using all

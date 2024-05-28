@@ -23,17 +23,6 @@
 uint8_t rx_buff[BUFFER_SIZE];
 uint8_t eventflagUART = 0;
 
-void set_screen_lines()
-{
-    for (int yp = 0; yp < VGA_DISPLAY_Y; yp++)
-    {
-        for (int xp = 0; xp < (VGA_DISPLAY_X); xp++)
-        {
-            VGA_RAM1[(yp * (VGA_DISPLAY_X + 1)) + xp] = (xp % 2) ? 0x49 : VGA_COL_BLACK;
-        }
-    }
-}
-
 int main(void)
 {
     SystemInit(); // System speed to 168MHz
@@ -55,7 +44,7 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
+                ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
                 eventflagUART = 0;
             }
         }

@@ -34,8 +34,8 @@ int offset = 0;
  */
 void CHAL_init_uart(void)
 {
-    ll_GPIO_UART_init();
-    ll_uart_config(115200);
+    CHAL_GPIO_UART_init();
+    CHAL_uart_config(115200);
 }
 
 /**
@@ -47,11 +47,11 @@ void CHAL_init_uart(void)
  *
  * @return void
  */
-CHAL_StatusTypeDef ll_GPIO_UART_init(void)
+CHAL_StatusTypeDef CHAL_GPIO_UART_init(void)
 {
-    // // could add a temp check to check if valid
+    // Enables Peripheral
     RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
-    // could add a temp check to check if valid
+    // Enables Peripheral
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 
     GPIOA->MODER |= (2 << 4); // 8.4.1 reference manual alternate function PA2
@@ -75,12 +75,15 @@ CHAL_StatusTypeDef ll_GPIO_UART_init(void)
  * @todo check bit 12 of CR1 for start en stop bits
  * @todo check of BRR register is correct
  */
-CHAL_StatusTypeDef ll_uart_config(uint32_t BaudRate)
+CHAL_StatusTypeDef CHAL_uart_config(uint32_t BaudRate)
 {
 
     NVIC_InitTypeDef NVIC_InitStructure;
 
+    // reset Control register
     USART2->CR1 = 0x00;
+
+    // usart enable
     USART2->CR1 |= (1 << 13);
 
     // Program the M bit in USART_CR1 to define the word length.
@@ -119,12 +122,9 @@ CHAL_StatusTypeDef ll_uart_config(uint32_t BaudRate)
  */
 uint8_t CHAL_UART2_get_char(void)
 {
-    uint8_t Temp;
-
     while (!(USART2->SR & (1 << 5)))
         ; // Wait for RXNE to SET.. This indicates that the data has been Received
-    Temp = USART2->DR; // Read the data.
-    return Temp;
+    return USART2->DR;
 }
 
 /**
@@ -139,9 +139,10 @@ uint8_t CHAL_UART2_get_char(void)
  */
 void CHAL_UART2_SendChar(char c)
 {
-    USART2->DR = c; // LOad the Data
+    USART2->DR = c; // Load the Data
     while (!(USART2->SR & (1 << 6)))
-        ; // Wait for TC to SET.. This indicates that the data has been transmitted
+    {
+    }; // Wait for TC to SET.. This indicates that the data has been transmitted
 }
 
 /**
@@ -217,8 +218,24 @@ uint8_t CHAL_DMA_Init(void)
     DMA_DeInit(DMA1_Stream5);
 
     // stap 1 of stream configuration procedure
-    // Clear bits 25-23, 21-19, 18-16, 15, 13-11, 10-8, 6, and 5
-    DMA1_Stream5->CR &= ~(MASK_25_23 | MASK_21_19 | MASK_18_16 | MASK_15 | MASK_13_11 | MASK_10_8 | MASK_6 | MASK_5 | MASK_4_1);
+    /*
+     *  Bit 25-27: channel select (channel 4)
+     *  Bit 23-24: Memory burst transfer configuration (16 beats)
+     *  Bit 21-22: Peripheral burst transfer configuration (16 beats)
+     *  Bit 20: Reserved
+     *  Bit 19: current target (M0AR)
+     *  Bit 18: DBM (no switching)
+     *  Bit 17-16: Priority level (Very high)
+     *  Bit 15: Peripheral inc (fixed)
+     *  Bit 14-13: Memory data size (Byte)
+     *  Bit 11-12: Peripheral data size (Byte)
+     *  Bit 10: Memory increment mode (increment enabled)
+     *  Bit 9: Peripheral increment mode (increment disabled)
+     *  Bit 8: Circular buffer (enabled)
+     *  Bit 7-6: data transfer direction (Peripheral-to-memory)
+     *  Bit 5: Flow controller (DMA)
+     *  Bit 4-1: interrupts (all off) DMA is triggered by UART
+     */
 
     // Set bits 25-23, 21-19, 18-16, 15, 13-11, 10-8, 6, and 5 to desired values
     DMA1_Stream5->CR |= (4 << 25) | (3 << 23) | (3 << 21) | (0 << 19) | (3 << 16) | (1 << 15) | (1 << 10) | (1 << 8);

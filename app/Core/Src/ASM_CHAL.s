@@ -3,7 +3,7 @@
 .thumb
 .align 4
 .global ll_GPIO_UART_init_ASM
-.global CHAL_event_call_back_ASM
+.global ASMCHAL_event_call_back
 
 .global memset
 
@@ -61,7 +61,7 @@ ll_GPIO_UART_init_ASM:
 
 
 
-CHAL_event_call_back_ASM:
+ASMCHAL_event_call_back:
     push {r4-r11, lr}
     // Copy data from rx_buff to tempMainBuffer
     mov r5, r1                 // get buffer length
