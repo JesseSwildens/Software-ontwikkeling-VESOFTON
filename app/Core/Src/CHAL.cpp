@@ -356,3 +356,8 @@ void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
     memset(rx_buff, 0, bufferlength); // reset rx_buff for new reception
     CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
 }
+
+void enableFPU()
+{
+    SCB->CPACR |= ((3UL << 10 * 2) | (3UL << 11 * 2));
+}

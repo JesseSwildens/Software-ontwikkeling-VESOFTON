@@ -11,6 +11,7 @@
 //--------------------------------------------------------------
 
 #include "main.h"
+#include "LL_parser.h"
 #include "bitmap.h"
 #include "bitmap_calib_large.h"
 #include "bitmap_dvd.h"
@@ -29,6 +30,8 @@ int main(void)
 
     UB_VGA_Screen_Init(); // Init VGA-Screen
 
+    enableFPU();
+
     CHAL_init_uart();
 
     CHAL_DMA_Init();
@@ -36,7 +39,9 @@ int main(void)
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
     UB_VGA_FillScreen(VGA_COL_BLACK); // Greyhhhhh
-    UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
+    // UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
+    UB_VGA_DrawBitmap(bitmap_calib, 32, 32, 0, 0);
+    API_draw_circle(100, 50, 10, VGA_COL_RED, 1);
 
     while (1)
     {
@@ -44,7 +49,8 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
+                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
+                function();
                 eventflagUART = 0;
             }
         }
