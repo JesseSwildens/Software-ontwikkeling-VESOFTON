@@ -1,6 +1,7 @@
 #include "API_simple_shapes.h"
 
 #include "API_fonts.h"
+#include "API_gfx_text.h"
 #include "stm32_ub_vga_screen.h"
 
 #include <math.h>
@@ -9,7 +10,11 @@
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
 
-#define log_message(message) (base_log_message(message, __LINE__))
+#ifndef __FILE_NAME__
+#define __FILE_NAME__
+#endif
+
+#define log_message(message) (base_log_message(message, __LINE__, __FILE_NAME__))
 
 /**
  * @note Maximum color value supported
@@ -30,9 +35,11 @@
  */
 #define MAX_CIRCLE_POINTS 100
 
-static int (*logger_callback)(const char* message, int length) = nullptr;
-static void base_log_message(std::string message, int line);
+static void (*logger_callback)(const char* message, int length) = nullptr;
+static void base_log_message(std::string message, int line, std::string filename);
 static void API_set_pixel(int, int, uint8_t);
+
+API_gfx_text API_Text;
 
 /**
  * @brief Drawing line
@@ -196,12 +203,12 @@ int API_draw_circle(int x, int y, int radius, int color, int filled)
  *
  * @return None
  */
-static void base_log_message(std::string message, int line)
+static void base_log_message(std::string message, int line, std::string filename)
 {
     if (logger_callback == nullptr)
         return;
 
-    std::string out_string = "[API:" + std::to_string(line) + "] " + message;
+    std::string out_string = "[" + filename + ":" + std::to_string(line) + "] " + message;
 
     (*logger_callback)(message.c_str(), message.length());
 }
@@ -213,7 +220,7 @@ static void base_log_message(std::string message, int line)
  *
  * @return Integer 0 if succesfull otherwise -1
  */
-int API_register_logger_callback(int (*pFunction)(const char* string, int len))
+int API_register_logger_callback(void (*pFunction)(const char* string, int len))
 {
     if (pFunction != nullptr)
     {
@@ -311,15 +318,41 @@ int API_clearscreen(int color)
  */
 int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved)
 {
-    if ((text == NULL) || (fontname == NULL))
+    (void)reserved;
+
+    if ((text == NULL) || (fontname == NULL) || (fontstyle < 0))
     {
-        log_message("Text or fontname is not given");
+        log_message("error: Text, fontname or fontstyle is not given");
         return -1;
     }
 
     if (OUTSIDE(x_lup, 0, VGA_DISPLAY_X) || (OUTSIDE(y_lup, 0, VGA_DISPLAY_Y)))
     {
-        log_message("Outside the display area");
+        log_message("error: Outside the display area");
         return -1;
     }
+
+    if (OUTSIDE(color, 0, MAX_COLOR_DEPTH))
+    {
+        log_message("warning: Color is outside the allowed color depth");
+    }
+
+    std::string cxx_fontname(fontname);
+
+    if (API_Text.select_font(cxx_fontname, fontstyle))
+    {
+        log_message("Font " + cxx_fontname + " not found with style number " + std::to_string(fontstyle));
+        return -1;
+    }
+
+    log_message("font = " + std::string((char*)API_Text.get_selected_font_name()));
+
+    API_Text.set_font_size(fontsize);
+    API_Text.set_text_color((uint8_t)color);
+
+    API_Text.set_cursor(x_lup, y_lup);
+
+    API_Text << text;
+
+    return 0;
 }
