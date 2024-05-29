@@ -1,4 +1,6 @@
 #include "API_simple_shapes.h"
+
+#include "API_fonts.h"
 #include "stm32_ub_vga_screen.h"
 
 #include <math.h>
@@ -6,6 +8,8 @@
 
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
+
+#define log_message(message) (base_log_message(message, __LINE__))
 
 /**
  * @note Maximum color value supported
@@ -27,7 +31,7 @@
 #define MAX_CIRCLE_POINTS 100
 
 static int (*logger_callback)(const char* message, int length) = nullptr;
-static void log_message(std::string message);
+static void base_log_message(std::string message, int line);
 static void API_set_pixel(int, int, uint8_t);
 
 /**
@@ -192,10 +196,12 @@ int API_draw_circle(int x, int y, int radius, int color, int filled)
  *
  * @return None
  */
-static void log_message(std::string message)
+static void base_log_message(std::string message, int line)
 {
     if (logger_callback == nullptr)
         return;
+
+    std::string out_string = "[API:" + std::to_string(line) + "] " + message;
 
     (*logger_callback)(message.c_str(), message.length());
 }
@@ -288,4 +294,32 @@ int API_clearscreen(int color)
     }
     UB_VGA_FillScreen((uint8_t)color);
     return 0;
+}
+
+/**
+ * @brief Drawing text to the screen
+ *
+ * @param xy_lup upper left corner of the text
+ * @param color color to draw the text in
+ * @param text The text that needs to be drawn
+ * @param fontname The selected font in which the text needs to be drawn
+ * @param fontsize Size of the font
+ * @param fontstyle Style (Italic, normal, etc..)
+ * @param reserved Currently unused. Reserved for future use.
+ *
+ * @return 0 if succesfull, otherwise -1 if error occured
+ */
+int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved)
+{
+    if ((text == NULL) || (fontname == NULL))
+    {
+        log_message("Text or fontname is not given");
+        return -1;
+    }
+
+    if (OUTSIDE(x_lup, 0, VGA_DISPLAY_X) || (OUTSIDE(y_lup, 0, VGA_DISPLAY_Y)))
+    {
+        log_message("Outside the display area");
+        return -1;
+    }
 }
