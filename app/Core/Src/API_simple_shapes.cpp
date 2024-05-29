@@ -98,11 +98,11 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
     {
         if (steep)
         {
-            API_draw_circle(y0, x0, weight, color, 0);
+            API_draw_circle(y0, x0, weight, color, 1);
         }
         else
         {
-            API_draw_circle(x0, y0, weight, color, 0);
+            API_draw_circle(x0, y0, weight, color, 1);
         }
         err -= dy;
         if (err < 0)
@@ -118,18 +118,16 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
 /**
  * @brief Drawing circle
  *
- * @param x_y position on screen
+ * @param x0_y0 position on screen
  * @param radius Radius of the circle
  * @param color Color of the circle
- * @param reserved Currently unused. Reserved for future use.
+ * @param filled Fill in the circle
  *
  * @return -1 if error occured, otherwise 0
  */
-int API_draw_circle(int x, int y, int radius, int color, int reserved)
+int API_draw_circle(int x, int y, int radius, int color, int filled)
 {
-    (void)reserved;
-
-    if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(x, 0, VGA_DISPLAY_Y))
+    if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
     {
         log_message("X or Y is outside the allowed range");
         return -1;
@@ -147,13 +145,44 @@ int API_draw_circle(int x, int y, int radius, int color, int reserved)
         return -1;
     }
 
-    for (int i = 0; i < MAX_CIRCLE_POINTS; i++)
+    if (filled)
     {
-        float angle = i * 2 * (PI / 100);
-        API_set_pixel(x + (cosf(angle) * radius), y + (sinf(angle) * radius), (uint8_t)color);
+        for (int y_temp = -radius; y_temp <= radius; y_temp++)
+            for (int x_temp = -radius; x_temp <= radius; x_temp++)
+                if (x_temp * x_temp + y_temp * y_temp <= radius * radius)
+                    API_set_pixel(x + x_temp, y + y_temp, color);
+        return 0;
     }
 
-    return 0;
+    int x_temp = radius;
+    int y_temp = 0;
+    int decision_over_2 = 1 - x_temp; // Decision criterion divided by 2 evaluated at x=r, y=0
+
+    while (y_temp <= x_temp)
+    {
+        // Draw the 8 octants
+        API_set_pixel(x + x_temp, y + y_temp, color);
+        API_set_pixel(x + y_temp, y + x_temp, color);
+        API_set_pixel(x - y_temp, y + x_temp, color);
+        API_set_pixel(x - x_temp, y + y_temp, color);
+        API_set_pixel(x - x_temp, y - y_temp, color);
+        API_set_pixel(x - y_temp, y - x_temp, color);
+        API_set_pixel(x + y_temp, y - x_temp, color);
+        API_set_pixel(x + x_temp, y - y_temp, color);
+
+        y_temp++;
+        if (decision_over_2 <= 0)
+        {
+            decision_over_2 += 2 * y_temp + 1; // Change in decision criterion for y -> y+1
+        }
+        else
+        {
+            x_temp--;
+            decision_over_2 += 2 * (y_temp - x_temp) + 1; // Change for y -> y+1, x -> x-1
+        }
+    }
+
+    return 0; // Success
 }
 
 /**
@@ -202,7 +231,7 @@ static void API_set_pixel(int x, int y, uint8_t color)
 {
     if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
         return;
-    VGA_RAM1[(y * VGA_DISPLAY_X) + x] = color;
+    VGA_RAM1[(y * (VGA_DISPLAY_X + 1)) + x] = color;
 }
 
 /**
@@ -221,12 +250,15 @@ static void API_set_pixel(int x, int y, uint8_t color)
 int API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved)
 {
     (void)reserved;
+    if (OUTSIDE(x + width, 0, VGA_DISPLAY_X) || OUTSIDE(y + height, 0, VGA_DISPLAY_Y))
+        return -1;
+
     int ret = 0;
     if (filled)
     {
-        for (int i = x; i < width; i++)
+        for (int i = x; i < (x + width); i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = y; j < (y + height); j++)
             {
                 API_set_pixel(i, j, color);
             }
@@ -235,7 +267,7 @@ int API_draw_rectangle(int x, int y, int width, int height, int color, int fille
     else
     {
         ret += API_draw_line(x, y, (x + width), y, color, weight, 0);
-        ret += API_draw_line((x + width), y, (x + width), (y + height), color, weight, 0);
+        ret += API_draw_line((x + width), (y + height), (x + width), y, color, weight, 0);
         ret += API_draw_line(x, (y + height), (x + width), (y + height), color, weight, 0);
         ret += API_draw_line(x, y, x, (y + height), color, weight, 0);
     }

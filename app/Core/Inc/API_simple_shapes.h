@@ -69,14 +69,14 @@ extern "C"
     /**
      * @brief Drawing circle
      *
-     * @param x_y position on screen
+     * @param x0_y0 position on screen
      * @param radius Radius of the circle
      * @param color Color of the circle
-     * @param reserved Currently unused. Reserved for future use.
+     * @param filled Fill in the circle
      *
      * @return -1 if error occured, otherwise 0
      */
-    int API_draw_circle(int x, int y, int radius, int color, int reserved);
+    int API_draw_circle(int x, int y, int radius, int color, int filled);
 
     /**
      * @brief Waiting to next command
