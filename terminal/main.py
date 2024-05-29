@@ -134,52 +134,6 @@ with dpg.item_handler_registry(tag='_window_handler'):
     dpg.add_item_resize_handler(callback=callbacks.window_resize_callback)
 dpg.bind_item_handler_registry('_imported_text', '_window_handler')
 
-# File dialog
-with dpg.file_dialog(directory_selector=False, show=False,
-                    callback=callbacks.ok_callback, tag="_file_dialog",
-                    width=700 ,height=400):
-    dpg.add_file_extension(".txt", color=(255, 255, 0, 255))
-
-# Window for imported text.
-with dpg.window(tag="_imported_text", show=False, autosize=False,
-                width=700, height=400, no_scrollbar=True):
-    # Add lines for imported text
-    for idx in range(100):
-        dpg.add_text("", tag=f"_import_{idx}", pos=(20, 20+idx*13))
-
-    # Add buttons
-    dpg.add_button(
-        label="Step over",
-        tag="_step_over",
-        pos=(
-            dpg.get_item_width("_imported_text")-100,
-            dpg.get_item_height("_imported_text")-90),
-        width=80,
-        callback=callbacks.button_callback,
-        user_data=ser)
-    dpg.add_button(
-        label="Skip",
-        tag="_skip",
-        pos=(
-            dpg.get_item_width("_imported_text")-100,
-            dpg.get_item_height("_imported_text")-60),
-        width=80,
-        callback=callbacks.button_callback,
-        user_data=ser)
-    dpg.add_button(
-        label="Send all",
-        tag="_send_all",
-        pos=(
-            dpg.get_item_width("_imported_text")-100,
-            dpg.get_item_height("_imported_text")-30),
-        width=80,
-        callback=callbacks.button_callback,
-        user_data=ser)
-
-# Handler for window resizing (instead of viewport)
-with dpg.item_handler_registry(tag="_window_handler"):
-    dpg.add_item_resize_handler(callback=callbacks.window_resize_callback)
-dpg.bind_item_handler_registry("_imported_text", "_window_handler")
 
 # Menu bar
 with dpg.viewport_menu_bar():

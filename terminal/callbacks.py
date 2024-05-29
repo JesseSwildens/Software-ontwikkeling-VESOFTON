@@ -6,6 +6,7 @@ from bitmap import BitmapGenerator
 from display import add_display, clear_display
 from serial_handler import SerialHandler
 
+
 def find_current_string():
     for idx in range(100):
         color = dpg.get_item_configuration(f'_import_{idx}')['color']
@@ -97,7 +98,7 @@ def viewport_resize_callback(_sender):
             dpg.get_viewport_height() - 75,
         ),
     )
-    
+
 
 def window_resize_callback(_sender):
     dpg.set_item_pos(
@@ -158,10 +159,19 @@ def ok_callback(_sender, app_data, _user_data):
 
     if path.endswith('.txt'):
         with open(app_data['file_path_name'], 'r') as file:
+            # remove old lines
+            for idx in range(100):
+                dpg.set_value(f'_import_{idx}', '')
+
+            # add imported data
             for idx, line in enumerate(file):
                 dpg.set_value(f'_import_{idx}', line.strip('\r').strip('\n'))
-            dpg.configure_item('_imported_text', show=True)
+
+            # highlight the first string
             dpg.configure_item('_import_0', color=(255, 255, 0, 255))
+
+            # show the window
+            dpg.configure_item('_imported_text', show=True)
 
     elif path.endswith('.jpeg') or path.endswith('.png'):
         width, height, _channels, data = dpg.load_image(path)
