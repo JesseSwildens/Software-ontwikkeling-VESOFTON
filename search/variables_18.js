@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['z_7466',['Z',['../group__CMSIS__core__DebugFunctions.html#ga3b04d58738b66a28ff13f23d8b0ba7e5',1,'APSR_Type::Z()'],['../group__CMSIS__core__DebugFunctions.html#ga8030e626bbdfa4d8f50cf01ea2d1c0ea',1,'APSR_Type::@0::Z()'],['../group__CMSIS__core__DebugFunctions.html#ga1e5d9801013d5146f2e02d9b7b3da562',1,'xPSR_Type::Z()'],['../group__CMSIS__core__DebugFunctions.html#gac1f7475b01a46aef06d9f53d3a2a69ef',1,'xPSR_Type::@2::Z()']]]
+  ['x_7670',['x',['../structbitmap__position.html#a1c9d891d643d950f1e7f98d4eded0a20',1,'bitmap_position::x()'],['../stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960',1,'x():&#160;stm32_ub_vga_screen.c']]],
+  ['x_5fspeed_7671',['x_speed',['../stm32__ub__vga__screen_8c.html#a5cf4625f311d00b65b6d243dbd839b5c',1,'stm32_ub_vga_screen.c']]]
 ];

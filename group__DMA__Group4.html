@@ -102,33 +102,33 @@ Functions</h2></td></tr>
 <p>Interrupts and flags management functions. </p>
 <pre class="fragment"> ===============================================================================
                   Interrupts and flags management functions
- ===============================================================================  
+ ===============================================================================
 
   This subsection provides functions allowing to
    - Check the DMA enable status
-   - Check the FIFO status 
-   - Configure the DMA Interrupts sources and check or clear the flags or pending bits status.   
-   
+   - Check the FIFO status
+   - Configure the DMA Interrupts sources and check or clear the flags or pending bits status.
+
  1. DMA Enable status:
    After configuring the DMA Stream (DMA_Init() function) and enabling the stream,
    it is recommended to check (or wait until) the DMA Stream is effectively enabled.
    A Stream may remain disabled if a configuration parameter is wrong.
    After disabling a DMA Stream, it is also recommended to check (or wait until) the DMA
-   Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing, 
+   Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing,
    the current data will be transferred and the Stream will be effectively disabled only after
    this data transfer completion.
    To monitor this state it is possible to use the following function:
-     - FunctionalState DMA_GetCmdStatus(DMA_Stream_TypeDef* DMAy_Streamx); 
- 
+     - FunctionalState DMA_GetCmdStatus(DMA_Stream_TypeDef* DMAy_Streamx);
+
  2. FIFO Status:
-   It is possible to monitor the FIFO status when a transfer is ongoing using the following 
+   It is possible to monitor the FIFO status when a transfer is ongoing using the following
    function:
-     - uint32_t DMA_GetFIFOStatus(DMA_Stream_TypeDef* DMAy_Streamx); 
- 
+     - uint32_t DMA_GetFIFOStatus(DMA_Stream_TypeDef* DMAy_Streamx);
+
  3. DMA Interrupts and Flags:
   The user should identify which mode will be used in his application to manage the
-  DMA controller events: Polling mode or Interrupt mode. 
-    
+  DMA controller events: Polling mode or Interrupt mode.
+
   Polling Mode
   =============
     Each DMA stream can be managed through 4 event Flags:
@@ -137,7 +137,7 @@ Functions</h2></td></tr>
        2. DMA_FLAG_DMEIFx : to indicate that a Direct Mode Transfer Error event occurred.
        3. DMA_FLAG_TEIFx  : to indicate that a Transfer Error event occurred.
        4. DMA_FLAG_HTIFx  : to indicate that a Half-Transfer Complete event occurred.
-       5. DMA_FLAG_TCIFx  : to indicate that a Transfer Complete event occurred .       
+       5. DMA_FLAG_TCIFx  : to indicate that a Transfer Complete event occurred .
 
    In this Mode it is advised to use the following functions:
       - FlagStatus DMA_GetFlagStatus(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_FLAG);
@@ -153,14 +153,12 @@ Functions</h2></td></tr>
        2. DMA_IT_DMEIFx : specifies the interrupt source for the Direct Mode Transfer Error event.
        3. DMA_IT_TEIFx  : specifies the interrupt source for the Transfer Error event.
        4. DMA_IT_HTIFx  : specifies the interrupt source for the Half-Transfer Complete event.
-       5. DMA_IT_TCIFx  : specifies the interrupt source for the a Transfer Complete event. 
-     
+       5. DMA_IT_TCIFx  : specifies the interrupt source for the a Transfer Complete event.
+
   In this Mode it is advised to use the following functions:
      - void DMA_ITConfig(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_IT, FunctionalState NewState);
      - ITStatus DMA_GetITStatus(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_IT);
-     - void DMA_ClearITPendingBit(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_IT);</pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+     - void DMA_ClearITPendingBit(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t DMA_IT);</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga510d62b4051f5a5de164e84b266b851d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga510d62b4051f5a5de164e84b266b851d">&#9670;&nbsp;</a></span>DMA_ClearFlag()</h2>
 
@@ -196,8 +194,7 @@ Functions</h2></td></tr>
 <li>DMA_FLAG_HTIFx: Streamx half transfer complete flag </li>
 <li>DMA_FLAG_TEIFx: Streamx transfer error flag </li>
 <li>DMA_FLAG_DMEIFx: Streamx direct mode error flag </li>
-<li>DMA_FLAG_FEIFx: Streamx FIFO error flag Where x can be 0 to 7 to select the DMA Stream. <br  />
- </li>
+<li>DMA_FLAG_FEIFx: Streamx FIFO error flag Where x can be 0 to 7 to select the DMA Stream. </li>
 </ul>
 </td></tr>
   </table>
@@ -285,8 +282,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#gaced8a4149acfb0a50b50e63273a87148" title="Initializes the DMAy Streamx according to the specified parameters in the DMA_InitStruct structure.">DMA_Init()</a> function) and enabling the stream, it is recommended to check (or wait until) the DMA Stream is effectively enabled. A Stream may remain disabled if a configuration parameter is wrong. After disabling a DMA Stream, it is also recommended to check (or wait until) the DMA Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing, the current data will be transferred and the Stream will be effectively disabled only after the transfer of this single data is finished. <br  />
-</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#gaced8a4149acfb0a50b50e63273a87148" title="Initializes the DMAy Streamx according to the specified parameters in the DMA_InitStruct structure.">DMA_Init()</a> function) and enabling the stream, it is recommended to check (or wait until) the DMA Stream is effectively enabled. A Stream may remain disabled if a configuration parameter is wrong. After disabling a DMA Stream, it is also recommended to check (or wait until) the DMA Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing, the current data will be transferred and the Stream will be effectively disabled only after the transfer of this single data is finished.</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Current</td><td>state of the DMAy Streamx (ENABLE or DISABLE). </td></tr>

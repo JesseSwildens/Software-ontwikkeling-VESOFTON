@@ -87,12 +87,12 @@ Functions</h2></td></tr>
 <p>Data Counter functions. </p>
 <pre class="fragment"> ===============================================================================
                            Data Counter functions
- ===============================================================================  
+ ===============================================================================
 
   This subsection provides function allowing to configure and read the buffer size
-  (number of data to be transferred). 
+  (number of data to be transferred).
 
-  The DMA data counter can be written only when the DMA Stream is disabled 
+  The DMA data counter can be written only when the DMA Stream is disabled
   (ie. after transfer complete event).
 
   The following function can be used to write the Stream data counter value:
@@ -102,23 +102,21 @@ Functions</h2></td></tr>
       only the Data buffer needs to be reloaded.
 
 @note If the Source and Destination Data Sizes are different, then the value written in
-      data counter, expressing the number of transfers, is relative to the number of 
+      data counter, expressing the number of transfers, is relative to the number of
       transfers from the Peripheral point of view.
       ie. If Memory data size is Word, Peripheral data size is Half-Words, then the value
       to be configured in the data counter is the number of Half-Words to be transferred
       from/to the peripheral.
 
   The DMA data counter can be read to indicate the number of remaining transfers for
-  the relative DMA Stream. This counter is decremented at the end of each data 
-  transfer and when the transfer is complete: 
+  the relative DMA Stream. This counter is decremented at the end of each data
+  transfer and when the transfer is complete:
    - If Normal mode is selected: the counter is set to 0.
    - If Circular mode is selected: the counter is reloaded with the initial value
      (configured before enabling the DMA Stream)
-   
+
   The following function can be used to read the Stream data counter value:
-     - uint16_t DMA_GetCurrDataCounter(DMA_Stream_TypeDef* DMAy_Streamx);</pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+     - uint16_t DMA_GetCurrDataCounter(DMA_Stream_TypeDef* DMAy_Streamx);</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga4a76444a92423f5f15a4328738d6dc46"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga4a76444a92423f5f15a4328738d6dc46">&#9670;&nbsp;</a></span>DMA_GetCurrDataCounter()</h2>
 
@@ -187,8 +185,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>If Peripheral data format is Bytes: number of data units is equal to total number of bytes to be transferred.</dd>
 <dd>
-If Peripheral data format is Half-Word: number of data units is <br  />
- equal to total number of bytes to be transferred / 2.</dd>
+If Peripheral data format is Half-Word: number of data units is equal to total number of bytes to be transferred / 2.</dd>
 <dd>
 If Peripheral data format is Word: number of data units is equal to total number of bytes to be transferred / 4.</dd>
 <dd>

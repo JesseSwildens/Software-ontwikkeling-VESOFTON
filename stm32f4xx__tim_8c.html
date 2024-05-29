@@ -79,8 +79,8 @@ $(function() {
 <p>This file provides firmware functions to manage the following functionalities of the TIM peripheral:  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="stm32f4xx__tim_8h_source.html">stm32f4xx_tim.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="stm32f4xx__rcc_8h_source.html">stm32f4xx_rcc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stm32f4xx__conf_8h_source.html">stm32f4xx_conf.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32f4xx__rcc_8h_source.html">stm32f4xx_rcc.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -372,93 +372,91 @@ Functions</h2></td></tr>
 <li>TimeBase management</li>
 <li>Output Compare management</li>
 <li>Input Capture management</li>
-<li>Advanced-control timers (TIM1 and TIM8) specific features <br  />
-</li>
+<li>Advanced-control timers (TIM1 and TIM8) specific features</li>
 <li>Interrupts, DMA and flags management</li>
 <li>Clocks management</li>
 <li>Synchronization management</li>
 <li>Specific interface management</li>
-<li>Specific remapping management <br  />
-</li>
+<li>Specific remapping management</li>
 </ul>
 </dd></dl>
-<pre class="fragment">*  
+<pre class="fragment">*
 *          ===================================================================
 *                                 How to use this driver
 *          ===================================================================
-*          This driver provides functions to configure and program the TIM 
+*          This driver provides functions to configure and program the TIM
 *          of all STM32F4xx devices.
-*          These functions are split in 9 groups: 
-*   
-*          1. TIM TimeBase management: this group includes all needed functions 
+*          These functions are split in 9 groups:
+*
+*          1. TIM TimeBase management: this group includes all needed functions
 *             to configure the TM Timebase unit:
 *                   - Set/Get Prescaler
-*                   - Set/Get Autoreload  
+*                   - Set/Get Autoreload
 *                   - Counter modes configuration
-*                   - Set Clock division  
+*                   - Set Clock division
 *                   - Select the One Pulse mode
 *                   - Update Request Configuration
 *                   - Update Disable Configuration
-*                   - Auto-Preload Configuration 
-*                   - Enable/Disable the counter     
-*                 
-*          2. TIM Output Compare management: this group includes all needed 
-*             functions to configure the Capture/Compare unit used in Output 
-*             compare mode: 
+*                   - Auto-Preload Configuration
+*                   - Enable/Disable the counter
+*
+*          2. TIM Output Compare management: this group includes all needed
+*             functions to configure the Capture/Compare unit used in Output
+*             compare mode:
 *                   - Configure each channel, independently, in Output Compare mode
 *                   - Select the output compare modes
 *                   - Select the Polarities of each channel
 *                   - Set/Get the Capture/Compare register values
-*                   - Select the Output Compare Fast mode 
-*                   - Select the Output Compare Forced mode  
-*                   - Output Compare-Preload Configuration 
+*                   - Select the Output Compare Fast mode
+*                   - Select the Output Compare Forced mode
+*                   - Output Compare-Preload Configuration
 *                   - Clear Output Compare Reference
 *                   - Select the OCREF Clear signal
-*                   - Enable/Disable the Capture/Compare Channels    
-*                   
-*          3. TIM Input Capture management: this group includes all needed 
-*             functions to configure the Capture/Compare unit used in 
+*                   - Enable/Disable the Capture/Compare Channels
+*
+*          3. TIM Input Capture management: this group includes all needed
+*             functions to configure the Capture/Compare unit used in
 *             Input Capture mode:
 *                   - Configure each channel in input capture mode
 *                   - Configure Channel1/2 in PWM Input mode
 *                   - Set the Input Capture Prescaler
-*                   - Get the Capture/Compare values      
-*                   
+*                   - Get the Capture/Compare values
+*
 *          4. Advanced-control timers (TIM1 and TIM8) specific features
 *                   - Configures the Break input, dead time, Lock level, the OSSI,
 *                      the OSSR State and the AOE(automatic output enable)
 *                   - Enable/Disable the TIM peripheral Main Outputs
 *                   - Select the Commutation event
 *                   - Set/Reset the Capture Compare Preload Control bit
-*                              
+*
 *          5. TIM interrupts, DMA and flags management
 *                   - Enable/Disable interrupt sources
 *                   - Get flags status
 *                   - Clear flags/ Pending bits
-*                   - Enable/Disable DMA requests 
+*                   - Enable/Disable DMA requests
 *                   - Configure DMA burst mode
-*                   - Select CaptureCompare DMA request  
-*              
-*          6. TIM clocks management: this group includes all needed functions 
+*                   - Select CaptureCompare DMA request
+*
+*          6. TIM clocks management: this group includes all needed functions
 *             to configure the clock controller unit:
 *                   - Select internal/External clock
 *                   - Select the external clock mode: ETR(Mode1/Mode2), TIx or ITRx
-*         
-*          7. TIM synchronization management: this group includes all needed 
+*
+*          7. TIM synchronization management: this group includes all needed
 *             functions to configure the Synchronization unit:
-*                   - Select Input Trigger  
-*                   - Select Output Trigger  
-*                   - Select Master Slave Mode 
-*                   - ETR Configuration when used as external trigger   
-*     
-*          8. TIM specific interface management, this group includes all 
+*                   - Select Input Trigger
+*                   - Select Output Trigger
+*                   - Select Master Slave Mode
+*                   - ETR Configuration when used as external trigger
+*
+*          8. TIM specific interface management, this group includes all
 *             needed functions to use the specific TIM interface:
 *                   - Encoder Interface Configuration
-*                   - Select Hall Sensor   
-*         
-*          9. TIM specific remapping management includes the Remapping 
-*             configuration of specific timers               
-*   
+*                   - Select Hall Sensor
+*
+*          9. TIM specific remapping management includes the Remapping
+*             configuration of specific timers
+*
 *  </pre><dl class="section attention"><dt>Attention</dt><dd></dd></dl>
 <p>THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.</p>
 <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>

@@ -96,30 +96,28 @@ Functions</h2></td></tr>
 <p>Synchronization management functions. </p>
 <pre class="fragment"> ===============================================================================
                        Synchronization management functions
- ===============================================================================  
-                   
-       ===================================================================      
+ ===============================================================================
+
+       ===================================================================
               TIM Driver: how to use it in synchronization Mode
-       =================================================================== 
+       ===================================================================
        Case of two/several Timers
        **************************
        1. Configure the Master Timers using the following functions:
-          - void TIM_SelectOutputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_TRGOSource); 
-          - void TIM_SelectMasterSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_MasterSlaveMode);  
-       2. Configure the Slave Timers using the following functions: 
-          - void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);  
-          - void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode); 
-          
+          - void TIM_SelectOutputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_TRGOSource);
+          - void TIM_SelectMasterSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_MasterSlaveMode);
+       2. Configure the Slave Timers using the following functions:
+          - void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);
+          - void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode);
+
        Case of Timers and external trigger(ETR pin)
-       ********************************************       
+       ********************************************
        1. Configure the External trigger using this function:
           - void TIM_ETRConfig(TIM_TypeDef* TIMx, uint16_t TIM_ExtTRGPrescaler, uint16_t TIM_ExtTRGPolarity,
                                uint16_t ExtTRGFilter);
-       2. Configure the Slave Timers using the following functions: 
-          - void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);  
-          - void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode); </pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+       2. Configure the Slave Timers using the following functions:
+          - void TIM_SelectInputTrigger(TIM_TypeDef* TIMx, uint16_t TIM_InputTriggerSource);
+          - void TIM_SelectSlaveMode(TIM_TypeDef* TIMx, uint16_t TIM_SlaveMode);</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga8bdde400b7a30f3e747fe8e4962c0abe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga8bdde400b7a30f3e747fe8e4962c0abe">&#9670;&nbsp;</a></span>TIM_ETRConfig()</h2>
 
@@ -216,8 +214,7 @@ Functions</h2></td></tr>
 <p>Selects the Input Trigger source. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 <br  />
- to select the TIM peripheral. </td></tr>
+    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 to select the TIM peripheral. </td></tr>
     <tr><td class="paramname">TIM_InputTriggerSource</td><td>The Input Trigger source. This parameter can be one of the following values: <ul>
 <li>TIM_TS_ITR0: Internal Trigger 0 </li>
 <li>TIM_TS_ITR1: Internal Trigger 1 </li>

@@ -83,8 +83,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga7fe09e62ea3125db384829dab59ebe3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables the double buffer mode for the selected DMA stream.  <a href="group__DMA__Group3.html#ga7fe09e62ea3125db384829dab59ebe3e">More...</a><br /></td></tr>
 <tr class="separator:ga7fe09e62ea3125db384829dab59ebe3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4ebcffd32eb6968ac61cfb64a6bae258"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DMA__Group3.html#ga4ebcffd32eb6968ac61cfb64a6bae258">DMA_MemoryTargetConfig</a> (<a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *DMAy_Streamx, uint32_t MemoryBaseAddr, uint32_t DMA_MemoryTarget)</td></tr>
-<tr class="memdesc:ga4ebcffd32eb6968ac61cfb64a6bae258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the Memory address for the next buffer transfer in double buffer mode (for dynamic use). This function can be called when the DMA Stream is enabled and when the transfer is ongoing. <br  />
-  <a href="group__DMA__Group3.html#ga4ebcffd32eb6968ac61cfb64a6bae258">More...</a><br /></td></tr>
+<tr class="memdesc:ga4ebcffd32eb6968ac61cfb64a6bae258"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the Memory address for the next buffer transfer in double buffer mode (for dynamic use). This function can be called when the DMA Stream is enabled and when the transfer is ongoing.  <a href="group__DMA__Group3.html#ga4ebcffd32eb6968ac61cfb64a6bae258">More...</a><br /></td></tr>
 <tr class="separator:ga4ebcffd32eb6968ac61cfb64a6bae258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga74b6624f9faa2f43c9369ddbdeab241c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DMA__Group3.html#ga74b6624f9faa2f43c9369ddbdeab241c">DMA_GetCurrentMemoryTarget</a> (<a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *DMAy_Streamx)</td></tr>
 <tr class="memdesc:ga74b6624f9faa2f43c9369ddbdeab241c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current memory target used by double buffer transfer.  <a href="group__DMA__Group3.html#ga74b6624f9faa2f43c9369ddbdeab241c">More...</a><br /></td></tr>
@@ -94,14 +93,14 @@ Functions</h2></td></tr>
 <p>Double Buffer mode functions. </p>
 <pre class="fragment"> ===============================================================================
                          Double Buffer mode functions
- ===============================================================================  
+ ===============================================================================
 
-  This subsection provides function allowing to configure and control the double 
+  This subsection provides function allowing to configure and control the double
   buffer mode parameters.
-  
+
   The Double Buffer mode can be used only when Circular mode is enabled.
   The Double Buffer mode cannot be used when transferring data from Memory to Memory.
-  
+
   The Double Buffer mode allows to set two different Memory addresses from/to which
   the DMA controller will access alternatively (after completing transfer to/from target
   memory 0, it will start transfer to/from target memory 1).
@@ -112,14 +111,14 @@ Functions</h2></td></tr>
    - void DMA_DoubleBufferModeConfig(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t Memory1BaseAddr,
                                 uint32_t DMA_CurrentMemory);
    - void DMA_DoubleBufferModeCmd(DMA_Stream_TypeDef* DMAy_Streamx, FunctionalState NewState);
-   
+
   DMA_DoubleBufferModeConfig() is called to configure the Memory 1 base address and the first
   Memory target from/to which the transfer will start after enabling the DMA Stream.
-  Then DMA_DoubleBufferModeCmd() must be called to enable the Double Buffer mode (or disable 
+  Then DMA_DoubleBufferModeCmd() must be called to enable the Double Buffer mode (or disable
   it when it should not be used).
-  
-   
-  Two functions can be called dynamically when the transfer is ongoing (or when the DMA Stream is 
+
+
+  Two functions can be called dynamically when the transfer is ongoing (or when the DMA Stream is
   stopped) to modify on of the target Memories addresses or to check wich Memory target is currently
    used:
     - void DMA_MemoryTargetConfig(DMA_Stream_TypeDef* DMAy_Streamx, uint32_t MemoryBaseAddr,
@@ -131,9 +130,7 @@ Functions</h2></td></tr>
   (ie. if the DMA Stream is currently transferring from Memory 1 then you can only modify base address
   of target Memory 0 and vice versa).
   To check this condition, it is recommended to use the function DMA_GetCurrentMemoryTarget() which
-  returns the index of the Memory target currently in use by the DMA Stream.</pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+  returns the index of the Memory target currently in use by the DMA Stream.</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga7fe09e62ea3125db384829dab59ebe3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7fe09e62ea3125db384829dab59ebe3e">&#9670;&nbsp;</a></span>DMA_DoubleBufferModeCmd()</h2>
 
@@ -161,8 +158,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Enables or disables the double buffer mode for the selected DMA stream. </p>
-<dl class="section note"><dt>Note</dt><dd>This function can be called only when the DMA Stream is disabled. <br  />
- </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This function can be called only when the DMA Stream is disabled. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
@@ -215,12 +211,10 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
-    <tr><td class="paramname">Memory1BaseAddr</td><td>the base address of the second buffer (Memory 1) <br  />
- </td></tr>
+    <tr><td class="paramname">Memory1BaseAddr</td><td>the base address of the second buffer (Memory 1) </td></tr>
     <tr><td class="paramname">DMA_CurrentMemory</td><td>specifies which memory will be first buffer for the transactions when the Stream will be enabled. This parameter can be one of the following values: <ul>
 <li>DMA_Memory_0: Memory 0 is the current buffer. </li>
-<li>DMA_Memory_1: Memory 1 is the current buffer. <br  />
-</li>
+<li>DMA_Memory_1: Memory 1 is the current buffer.</li>
 </ul>
 </td></tr>
   </table>
@@ -300,8 +294,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Configures the Memory address for the next buffer transfer in double buffer mode (for dynamic use). This function can be called when the DMA Stream is enabled and when the transfer is ongoing. <br  />
- </p>
+<p>Configures the Memory address for the next buffer transfer in double buffer mode (for dynamic use). This function can be called when the DMA Stream is enabled and when the transfer is ongoing. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
@@ -314,8 +307,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>It is not allowed to modify the Base Address of a target Memory when this target is involved in the current transfer. ie. If the DMA Stream is currently transferring to/from Memory 1, then it not possible to modify Base address of Memory 1, but it is possible to modify Base address of Memory 0. To know which Memory is currently used, you can use the function <a class="el" href="group__DMA__Group3.html#ga74b6624f9faa2f43c9369ddbdeab241c" title="Returns the current memory target used by double buffer transfer.">DMA_GetCurrentMemoryTarget()</a>. <br  />
-</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>It is not allowed to modify the Base Address of a target Memory when this target is involved in the current transfer. ie. If the DMA Stream is currently transferring to/from Memory 1, then it not possible to modify Base address of Memory 1, but it is possible to modify Base address of Memory 0. To know which Memory is currently used, you can use the function <a class="el" href="group__DMA__Group3.html#ga74b6624f9faa2f43c9369ddbdeab241c" title="Returns the current memory target used by double buffer transfer.">DMA_GetCurrentMemoryTarget()</a>.</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">None</td><td></td></tr>

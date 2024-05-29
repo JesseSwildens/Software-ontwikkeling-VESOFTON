@@ -96,26 +96,24 @@ Functions</h2></td></tr>
 <p>Advanced-control timers (TIM1 and TIM8) specific features. </p>
 <pre class="fragment"> ===============================================================================
           Advanced-control timers (TIM1 and TIM8) specific features
- ===============================================================================  
-  
-       ===================================================================      
+ ===============================================================================
+
+       ===================================================================
               TIM Driver: how to use the Break feature
-       =================================================================== 
-       After configuring the Timer channel(s) in the appropriate Output Compare mode: 
-                         
+       ===================================================================
+       After configuring the Timer channel(s) in the appropriate Output Compare mode:
+
        1. Fill the TIM_BDTRInitStruct with the desired parameters for the Timer
-          Break Polarity, dead time, Lock level, the OSSI/OSSR State and the 
+          Break Polarity, dead time, Lock level, the OSSI/OSSR State and the
           AOE(automatic output enable).
-               
+
        2. Call TIM_BDTRConfig(TIMx, &amp;TIM_BDTRInitStruct) to configure the Timer
-          
-       3. Enable the Main Output using TIM_CtrlPWMOutputs(TIM1, ENABLE) 
-          
+
+       3. Enable the Main Output using TIM_CtrlPWMOutputs(TIM1, ENABLE)
+
        4. Once the break even occurs, the Timer's output signals are put in reset
           state or in a known state (according to the configuration made in
-          TIM_BDTRConfig() function).</pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+          TIM_BDTRConfig() function).</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga3df4ba3f0727f63ce621e2b2e6035d4f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3df4ba3f0727f63ce621e2b2e6035d4f">&#9670;&nbsp;</a></span>TIM_BDTRConfig()</h2>
 

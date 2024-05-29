@@ -126,30 +126,28 @@ Functions</h2></td></tr>
 <p>TimeBase management functions. </p>
 <pre class="fragment"> ===============================================================================
                        TimeBase management functions
- ===============================================================================  
-  
-       ===================================================================      
+ ===============================================================================
+
+       ===================================================================
               TIM Driver: how to use it in Timing(Time base) Mode
-       =================================================================== 
+       ===================================================================
        To use the Timer in Timing(Time base) mode, the following steps are mandatory:
-       
+
        1. Enable TIM clock using RCC_APBxPeriphClockCmd(RCC_APBxPeriph_TIMx, ENABLE) function
-                    
+
        2. Fill the TIM_TimeBaseInitStruct with the desired parameters.
-       
+
        3. Call TIM_TimeBaseInit(TIMx, &amp;TIM_TimeBaseInitStruct) to configure the Time Base unit
           with the corresponding configuration
-          
-       4. Enable the NVIC if you need to generate the update interrupt. 
-          
-       5. Enable the corresponding interrupt using the function TIM_ITConfig(TIMx, TIM_IT_Update) 
-       
+
+       4. Enable the NVIC if you need to generate the update interrupt.
+
+       5. Enable the corresponding interrupt using the function TIM_ITConfig(TIMx, TIM_IT_Update)
+
        6. Call the TIM_Cmd(ENABLE) function to enable the TIM counter.
-             
+
        Note1: All other functions can be used separately to modify, if needed,
-          a specific feature of the Timer. </pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+          a specific feature of the Timer.</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga42b44b9fc2b0798d733720dd6bac1ac0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga42b44b9fc2b0798d733720dd6bac1ac0">&#9670;&nbsp;</a></span>TIM_ARRPreloadConfig()</h2>
 

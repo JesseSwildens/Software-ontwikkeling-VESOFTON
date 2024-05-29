@@ -114,50 +114,48 @@ Functions</h2></td></tr>
 <p>Input Capture management functions. </p>
 <pre class="fragment"> ===============================================================================
                       Input Capture management functions
- ===============================================================================  
-   
-       ===================================================================      
+ ===============================================================================
+
+       ===================================================================
               TIM Driver: how to use it in Input Capture Mode
-       =================================================================== 
+       ===================================================================
        To use the Timer in Input Capture mode, the following steps are mandatory:
-       
+
        1. Enable TIM clock using RCC_APBxPeriphClockCmd(RCC_APBxPeriph_TIMx, ENABLE) function
-       
+
        2. Configure the TIM pins by configuring the corresponding GPIO pins
-       
+
        2. Configure the Time base unit as described in the first part of this driver,
           if needed, else the Timer will run with the default configuration:
           - Autoreload value = 0xFFFF
           - Prescaler value = 0x0000
           - Counter mode = Up counting
           - Clock Division = TIM_CKD_DIV1
-          
+
        3. Fill the TIM_ICInitStruct with the desired parameters including:
           - TIM Channel: TIM_Channel
           - TIM Input Capture polarity: TIM_ICPolarity
           - TIM Input Capture selection: TIM_ICSelection
           - TIM Input Capture Prescaler: TIM_ICPrescaler
           - TIM Input CApture filter value: TIM_ICFilter
-       
-       4. Call TIM_ICInit(TIMx, &amp;TIM_ICInitStruct) to configure the desired channel with the 
+
+       4. Call TIM_ICInit(TIMx, &amp;TIM_ICInitStruct) to configure the desired channel with the
           corresponding configuration and to measure only frequency or duty cycle of the input signal,
           or,
-          Call TIM_PWMIConfig(TIMx, &amp;TIM_ICInitStruct) to configure the desired channels with the 
+          Call TIM_PWMIConfig(TIMx, &amp;TIM_ICInitStruct) to configure the desired channels with the
           corresponding configuration and to measure the frequency and the duty cycle of the input signal
-          
-       5. Enable the NVIC or the DMA to read the measured frequency. 
-          
+
+       5. Enable the NVIC or the DMA to read the measured frequency.
+
        6. Enable the corresponding interrupt (or DMA request) to read the Captured value,
-          using the function TIM_ITConfig(TIMx, TIM_IT_CCx) (or TIM_DMA_Cmd(TIMx, TIM_DMA_CCx)) 
-       
+          using the function TIM_ITConfig(TIMx, TIM_IT_CCx) (or TIM_DMA_Cmd(TIMx, TIM_DMA_CCx))
+
        7. Call the TIM_Cmd(ENABLE) function to enable the TIM counter.
-       
+
        8. Use TIM_GetCapturex(TIMx); to read the captured value.
-       
+
        Note1: All other functions can be used separately to modify, if needed,
-              a specific feature of the Timer. </pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+              a specific feature of the Timer.</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga6bd39ca543305ff0cd06fce0f678d94d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga6bd39ca543305ff0cd06fce0f678d94d">&#9670;&nbsp;</a></span>TIM_GetCapture1()</h2>
 

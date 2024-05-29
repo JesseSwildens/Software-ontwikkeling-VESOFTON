@@ -99,19 +99,17 @@ Functions</h2></td></tr>
 <p>Initialization and Configuration functions. </p>
 <pre class="fragment"> ===============================================================================
                  Initialization and Configuration functions
- ===============================================================================  
+ ===============================================================================
 
   This subsection provides functions allowing to initialize the DMA Stream source
-  and destination addresses, incrementation and data sizes, transfer direction, 
-  buffer size, circular/normal mode selection, memory-to-memory mode selection 
+  and destination addresses, incrementation and data sizes, transfer direction,
+  buffer size, circular/normal mode selection, memory-to-memory mode selection
   and Stream priority value.
-  
+
   The DMA_Init() function follows the DMA configuration procedures as described in
   reference manual (RM0090) except the first point: waiting on EN bit to be reset.
   This condition should be checked by user application using the function DMA_GetCmdStatus()
-  before calling the DMA_Init() function.</pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+  before calling the DMA_Init() function.</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="gab2bea22f9f6dc62fdd7afb385a0c1f73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab2bea22f9f6dc62fdd7afb385a0c1f73">&#9670;&nbsp;</a></span>DMA_Cmd()</h2>
 
@@ -146,11 +144,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>This function may be used to perform Pause-Resume operation. When a transfer is ongoing, calling this function to disable the Stream will cause the transfer to be paused. All configuration registers and the number of remaining data will be preserved. When calling again this function to re-enable the Stream, the transfer will be resumed from the point where it was paused. <br  />
-</dd>
+<dl class="section note"><dt>Note</dt><dd>This function may be used to perform Pause-Resume operation. When a transfer is ongoing, calling this function to disable the Stream will cause the transfer to be paused. All configuration registers and the number of remaining data will be preserved. When calling again this function to re-enable the Stream, the transfer will be resumed from the point where it was paused.</dd>
 <dd>
-After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#gaced8a4149acfb0a50b50e63273a87148" title="Initializes the DMAy Streamx according to the specified parameters in the DMA_InitStruct structure.">DMA_Init()</a> function) and enabling the stream, it is recommended to check (or wait until) the DMA Stream is effectively enabled. A Stream may remain disabled if a configuration parameter is wrong. After disabling a DMA Stream, it is also recommended to check (or wait until) the DMA Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing, the current data will be transferred and the Stream will be effectively disabled only after the transfer of this single data is finished. <br  />
-</dd></dl>
+After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#gaced8a4149acfb0a50b50e63273a87148" title="Initializes the DMAy Streamx according to the specified parameters in the DMA_InitStruct structure.">DMA_Init()</a> function) and enabling the stream, it is recommended to check (or wait until) the DMA Stream is effectively enabled. A Stream may remain disabled if a configuration parameter is wrong. After disabling a DMA Stream, it is also recommended to check (or wait until) the DMA Stream is effectively disabled. If a Stream is disabled while a data transfer is ongoing, the current data will be transferred and the Stream will be effectively disabled only after the transfer of this single data is finished.</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">None</td><td></td></tr>
@@ -219,15 +215,13 @@ After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#ga
 </div><div class="memdoc">
 
 <p>Configures, when the DMAy Streamx is disabled, the flow controller for the next transactions (Peripheral or Memory). </p>
-<dl class="section note"><dt>Note</dt><dd>Before enabling this feature, check if the used peripheral supports the Flow Controller mode or not. <br  />
-</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Before enabling this feature, check if the used peripheral supports the Flow Controller mode or not.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
     <tr><td class="paramname">DMA_FlowCtrl</td><td>specifies the DMA flow controller. This parameter can be one of the following values: <ul>
 <li>DMA_FlowCtrl_Memory: DMAy_Streamx transactions flow controller is the DMA controller. </li>
-<li>DMA_FlowCtrl_Peripheral: DMAy_Streamx transactions flow controller is the peripheral. <br  />
- </li>
+<li>DMA_FlowCtrl_Peripheral: DMAy_Streamx transactions flow controller is the peripheral. </li>
 </ul>
 </td></tr>
   </table>
@@ -269,13 +263,11 @@ After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#ga
 </div><div class="memdoc">
 
 <p>Initializes the DMAy Streamx according to the specified parameters in the DMA_InitStruct structure. </p>
-<dl class="section note"><dt>Note</dt><dd>Before calling this function, it is recommended to check that the Stream is actually disabled using the function <a class="el" href="group__DMA__Group4.html#gaa4d631cdd6cd020106435f30c0c6fb15" title="Returns the status of EN bit for the specified DMAy Streamx.">DMA_GetCmdStatus()</a>. <br  />
- </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Before calling this function, it is recommended to check that the Stream is actually disabled using the function <a class="el" href="group__DMA__Group4.html#gaa4d631cdd6cd020106435f30c0c6fb15" title="Returns the status of EN bit for the specified DMAy Streamx.">DMA_GetCmdStatus()</a>. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
-    <tr><td class="paramname">DMA_InitStruct</td><td>pointer to a <a class="el" href="structDMA__InitTypeDef.html" title="DMA Init structure definition.">DMA_InitTypeDef</a> structure that contains the configuration information for the specified DMA Stream. <br  />
- </td></tr>
+    <tr><td class="paramname">DMA_InitStruct</td><td>pointer to a <a class="el" href="structDMA__InitTypeDef.html" title="DMA Init structure definition.">DMA_InitTypeDef</a> structure that contains the configuration information for the specified DMA Stream. </td></tr>
   </table>
   </dd>
 </dl>
@@ -320,8 +312,7 @@ After configuring the DMA Stream (<a class="el" href="group__DMA__Group1.html#ga
   <table class="params">
     <tr><td class="paramname">DMAy_Streamx</td><td>where y can be 1 or 2 to select the DMA and x can be 0 to 7 to select the DMA Stream. </td></tr>
     <tr><td class="paramname">DMA_Pincos</td><td>specifies the Peripheral increment offset size. This parameter can be one of the following values: <ul>
-<li>DMA_PINCOS_Psize: Peripheral address increment is done <br  />
- accordingly to PSIZE parameter. </li>
+<li>DMA_PINCOS_Psize: Peripheral address increment is done accordingly to PSIZE parameter. </li>
 <li>DMA_PINCOS_WordAligned: Peripheral address increment offset is fixed to 4 (32-bit aligned addresses). </li>
 </ul>
 </td></tr>

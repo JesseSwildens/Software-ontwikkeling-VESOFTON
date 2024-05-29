@@ -1312,8 +1312,7 @@ TIM_IT_COM and TIM_IT_Break are used only with TIM1 and TIM8.</dd></dl>
   <table class="params">
     <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5 or 8 to select the TIM peripheral. </td></tr>
     <tr><td class="paramname">TIM_DMABase</td><td>DMA Base address. This parameter can be one of the following values: <ul>
-<li>TIM_DMABase_CR1 <br  />
- </li>
+<li>TIM_DMABase_CR1 </li>
 <li>TIM_DMABase_CR2 </li>
 <li>TIM_DMABase_SMCR </li>
 <li>TIM_DMABase_DIER </li>
@@ -1322,16 +1321,13 @@ TIM_IT_COM and TIM_IT_Break are used only with TIM1 and TIM8.</dd></dl>
 <li>TIM_DMABase_CCMR1 </li>
 <li>TIM_DMABase_CCMR2 </li>
 <li>TIM_DMABase_CCER </li>
-<li>TIM_DMABase_CNT <br  />
- </li>
-<li>TIM_DMABase_PSC <br  />
- </li>
+<li>TIM_DMABase_CNT </li>
+<li>TIM_DMABase_PSC </li>
 <li>TIM_DMABase_ARR </li>
 <li>TIM_DMABase_RCR </li>
 <li>TIM_DMABase_CCR1 </li>
 <li>TIM_DMABase_CCR2 </li>
-<li>TIM_DMABase_CCR3 <br  />
- </li>
+<li>TIM_DMABase_CCR3 </li>
 <li>TIM_DMABase_CCR4 </li>
 <li>TIM_DMABase_BDTR </li>
 <li>TIM_DMABase_DCR </li>
@@ -1839,15 +1835,13 @@ TIM_IT_COM and TIM_IT_Break are used only with TIM1 and TIM8.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">TIMx</td><td>where x can be 1 to 14 to select the TIM peripheral. </td></tr>
-    <tr><td class="paramname">TIM_EventSource</td><td>specifies the event source. This parameter can be one or more of the following values: <br  />
- <ul>
+    <tr><td class="paramname">TIM_EventSource</td><td>specifies the event source. This parameter can be one or more of the following values: <ul>
 <li>TIM_EventSource_Update: Timer update Event source </li>
 <li>TIM_EventSource_CC1: Timer Capture Compare 1 Event source </li>
 <li>TIM_EventSource_CC2: Timer Capture Compare 2 Event source </li>
 <li>TIM_EventSource_CC3: Timer Capture Compare 3 Event source </li>
 <li>TIM_EventSource_CC4: Timer Capture Compare 4 Event source </li>
-<li>TIM_EventSource_COM: Timer COM event source <br  />
- </li>
+<li>TIM_EventSource_COM: Timer COM event source </li>
 <li>TIM_EventSource_Trigger: Timer Trigger Event source </li>
 <li>TIM_EventSource_Break: Timer Break event source</li>
 </ul>
@@ -2077,8 +2071,7 @@ TIM_EventSource_COM and TIM_EventSource_Break are used only with TIM1 and TIM8.<
 </dl>
 <dl class="section note"><dt>Note</dt><dd>TIM6 and TIM7 can have only one update flag. </dd>
 <dd>
-TIM_FLAG_COM and TIM_FLAG_Break are used only with TIM1 and TIM8. <br  />
-</dd></dl>
+TIM_FLAG_COM and TIM_FLAG_Break are used only with TIM1 and TIM8.</dd></dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">The</td><td>new state of TIM_FLAG (SET or RESET). </td></tr>
@@ -2337,8 +2330,7 @@ TIM_IT_COM and TIM_IT_Break are used only with TIM1 and TIM8.</dd></dl>
 <dd>
 For TIM9 and TIM12 only one of the following parameters can be used: TIM_IT_Update, TIM_IT_CC1, TIM_IT_CC2 or TIM_IT_Trigger. </dd>
 <dd>
-For TIM10, TIM11, TIM13 and TIM14 only one of the following parameters can be used: TIM_IT_Update or TIM_IT_CC1 <br  />
- </dd>
+For TIM10, TIM11, TIM13 and TIM14 only one of the following parameters can be used: TIM_IT_Update or TIM_IT_CC1 </dd>
 <dd>
 TIM_IT_COM and TIM_IT_Break can be used only with TIM1 and TIM8</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -3451,8 +3443,7 @@ TIM_IT_COM and TIM_IT_Break can be used only with TIM1 and TIM8</dd></dl>
 <li>TIM5_LSE: TIM5 CH4 input is connected to LSE clock. </li>
 <li>TIM5_RTC: TIM5 CH4 input is connected to RTC Output event. </li>
 <li>TIM11_GPIO: TIM11 CH4 input is connected to dedicated Timer pin(default) </li>
-<li>TIM11_HSE: TIM11 CH4 input is connected to HSE_RTC clock (HSE divided by a programmable prescaler) <br  />
- </li>
+<li>TIM11_HSE: TIM11 CH4 input is connected to HSE_RTC clock (HSE divided by a programmable prescaler) </li>
 </ul>
 </td></tr>
   </table>
@@ -3625,8 +3616,7 @@ TIM_IT_COM and TIM_IT_Break can be used only with TIM1 and TIM8</dd></dl>
 <p>Selects the Input Trigger source. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 <br  />
- to select the TIM peripheral. </td></tr>
+    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 to select the TIM peripheral. </td></tr>
     <tr><td class="paramname">TIM_InputTriggerSource</td><td>The Input Trigger source. This parameter can be one of the following values: <ul>
 <li>TIM_TS_ITR0: Internal Trigger 0 </li>
 <li>TIM_TS_ITR1: Internal Trigger 1 </li>
@@ -4536,8 +4526,7 @@ TIM_IT_COM and TIM_IT_Break can be used only with TIM1 and TIM8</dd></dl>
 <p>Configures the TIMx Trigger as External Clock. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 <br  />
- to select the TIM peripheral. </td></tr>
+    <tr><td class="paramname">TIMx</td><td>where x can be 1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13 or 14 to select the TIM peripheral. </td></tr>
     <tr><td class="paramname">TIM_TIxExternalCLKSource</td><td>Trigger source. This parameter can be one of the following values: <ul>
 <li>TIM_TIxExternalCLK1Source_TI1ED: TI1 Edge Detector </li>
 <li>TIM_TIxExternalCLK1Source_TI1: Filtered Timer Input 1 </li>

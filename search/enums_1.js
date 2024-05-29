@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['errorstatus_7494',['ErrorStatus',['../group__Exported__types.html#ga8333b96c67f83cba354b3407fcbb6ee8',1,'stm32f4xx.h']]]
+  ['bitaction_7702',['BitAction',['../group__GPIO.html#ga176130b21c0e719121470a6042d4cf19',1,'stm32f4xx_gpio.h']]]
 ];

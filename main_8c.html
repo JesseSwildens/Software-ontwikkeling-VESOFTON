@@ -69,21 +69,75 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">main.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="main_8h_source.html">main.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bitmap_8h_source.html">bitmap.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bitmap__calib__large_8h_source.html">bitmap_calib_large.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="bitmap__dvd_8h_source.html">bitmap_dvd.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stm32__ub__vga__screen_8h_source.html">stm32_ub_vga_screen.h</a>&quot;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a6b20d41d6252e9871430c242cb1a56e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>&#160;&#160;&#160;128</td></tr>
+<tr class="separator:a6b20d41d6252e9871430c242cb1a56e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac201b60d58b0eba2ce0b55710eb3c4d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac201b60d58b0eba2ce0b55710eb3c4d0">DMA1_Stream5_IRQHandler</a> (void)</td></tr>
+<tr class="separator:ac201b60d58b0eba2ce0b55710eb3c4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ca6fd0e6f77921dd1123539857ba0a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ca6fd0e6f77921dd1123539857ba0a8">USART2_IRQHandler</a> (void)</td></tr>
+<tr class="separator:a0ca6fd0e6f77921dd1123539857ba0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aa2fc0b4418bca70379ee311eee0af9bf"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aa2fc0b4418bca70379ee311eee0af9bf">rx_buff</a> [<a class="el" href="main_8c.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td></tr>
+<tr class="separator:aa2fc0b4418bca70379ee311eee0af9bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c5a026390b20507a4d3d664dae28f27"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a1c5a026390b20507a4d3d664dae28f27">eventflagUART</a> = 0</td></tr>
+<tr class="separator:a1c5a026390b20507a4d3d664dae28f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a6b20d41d6252e9871430c242cb1a56e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b20d41d6252e9871430c242cb1a56e7">&#9670;&nbsp;</a></span>BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUFFER_SIZE&#160;&#160;&#160;128</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac201b60d58b0eba2ce0b55710eb3c4d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac201b60d58b0eba2ce0b55710eb3c4d0">&#9670;&nbsp;</a></span>DMA1_Stream5_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DMA1_Stream5_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a840291bc02cba5474a4cb46a9b9566fe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -96,6 +150,53 @@ Functions</h2></td></tr>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ca6fd0e6f77921dd1123539857ba0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca6fd0e6f77921dd1123539857ba0a8">&#9670;&nbsp;</a></span>USART2_IRQHandler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void USART2_IRQHandler </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a1c5a026390b20507a4d3d664dae28f27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c5a026390b20507a4d3d664dae28f27">&#9670;&nbsp;</a></span>eventflagUART</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t eventflagUART = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2fc0b4418bca70379ee311eee0af9bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2fc0b4418bca70379ee311eee0af9bf">&#9670;&nbsp;</a></span>rx_buff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t rx_buff[<a class="el" href="main_8c.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td>
         </tr>
       </table>
 </div><div class="memdoc">

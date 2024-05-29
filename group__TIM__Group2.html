@@ -186,47 +186,45 @@ Functions</h2></td></tr>
 <p>Output Compare management functions. </p>
 <pre class="fragment"> ===============================================================================
                         Output Compare management functions
- ===============================================================================  
-   
-       ===================================================================      
+ ===============================================================================
+
+       ===================================================================
               TIM Driver: how to use it in Output Compare Mode
-       =================================================================== 
+       ===================================================================
        To use the Timer in Output Compare mode, the following steps are mandatory:
-       
+
        1. Enable TIM clock using RCC_APBxPeriphClockCmd(RCC_APBxPeriph_TIMx, ENABLE) function
-       
+
        2. Configure the TIM pins by configuring the corresponding GPIO pins
-       
-       2. Configure the Time base unit as described in the first part of this driver, 
+
+       2. Configure the Time base unit as described in the first part of this driver,
           if needed, else the Timer will run with the default configuration:
           - Autoreload value = 0xFFFF
           - Prescaler value = 0x0000
           - Counter mode = Up counting
           - Clock Division = TIM_CKD_DIV1
-          
+
        3. Fill the TIM_OCInitStruct with the desired parameters including:
           - The TIM Output Compare mode: TIM_OCMode
           - TIM Output State: TIM_OutputState
           - TIM Pulse value: TIM_Pulse
           - TIM Output Compare Polarity : TIM_OCPolarity
-       
-       4. Call TIM_OCxInit(TIMx, &amp;TIM_OCInitStruct) to configure the desired channel with the 
+
+       4. Call TIM_OCxInit(TIMx, &amp;TIM_OCInitStruct) to configure the desired channel with the
           corresponding configuration
-       
+
        5. Call the TIM_Cmd(ENABLE) function to enable the TIM counter.
-       
+
        Note1: All other functions can be used separately to modify, if needed,
-              a specific feature of the Timer. 
-          
+              a specific feature of the Timer.
+
        Note2: In case of PWM mode, this function is mandatory:
-              TIM_OCxPreloadConfig(TIMx, TIM_OCPreload_ENABLE); 
-              
+              TIM_OCxPreloadConfig(TIMx, TIM_OCPreload_ENABLE);
+
        Note3: If the corresponding interrupt or DMA request are needed, the user should:
-                1. Enable the NVIC (or the DMA) to use the TIM interrupts (or DMA requests). 
-                2. Enable the corresponding interrupt (or DMA request) using the function 
-                   TIM_ITConfig(TIMx, TIM_IT_CCx) (or TIM_DMA_Cmd(TIMx, TIM_DMA_CCx))   </pre><p><br  />
- </p>
-<h2 class="groupheader">Function Documentation</h2>
+                1. Enable the NVIC (or the DMA) to use the TIM interrupts (or DMA requests).
+                2. Enable the corresponding interrupt (or DMA request) using the function
+                   TIM_ITConfig(TIMx, TIM_IT_CCx) (or TIM_DMA_Cmd(TIMx, TIM_DMA_CCx))</pre> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga3ecc4647d9ede261beb5e0535cf29ebb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3ecc4647d9ede261beb5e0535cf29ebb">&#9670;&nbsp;</a></span>TIM_CCxCmd()</h2>
 

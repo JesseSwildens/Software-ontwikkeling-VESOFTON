@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['ub_5fvga_5ffillscreen_7025',['UB_VGA_FillScreen',['../stm32__ub__vga__screen_8h.html#a8afc87fd0f1737d58c7ee92629be9c92',1,'UB_VGA_FillScreen(uint8_t color):&#160;stm32_ub_vga_screen.c'],['../stm32__ub__vga__screen_8c.html#a8afc87fd0f1737d58c7ee92629be9c92',1,'UB_VGA_FillScreen(uint8_t color):&#160;stm32_ub_vga_screen.c']]],
-  ['ub_5fvga_5fscreen_5finit_7026',['UB_VGA_Screen_Init',['../stm32__ub__vga__screen_8h.html#aa63128722f952ece5176141e8a99b6c1',1,'UB_VGA_Screen_Init(void):&#160;stm32_ub_vga_screen.c'],['../stm32__ub__vga__screen_8c.html#aa63128722f952ece5176141e8a99b6c1',1,'UB_VGA_Screen_Init(void):&#160;stm32_ub_vga_screen.c']]],
-  ['ub_5fvga_5fsetpixel_7027',['UB_VGA_SetPixel',['../stm32__ub__vga__screen_8h.html#a1fd52b52c87572b4bfad9637ec34e621',1,'UB_VGA_SetPixel(uint16_t xp, uint16_t yp, uint8_t color):&#160;stm32_ub_vga_screen.c'],['../stm32__ub__vga__screen_8c.html#a1fd52b52c87572b4bfad9637ec34e621',1,'UB_VGA_SetPixel(uint16_t xp, uint16_t yp, uint8_t color):&#160;stm32_ub_vga_screen.c']]]
+  ['p_5fvga_5finitdma_7052',['P_VGA_InitDMA',['../stm32__ub__vga__screen_8c.html#a2f3c1c5b8a9b5ef0d8ab5a48e2c4cca5',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finitint_7053',['P_VGA_InitINT',['../stm32__ub__vga__screen_8c.html#afe8daf9f33c8ab8da35662edf6d10820',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finitio_7054',['P_VGA_InitIO',['../stm32__ub__vga__screen_8c.html#ab52b01d4e210ce9518b1a7dfb3a9261a',1,'stm32_ub_vga_screen.c']]],
+  ['p_5fvga_5finittim_7055',['P_VGA_InitTIM',['../stm32__ub__vga__screen_8c.html#a55f532846e217203b3c23d9e59216cac',1,'stm32_ub_vga_screen.c']]]
 ];

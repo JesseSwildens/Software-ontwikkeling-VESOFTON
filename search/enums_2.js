@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['flagstatus_7495',['FlagStatus',['../group__Exported__types.html#ga89136caac2e14c55151f527ac02daaff',1,'stm32f4xx.h']]],
-  ['functionalstate_7496',['FunctionalState',['../group__Exported__types.html#gac9a7e9a35d2513ec15c3b537aaa4fba1',1,'stm32f4xx.h']]]
+  ['chal_5fstatustypedef_7703',['CHAL_StatusTypeDef',['../CHAL_8h.html#a29bb1dffd52091a90580c7dcdf5a663c',1,'CHAL.h']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vga_5ft_6820',['VGA_t',['../structVGA__t.html',1,'']]]
+  ['usart_5ftypedef_6939',['USART_TypeDef',['../structUSART__TypeDef.html',1,'']]]
 ];
