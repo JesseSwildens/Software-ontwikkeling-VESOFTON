@@ -41,7 +41,6 @@ int main(void)
     UB_VGA_FillScreen(VGA_COL_BLACK); // Greyhhhhh
     // UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
     UB_VGA_DrawBitmap(bitmap_calib, 32, 32, 0, 0);
-    API_draw_circle(100, 50, 10, VGA_COL_RED, 1);
 
     while (1)
     {
@@ -50,7 +49,7 @@ int main(void)
             if (eventflagUART == 1)
             {
                 CHAL_push_to_q(rx_buff, BUFFER_SIZE);
-                function();
+                ll_function();
                 eventflagUART = 0;
             }
         }
