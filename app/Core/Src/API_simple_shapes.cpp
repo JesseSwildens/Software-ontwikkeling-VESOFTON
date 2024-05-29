@@ -286,6 +286,24 @@ int API_clearscreen(int color)
     {
         log_message("Color outside the range of the display");
     }
-    UB_VGA_FillScreen((uint8_t)color);
+    API_VGA_FillScreen((uint8_t)color);
     return 0;
+}
+
+/**
+ * @brief fill screen to certain color
+ *
+ * @param color color that is used to set the background and overwrite all previous images on the screen
+ */
+void API_VGA_FillScreen(char color)
+{
+    uint16_t xp, yp;
+
+    for (yp = 0; yp < VGA_DISPLAY_Y; yp++)
+    {
+        for (xp = 0; xp < VGA_DISPLAY_X; xp++)
+        {
+            API_set_pixel(xp, yp, color);
+        }
+    }
 }

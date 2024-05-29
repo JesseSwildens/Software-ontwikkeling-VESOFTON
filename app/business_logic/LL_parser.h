@@ -1,6 +1,11 @@
 #ifndef LL_PARSER_H
 #define LL_PARSER_H
 
+#ifdef __cplusplus
+#include <string>
+#include <vector>
+#endif
+
 enum commands
 {
     nocommand = 0,
@@ -18,14 +23,12 @@ enum commands
 extern "C"
 {
 #endif
-    void API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname,
-        int fontsize, int fontstyle, int reserved);
-    int API_draw_circle(int x0, int y0, int radius, int color, int reserved);
-    enum commands ll_get_command();
     char ll_function();
-    void ll_handle_commands(enum commands command);
 
 #ifdef __cplusplus
 }
+void ll_handle_commands(enum commands command, std::vector<std::string> tokens);
+enum commands ll_get_command(std::string commandString);
+std::vector<std::string> ll_tokenize(std::string line);
 #endif
 #endif
