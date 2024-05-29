@@ -7,6 +7,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <string>
+#endif
+
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 //  peripheral + AHB1 address + DMA1 base + stream 5 base
 #endif
@@ -114,4 +118,5 @@ extern "C"
     void enableFPU();
 #ifdef __cplusplus
 }
+void CHAL_UART2_SendString(std::string str);
 #endif

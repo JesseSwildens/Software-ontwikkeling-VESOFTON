@@ -19,7 +19,7 @@ extern "C"
      *
      * @return 0 if succesfull, otherwise -1 if error occured
      */
-    int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved);
+    // int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved);
 
     /**
      * @brief Drawing line
@@ -65,6 +65,13 @@ extern "C"
      * @param color color that is used to set the background and overwrite all previous images on the screen
      */
     int API_clearscreen(int color);
+
+    /**
+     * @brief fill screen to certain color
+     *
+     * @param color color that is used to set the background and overwrite all previous images on the screen
+     */
+    void API_VGA_FillScreen(char color);
 
     /**
      * @brief Drawing circle

@@ -169,6 +169,11 @@ void CHAL_UART2_SendString(char* string, uint16_t length)
     }
 }
 
+void CHAL_UART2_SendString(std::string str)
+{
+    CHAL_UART2_SendString((char*)str.c_str(), str.size());
+}
+
 /**
  * @brief Disables a specified DMA stream.
  *
@@ -344,7 +349,17 @@ void CHAL_clear_idledetect()
 void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
 {
     string s = string((char*)rx_buff);
-    incoming_commands_q.push(s);
+    size_t line_feed_pos = s.find_first_of('\n');
+    size_t old_line_feed_pos = 0;
+    while (old_line_feed_pos != std::string::npos)
+    {
+        line_feed_pos = s.find_first_of('\n', old_line_feed_pos + 1);
+        if (line_feed_pos == std::string::npos)
+            break;
+        std::string currentString = s.substr(old_line_feed_pos, line_feed_pos - old_line_feed_pos);
+        incoming_commands_q.push(currentString);
+        old_line_feed_pos = line_feed_pos + 1;
+    }
 
 #ifdef ECHO_INCOMMING
     const std::string& back_command = incoming_commands_q.back();
@@ -355,9 +370,4 @@ void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
     DMA1_Stream5->NDTR = bufferlength; // reset RX-buff pointer to start
     memset(rx_buff, 0, bufferlength); // reset rx_buff for new reception
     CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
-}
-
-void enableFPU()
-{
-    SCB->CPACR |= ((3UL << 10 * 2) | (3UL << 11 * 2));
 }
