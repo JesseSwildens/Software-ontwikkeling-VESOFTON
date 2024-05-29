@@ -11,7 +11,7 @@
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
 
 #ifndef __FILE_NAME__
-#define __FILE_NAME__
+#define __FILE_NAME__ "Testmessage"
 #endif
 
 #define log_message(message) (base_log_message(message, __LINE__, __FILE_NAME__))
