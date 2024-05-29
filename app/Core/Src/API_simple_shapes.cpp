@@ -26,7 +26,7 @@
  */
 #define MAX_CIRCLE_POINTS 100
 
-static int (*loggerCallback)(const char* message, int length) = nullptr;
+static int (*logger_callback)(const char* message, int length) = nullptr;
 static void log_message(std::string message);
 static void API_set_pixel(int, int, uint8_t);
 
@@ -194,10 +194,10 @@ int API_draw_circle(int x, int y, int radius, int color, int filled)
  */
 static void log_message(std::string message)
 {
-    if (loggerCallback == nullptr)
+    if (logger_callback == nullptr)
         return;
 
-    (*loggerCallback)(message.c_str(), message.length());
+    (*logger_callback)(message.c_str(), message.length());
 }
 
 /**
@@ -211,7 +211,7 @@ int API_register_logger_callback(int (*pFunction)(const char* string, int len))
 {
     if (pFunction != nullptr)
     {
-        loggerCallback = pFunction;
+        logger_callback = pFunction;
         return 0;
     }
 
