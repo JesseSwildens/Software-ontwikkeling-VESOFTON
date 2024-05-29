@@ -1,5 +1,13 @@
 var searchData=
 [
-  ['asmchal_5fevent_5fcall_5fback_6993',['ASMCHAL_event_call_back',['../ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d',1,'ASM_CHAL.h']]],
-  ['asmchal_5fgpio_5fuart_5finit_5fasm_6994',['ASMCHAL_GPIO_UART_init_ASM',['../ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04',1,'ASM_CHAL.h']]]
+  ['api_5fclearscreen_7011',['API_clearscreen',['../API__simple__shapes_8h.html#ac5d34bcb0d84db1190d4b876a3f65944',1,'API_clearscreen(int color):&#160;API_simple_shapes.cpp'],['../API__simple__shapes_8cpp.html#ac5d34bcb0d84db1190d4b876a3f65944',1,'API_clearscreen(int color):&#160;API_simple_shapes.cpp']]],
+  ['api_5fdraw_5fbitmap_7012',['API_draw_bitmap',['../API__simple__shapes_8h.html#a196d22f276d5b3398e9c43dea9ccd259',1,'API_simple_shapes.h']]],
+  ['api_5fdraw_5fcircle_7013',['API_draw_circle',['../API__simple__shapes_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8',1,'API_draw_circle(int x, int y, int radius, int color, int filled):&#160;API_simple_shapes.cpp'],['../API__simple__shapes_8cpp.html#aafb5c2810f8084bed6b20e4c398f0fc8',1,'API_draw_circle(int x, int y, int radius, int color, int filled):&#160;API_simple_shapes.cpp']]],
+  ['api_5fdraw_5fline_7014',['API_draw_line',['../API__simple__shapes_8h.html#affd176868e09b8e99a9eada73dc45e91',1,'API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int reserved):&#160;API_simple_shapes.cpp'],['../API__simple__shapes_8cpp.html#affd176868e09b8e99a9eada73dc45e91',1,'API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int reserved):&#160;API_simple_shapes.cpp']]],
+  ['api_5fdraw_5frectangle_7015',['API_draw_rectangle',['../API__simple__shapes_8h.html#a42b64e0565aa76e4f8074f879cb5df28',1,'API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved):&#160;API_simple_shapes.cpp'],['../API__simple__shapes_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28',1,'API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved):&#160;API_simple_shapes.cpp']]],
+  ['api_5fdraw_5ftext_7016',['API_draw_text',['../API__simple__shapes_8h.html#a49a806ab1f245ac4914337f6d7999439',1,'API_simple_shapes.h']]],
+  ['api_5fregister_5flogger_5fcallback_7017',['API_register_logger_callback',['../API__simple__shapes_8h.html#a4b5642306a3f76f2e61ace61ef410575',1,'API_register_logger_callback(int(*pFunction)(const char *string, int len)):&#160;API_simple_shapes.cpp'],['../API__simple__shapes_8cpp.html#a4b5642306a3f76f2e61ace61ef410575',1,'API_register_logger_callback(int(*pFunction)(const char *string, int len)):&#160;API_simple_shapes.cpp']]],
+  ['api_5fwait_7018',['API_wait',['../API__simple__shapes_8h.html#a20044ea68044596c2320e0205b0c4c9a',1,'API_simple_shapes.h']]],
+  ['asmchal_5fevent_5fcall_5fback_7019',['ASMCHAL_event_call_back',['../ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d',1,'ASM_CHAL.h']]],
+  ['asmchal_5fgpio_5fuart_5finit_5fasm_7020',['ASMCHAL_GPIO_UART_init_ASM',['../ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04',1,'ASM_CHAL.h']]]
 ];

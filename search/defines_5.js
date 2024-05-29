@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['ram_5fsize_7841',['RAM_SIZE',['../stm32__ub__vga__screen_8h.html#ab82dd208a7e716e09a3f8c229bfe78d7',1,'stm32_ub_vga_screen.h']]]
+  ['max_5fcircle_5fpoints_7868',['MAX_CIRCLE_POINTS',['../API__simple__shapes_8cpp.html#ae8c38ccaa079ad648999dd3bc827aeb5',1,'API_simple_shapes.cpp']]],
+  ['max_5fcolor_5fdepth_7869',['MAX_COLOR_DEPTH',['../API__simple__shapes_8cpp.html#a7258b939251e993229b3f14c21cb2fae',1,'API_simple_shapes.cpp']]],
+  ['max_5fradius_5fsize_7870',['MAX_RADIUS_SIZE',['../API__simple__shapes_8cpp.html#a438bae4f2470f16db11433e45aa21be9',1,'API_simple_shapes.cpp']]]
 ];
