@@ -67,17 +67,17 @@ with dpg.window(
 ):
     dpg.add_button(
         label="Convert",
-        pos=(320, 260),
+        pos=(320, dpg.get_item_height('_preview_window') - 80),
         tag="_convert",
         callback=callbacks.button_callback,
         width=70,
     )
     dpg.add_combo(
         tag="_target_size_image",
-        label="Target size",
         items=("8", "16", "32", "64"),
         width=dpg.get_item_configuration("_convert")["width"],
         default_value="16",
+        pos=(320, dpg.get_item_height('_preview_window') - 50),
     )
 
 # Window for imported text.
