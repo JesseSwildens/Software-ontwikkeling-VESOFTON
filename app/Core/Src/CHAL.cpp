@@ -21,6 +21,11 @@ uint8_t tempMainBuffer[2048];
 int offset = 0;
 
 /**
+ * Volatile keyword has been deprecated in C++20 as the keyword has a lot of unkown behaviour.
+ * To remedy this the lines have been made explicit in as the order of operations are defined.
+ */
+
+/**
  * @brief Initializes the UART and GPIO interface by calling the GPIO and UART init functions.
  *
  * This function initializes the GPIO pins for UART functionality and
@@ -45,16 +50,16 @@ void CHAL_init_uart(void)
 CHAL_StatusTypeDef CHAL_GPIO_UART_init(void)
 {
     // Enables Peripheral
-    RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+    RCC->APB1ENR = RCC->APB1ENR | RCC_APB1ENR_USART2EN; // See Volatile keyword brief for explanation in the top of this file
     // Enables Peripheral
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+    RCC->AHB1ENR = RCC->APB1ENR | RCC_AHB1ENR_GPIOAEN; // See Volatile keyword brief for explanation in the top of this file
 
-    GPIOA->MODER |= (2 << 4); // 8.4.1 reference manual alternate function PA2
-    GPIOA->MODER |= (2 << 6); // 8.4.1 reference manual alternate function PA3
+    GPIOA->MODER = GPIOA->MODER | (2 << 4); // 8.4.1 reference manual alternate function PA2
+    GPIOA->MODER = GPIOA->MODER | (2 << 6); // 8.4.1 reference manual alternate function PA3
 
     // adress offset 0x20
-    GPIOA->AFR[0] |= (7 << 8);
-    GPIOA->AFR[0] |= (7 << 12);
+    GPIOA->AFR[0] = GPIOA->AFR[0] | (7 << 8); // See Volatile keyword brief for explanation in the top of this file
+    GPIOA->AFR[0] = GPIOA->AFR[0] | (7 << 12); // See Volatile keyword brief for explanation in the top of this file
 
     return CHAL_OK;
 }
@@ -79,21 +84,21 @@ CHAL_StatusTypeDef CHAL_uart_config(uint32_t BaudRate)
     USART2->CR1 = 0x00;
 
     // usart enable
-    USART2->CR1 |= (1 << 13);
+    USART2->CR1 = USART2->CR1 | (1 << 13); // See Volatile keyword brief for explanation in the top of this file
 
     // Program the M bit in USART_CR1 to define the word length.
-    USART2->CR1 &= ~(1 << 12);
+    USART2->CR1 = USART2->CR1 & ~(1 << 12); // See Volatile keyword brief for explanation in the top of this file
 
-    USART2->CR1 |= (1 << 4); // enable IDLE line detection in UART
-    USART2->CR3 |= (1 << 6); // enable DMA Receiver
+    USART2->CR1 = USART2->CR1 | (1 << 4); // enable IDLE line detection in UART. See Volatile keyword brief for explanation in the top of this file
+    USART2->CR3 = USART2->CR3 | (1 << 6); // enable DMA Receiver. See Volatile keyword brief for explanation in the top of this file
 
     RCC_ClocksTypeDef clocks;
     RCC_ClocksTypeDef* clocks_ptr = &clocks;
     RCC_GetClocksFreq(clocks_ptr);
     USART2->BRR = clocks.PCLK1_Frequency / BaudRate;
 
-    USART2->CR1 |= (1 << 2);
-    USART2->CR1 |= (1 << 3);
+    USART2->CR1 = USART2->CR1 | (1 << 2); // See Volatile keyword brief for explanation in the top of this file
+    USART2->CR1 = USART2->CR1 | (1 << 3); // See Volatile keyword brief for explanation in the top of this file
 
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 5;
@@ -186,7 +191,7 @@ void CHAL_UART2_SendString(char* string, uint16_t length)
 void CHAL_disable_DMA(DMA_Stream_TypeDef* stream)
 {
     while ((stream->CR & 0x1) == 1)
-        stream->CR &= ~(1 << 0);
+        stream->CR = stream->CR & ~(1 << 0); // See Volatile keyword brief for explanation in the top of this file
 }
 
 /**
@@ -204,7 +209,7 @@ void CHAL_disable_DMA(DMA_Stream_TypeDef* stream)
  */
 void CHAL_enable_DMA(DMA_Stream_TypeDef* stream)
 {
-    stream->CR |= (1 << 0);
+    stream->CR = stream->CR | (1 << 0); // See Volatile keyword brief for explanation in the top of this file
 }
 
 /**
@@ -246,11 +251,10 @@ uint8_t CHAL_DMA_Init(void)
      */
 
     // Set bits 25-23, 21-19, 18-16, 15, 13-11, 10-8, 6, and 5 to desired values
-    DMA1_Stream5->CR |= (4 << 25) | (3 << 23) | (3 << 21) | (0 << 19) | (3 << 16) | (1 << 15) | (1 << 10) | (1 << 8);
+    DMA1_Stream5->CR = DMA1_Stream5->CR | (4 << 25) | (3 << 23) | (3 << 21) | (0 << 19) | (3 << 16) | (1 << 15) | (1 << 10) | (1 << 8); // See Volatile keyword brief for explanation in the top of this file
 
     // Enable DMA Interrupts
-    DMA1_Stream5->CR |= CHAL_DMA_IT_TC; // | CHAL_DMA_IT_TE | CHAL_DMA_IT_DME;
-    // DMA1_Stream5->CR |= CHAL_DMA_IT_HT;
+    DMA1_Stream5->CR = DMA1_Stream5->CR | CHAL_DMA_IT_TC; // See Volatile keyword brief for explanation in the top of this file
 
     return CHAL_OK; // MBURST? 16 beats; same for PBURST;
 }
@@ -274,7 +278,7 @@ void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize)
     DMA1_Stream5->M0AR = destAdd;
 
     // 4. Enable the DMA1
-    DMA1_Stream5->CR |= 1 << 0;
+    DMA1_Stream5->CR = DMA1_Stream5->CR | 1 << 0; // See Volatile keyword brief for explanation in the top of this file
 }
 
 /**
@@ -288,8 +292,8 @@ void CHAL_DMA_config(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize)
  */
 uint8_t CHAL_clear_status_regs()
 {
-    DMA1->HIFCR |= 0xBEF0BEF;
-    DMA1->LIFCR |= 0xBEF0BEF;
+    DMA1->HIFCR = DMA1->HIFCR | 0xBEF0BEF; // See Volatile keyword brief for explanation in the top of this file
+    DMA1->LIFCR = DMA1->LIFCR | 0xBEF0BEF; // See Volatile keyword brief for explanation in the top of this file
 
     while ((DMA1->LISR != 0x0) | (DMA1->HISR != 0x0))
     {
