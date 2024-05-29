@@ -41,7 +41,8 @@ with dpg.window(tag='_primary'):
     dpg.set_item_pos('_send', (10, dpg.get_viewport_height() - 75))
     dpg.set_item_pos('_command', (70, dpg.get_viewport_height() - 75))
     dpg.set_item_pos(
-        '_status', (dpg.get_viewport_width() - len(dpg.get_value('_status')) - 100, 20)
+        '_status',
+        (dpg.get_viewport_width() - len(dpg.get_value('_status')) - 100, 20),
     )
 
 # File dialog
@@ -136,7 +137,9 @@ dpg.bind_item_handler_registry('_imported_text', '_window_handler')
 # Menu bar
 with dpg.viewport_menu_bar():
     with dpg.menu(label='File'):
-        dpg.add_menu_item(label='Open', callback=lambda: dpg.show_item('_file_dialog'))
+        dpg.add_menu_item(
+            label='Open', callback=lambda: dpg.show_item('_file_dialog')
+        )
     with dpg.menu(label='Serial'):
         with dpg.menu(label='Port'):
             for port in ser.available_ports:
@@ -160,16 +163,19 @@ with dpg.viewport_menu_bar():
             )
     with dpg.menu(label='Tools'):
         dpg.add_menu_item(
-            label='Show Metrics', callback=lambda: dpg.show_tool(dpg.mvTool_Metrics)
+            label='Show Metrics',
+            callback=lambda: dpg.show_tool(dpg.mvTool_Metrics),
         )
         dpg.add_menu_item(
             label='Show Debug', callback=lambda: dpg.show_tool(dpg.mvTool_Debug)
         )
         dpg.add_menu_item(
-            label='Show Style Editor', callback=lambda: dpg.show_tool(dpg.mvTool_Style)
+            label='Show Style Editor',
+            callback=lambda: dpg.show_tool(dpg.mvTool_Style),
         )
         dpg.add_menu_item(
-            label='Show Font Manager', callback=lambda: dpg.show_tool(dpg.mvTool_Font)
+            label='Show Font Manager',
+            callback=lambda: dpg.show_tool(dpg.mvTool_Font),
         )
         dpg.add_menu_item(
             label='Show Item Registry',

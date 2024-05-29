@@ -1,65 +1,84 @@
+import os.path
+
 import cv2 as cv
 import numpy as np
 
-def resize_image(img : cv.typing.MatLike, max_size : int):
-    # Get the current height and width
-    height = img.shape[0]
-    width = img.shape[1]
 
-    # Calculate which factor is needed for the maximum size of MAX_RES
-    height_factor = max_size/height
-    width_factor = max_size/width
-    factor = min(height_factor, width_factor)
+class BitmapGenerator:
+    def __init__(self) -> None:
+        pass
 
-    height = height*factor
-    width = width*factor
-    new_size = (int(height), int(width))
+    def convert_path_bitmap(self, path: str, size: int):
+        raw_img = cv.imread(path)
+        assert raw_img is not None, 'Image failed to load; Image is None'
+        compressed_img = self.convert_frame_bitmap(raw_img, size)
+        return compressed_img
 
-    # Resize the raw image
-    resized_img = cv.resize(img, new_size, interpolation=cv.INTER_LINEAR)
-    print("Resized shape", resized_img.shape)
-    return resized_img
+    def convert_frame_bitmap(self, data: np.ndarray, size: int):
+        resized_img = self.resize_image(data, size)
+        recolour_img = self.recolour_image(resized_img)
+        compressed_img = self.compress_image(recolour_img)
+        return compressed_img
 
-def remap_channel(channel, bit_out : int):
-    shift = 8 - bit_out
-    return channel >> shift
+    def resize_image(self, img: cv.typing.MatLike, max_size: int):
+        # Get the current height and width
+        height = img.shape[0]
+        width = img.shape[1]
 
-def recolour_image(img : cv.typing.MatLike):
-    b, g, r = cv.split(img)
-    new_b = remap_channel(b, 2) # Possibly need to do 3 also, then remove the lsb
-                                # We shall see
-    new_g = remap_channel(g, 3)
-    new_r = remap_channel(r, 3)
+        # Calculate which factor is needed for the maximum size of MAX_RES
+        if height > width:
+            factor = max_size / height
+        else:
+            factor = max_size / width
 
-    recoloured_img = cv.merge((new_b, new_g, new_r))
-    return recoloured_img
+        # Resize the raw image
+        resized_img = cv.resize(
+            img, None, fx=factor, fy=factor, interpolation=cv.INTER_LINEAR
+        )
+        return resized_img
 
-def compress_image(img : cv.typing.MatLike) -> np.ndarray:
-    compressed = (img[:, :, 0] << 0) + (img[:, :, 1] << 2) + (img[:, :, 2] << 5)
-    return compressed
+    def remap_channel(self, channel, bit_out: int):
+        shift = 8 - bit_out
+        return channel >> shift
 
-def write_to_file(img, filename : str):
-    name = filename.split('.')[0]
+    def recolour_image(self, img: cv.typing.MatLike):
+        b, g, r = cv.split(img)
+        new_b = self.remap_channel(b, 2)
+        new_g = self.remap_channel(g, 3)
+        new_r = self.remap_channel(r, 3)
 
-    with open(f'./experiments/{name}.h', 'w') as file:
-        file.write(f"#ifndef {name.upper()}_H\n")
-        file.write(f"#define {name.upper()}_H\n")
-        file.write("\n")
-        file.write(f"const unsigned char bitmap_{name}[] = {{ \n")
+        recoloured_img = cv.merge((new_b, new_g, new_r))
+        return recoloured_img
 
-        for i in range(img.shape[0]):
-            for j in range(img.shape[1]):
-                file.write(str(hex(int(img[i][j]))) + ', ')
+    def compress_image(self, img: cv.typing.MatLike) -> np.ndarray:
+        compressed = (
+            (img[:, :, 0] << 0) + (img[:, :, 1] << 2) + (img[:, :, 2] << 5)
+        )
+        return compressed
+
+    def write_to_file(self, img, filename: str):
+        name = filename.split('.')[0]
+
+        if not os.path.exists('./out/'):
+            os.mkdir('./out/')
+
+        with open(f'./out/{name}.h', 'w') as file:
+            file.write(f'#ifndef {name.upper()}_H\n')
+            file.write(f'#define {name.upper()}_H\n')
             file.write('\n')
+            file.write(
+                f'const unsigned int bitmap_{name}_x = {img.shape[0]};\n'
+            )
+            file.write(
+                f'const unsigned int bitmap_{name}_y = {img.shape[1]};\n'
+            )
+            file.write('\n')
+            file.write(f'const unsigned char bitmap_{name}[] = {{ \n')
 
-        file.write("};\n")
-        file.write("#endif")
+            for i in range(img.shape[0]):
+                for j in range(img.shape[1]):
+                    file.write(str(hex(int(img[i][j]))) + ', ')
+                file.write('\n')
 
-def convert_to_bitmap(path : str):
-    raw_img = cv.imread(path)
-    assert raw_img is not None, "Image failed to load; Image is None"
-
-    resized_img = resize_image(raw_img, 32)
-    recolour_img = recolour_image(resized_img)
-    compressed_img = compress_image(recolour_img)
-    return compressed_img
+            file.write('};\n')
+            file.write('#endif')
