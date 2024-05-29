@@ -16,6 +16,10 @@
 using namespace std;
 std::queue<std::string> incoming_commands_q;
 
+// both temp for video streaming
+uint8_t tempMainBuffer[2048];
+int offset = 0;
+
 /**
  * @brief Initializes the UART and GPIO interface by calling the GPIO and UART init functions.
  *
