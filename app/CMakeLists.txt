@@ -50,6 +50,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
+    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
     ${CMAKE_SOURCE_DIR}/Core/Src/misc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32_ub_vga_screen.c
@@ -58,6 +60,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_rcc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_tim.c
     ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/CHAL.cpp
+    ${CMAKE_SOURCE_DIR}/Core/Src/ASM_CHAL.s
     ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32f407vgtx.s
 )
 
@@ -75,6 +79,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 target_link_libraries(${CMAKE_PROJECT_NAME}
     # Add user defined libraries
 )
+
 
 # If clang-tidy is installed make a custom target,
 # which can be run as a custom target or using all
