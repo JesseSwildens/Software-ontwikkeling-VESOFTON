@@ -1,6 +1,7 @@
 #include "BL_callbacks.h"
 #include "API_simple_shapes.h"
 #include "CHAL.h"
+#include "LL_parser.h"
 #include "bitmap.h"
 #include "bitmap_calib_large.h"
 #include "bitmap_dvd.h"
@@ -14,6 +15,7 @@
 #include <variant>
 
 // #define BL_DEBUG_COMMANDS
+#define ECHO_REPEATS
 
 using namespace std;
 // Define possible argument types
@@ -192,11 +194,40 @@ int BL_herhaal(vector<string> tokens)
     log_message("herhaal command");
 #endif
     CommandTemplate herhaalTemplate = { "herhaal", { "0", "0" } };
+    if (stoi(tokens[1]) > (int)previous_commands_q.size())
+    {
+        log_message("error: not enough previous commands send to repeat");
+        return -1;
+    }
 
-    if (!validateArguments(tokens, herhaalTemplate))
+    if ((!validateArguments(tokens, herhaalTemplate)) || (stoi(tokens[1]) > STORAGE_SIZE_REPEAT_COMMANDS))
     {
         log_message("error: invalid arguments for herhaal command");
         return -1;
+    }
+    std::queue<std::string> temp_q;
+    int outer_loop_count = std::stoi(tokens[2]);
+    int inner_loop_count = std::stoi(tokens[1]);
+
+    for (int j = 0; j < outer_loop_count; ++j)
+    {
+        for (int i = 0; i < inner_loop_count; ++i)
+        {
+            std::string front_command = previous_commands_q.front();
+#ifdef ECHO_REPEATS
+            log_message("repeated command: " + front_command);
+#endif
+            BL_parse_queue(previous_commands_q);
+            temp_q.push(front_command);
+            previous_commands_q.pop();
+        }
+
+        // Restore the previous_commands_q from temp_q
+        while (!temp_q.empty())
+        {
+            previous_commands_q.push(temp_q.front());
+            temp_q.pop();
+        }
     }
     return 0;
 }
