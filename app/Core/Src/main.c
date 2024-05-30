@@ -35,10 +35,7 @@ int main(void)
 
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
-    UB_VGA_FillScreen(VGA_COL_BLACK); // Greyhhhhh
-
-    // UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
-    UB_VGA_DrawBitmap(bitmap_calib, 32, 32, 0, 0);
+    UB_VGA_FillScreen(VGA_COL_WHITE); // Greyhhhhh
 
     while (1)
     {

@@ -354,11 +354,11 @@ void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
     while (old_line_feed_pos != std::string::npos)
     {
         line_feed_pos = s.find_first_of('\n', old_line_feed_pos + 1);
-        if (line_feed_pos == std::string::npos)
-            break;
         std::string currentString = s.substr(old_line_feed_pos, line_feed_pos - old_line_feed_pos);
         incoming_commands_q.push(currentString);
         old_line_feed_pos = line_feed_pos + 1;
+        if (line_feed_pos == std::string::npos)
+            break;
     }
 
 #ifdef ECHO_INCOMMING

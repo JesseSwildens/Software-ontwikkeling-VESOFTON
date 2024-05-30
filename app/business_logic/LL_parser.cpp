@@ -14,6 +14,7 @@
 using namespace std;
 
 extern std::queue<std::string> incoming_commands_q;
+std::queue<std::string> previous_commands_q;
 float test = 0;
 
 // #define DEBUG_LL
@@ -28,26 +29,31 @@ char ll_function()
     {
         int size = incoming_commands_q.size();
         size++;
+        commands command = nocommand;
         std::string commandString = incoming_commands_q.front();
-        commands command = ll_get_command(commandString);
-        if (command == nocommand)
+        if (!commandString.empty())
         {
-            log_message("invalid command on string: " + commandString);
-        }
-        if (command == clearscherm)
-        {
-            log_message("clearscherm: " + commandString);
-        }
-        else
-        {
-            vector<string> tokens = ll_tokenize(commandString);
-            ll_handle_commands(command, tokens);
+            command = ll_get_command(commandString);
+            if (command == nocommand)
+            {
+                log_message("invalid command on string: " + commandString);
+            }
+            else
+            {
+                vector<string> tokens = ll_tokenize(commandString);
+                ll_handle_commands(command, tokens);
+            }
         }
         incoming_commands_q.pop();
     }
-    int size = incoming_commands_q.size();
-    size++;
     return 0;
+}
+
+void BL_save_repeat_commands(std::string str)
+{
+    previous_commands_q.push(str);
+    if (previous_commands_q.size() > STORAGE_SIZE_REPEAT_COMMANDS)
+        previous_commands_q.pop();
 }
 
 typedef struct
@@ -59,6 +65,10 @@ typedef struct
 std::vector<cmd_struct_t> cmdhandler = {
     { .cmd = clearscherm, .function = BL_clearscherm },
     { .cmd = lijn, .function = BL_lijn },
+    { .cmd = rechthoek, .function = BL_rechthoek },
+    { .cmd = cirkel, .function = BL_cirkel },
+    { .cmd = bitmap, .function = BL_bitmap },
+    { .cmd = herhaal, .function = BL_herhaal },
 };
 
 void ll_handle_commands(enum commands command, vector<string> tokens)
@@ -69,29 +79,9 @@ void ll_handle_commands(enum commands command, vector<string> tokens)
             cmd.function(tokens);
     }
 
-    // switch (command)
-    // {
-    // case (lijn):
-    // {
-    //     CHAL_UART2_SendString("lijn command\n");
-    //     break;
-    // }
-
-    // case (rechthoek):
-    // {
-    //     CHAL_UART2_SendString("rechthoek command\n");
-    //     break;
-    // }
-
     // case (tekst):
     // {
     //     CHAL_UART2_SendString("tekst command\n");
-    //     break;
-    // }
-
-    // case (bitmap):
-    // {
-    //     CHAL_UART2_SendString("bitmap command\n");
     //     break;
     // }
 
@@ -105,18 +95,6 @@ void ll_handle_commands(enum commands command, vector<string> tokens)
     // {
     //     CHAL_UART2_SendString("herhaal command\n");
     //     break;
-    // }
-
-    // case (cirkel):
-    // {
-    //     CHAL_UART2_SendString("cirkel command\n");
-    //     break;
-    // }
-    // default:
-    // {
-    //     CHAL_UART2_SendString("unknown command\n");
-    //     break;
-    // }
     // }
 }
 commands ll_get_command(std::string commandString)
@@ -152,9 +130,21 @@ vector<string> ll_tokenize(std::string line)
     string intermediate;
     while (getline(check, intermediate, ','))
     {
-        tokens.push_back(intermediate);
+        tokens.push_back(BL_remove_white_space(intermediate));
     }
     return tokens;
+}
+
+string BL_remove_white_space(string str)
+{
+    // Trim leading and trailing whitespaces
+    size_t start = str.find_first_not_of(" \t");
+    size_t end = str.find_last_not_of(" \t");
+    if (start != std::string::npos && end != std::string::npos)
+    {
+        str = str.substr(start, end - start + 1);
+    }
+    return str;
 }
 
 enum commands ll_convert_command(string str)

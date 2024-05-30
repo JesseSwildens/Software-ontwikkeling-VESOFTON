@@ -17,7 +17,7 @@
 
 extern uint8_t in_inactive_region_flag;
 
-#define TIMING_PADDING 10
+#define TIMING_PADDING 1
 
 #define DMA_Stream0_IT_MASK (uint32_t)(DMA_LISR_FEIF0 | DMA_LISR_DMEIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 | DMA_LISR_TCIF0)
 #define DMA_Stream1_IT_MASK (uint32_t)(DMA_Stream0_IT_MASK << 6)
