@@ -6,6 +6,8 @@
 #include <vector>
 #endif
 
+#define STORAGE_SIZE_REPEAT_COMMANDS 50
+
 enum commands
 {
     nocommand = 0,
@@ -30,5 +32,7 @@ extern "C"
 void ll_handle_commands(enum commands command, std::vector<std::string> tokens);
 enum commands ll_get_command(std::string commandString);
 std::vector<std::string> ll_tokenize(std::string line);
+std::string BL_remove_white_space(std::string str);
+void BL_save_repeat_commands(std::string str);
 #endif
 #endif

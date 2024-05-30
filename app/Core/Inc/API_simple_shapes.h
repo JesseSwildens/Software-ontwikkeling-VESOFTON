@@ -6,6 +6,19 @@ extern "C"
 {
 #endif
 
+    typedef struct
+    {
+        int x; // x position top left
+        int y; // y position top left
+        int width;
+        int height;
+    } bitmap_position;
+
+    bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
+    bitmap_position API_VGA_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
+    void clear_previous_bitmap(bitmap_position* bitmap);
+    void API_VGA_DVD_Screensaver(unsigned char* bitmap);
+
     /**
      * @brief Drawing text to the screen
      *

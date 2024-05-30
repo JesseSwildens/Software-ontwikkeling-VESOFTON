@@ -7,6 +7,10 @@
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
 
+bitmap_position previous_bitmap;
+uint16_t x = 50, y = 50;
+uint16_t x_speed = 1, y_speed = 1;
+
 /**
  * @note Maximum color value supported
  */
@@ -136,12 +140,6 @@ int API_draw_circle(int x, int y, int radius, int color, int filled)
     if (OUTSIDE(color, 0, MAX_COLOR_DEPTH))
     {
         log_message("Color outside of allowed range. Color scaling isn't supported.");
-        return -1;
-    }
-
-    if (OUTSIDE(radius, 0, MAX_RADIUS_SIZE))
-    {
-        log_message("Radius is outside of allowed range");
         return -1;
     }
 
@@ -306,4 +304,84 @@ void API_VGA_FillScreen(char color)
             API_set_pixel(xp, yp, color);
         }
     }
+}
+
+// Needs to be moved to API layer
+bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
+{
+    // Fill the entire screen with the background color
+    API_VGA_FillScreen(bgColor);
+    return API_VGA_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
+}
+
+// Needs to be moved to API layer
+bitmap_position API_VGA_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
+{
+    uint16_t xp = 0, yp = 0;
+    bitmap_position _bitmap;
+    _bitmap.width = bitmapWidth;
+    _bitmap.height = bitmapHeight;
+
+    // Draw the bitmap at the top-left corner
+    for (yp = 0; yp < bitmapHeight; yp++)
+    {
+        for (xp = 0; xp < bitmapWidth; xp++)
+        {
+            // Calculate the pixel index in the bitmap array
+            uint16_t index = yp * bitmapWidth + xp;
+            // Get the color value from the bitmap
+            uint8_t color = bitmap[index];
+            // Set the pixel on the screen
+            API_set_pixel(xp + x_offset, yp + y_offset, color);
+        }
+    }
+    _bitmap.x = xp + x_offset;
+    _bitmap.y = yp + y_offset;
+    return _bitmap;
+}
+
+// Needs to be moved to API layer
+void clear_previous_bitmap(bitmap_position* bitmap)
+{
+    uint16_t xp, yp;
+
+    for (yp = bitmap->y - bitmap->width; yp < bitmap->width / 80 + bitmap->y; yp++)
+    {
+        for (xp = bitmap->x - bitmap->height; xp < bitmap->height / 80 + bitmap->x; xp++)
+        {
+            API_set_pixel(xp, yp, VGA_COL_BLACK);
+        }
+    }
+}
+
+// Needs to be moved to API layer
+void API_VGA_DVD_Screensaver(unsigned char* bitmap)
+{
+    uint16_t bmp_width = 32;
+    uint16_t bmp_height = 32;
+    uint32_t rage_against_the_compiler;
+
+    // Clear previous bitmap position
+    clear_previous_bitmap(&previous_bitmap);
+
+    // Update position
+    x += x_speed;
+    y += y_speed;
+
+    // Bounce off walls
+    if (x <= 0 || x >= VGA_DISPLAY_X - bmp_width)
+    {
+        x_speed = -x_speed;
+    }
+    if (y <= 0 || y >= VGA_DISPLAY_Y - bmp_height)
+    {
+        y_speed = -y_speed;
+    }
+
+    // Draw new bitmap position
+    previous_bitmap = API_VGA_DrawBitmap(bitmap, bmp_width, bmp_height, (uint16_t)x, (uint16_t)y);
+
+    // Delay
+    for (rage_against_the_compiler = 0; rage_against_the_compiler < 200000; rage_against_the_compiler++)
+        ;
 }
