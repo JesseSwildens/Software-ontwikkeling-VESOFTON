@@ -37,14 +37,14 @@ int main(void)
 
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
-    API_clearscreen(VGA_COL_BLACK);
+    API_clearscreen(VGA_COL_BLUE);
     // UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
 
     API_draw_circle(100, 200, 20, VGA_COL_YELLOW, 0);
     API_draw_circle(150, 200, 20, VGA_COL_CYAN, 1);
 
-    API_draw_text(100, 0, VGA_COL_GREEN, "Hello C++ enjoyers!\nThis is Working!!!!", "FreeSerif", 1, 0, 0);
-    API_draw_text(50, 100, VGA_COL_RED, "Wrapping also works!", "FreeMono", 3, 2, 0);
+    API_draw_text(0, 0, VGA_COL_GREEN, "Hello C++ enjoyers!\nThis is Working!!!!", "FreeSerif", 1, 0, 0);
+    API_draw_text(50, 100, VGA_COL_RED, "Wrapping also works!", "FreeMono", 2, 2, 0);
 
     while (1)
     {

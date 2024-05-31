@@ -13,7 +13,7 @@ class API_gfx_text
 {
 private:
     int m_text_size = 1;
-    int m_xpos = 0, m_ypos = 0, m_cursor_x = 0, m_cursor_y = 0;
+    int m_xpos = 0, m_ypos = 0, m_cursor_x = 0, m_cursor_y = 0, m_x_offset = 0, m_y_offset = 0;
     int m_x_max = 0, m_y_max = 0;
     uint8_t m_color = 0;
 
@@ -43,6 +43,15 @@ private:
      * @return 1 if the character is drawn but wrapped around to the cursor start position. 0 If no exceptions were found and -1 if an unrecoverable error occurred.
      */
     int draw_character(const char c);
+
+    /**
+     * @brief Calculate the offset for the drawing of the line. This is needed as the bitmaps are designed for the cursor to be the center
+     *
+     * @param str The string for which the offset needs to be calculated.
+     *
+     * @return None
+     */
+    void calculate_character_offset(std::string str);
 
 public:
     /**
@@ -134,6 +143,8 @@ public:
 
     friend API_gfx_text& operator<<(API_gfx_text& api, std::string text)
     {
+        api.calculate_character_offset(text);
+
         for (size_t i = 0; i < text.size(); i++)
         {
             api.draw_character(text[i]);

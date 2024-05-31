@@ -29,13 +29,6 @@ int API_gfx_text::select_font(std::string _fontname, int fontstyle)
     return 0;
 }
 
-/**
- * @brief Drawing the character. Position is determined by the cursor set and previous characters already drawn.
- *
- * @param c Character to be drawn
- *
- * @return 1 if the character is drawn but wrapped around to the cursor start position. 0 If no exceptions were found and -1 if an unrecoverable error occurred.
- */
 int API_gfx_text::draw_character(const char c)
 {
     if (m_selected_font == nullptr)
@@ -86,7 +79,7 @@ int API_gfx_text::draw_character(const char c)
             }
             if (bits & 0x80)
             {
-                API_draw_rectangle(m_xpos + ((int16_t)char_glyph->xOffset + x) * m_text_size, m_ypos + ((int16_t)char_glyph->yOffset + y) * m_text_size, m_text_size, m_text_size, m_color, 1, 0, 0);
+                API_draw_rectangle(m_xpos + ((int16_t)char_glyph->xOffset + m_x_offset + x) * m_text_size, m_ypos + ((int16_t)char_glyph->yOffset + m_y_offset + y) * m_text_size, m_text_size, m_text_size, m_color, 1, 0, 0);
             }
             bits <<= 1;
         }
@@ -95,4 +88,22 @@ int API_gfx_text::draw_character(const char c)
     m_xpos += char_glyph->xAdvance * m_text_size;
 
     return ret;
+}
+
+void API_gfx_text::calculate_character_offset(std::string str)
+{
+    uint8_t x_offset = 0, y_offset = 0;
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if ((str[i] < m_selected_font->first) || (str[i] > m_selected_font->last))
+        {
+            continue;
+        }
+        GFXglyph* glyph = m_selected_font->glyph + (str[i] - m_selected_font->first);
+
+        y_offset = (y_offset < glyph->height) ? glyph->height : y_offset;
+    }
+
+    m_x_offset = x_offset;
+    m_y_offset = y_offset;
 }
