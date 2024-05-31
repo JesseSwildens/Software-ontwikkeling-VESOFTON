@@ -22,11 +22,6 @@
 #define MAX_COLOR_DEPTH 0xff // 8 bit for all colors
 
 /**
- * @note math PI
- */
-#define PI 3.1415926
-
-/**
  * @note Max radius the circle can be without getting gaps in circle
  */
 #define MAX_RADIUS_SIZE 25
@@ -37,9 +32,10 @@
 
 static void (*logger_callback)(const char* message, int length) = nullptr;
 static void base_log_message(std::string message, int line, std::string filename);
+static void log_message_callback(std::string);
 static void API_set_pixel(int, int, uint8_t);
 
-API_gfx_text API_Text;
+API_gfx_text API_Text(VGA_DISPLAY_X, VGA_DISPLAY_Y, log_message_callback);
 
 /**
  * @brief Drawing line
@@ -355,4 +351,12 @@ int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, i
     API_Text << text;
 
     return 0;
+}
+
+/**
+ * @brief Helper function to forward a callback from API_Text layer
+ */
+static void log_message_callback(std::string msg)
+{
+    log_message(msg);
 }
