@@ -35,6 +35,7 @@ std::vector<std::string> ll_tokenize(std::string line);
 std::string BL_remove_white_space(std::string str);
 void BL_save_repeat_commands(std::string str);
 char BL_parse_queue(std::queue<std::string>& q);
+int BL_parse_single_string(std::string str);
 
 #endif
 #endif

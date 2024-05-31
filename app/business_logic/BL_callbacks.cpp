@@ -20,7 +20,7 @@
 using namespace std;
 // Define possible argument types
 using ArgType = std::variant<int, std::string>;
-extern std::queue<std::string> previous_commands_q;
+extern std::deque<std::string> previous_commands_q;
 
 struct CommandTemplate
 {
@@ -188,47 +188,53 @@ int BL_bitmap(vector<string> tokens)
     return 0;
 }
 
-int BL_herhaal(vector<string> tokens)
+// it now also repeats errors :), every error should exclude from queue
+int BL_herhaal(std::vector<std::string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
     log_message("herhaal command");
 #endif
     CommandTemplate herhaalTemplate = { "herhaal", { "0", "0" } };
-    if (stoi(tokens[1]) > (int)previous_commands_q.size())
+
+    // Validate the tokens length
+    if (tokens.size() < 3)
     {
-        log_message("error: not enough previous commands send to repeat");
+        log_message("error: not enough arguments for herhaal command");
         return -1;
     }
 
-    if ((!validateArguments(tokens, herhaalTemplate)) || (stoi(tokens[1]) > STORAGE_SIZE_REPEAT_COMMANDS))
+    int inner_loop_count = std::stoi(tokens[1]);
+    int outer_loop_count = std::stoi(tokens[2]);
+
+    if (inner_loop_count > static_cast<int>(previous_commands_q.size()))
+    {
+        log_message("error: not enough previous commands to repeat");
+        return -1;
+    }
+
+    if (!validateArguments(tokens, herhaalTemplate) || inner_loop_count > STORAGE_SIZE_REPEAT_COMMANDS)
     {
         log_message("error: invalid arguments for herhaal command");
         return -1;
     }
-    std::queue<std::string> temp_q;
-    int outer_loop_count = std::stoi(tokens[2]);
-    int inner_loop_count = std::stoi(tokens[1]);
 
     for (int j = 0; j < outer_loop_count; ++j)
     {
         for (int i = 0; i < inner_loop_count; ++i)
         {
-            std::string front_command = previous_commands_q.front();
+            if (previous_commands_q.empty())
+            {
+                log_message("error: previous_commands_q is empty");
+                return -1;
+            }
+            std::string front_command = previous_commands_q[(inner_loop_count - 1) - i];
 #ifdef ECHO_REPEATS
             log_message("repeated command: " + front_command);
 #endif
-            BL_parse_queue(previous_commands_q);
-            temp_q.push(front_command);
-            previous_commands_q.pop();
-        }
-
-        // Restore the previous_commands_q from temp_q
-        while (!temp_q.empty())
-        {
-            previous_commands_q.push(temp_q.front());
-            temp_q.pop();
+            BL_parse_single_string(front_command); // Process the command
         }
     }
+
     return 0;
 }
 
