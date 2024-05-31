@@ -14,7 +14,7 @@
 using namespace std;
 
 extern std::queue<std::string> incoming_commands_q;
-std::queue<std::string> previous_commands_q;
+std::deque<std::string> previous_commands_q;
 float test = 0;
 
 // #define DEBUG_LL
@@ -36,28 +36,32 @@ char BL_main_parser()
 
 char BL_parse_queue(std::queue<std::string>& q)
 {
-    commands command = nocommand;
     std::string commandString = q.front();
+    if (BL_parse_single_string(commandString) == -1)
+        q.pop();
+
+    // logic for the repeat function
+    if ((q == incoming_commands_q) && (ll_get_command(commandString) != herhaal))
+        BL_save_repeat_commands(commandString);
+
+    return 0;
+}
+
+int BL_parse_single_string(std::string str)
+{
+    commands command = nocommand;
+    std::string commandString = str;
     if (!commandString.empty())
     {
         command = ll_get_command(commandString);
         if (command == nocommand)
         {
             log_message("invalid command on string: " + commandString);
-            q.pop();
             return -1;
         }
-        else
-        {
-            vector<string> tokens = ll_tokenize(commandString);
-            ll_handle_commands(command, tokens);
-        }
+        vector<string> tokens = ll_tokenize(commandString);
+        ll_handle_commands(command, tokens);
     }
-
-    // logic for the repeat function
-    if ((q == incoming_commands_q) && (command != herhaal))
-        BL_save_repeat_commands(commandString);
-
     return 0;
 }
 
@@ -65,9 +69,9 @@ void BL_save_repeat_commands(std::string str)
 {
     if (!str.empty())
     {
-        previous_commands_q.push(str);
+        previous_commands_q.push_front(str);
         if (previous_commands_q.size() > STORAGE_SIZE_REPEAT_COMMANDS)
-            previous_commands_q.pop();
+            previous_commands_q.pop_back();
     }
 }
 
