@@ -4,23 +4,23 @@
 
 #include <iostream>
 
-int API_gfx_text::select_font(std::string fontname, int fontstyle)
+int API_gfx_text::select_font(std::string _fontname, int fontstyle)
 {
     std::vector<GFXfont> m_filteredFonts;
 
-    for (auto iterator = m_fonts.begin(); auto font : m_fonts)
+    for (auto font : m_fonts)
     {
-        if (fontname.find((char*)font.name) != std::string::npos)
+        std::string fontname((char*)font.name);
+        if (fontname.find(_fontname) != std::string::npos)
         {
             m_filteredFonts.push_back(font);
         }
-
-        iterator++;
     }
 
     if ((m_filteredFonts.size() == 0) || (m_filteredFonts.size() < (unsigned int)fontstyle))
     {
-        m_logger("Font style not found");
+        int size = m_filteredFonts.size();
+        m_logger("Font style not found: " + std::to_string(size));
         return -1;
     }
 

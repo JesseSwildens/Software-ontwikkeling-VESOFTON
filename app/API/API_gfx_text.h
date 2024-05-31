@@ -18,7 +18,20 @@ private:
     uint8_t m_color = 0;
 
     std::unique_ptr<GFXfont> m_selected_font = nullptr;
-    std::vector<GFXfont> m_fonts = { FreeMono9pt7b, FreeMonoBold9pt7b, FreeMonoBoldOblique9pt7b, FreeMonoOblique9pt7b };
+    std::vector<GFXfont> m_fonts = {
+        FreeMono9pt7b,
+        FreeMonoBold9pt7b,
+        FreeMonoBoldOblique9pt7b,
+        FreeMonoOblique9pt7b,
+        FreeSans9pt7b,
+        FreeSansBold9pt7b,
+        FreeSansBoldOblique9pt7b,
+        FreeSansOblique9pt7b,
+        FreeSerif9pt7b,
+        FreeSerifBold9pt7b,
+        FreeSerifBoldItalic9pt7b,
+        FreeSerifItalic9pt7b,
+    };
 
     std::function<void(std::string)> m_logger;
 
@@ -117,23 +130,6 @@ public:
         }
 
         return (unsigned char*)"Unkown";
-    }
-
-    friend API_gfx_text& operator<<(API_gfx_text& api, const char* text)
-    {
-        if (text == NULL)
-        {
-            return api;
-        }
-
-        while (*text) // Unsafe method of writing the string.
-                      // As the << operator only allows single argument
-                      // next to the corresponding Class or struct for which this operation is performed.
-                      // Therefore this is the only possible method.
-        {
-            api.draw_character(*text);
-        }
-        return api;
     }
 
     friend API_gfx_text& operator<<(API_gfx_text& api, std::string text)

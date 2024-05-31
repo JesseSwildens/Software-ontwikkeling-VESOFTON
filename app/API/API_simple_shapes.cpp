@@ -55,7 +55,7 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
     if (OUTSIDE(x0, 0, VGA_DISPLAY_X) || OUTSIDE(x1, 0, VGA_DISPLAY_X)
         || OUTSIDE(y0, 0, VGA_DISPLAY_Y) || OUTSIDE(y1, 0, VGA_DISPLAY_Y))
     {
-        log_message("Line outside range of display");
+        log_message("error: Line outside range of display");
         return -1;
     }
 
@@ -136,19 +136,18 @@ int API_draw_circle(int x, int y, int radius, int color, int filled)
 {
     if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
     {
-        log_message("X or Y is outside the allowed range");
+        log_message("error: X or Y is outside the allowed range");
         return -1;
     }
 
     if (OUTSIDE(color, 0, MAX_COLOR_DEPTH))
     {
-        log_message("Color outside of allowed range. Color scaling isn't supported.");
-        return -1;
+        log_message("warning: Color outside of allowed range. Color scaling isn't supported.");
     }
 
     if (OUTSIDE(radius, 0, MAX_RADIUS_SIZE))
     {
-        log_message("Radius is outside of allowed range");
+        log_message("error: Radius is outside of allowed range");
         return -1;
     }
 
@@ -204,7 +203,7 @@ static void base_log_message(std::string message, int line, std::string filename
     if (logger_callback == nullptr)
         return;
 
-    std::string out_string = "[" + filename + ":" + std::to_string(line) + "] " + message;
+    std::string out_string = "[" + filename + ":" + std::to_string(line) + "] " + message + "\n";
 
     (*logger_callback)(message.c_str(), message.length());
 }
@@ -260,7 +259,10 @@ int API_draw_rectangle(int x, int y, int width, int height, int color, int fille
 {
     (void)reserved;
     if (OUTSIDE(x + width, 0, VGA_DISPLAY_X) || OUTSIDE(y + height, 0, VGA_DISPLAY_Y))
+    {
+        log_message("error: Outside the display area");
         return -1;
+    }
 
     int ret = 0;
     if (filled)
@@ -293,9 +295,17 @@ int API_clearscreen(int color)
 {
     if (color > MAX_COLOR_DEPTH)
     {
-        log_message("Color outside the range of the display");
+        log_message("warning: Color outside the range of the display");
     }
-    UB_VGA_FillScreen((uint8_t)color);
+
+    for (int x = 0; x < VGA_DISPLAY_X; x++)
+    {
+        for (int y = 0; y < VGA_DISPLAY_Y; y++)
+        {
+            API_set_pixel(x, y, color);
+        }
+    }
+
     return 0;
 }
 
@@ -337,7 +347,7 @@ int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, i
 
     if (API_Text.select_font(cxx_fontname, fontstyle))
     {
-        log_message("Font " + cxx_fontname + " not found with style number " + std::to_string(fontstyle));
+        log_message("error: Font " + cxx_fontname + " not found with style number " + std::to_string(fontstyle));
         return -1;
     }
 
