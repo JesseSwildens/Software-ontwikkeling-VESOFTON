@@ -25,7 +25,7 @@ jobs:
 
             - name: Build and Run Tests
               run: |
-                ls -al app/Catch2
+                git submodule update --init
                 mkdir app/build-unit-test && cd app/build-unit-test
                 cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_UNIT_TEST=TRUE
                 make all -j$(nproc)
