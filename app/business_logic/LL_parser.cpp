@@ -1,8 +1,8 @@
 #include "LL_parser.h"
-#include "API_simple_shapes.h"
+#include "ASM_CHAL.h"
 #include "BL_callbacks.h"
+#include "BL_video_streaming.h"
 #include "CHAL.h"
-#include "stm32_ub_vga_screen.h"
 
 #include <bits/stdc++.h>
 #include <cstdio>
@@ -11,24 +11,44 @@
 #include <queue>
 #include <sstream>
 
+#define BUFFER_SIZE 4096
+
 using namespace std;
 
 extern std::queue<std::string> incoming_commands_q;
 std::deque<std::string> previous_commands_q;
+uint8_t rx_buff[BUFFER_SIZE];
+extern uint8_t tempMainBuffer[BUFFER_SIZE];
+extern uint8_t eventflagUART;
 float test = 0;
+char video_stream_flag = 0;
 
 // #define DEBUG_LL
-#define PI 3.1415926
-#define MAX_CIRCLE_POINTS 100
 
 enum commands ll_convert_command(string str);
 
+// todo change "2" to VIDEOSTREAM
 char BL_main_parser()
 {
-    while (!incoming_commands_q.empty())
+    if (video_stream_flag == 0)
     {
-        BL_parse_queue(incoming_commands_q);
-        incoming_commands_q.pop();
+        CHAL_push_to_q(rx_buff, BUFFER_SIZE); // pushes incomng uart into a queue
+        while (!incoming_commands_q.empty())
+        {
+            char tmp = BL_parse_queue(incoming_commands_q);
+            incoming_commands_q.pop();
+            if (tmp == 2)
+            {
+                memset(rx_buff, 0, BUFFER_SIZE);
+                break;
+            }
+        }
+    }
+    else
+    {
+        ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
+        log_message(std::to_string(tempMainBuffer[0]));
+        memset(tempMainBuffer, 0, BUFFER_SIZE);
     }
 
     return 0;
@@ -37,8 +57,11 @@ char BL_main_parser()
 char BL_parse_queue(std::queue<std::string>& q)
 {
     std::string commandString = q.front();
-    if (BL_parse_single_string(commandString) == -1)
+    int tmp = BL_parse_single_string(commandString);
+    if (tmp == -1)
         q.pop();
+    if (tmp == 2)
+        return 2;
 
     // logic for the repeat function
     if ((q == incoming_commands_q) && (ll_get_command(commandString) != herhaal))
@@ -58,6 +81,12 @@ int BL_parse_single_string(std::string str)
         {
             log_message("invalid command on string: " + commandString);
             return -1;
+        }
+        if (command == hyperdrive)
+        {
+            BL_hyperdrive();
+            video_stream_flag = 1;
+            return 2;
         }
         vector<string> tokens = ll_tokenize(commandString);
         ll_handle_commands(command, tokens);
@@ -168,6 +197,8 @@ enum commands ll_convert_command(string str)
         return herhaal;
     if (str == "cirkel")
         return cirkel;
+    if (str == "hyperdrive")
+        return hyperdrive;
     else
         return nocommand;
 }

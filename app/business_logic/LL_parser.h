@@ -20,6 +20,7 @@ enum commands
     wacht = 6,
     herhaal = 7,
     cirkel = 8,
+    hyperdrive = 9,
 };
 
 #ifdef __cplusplus

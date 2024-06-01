@@ -53,6 +53,7 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/BL_callbacks.cpp
     ${CMAKE_SOURCE_DIR}/business_logic/LL_parser.cpp
+    ${CMAKE_SOURCE_DIR}/business_logic/BL_video_streaming.cpp
     ${CMAKE_SOURCE_DIR}/Core/Src/API_simple_shapes.cpp
     ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
     ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
