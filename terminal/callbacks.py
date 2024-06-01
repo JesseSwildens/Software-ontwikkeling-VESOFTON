@@ -72,6 +72,9 @@ def button_callback(sender, _app_data, user_data):
             add_display(command, True)
             time.sleep(dpg.get_value('_interval_slider') / 1000)
             idx = find_current_string()
+        # Force the last line to be sent as well
+        command = dpg.get_value(f'_import_{idx+1}')
+        user_data.send(command)
     elif sender == '_convert':
         # user_data is a path in this case
         bmap = BitmapGenerator()
