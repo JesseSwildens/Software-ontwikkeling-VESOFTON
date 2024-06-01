@@ -15,7 +15,11 @@ set(CMAKE_PROJECT_NAME SoftwareOntwikkelingGroep8)
 set(CMAKE_LIB_NAME ${CMAKE_PROJECT_NAME}Lib)
 
 # Include toolchain file
-include("cmake/gcc-arm-none-eabi.cmake")
+if (NOT CMAKE_UNIT_TEST)
+    include("cmake/gcc-arm-none-eabi.cmake")
+elseif()
+    include("cmake/gcc.cmake")
+endif()
 
 # Enable CMake support for C++, C and ASM languages
 enable_language(CXX C ASM)
