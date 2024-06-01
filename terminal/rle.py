@@ -45,6 +45,7 @@ class RLE():
             # if the compressed line is shorter then the original data, use
             # the compressed variant
             if len(line) < input.shape[0]:
+                line.insert(0, len(line))
                 line.insert(0, header_rle) # This might be slow!
                 output.append(line)
             else:
