@@ -110,7 +110,6 @@ if(NOT CMAKE_UNIT_TEST)
     )
 else()
     add_subdirectory(Catch2)
-    find_package(Catch2 REQUIRED)
 
     enable_testing()
 
