@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['usart2_5fbase_5faddress_7875',['USART2_BASE_ADDRESS',['../CHAL_8h.html#a4845766e4b9aa8b3c91bbf4a71652106',1,'CHAL.h']]],
-  ['usart3_5fbase_5faddress_7876',['USART3_BASE_ADDRESS',['../CHAL_8h.html#a9e02b7c4b403ce34263c64d5964ce5d4',1,'CHAL.h']]]
+  ['timing_5fpadding_8001',['TIMING_PADDING',['../CHAL_8h.html#a9a697259653ad39814fe73ae1fdf2b7d',1,'CHAL.h']]]
 ];

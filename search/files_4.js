@@ -1,19 +1,7 @@
 var searchData=
 [
-  ['stm32_5fub_5fvga_5fscreen_2ec_6976',['stm32_ub_vga_screen.c',['../stm32__ub__vga__screen_8c.html',1,'']]],
-  ['stm32_5fub_5fvga_5fscreen_2eh_6977',['stm32_ub_vga_screen.h',['../stm32__ub__vga__screen_8h.html',1,'']]],
-  ['stm32f4xx_2eh_6978',['stm32f4xx.h',['../stm32f4xx_8h.html',1,'']]],
-  ['stm32f4xx_5fconf_2eh_6979',['stm32f4xx_conf.h',['../stm32f4xx__conf_8h.html',1,'']]],
-  ['stm32f4xx_5fdma_2ec_6980',['stm32f4xx_dma.c',['../stm32f4xx__dma_8c.html',1,'']]],
-  ['stm32f4xx_5fdma_2eh_6981',['stm32f4xx_dma.h',['../stm32f4xx__dma_8h.html',1,'']]],
-  ['stm32f4xx_5fgpio_2ec_6982',['stm32f4xx_gpio.c',['../stm32f4xx__gpio_8c.html',1,'']]],
-  ['stm32f4xx_5fgpio_2eh_6983',['stm32f4xx_gpio.h',['../stm32f4xx__gpio_8h.html',1,'']]],
-  ['stm32f4xx_5frcc_2ec_6984',['stm32f4xx_rcc.c',['../stm32f4xx__rcc_8c.html',1,'']]],
-  ['stm32f4xx_5frcc_2eh_6985',['stm32f4xx_rcc.h',['../stm32f4xx__rcc_8h.html',1,'']]],
-  ['stm32f4xx_5ftim_2ec_6986',['stm32f4xx_tim.c',['../stm32f4xx__tim_8c.html',1,'']]],
-  ['stm32f4xx_5ftim_2eh_6987',['stm32f4xx_tim.h',['../stm32f4xx__tim_8h.html',1,'']]],
-  ['syscalls_2ec_6988',['syscalls.c',['../syscalls_8c.html',1,'']]],
-  ['sysmem_2ec_6989',['sysmem.c',['../sysmem_8c.html',1,'']]],
-  ['system_5fstm32f4xx_2ec_6990',['system_stm32f4xx.c',['../system__stm32f4xx_8c.html',1,'']]],
-  ['system_5fstm32f4xx_2eh_6991',['system_stm32f4xx.h',['../system__stm32f4xx_8h.html',1,'']]]
+  ['main_2ec_7062',['main.c',['../main_8c.html',1,'']]],
+  ['main_2eh_7063',['main.h',['../main_8h.html',1,'']]],
+  ['misc_2ec_7064',['misc.c',['../misc_8c.html',1,'']]],
+  ['misc_2eh_7065',['misc.h',['../misc_8h.html',1,'']]]
 ];
