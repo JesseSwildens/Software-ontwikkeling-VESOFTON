@@ -14,6 +14,27 @@
 #include <unordered_map>
 #include <variant>
 
+#define SYSTICK_LOAD (SystemCoreClock / 1000000U)
+#define SYSTICK_DELAY_CALIB (SYSTICK_LOAD >> 1)
+
+#define DELAY_US(us)                                                \
+    do                                                              \
+    {                                                               \
+        uint32_t start = SysTick->VAL;                              \
+        uint32_t ticks = (us * SYSTICK_LOAD) - SYSTICK_DELAY_CALIB; \
+        while ((start - SysTick->VAL) < ticks)                      \
+            ;                                                       \
+    } while (0)
+
+#define DELAY_MS(ms)                                \
+    do                                              \
+    {                                               \
+        for (uint32_t i = 0; i < (uint32_t)ms; ++i) \
+        {                                           \
+            DELAY_US(1000);                         \
+        }                                           \
+    } while (0)
+
 // #define BL_DEBUG_COMMANDS
 #define ECHO_REPEATS
 
@@ -137,7 +158,7 @@ int BL_rechthoek(vector<string> tokens)
 #ifdef BL_DEBUG_COMMANDS
     log_message("rechthoek command");
 #endif
-    CommandTemplate rechthoekTemplate = { "lijn", { "0", "0", "0", "0", std::string(), "0" } };
+    CommandTemplate rechthoekTemplate = { "rechthoek", { "0", "0", "0", "0", std::string(), "0" } };
 
     if (!validateArguments(tokens, rechthoekTemplate))
     {
@@ -155,7 +176,7 @@ int BL_cirkel(vector<string> tokens)
 #ifdef BL_DEBUG_COMMANDS
     log_message("cirkel command");
 #endif
-    CommandTemplate cirkelTemplate = { "lijn", { "0", "0", "0", std::string() } };
+    CommandTemplate cirkelTemplate = { "cirkel", { "0", "0", "0", std::string() } };
 
     if (!validateArguments(tokens, cirkelTemplate))
     {
@@ -234,6 +255,23 @@ int BL_herhaal(std::vector<std::string> tokens)
             BL_parse_single_string(front_command); // Process the command
         }
     }
+
+    return 0;
+}
+
+int BL_wacht(vector<string> tokens)
+{
+#ifdef BL_DEBUG_COMMANDS
+    log_message("wacht command");
+#endif
+    CommandTemplate cirkelTemplate = { "wacht", { "0" } };
+
+    if (!validateArguments(tokens, cirkelTemplate))
+    {
+        log_message("error: invalid arguments for cirkel command");
+        return -1;
+    }
+    // use systick delay here
 
     return 0;
 }
