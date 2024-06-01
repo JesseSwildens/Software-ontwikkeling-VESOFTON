@@ -1,3 +1,6 @@
+#ifndef API_GFX_TEXT_H
+#define API_GFX_TEXT_H
+
 #include "API_fonts.h"
 
 #include "Adafruit_GFX.h"
@@ -161,3 +164,5 @@ public:
         return api;
     }
 };
+
+#endif // API_GFX_TEXT_H

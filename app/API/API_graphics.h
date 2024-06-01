@@ -95,17 +95,15 @@ extern "C"
      * @return Integer 0 if succesfull otherwise -1
      */
     int API_register_logger_callback(void (*pFunction)(const char* string, int len));
-    < < < < < < < < HEAD : app / API / API_simple_shapes.h
-        == == == ==
 
-        /**
-         * @brief Initialize the system with Clocks and DMA for the Screen signal generation
-         *
-         * @param None
-         *
-         * @return None
-         */
-        void API_Init(void);
+    /**
+     * @brief Initialize the system with Clocks and DMA for the Screen signal generation
+     *
+     * @param None
+     *
+     * @return None
+     */
+    void API_Init(void);
 
     /**
      * @brief Supported colors for the VGA screen
@@ -118,7 +116,6 @@ extern "C"
 #define VGA_COL_CYAN 0x1F
 #define VGA_COL_MAGENTA 0xE3
 #define VGA_COL_YELLOW 0xFC
-    >>>>>>>> 55 - making - example - projects - where - the - api - is - linked - as - a - library : app / API / API_graphics.h
 
 #ifdef __cplusplus
 }

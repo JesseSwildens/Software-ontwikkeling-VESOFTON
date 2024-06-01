@@ -1,12 +1,7 @@
-<<<<<<<< HEAD:app/API/API_simple_shapes.cpp
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 
 #include "API_fonts.h"
 #include "API_gfx_text.h"
-#include "stm32_ub_vga_screen.h"
-========
-#include "API_graphics.h"
->>>>>>>> 55-making-example-projects-where-the-api-is-linked-as-a-library:app/API/API_graphics.cpp
 
 #include "API_fonts.h"
 #include "API_gfx_text.h"
@@ -388,8 +383,6 @@ int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, i
 static void log_message_callback(std::string msg)
 {
     log_message(msg);
-<<<<<<<< HEAD:app/API/API_simple_shapes.cpp
-========
 }
 
 /**
@@ -404,5 +397,4 @@ void API_Init(void)
     SystemInit(); // System speed to 168MHz
 
     UB_VGA_Screen_Init(); // Init VGA-Screen
->>>>>>>> 55-making-example-projects-where-the-api-is-linked-as-a-library:app/API/API_graphics.cpp
 }
