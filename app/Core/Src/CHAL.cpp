@@ -17,7 +17,7 @@ using namespace std;
 std::queue<std::string> incoming_commands_q;
 
 // both temp for video streaming
-uint8_t tempMainBuffer[2048];
+uint8_t tempMainBuffer[4096];
 int offset = 0;
 int start = 0;
 

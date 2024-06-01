@@ -1,8 +1,9 @@
 #include "BL_parser.h"
 #include "API_graphics.h"
+#include "ASM_CHAL.h"
 #include "BL_callbacks.h"
+#include "BL_video_streaming.h"
 #include "CHAL.h"
-#include "stm32_ub_vga_screen.h"
 
 #include <bits/stdc++.h>
 #include <cstdio>
@@ -11,11 +12,17 @@
 #include <queue>
 #include <sstream>
 
+#define BUFFER_SIZE 4096
+
 using namespace std;
 
 extern std::queue<std::string> incoming_commands_q;
 std::deque<std::string> previous_commands_q;
+uint8_t rx_buff[BUFFER_SIZE];
+extern uint8_t tempMainBuffer[BUFFER_SIZE];
+extern uint8_t eventflagUART;
 float test = 0;
+char video_stream_flag = 0;
 
 // #define DEBUG_BL
 /**
@@ -53,6 +60,8 @@ enum commands BL_convert_command(string str)
 {
     if (str == "clearscherm")
         return clearscherm;
+    if (str == "hyperdrive")
+        return hyperdrive;
     if (str == "lijn")
         return lijn;
     if (str == "rechthoek")
@@ -78,21 +87,30 @@ enum commands BL_convert_command(string str)
  */
 char BL_main_parser()
 {
-    while (!incoming_commands_q.empty())
+    if (video_stream_flag == 0)
     {
-
-        std::string commandString = incoming_commands_q.front();
-        if (BL_parse_single_string(commandString) == -1)
+        while (!incoming_commands_q.empty())
         {
+
+            std::string commandString = incoming_commands_q.front();
+            if (BL_parse_single_string(commandString) == -1)
+            {
+                incoming_commands_q.pop();
+                continue;
+            }
+
+            // logic for the repeat function
+            if ((incoming_commands_q == incoming_commands_q) && (BL_get_command(commandString) != herhaal))
+                BL_save_repeat_commands(commandString);
+
             incoming_commands_q.pop();
-            continue;
         }
-
-        // logic for the repeat function
-        if ((incoming_commands_q == incoming_commands_q) && (BL_get_command(commandString) != herhaal))
-            BL_save_repeat_commands(commandString);
-
-        incoming_commands_q.pop();
+    }
+    else
+    {
+        ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
+        log_message(std::to_string(tempMainBuffer[0]));
+        memset(tempMainBuffer, 0, BUFFER_SIZE);
     }
 
     return 0;
@@ -117,6 +135,14 @@ int BL_parse_single_string(std::string str)
             log_message("invalid command on string: " + commandString);
             return -1;
         }
+
+        if (command == hyperdrive)
+        {
+            BL_hyperdrive();
+            video_stream_flag = 1;
+            return 2;
+        }
+
         vector<string> tokens = BL_tokenize(commandString);
         BL_handle_commands(command, tokens);
     }
