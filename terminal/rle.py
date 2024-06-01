@@ -31,7 +31,10 @@ class RLE():
             output.append(self.encode_1d(data))
         return output
 
-    def encode_img(self, input : np.ndarray) -> list:
+    def encode_img(self, input : np.ndarray) -> (list | None):
+        if input is None:
+            return None
+
         header_raw = 0x00
         header_rle = 0x01
         total_bytes = 0
@@ -45,8 +48,9 @@ class RLE():
                 line.insert(0, header_rle) # This might be slow!
                 output.append(line)
             else:
-                line.insert(0, header_raw)
-                output.append(input[idx])
+                temp = list(input[idx])
+                temp.insert(0, header_raw)
+                output.append(temp)
             total_bytes += len(output[-1])
 
         self._last_bytes = total_bytes
@@ -74,16 +78,16 @@ if __name__ == "__main__":
         data = rle.encode_img(compressed_frame)
 
         text = str(round((1 - rle.get_compression())*100, 2))
-        frame = cv.putText(frame, text, (20, 40), cv.FONT_HERSHEY_SIMPLEX, 
+        frame = cv.putText(frame, text, (20, 40), cv.FONT_HERSHEY_SIMPLEX,
                            1, (255, 0, 0), 2, cv.FILLED)
         text = str(frame_counter)
-        frame = cv.putText(frame, text, (20, 80), cv.FONT_HERSHEY_SIMPLEX, 
+        frame = cv.putText(frame, text, (20, 80), cv.FONT_HERSHEY_SIMPLEX,
                            1, (255, 0, 0), 2, cv.FILLED)
         text = f"{compressed_frame.shape[0]}x{compressed_frame.shape[1]}"
-        frame = cv.putText(frame, text, (20, 120), cv.FONT_HERSHEY_SIMPLEX, 
+        frame = cv.putText(frame, text, (20, 120), cv.FONT_HERSHEY_SIMPLEX,
                            1, (255, 0, 0), 2, cv.FILLED)
         cv.imshow('Frame', frame)
-        
+
 
         frame_counter += 1
         if cv.waitKey(1) & 0xFF == ord('q'):

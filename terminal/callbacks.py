@@ -5,7 +5,7 @@ import dearpygui.dearpygui as dpg
 from bitmap import BitmapGenerator
 from display import add_display, clear_display
 from serial_handler import SerialHandler
-
+import stream
 
 def find_current_string():
     for idx in range(100):
@@ -129,19 +129,24 @@ def window_resize_callback(_sender):
 
 def menu_callback(sender, _app_data, user_data: SerialHandler):
     enable_items = ['_command', '_send']
+    show_items = ['_menu_stream', '_menu_open_stream']
 
+    user_data.ser.baudrate = 115200
     if user_data.connect(sender):
         dpg.set_value('_status', 'Connected')
         dpg.configure_item('_status', color=(0, 255, 0, 255))  # Red
         clear_display()
-        enable = True
+        state = True
     else:
         dpg.set_value('_status', 'Disconnected')
         dpg.configure_item('_status', color=(255, 0, 0, 255))  # Green
-        enable = False
+        state = False
+
+    for item in show_items:
+        dpg.configure_item(item, show=state)
 
     for item in enable_items:
-        dpg.configure_item(item, enabled=enable)
+        dpg.configure_item(item, enabled=state)
 
 
 def warning_popup():
@@ -212,3 +217,13 @@ def ok_callback(_sender, app_data, _user_data):
         )
     else:
         warning_popup()
+
+def open_stream_callback(_sender, _appdata, strm : stream.Stream):
+    dpg.configure_item('_menu_open_stream', show=False)
+    dpg.configure_item('_menu_close_stream', show=True)
+    strm.enable()
+
+def close_stream_callback(_sender, _appdata, strm : stream.Stream):
+    dpg.configure_item('_menu_open_stream', show=True)
+    dpg.configure_item('_menu_close_stream', show=False)
+    strm.disable()

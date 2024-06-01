@@ -4,12 +4,16 @@ import callbacks
 import dearpygui.dearpygui as dpg
 from display import add_display, init_display
 from serial_handler import SerialHandler
+from stream import Stream
 
 if not sys.version_info >= (3, 6):
     raise EnvironmentError('Python version too old')
 
 # Serial
 ser = SerialHandler()
+
+# stream
+strm = Stream(ser)
 
 # set up a viewport
 dpg.create_context()
@@ -162,6 +166,21 @@ with dpg.viewport_menu_bar():
                     '_interval_slider', dpg.get_value('_interval_slider')
                 ),
             )
+    with dpg.menu(label='Stream', show=False, tag='_menu_stream'):
+        dpg.add_menu_item(
+            label='Open Stream',
+            tag='_menu_open_stream',
+            show=False,
+            callback=callbacks.open_stream_callback,
+            user_data=strm,
+        )
+        dpg.add_menu_item(
+            label='Close Stream',
+            tag='_menu_close_stream',
+            show=False,
+            callback=callbacks.close_stream_callback,
+            user_data=strm,
+        )
     with dpg.menu(label='Tools'):
         dpg.add_menu_item(
             label='Show Metrics',
@@ -188,10 +207,20 @@ dpg.show_viewport()
 dpg.set_primary_window('_primary', True)
 
 # Render loop
+temp = 0
 while dpg.is_dearpygui_running():
+    # Serial
     data = ser.poll()
     if data is not None:
         add_display(data)
+
+    # Streaming
+    temp += 1
+    if (temp % 100) == 0:
+        strm.is_ready = True
+    strm.run()
+
+
     dpg.render_dearpygui_frame()
 
 dpg.destroy_context()
