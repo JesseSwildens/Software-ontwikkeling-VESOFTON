@@ -1,7 +1,7 @@
 #ifndef _GFXFONT_H_
 #define _GFXFONT_H_
 
-#include "main.h"
+#include <stdint.h>
 
 #define PROGMEM
 
