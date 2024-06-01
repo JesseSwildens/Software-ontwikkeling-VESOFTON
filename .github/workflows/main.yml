@@ -20,7 +20,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                submodules: 'true'
+                submodules: recursive
+                token: ${{ secrets.PAT_TOKEN }}
 
             - name: Build and Run Tests
               run: |
