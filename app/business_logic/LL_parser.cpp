@@ -88,6 +88,7 @@ std::vector<cmd_struct_t> cmdhandler = {
     { .cmd = cirkel, .function = BL_cirkel },
     { .cmd = bitmap, .function = BL_bitmap },
     { .cmd = herhaal, .function = BL_herhaal },
+    { .cmd = wacht, .function = BL_wacht },
 };
 
 void ll_handle_commands(enum commands command, vector<string> tokens)
@@ -97,25 +98,8 @@ void ll_handle_commands(enum commands command, vector<string> tokens)
         if (cmd.cmd == command)
             cmd.function(tokens);
     }
-
-    // case (tekst):
-    // {
-    //     CHAL_UART2_SendString("tekst command\n");
-    //     break;
-    // }
-
-    // case (wacht):
-    // {
-    //     CHAL_UART2_SendString("wacht command\n");
-    //     break;
-    // }
-
-    // case (herhaal):
-    // {
-    //     CHAL_UART2_SendString("herhaal command\n");
-    //     break;
-    // }
 }
+
 commands ll_get_command(std::string commandString)
 {
 
