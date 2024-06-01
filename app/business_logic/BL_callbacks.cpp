@@ -272,6 +272,11 @@ int BL_wacht(vector<string> tokens)
         return -1;
     }
     // use systick delay here
+    int do_nothing = 0;
+    for (int delay = 0; delay < std::stoi(tokens[1]) * 100; delay++)
+    {
+        do_nothing++;
+    }
 
     return 0;
 }
