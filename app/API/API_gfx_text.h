@@ -19,6 +19,14 @@ private:
 
     std::unique_ptr<GFXfont> m_selected_font = nullptr;
     std::vector<GFXfont> m_fonts = {
+        arial9pt7b,
+        arialbd9pt7b,
+        ariali9pt7b,
+        arialbi9pt7b,
+        consola9pt7b,
+        consolab9pt7b,
+        consolai9pt7b,
+        consolaz9pt7b,
         FreeMono9pt7b,
         FreeMonoBold9pt7b,
         FreeMonoBoldOblique9pt7b,

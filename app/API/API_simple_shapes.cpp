@@ -345,6 +345,11 @@ int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, i
 
     std::string cxx_fontname(fontname);
 
+    for (char& character : cxx_fontname)
+    {
+        character = std::tolower(character);
+    }
+
     if (API_Text.select_font(cxx_fontname, fontstyle))
     {
         log_message("error: Font " + cxx_fontname + " not found with style number " + std::to_string(fontstyle));

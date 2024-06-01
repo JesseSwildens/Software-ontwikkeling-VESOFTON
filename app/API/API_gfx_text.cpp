@@ -11,6 +11,12 @@ int API_gfx_text::select_font(std::string _fontname, int fontstyle)
     for (auto font : m_fonts)
     {
         std::string fontname((char*)font.name);
+
+        for (char& character : fontname)
+        {
+            character = std::tolower(character);
+        }
+
         if (fontname.find(_fontname) != std::string::npos)
         {
             m_filteredFonts.push_back(font);
