@@ -94,7 +94,7 @@ extern "C"
      *
      * @return Integer 0 if succesfull otherwise -1
      */
-    int API_register_logger_callback(int (*pFunction)(const char* string, int len));
+    int API_register_logger_callback(void (*pFunction)(const char* string, int len));
 
 #ifdef __cplusplus
 }

@@ -12,6 +12,8 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(CMAKE_CXX_STANDARD 20)
+
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug")
@@ -50,7 +52,8 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
-    ${CMAKE_SOURCE_DIR}/Core/Src/API_simple_shapes.cpp
+    ${CMAKE_SOURCE_DIR}/API/API_simple_shapes.cpp
+    ${CMAKE_SOURCE_DIR}/API/API_gfx_text.cpp
     ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
     ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
@@ -69,6 +72,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/Core/Inc
+    ${CMAKE_SOURCE_DIR}/API/fonts
+    ${CMAKE_SOURCE_DIR}/API
 )
 
 # Add project symbols (macros)
