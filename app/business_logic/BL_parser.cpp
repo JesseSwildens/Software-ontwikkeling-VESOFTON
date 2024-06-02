@@ -23,6 +23,7 @@ extern uint8_t tempMainBuffer[BUFFER_SIZE];
 extern uint8_t eventflagUART;
 float test = 0;
 char video_stream_flag = 0;
+extern int offset;
 
 // #define DEBUG_BL
 /**
@@ -108,9 +109,14 @@ char BL_main_parser()
     }
     else
     {
+        offset = 0; // set pointer of tempmainbuffer to zero for every new line
         ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
-        log_message(std::to_string(tempMainBuffer[0]));
-        memset(tempMainBuffer, 0, BUFFER_SIZE);
+        BL_video_stream(tempMainBuffer, BUFFER_SIZE);
+        CHAL_disable_DMA(DMA1_Stream5); // to change the NDTR register the DMA NEEDS to be disabled first.
+        DMA1_Stream5->NDTR = BUFFER_SIZE; // reset RX-buff pointer to start
+        CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
+        memset(rx_buff, 0, BUFFER_SIZE); // reset rx_buff for new reception
+        memset(tempMainBuffer, 0, BUFFER_SIZE); // reset rx_buff for new reception
     }
 
     return 0;
