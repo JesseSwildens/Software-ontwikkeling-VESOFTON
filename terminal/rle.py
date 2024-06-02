@@ -46,10 +46,12 @@ class RLE():
             # the compressed variant
             if len(line) < input.shape[0]:
                 line.insert(0, len(line))
+                line.insert(0, idx)
                 line.insert(0, header_rle) # This might be slow!
                 output.append(line)
             else:
                 temp = list(input[idx])
+                temp.insert(0, idx)
                 temp.insert(0, header_raw)
                 output.append(temp)
             total_bytes += len(output[-1])
