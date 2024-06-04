@@ -43,6 +43,7 @@ std::vector<cmd_struct_t> cmdhandler = {
     { .cmd = bitmap, .function = BL_bitmap },
     { .cmd = herhaal, .function = BL_herhaal },
     { .cmd = wacht, .function = BL_wacht },
+    { .cmd = tekst, .function = BL_tekst },
 };
 
 /**

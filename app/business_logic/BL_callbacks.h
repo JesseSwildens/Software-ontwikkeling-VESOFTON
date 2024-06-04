@@ -18,8 +18,10 @@ int BL_istype(std::string s);
 int BL_bitmap(std::vector<std::string> tokens);
 int BL_herhaal(std::vector<std::string> tokens);
 int BL_wacht(std::vector<std::string> tokens);
+int BL_tekst(std::vector<std::string> tokens);
 
 void BL_base_log_message(std::string, int, std::string);
 auto BL_get_valid_color(std::string color);
+auto BL_get_valid_fontstyle(std::string font_style);
 void* BL_get_valid_bitmap(int bitmap);
 #endif

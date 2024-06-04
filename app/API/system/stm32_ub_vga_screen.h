@@ -29,6 +29,9 @@
 #define VGA_COL_GREEN 0x1C
 #define VGA_COL_RED 0xE0
 #define VGA_COL_WHITE 0xFF
+#define VGA_COL_LIGHT_BLUE 0x5F
+#define VGA_COL_GRAY 0x49
+#define VGA_COL_BROWN 0x44
 
 #define VGA_COL_CYAN 0x1F
 #define VGA_COL_MAGENTA 0xE3

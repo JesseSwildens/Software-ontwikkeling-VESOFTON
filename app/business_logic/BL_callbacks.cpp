@@ -152,7 +152,10 @@ auto BL_get_valid_color(string color)
         { "wit", VGA_COL_WHITE },
         { "cyan", VGA_COL_CYAN },
         { "magenta", VGA_COL_MAGENTA },
-        { "geel", VGA_COL_YELLOW }
+        { "geel", VGA_COL_YELLOW },
+        { "lichtblauw", VGA_COL_LIGHT_BLUE },
+        { "grijs", VGA_COL_GRAY },
+        { "bruin", VGA_COL_BROWN },
     };
 
     auto it = color_map.find(color);
@@ -163,6 +166,34 @@ auto BL_get_valid_color(string color)
     else
     {
         log_message("error: invalid color argument");
+        return -1;
+    }
+}
+
+/**
+ * @brief takes the fontstyle command string, processes it and returns the fontstyle integer associated with that fontstyle
+ *
+ * @param fontstyle check for valid fontstyle
+ *
+ * @return if valid, return a color code, else return -1
+ */
+auto BL_get_valid_fontstyle(string font_style)
+{
+    // might not be beautifull but it is O(1) averge so it is really fast.
+    static const std::unordered_map<std::string, int> font_style_map = {
+        { "normaal", 0 },
+        { "cursief", 1 },
+        { "bold", 2 },
+    };
+
+    auto it = font_style_map.find(font_style);
+    if (it != font_style_map.end())
+    {
+        return (it->second);
+    }
+    else
+    {
+        log_message("error: invalid font_style argument");
         return -1;
     }
 }
@@ -230,15 +261,27 @@ int BL_rechthoek(vector<string> tokens)
     log_message("rechthoek command");
 #endif
     CommandTemplate rechthoekTemplate = { "rechthoek", { "0", "0", "0", "0", std::string(), "0" } };
+    CommandTemplate rechthoekTemplateAlternate = { "rechthoek", { "0", "0", "0", "0", std::string(), "0", "0" } };
 
-    if (!validateArguments(tokens, rechthoekTemplate))
+    bool val_arg_norm = (!validateArguments(tokens, rechthoekTemplate));
+    bool val_arg_alt = (!validateArguments(tokens, rechthoekTemplateAlternate));
+
+    if (val_arg_norm == val_arg_alt)
     {
         log_message("error: invalid arguments for rechthoek command");
         return -1;
     }
 
     auto color = BL_get_valid_color(tokens[5]);
-    API_draw_rectangle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), stoi(tokens[4]), color, stoi(tokens[6]), 1, 1);
+    if (!val_arg_norm == true)
+    {
+
+        API_draw_rectangle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), stoi(tokens[4]), color, stoi(tokens[6]), 1, 1);
+    }
+    else
+    {
+        API_draw_rectangle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), stoi(tokens[4]), color, stoi(tokens[6]), stoi(tokens[7]), 1);
+    }
     return 0;
 }
 
@@ -255,15 +298,27 @@ int BL_cirkel(vector<string> tokens)
     log_message("cirkel command");
 #endif
     CommandTemplate cirkelTemplate = { "cirkel", { "0", "0", "0", std::string() } };
+    CommandTemplate cirkelTemplateAlternate = { "cirkel", { "0", "0", "0", std::string(), "0" } };
 
-    if (!validateArguments(tokens, cirkelTemplate))
+    bool val_arg_norm = (!validateArguments(tokens, cirkelTemplate));
+    bool val_arg_alt = (!validateArguments(tokens, cirkelTemplateAlternate));
+
+    if (val_arg_norm == val_arg_alt)
     {
         log_message("error: invalid arguments for cirkel command");
         return -1;
     }
 
     auto color = BL_get_valid_color(tokens[4]);
-    API_draw_circle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), color, 0);
+    if (!val_arg_norm == true)
+    {
+
+        API_draw_circle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), color, 0);
+    }
+    else
+    {
+        API_draw_circle(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), color, stoi(tokens[5]));
+    }
     return 0;
 }
 
@@ -291,6 +346,44 @@ int BL_bitmap(vector<string> tokens)
         API_DrawBitmap((unsigned char*)bitmap, 32, 32, stoi(tokens[1]), stoi(tokens[2]));
     else
         return -1;
+    return 0;
+}
+
+/**
+ * @brief function for drawing bitmap
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
+int BL_tekst(vector<string> tokens)
+{
+#ifdef BL_DEBUG_COMMANDS
+    log_message("tekst command");
+#endif
+    CommandTemplate tekstTemplate = { "tekst", { "0", "0", std::string(), std::string(), std::string(), "0", std::string() } };
+    CommandTemplate tekstTemplateAlternate = { "tekst", { "0", "0", std::string(), std::string(), std::string(), "0", std::string(), "0" } };
+
+    bool val_arg_norm = (!validateArguments(tokens, tekstTemplate));
+    bool val_arg_alt = (!validateArguments(tokens, tekstTemplateAlternate));
+
+    if (val_arg_norm == val_arg_alt)
+    {
+        log_message("error: invalid arguments for tekst command");
+        return -1;
+    }
+    auto color = BL_get_valid_color(tokens[3]);
+    auto font_style = BL_get_valid_fontstyle(tokens[7]);
+
+    if (!val_arg_norm == true)
+    {
+
+        API_draw_text(stoi(tokens[1]), stoi(tokens[2]), color, (char*)tokens[4].c_str(), (char*)tokens[5].c_str(), stoi(tokens[6]), font_style, 0);
+    }
+    else
+    {
+        API_draw_text(stoi(tokens[1]), stoi(tokens[2]), color, (char*)tokens[4].c_str(), (char*)tokens[5].c_str(), stoi(tokens[6]), font_style, stoi(tokens[8]));
+    }
     return 0;
 }
 
@@ -370,11 +463,7 @@ int BL_wacht(vector<string> tokens)
         return -1;
     }
     // use systick delay here
-    int do_nothing = 0;
-    for (int delay = 0; delay < std::stoi(tokens[1]) * 100; delay++)
-    {
-        do_nothing++;
-    }
+    // DELAY_MS(stoi(tokens[1]));
 
     return 0;
 }
