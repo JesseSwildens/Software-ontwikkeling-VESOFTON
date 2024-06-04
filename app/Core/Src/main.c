@@ -14,6 +14,7 @@
 
 #include "API_graphics.h"
 #include "BL_parser.h"
+#include "CHAL.h"
 
 #include <math.h>
 

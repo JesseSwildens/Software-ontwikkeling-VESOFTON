@@ -1,5 +1,5 @@
 #include "BL_parser.h"
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 #include "BL_callbacks.h"
 #include "CHAL.h"
 #include "stm32_ub_vga_screen.h"

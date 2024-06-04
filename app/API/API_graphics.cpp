@@ -466,12 +466,12 @@ int API_wait(int msecs)
 bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
 {
     // Fill the entire screen with the background color
-    API_VGA_FillScreen(bgColor);
-    return API_VGA_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
+    API_clearscreen(bgColor);
+    return API_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
 }
 
 // Needs to be moved to API layer
-bitmap_position API_VGA_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
+bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
 {
     uint16_t xp = 0, yp = 0;
     bitmap_position _bitmap;
@@ -535,7 +535,7 @@ void API_VGA_DVD_Screensaver(unsigned char* bitmap)
     }
 
     // Draw new bitmap position
-    previous_bitmap = API_VGA_DrawBitmap(bitmap, bmp_width, bmp_height, (uint16_t)x, (uint16_t)y);
+    previous_bitmap = API_DrawBitmap(bitmap, bmp_width, bmp_height, (uint16_t)x, (uint16_t)y);
 
     // Delay
     for (rage_against_the_compiler = 0; rage_against_the_compiler < 200000; rage_against_the_compiler++)

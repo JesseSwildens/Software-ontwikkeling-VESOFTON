@@ -8,6 +8,14 @@ extern "C"
 {
 #endif
 
+    typedef struct
+    {
+        int x; // x position top left
+        int y; // y position top left
+        int width;
+        int height;
+    } bitmap_position;
+
     /**
      * @brief Drawing text to the screen
      *
@@ -60,6 +68,8 @@ extern "C"
      * @return 0 if succesfull, otherwise -1 if error occured
      */
     int API_draw_bitmap(int x_lup, int y_lup, int bm_nr);
+
+    bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
 
     /**
      * @brief clear screen to certain color

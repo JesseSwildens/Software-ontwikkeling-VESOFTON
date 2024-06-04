@@ -1,5 +1,5 @@
 #include "BL_callbacks.h"
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 #include "BL_parser.h"
 #include "CHAL.h"
 #include "bitmap.h"
@@ -288,7 +288,7 @@ int BL_bitmap(vector<string> tokens)
     }
     void* bitmap = BL_get_valid_bitmap(stoi(tokens[3]));
     if (bitmap != nullptr)
-        API_VGA_DrawBitmap((unsigned char*)bitmap, 32, 32, stoi(tokens[1]), stoi(tokens[2]));
+        API_DrawBitmap((unsigned char*)bitmap, 32, 32, stoi(tokens[1]), stoi(tokens[2]));
     else
         return -1;
     return 0;
