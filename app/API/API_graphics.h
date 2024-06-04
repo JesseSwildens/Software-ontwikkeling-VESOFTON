@@ -1,6 +1,8 @@
 #ifndef API_GRAPHICS_H
 #define API_GRAPHICS_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -97,6 +99,24 @@ extern "C"
     int API_register_logger_callback(void (*pFunction)(const char* string, int len));
 
     /**
+     * @brief Get the current Tick count
+     *
+     * @param None
+     *
+     * @return uint64_t current Tick
+     */
+    uint64_t API_get_tick(void);
+
+    /**
+     * @brief Enabling systick for the timekeeping
+     *
+     * @param None
+     *
+     * @return None
+     */
+    void API_InitTick(void);
+
+    /**
      * @brief Initialize the system with Clocks and DMA for the Screen signal generation
      *
      * @param None
@@ -117,6 +137,7 @@ extern "C"
 #define VGA_COL_MAGENTA 0xE3
 #define VGA_COL_YELLOW 0xFC
 
+    extern uint64_t Tick;
 #ifdef __cplusplus
 }
 #endif

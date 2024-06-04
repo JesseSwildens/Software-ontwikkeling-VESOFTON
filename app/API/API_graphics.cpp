@@ -12,7 +12,8 @@ extern "C"
 #include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
 }
-#endif
+#endif #include "stm32f4xx_conf.h"
+
 #include <math.h>
 #include <string>
 
@@ -24,6 +25,8 @@ extern "C"
 #endif
 
 #define log_message(message) (base_log_message(message, __LINE__, __FILE_NAME__))
+
+#define TICK_PRIORITY 15
 
 /**
  * @note Maximum color value supported
@@ -45,6 +48,7 @@ static void log_message_callback(std::string);
 static void API_set_pixel(int, int, uint8_t);
 
 API_gfx_text API_Text(VGA_DISPLAY_X, VGA_DISPLAY_Y, log_message_callback);
+uint64_t Tick;
 
 /**
  * @brief Drawing line
@@ -397,4 +401,55 @@ void API_Init(void)
     SystemInit(); // System speed to 168MHz
 
     UB_VGA_Screen_Init(); // Init VGA-Screen
+}
+
+/**
+ * @brief Enabling systick for the timekeeping
+ *
+ * @param None
+ *
+ * @return None
+ */
+void API_InitTick(void)
+{
+    SysTick_Config(SystemCoreClock / 1000); // Clk frequency -> milliseconds
+
+    NVIC_SetPriority(SysTick_IRQn, TICK_PRIORITY);
+
+    Tick = 0;
+}
+
+/**
+ * @brief Get the current Tick count
+ *
+ * @param None
+ *
+ * @return uint64_t current Tick
+ */
+uint64_t API_get_tick(void)
+{
+    return Tick;
+}
+
+/**
+ * @brief Waiting to next command
+ *
+ * @param msecs milliseconds to wait
+ *
+ * @return 0 if wait was succesful, -1 if the timer had failed to count
+ */
+int API_wait(int msecs)
+{
+    if (msecs < 0)
+    {
+        log_message("warning: Invalid amount of time. We aren't time travelers!");
+        return -1;
+    }
+    uint64_t startTick = API_get_tick();
+
+    while ((API_get_tick() - startTick) < (unsigned int)msecs)
+    {
+    }
+
+    return 0;
 }

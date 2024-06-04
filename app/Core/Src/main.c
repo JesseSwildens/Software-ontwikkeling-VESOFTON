@@ -25,6 +25,8 @@ int main(void)
 {
     API_Init();
 
+    API_InitTick();
+
     CHAL_init_uart();
 
     CHAL_DMA_Init();
@@ -69,4 +71,12 @@ void USART2_IRQHandler(void)
 {
     CHAL_clear_idledetect();
     eventflagUART = 1;
+}
+
+/**
+ * @brief Systick interrupt handler
+ */
+void SysTick_Handler(void)
+{
+    Tick++;
 }
