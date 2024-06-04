@@ -84,6 +84,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="stm32f4xx_8h_source.html">stm32f4xx.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stm32f4xx__dma_8h_source.html">stm32f4xx_dma.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="stm32f4xx__rcc_8h_source.html">stm32f4xx_rcc.h</a>&quot;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div>
 <p><a href="CHAL_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -104,13 +105,15 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:ac3abc20f80e25c19b02104ad34eae652"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#ac3abc20f80e25c19b02104ad34eae652">DMA1_Stream5</a>&#160;&#160;&#160;0x40026088</td></tr>
+<tr class="separator:ac3abc20f80e25c19b02104ad34eae652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a697259653ad39814fe73ae1fdf2b7d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a9a697259653ad39814fe73ae1fdf2b7d">TIMING_PADDING</a>&#160;&#160;&#160;10</td></tr>
 <tr class="separator:a9a697259653ad39814fe73ae1fdf2b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a11ce367da8e19eb27cf7f129da4b3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga79bcc3f8e773206a66aba95c6f889d6f">DMA_LISR_FEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga72de97ebc9d063dceb38bada91c44878">DMA_LISR_DMEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gad43cdafa5acfcd683b7a2ee8976dd8ba">DMA_LISR_TEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga6181727d13abbc46283ff22ce359e3b9">DMA_LISR_HTIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gadbc3f7e52c0688bed4b71fa37666901d">DMA_LISR_TCIF0</a>)</td></tr>
 <tr class="separator:a0a11ce367da8e19eb27cf7f129da4b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a145798f7c0cffc0effe3b6588f7a5812"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__DMA.html#ga0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a> &lt;&lt; 6)</td></tr>
+<tr class="memitem:a145798f7c0cffc0effe3b6588f7a5812"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a> &lt;&lt; 6)</td></tr>
 <tr class="separator:a145798f7c0cffc0effe3b6588f7a5812"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceb30b7dcde1275d843ea932a00f44d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#aceb30b7dcde1275d843ea932a00f44d7">DMA_Stream5_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__DMA.html#ga145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a> | (uint32_t)0x20000000)</td></tr>
+<tr class="memitem:aceb30b7dcde1275d843ea932a00f44d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#aceb30b7dcde1275d843ea932a00f44d7">DMA_Stream5_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a> | (uint32_t)0x20000000)</td></tr>
 <tr class="separator:aceb30b7dcde1275d843ea932a00f44d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a841615a63f4a3aa18337897953874909"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a841615a63f4a3aa18337897953874909">ARRAY_LEN</a>(<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>)&#160;&#160;&#160;(sizeof(<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>) / sizeof((<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>)[0]))</td></tr>
 <tr class="separator:a841615a63f4a3aa18337897953874909"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,8 +190,6 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a2295023cb70b6df645ec73cf982dfed3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a2295023cb70b6df645ec73cf982dfed3">in_inactive_region_flag</a></td></tr>
 <tr class="separator:a2295023cb70b6df645ec73cf982dfed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0642526bfd4eb59d888572150ee3032a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVGA__t.html">VGA_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a0642526bfd4eb59d888572150ee3032a">VGA</a></td></tr>
-<tr class="separator:a0642526bfd4eb59d888572150ee3032a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a841615a63f4a3aa18337897953874909"></a>
@@ -265,6 +266,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ac3abc20f80e25c19b02104ad34eae652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3abc20f80e25c19b02104ad34eae652">&#9670;&nbsp;</a></span>DMA1_Stream5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DMA1_Stream5&#160;&#160;&#160;0x40026088</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0a11ce367da8e19eb27cf7f129da4b3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0a11ce367da8e19eb27cf7f129da4b3d">&#9670;&nbsp;</a></span>DMA_Stream0_IT_MASK</h2>
 
@@ -286,7 +301,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DMA_Stream1_IT_MASK&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__DMA.html#ga0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a> &lt;&lt; 6)</td>
+          <td class="memname">#define DMA_Stream1_IT_MASK&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a> &lt;&lt; 6)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -300,7 +315,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DMA_Stream5_IT_MASK&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__DMA.html#ga145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a> | (uint32_t)0x20000000)</td>
+          <td class="memname">#define DMA_Stream5_IT_MASK&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a> | (uint32_t)0x20000000)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -785,28 +800,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t in_inactive_region_flag</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0642526bfd4eb59d888572150ee3032a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0642526bfd4eb59d888572150ee3032a">&#9670;&nbsp;</a></span>VGA</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structVGA__t.html">VGA_t</a> VGA</td>
         </tr>
       </table>
   </td>

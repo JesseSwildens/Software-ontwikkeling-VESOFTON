@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Software Ontwikkeling: app/API/API_simple_shapes.cpp File Reference</title>
+<title>Software Ontwikkeling: app/API/API_graphics.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,202 +70,173 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">API_simple_shapes.cpp File Reference</div>  </div>
+<div class="title">API_graphics.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="API__simple__shapes_8h_source.html">API_simple_shapes.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="API__fonts_8h_source.html">API_fonts.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="API__gfx__text_8h_source.html">API_gfx_text.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="stm32__ub__vga__screen_8h_source.html">stm32_ub_vga_screen.h</a>&quot;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-</div><table class="memberdecls">
+
+<p><a href="API__graphics_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:aaead3d7f8daaa318cbbb95c3e5f3442f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#aaead3d7f8daaa318cbbb95c3e5f3442f">BETWEEN</a>(<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>,  <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>,  z)&#160;&#160;&#160;((<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &lt; z) &amp;&amp; (<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &gt; <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>))</td></tr>
-<tr class="separator:aaead3d7f8daaa318cbbb95c3e5f3442f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd71bac047ed33c94de6fffaaa8e0456"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#abd71bac047ed33c94de6fffaaa8e0456">OUTSIDE</a>(<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>,  <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>,  z)&#160;&#160;&#160;((<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &gt; z) || (<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &lt; <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>))</td></tr>
-<tr class="separator:abd71bac047ed33c94de6fffaaa8e0456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f027784d7427e627ed2c94f0cc65b2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d">__FILE_NAME__</a>&#160;&#160;&#160;&quot;Testmessage&quot;</td></tr>
-<tr class="separator:a1f027784d7427e627ed2c94f0cc65b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4481483a683b4a7fe71f939d83c5806"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#af4481483a683b4a7fe71f939d83c5806">log_message</a>(message)&#160;&#160;&#160;(base_log_message(message, __LINE__, <a class="el" href="API__simple__shapes_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d">__FILE_NAME__</a>))</td></tr>
-<tr class="separator:af4481483a683b4a7fe71f939d83c5806"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7258b939251e993229b3f14c21cb2fae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a7258b939251e993229b3f14c21cb2fae">MAX_COLOR_DEPTH</a>&#160;&#160;&#160;0xff</td></tr>
-<tr class="separator:a7258b939251e993229b3f14c21cb2fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438bae4f2470f16db11433e45aa21be9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a438bae4f2470f16db11433e45aa21be9">MAX_RADIUS_SIZE</a>&#160;&#160;&#160;25</td></tr>
-<tr class="separator:a438bae4f2470f16db11433e45aa21be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8c38ccaa079ad648999dd3bc827aeb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#ae8c38ccaa079ad648999dd3bc827aeb5">MAX_CIRCLE_POINTS</a>&#160;&#160;&#160;100</td></tr>
-<tr class="separator:ae8c38ccaa079ad648999dd3bc827aeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fee0c95dea1cdd3eeb3605ece528a8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a9fee0c95dea1cdd3eeb3605ece528a8a">VGA_COL_BLACK</a>&#160;&#160;&#160;0x00</td></tr>
+<tr class="memdesc:a9fee0c95dea1cdd3eeb3605ece528a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supported colors for the VGA screen.  <a href="API__graphics_8h.html#a9fee0c95dea1cdd3eeb3605ece528a8a">More...</a><br /></td></tr>
+<tr class="separator:a9fee0c95dea1cdd3eeb3605ece528a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9314f832988df57045bf9790f18de6fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a9314f832988df57045bf9790f18de6fa">VGA_COL_BLUE</a>&#160;&#160;&#160;0x03</td></tr>
+<tr class="separator:a9314f832988df57045bf9790f18de6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd643373461ea57a495e8403ba41eab7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#acd643373461ea57a495e8403ba41eab7">VGA_COL_GREEN</a>&#160;&#160;&#160;0x1C</td></tr>
+<tr class="separator:acd643373461ea57a495e8403ba41eab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a790cc430619a64faf356c303f8bdd3d4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a790cc430619a64faf356c303f8bdd3d4">VGA_COL_RED</a>&#160;&#160;&#160;0xE0</td></tr>
+<tr class="separator:a790cc430619a64faf356c303f8bdd3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad592a88539ed90dd1fe6c33648a13b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a2ad592a88539ed90dd1fe6c33648a13b">VGA_COL_WHITE</a>&#160;&#160;&#160;0xFF</td></tr>
+<tr class="separator:a2ad592a88539ed90dd1fe6c33648a13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a87dbbf6639be1a1312dbe9229c4a8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a39a87dbbf6639be1a1312dbe9229c4a8">VGA_COL_CYAN</a>&#160;&#160;&#160;0x1F</td></tr>
+<tr class="separator:a39a87dbbf6639be1a1312dbe9229c4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9498759c02ab7d643c9af53a70d15ad5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a9498759c02ab7d643c9af53a70d15ad5">VGA_COL_MAGENTA</a>&#160;&#160;&#160;0xE3</td></tr>
+<tr class="separator:a9498759c02ab7d643c9af53a70d15ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76575b7810719497e2b15a6709c1b6f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a76575b7810719497e2b15a6709c1b6f0">VGA_COL_YELLOW</a>&#160;&#160;&#160;0xFC</td></tr>
+<tr class="separator:a76575b7810719497e2b15a6709c1b6f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:affd176868e09b8e99a9eada73dc45e91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#affd176868e09b8e99a9eada73dc45e91">API_draw_line</a> (int x0, int y0, int x1, int y1, int color, int weight, int reserved)</td></tr>
-<tr class="memdesc:affd176868e09b8e99a9eada73dc45e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing line.  <a href="API__simple__shapes_8cpp.html#affd176868e09b8e99a9eada73dc45e91">More...</a><br /></td></tr>
-<tr class="separator:affd176868e09b8e99a9eada73dc45e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_draw_circle</a> (int <a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int radius, int color, int filled)</td></tr>
-<tr class="memdesc:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing circle.  <a href="API__simple__shapes_8cpp.html#aafb5c2810f8084bed6b20e4c398f0fc8">More...</a><br /></td></tr>
-<tr class="separator:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af08517372a598d7c6dc455aa73dac851"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#af08517372a598d7c6dc455aa73dac851">API_register_logger_callback</a> (void(*pFunction)(const char *string, int len))</td></tr>
-<tr class="memdesc:af08517372a598d7c6dc455aa73dac851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback that can be used to transfer messages from this layer to other layers. Otherwise logger functionality it is disregarded and not used.  <a href="API__simple__shapes_8cpp.html#af08517372a598d7c6dc455aa73dac851">More...</a><br /></td></tr>
-<tr class="separator:af08517372a598d7c6dc455aa73dac851"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42b64e0565aa76e4f8074f879cb5df28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28">API_draw_rectangle</a> (int <a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int width, int height, int color, int filled, int weight, int reserved)</td></tr>
-<tr class="memdesc:a42b64e0565aa76e4f8074f879cb5df28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing rectangle on the screen.  <a href="API__simple__shapes_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28">More...</a><br /></td></tr>
-<tr class="separator:a42b64e0565aa76e4f8074f879cb5df28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#ac5d34bcb0d84db1190d4b876a3f65944">API_clearscreen</a> (int color)</td></tr>
-<tr class="memdesc:ac5d34bcb0d84db1190d4b876a3f65944"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear screen to certain color  <a href="API__simple__shapes_8cpp.html#ac5d34bcb0d84db1190d4b876a3f65944">More...</a><br /></td></tr>
-<tr class="separator:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49a806ab1f245ac4914337f6d7999439"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a49a806ab1f245ac4914337f6d7999439">API_draw_text</a> (int x_lup, int y_lup, int color, char *text, char *fontname, int fontsize, int fontstyle, int reserved)</td></tr>
-<tr class="memdesc:a49a806ab1f245ac4914337f6d7999439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing text to the screen.  <a href="API__simple__shapes_8cpp.html#a49a806ab1f245ac4914337f6d7999439">More...</a><br /></td></tr>
+<tr class="memitem:a49a806ab1f245ac4914337f6d7999439"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a49a806ab1f245ac4914337f6d7999439">API_draw_text</a> (int x_lup, int y_lup, int color, char *text, char *fontname, int fontsize, int fontstyle, int reserved)</td></tr>
+<tr class="memdesc:a49a806ab1f245ac4914337f6d7999439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing text to the screen.  <a href="API__graphics_8h.html#a49a806ab1f245ac4914337f6d7999439">More...</a><br /></td></tr>
 <tr class="separator:a49a806ab1f245ac4914337f6d7999439"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a02213bf221c6ca32d43438b58c39f516"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAPI__gfx__text.html">API_gfx_text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__simple__shapes_8cpp.html#a02213bf221c6ca32d43438b58c39f516">API_Text</a> (<a class="el" href="stm32__ub__vga__screen_8h.html#ace7f348dc91111917772d3e19f8821d3">VGA_DISPLAY_X</a>, <a class="el" href="stm32__ub__vga__screen_8h.html#a9c3e46882b624fe1887d0ec6171d771b">VGA_DISPLAY_Y</a>, log_message_callback)</td></tr>
-<tr class="separator:a02213bf221c6ca32d43438b58c39f516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affd176868e09b8e99a9eada73dc45e91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91">API_draw_line</a> (int x0, int y0, int x1, int y1, int color, int weight, int reserved)</td></tr>
+<tr class="memdesc:affd176868e09b8e99a9eada73dc45e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing line.  <a href="API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91">More...</a><br /></td></tr>
+<tr class="separator:affd176868e09b8e99a9eada73dc45e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42b64e0565aa76e4f8074f879cb5df28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">API_draw_rectangle</a> (int <a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int width, int height, int color, int filled, int weight, int reserved)</td></tr>
+<tr class="memdesc:a42b64e0565aa76e4f8074f879cb5df28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing rectangle on the screen.  <a href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">More...</a><br /></td></tr>
+<tr class="separator:a42b64e0565aa76e4f8074f879cb5df28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196d22f276d5b3398e9c43dea9ccd259"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a196d22f276d5b3398e9c43dea9ccd259">API_draw_bitmap</a> (int x_lup, int y_lup, int bm_nr)</td></tr>
+<tr class="memdesc:a196d22f276d5b3398e9c43dea9ccd259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing bitmap to the screen.  <a href="API__graphics_8h.html#a196d22f276d5b3398e9c43dea9ccd259">More...</a><br /></td></tr>
+<tr class="separator:a196d22f276d5b3398e9c43dea9ccd259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944">API_clearscreen</a> (int color)</td></tr>
+<tr class="memdesc:ac5d34bcb0d84db1190d4b876a3f65944"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear screen to certain color  <a href="API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944">More...</a><br /></td></tr>
+<tr class="separator:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_draw_circle</a> (int <a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int radius, int color, int filled)</td></tr>
+<tr class="memdesc:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing circle.  <a href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">More...</a><br /></td></tr>
+<tr class="separator:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20044ea68044596c2320e0205b0c4c9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a20044ea68044596c2320e0205b0c4c9a">API_wait</a> (int msecs)</td></tr>
+<tr class="memdesc:a20044ea68044596c2320e0205b0c4c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting to next command.  <a href="API__graphics_8h.html#a20044ea68044596c2320e0205b0c4c9a">More...</a><br /></td></tr>
+<tr class="separator:a20044ea68044596c2320e0205b0c4c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08517372a598d7c6dc455aa73dac851"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851">API_register_logger_callback</a> (void(*pFunction)(const char *string, int len))</td></tr>
+<tr class="memdesc:af08517372a598d7c6dc455aa73dac851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback that can be used to transfer messages from this layer to other layers. Otherwise logger functionality it is disregarded and not used.  <a href="API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851">More...</a><br /></td></tr>
+<tr class="separator:af08517372a598d7c6dc455aa73dac851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a">API_Init</a> (void)</td></tr>
+<tr class="memdesc:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the system with Clocks and DMA for the Screen signal generation.  <a href="API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a">More...</a><br /></td></tr>
+<tr class="separator:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a1f027784d7427e627ed2c94f0cc65b2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f027784d7427e627ed2c94f0cc65b2d">&#9670;&nbsp;</a></span>__FILE_NAME__</h2>
+<a id="a9fee0c95dea1cdd3eeb3605ece528a8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fee0c95dea1cdd3eeb3605ece528a8a">&#9670;&nbsp;</a></span>VGA_COL_BLACK</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define __FILE_NAME__&#160;&#160;&#160;&quot;Testmessage&quot;</td>
+          <td class="memname">#define VGA_COL_BLACK&#160;&#160;&#160;0x00</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supported colors for the VGA screen. </p>
+
+</div>
+</div>
+<a id="a9314f832988df57045bf9790f18de6fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9314f832988df57045bf9790f18de6fa">&#9670;&nbsp;</a></span>VGA_COL_BLUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VGA_COL_BLUE&#160;&#160;&#160;0x03</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aaead3d7f8daaa318cbbb95c3e5f3442f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaead3d7f8daaa318cbbb95c3e5f3442f">&#9670;&nbsp;</a></span>BETWEEN</h2>
+<a id="a39a87dbbf6639be1a1312dbe9229c4a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39a87dbbf6639be1a1312dbe9229c4a8">&#9670;&nbsp;</a></span>VGA_COL_CYAN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BETWEEN</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">z&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &lt; z) &amp;&amp; (<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &gt; <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>))</td>
+          <td class="memname">#define VGA_COL_CYAN&#160;&#160;&#160;0x1F</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="af4481483a683b4a7fe71f939d83c5806"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4481483a683b4a7fe71f939d83c5806">&#9670;&nbsp;</a></span>log_message</h2>
+<a id="acd643373461ea57a495e8403ba41eab7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd643373461ea57a495e8403ba41eab7">&#9670;&nbsp;</a></span>VGA_COL_GREEN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define log_message</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">message</td><td>)</td>
-          <td>&#160;&#160;&#160;(base_log_message(message, __LINE__, <a class="el" href="API__simple__shapes_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d">__FILE_NAME__</a>))</td>
+          <td class="memname">#define VGA_COL_GREEN&#160;&#160;&#160;0x1C</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ae8c38ccaa079ad648999dd3bc827aeb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8c38ccaa079ad648999dd3bc827aeb5">&#9670;&nbsp;</a></span>MAX_CIRCLE_POINTS</h2>
+<a id="a9498759c02ab7d643c9af53a70d15ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9498759c02ab7d643c9af53a70d15ad5">&#9670;&nbsp;</a></span>VGA_COL_MAGENTA</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_CIRCLE_POINTS&#160;&#160;&#160;100</td>
+          <td class="memname">#define VGA_COL_MAGENTA&#160;&#160;&#160;0xE3</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Amount of points draw while drawing a circle </dd></dl>
 
 </div>
 </div>
-<a id="a7258b939251e993229b3f14c21cb2fae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7258b939251e993229b3f14c21cb2fae">&#9670;&nbsp;</a></span>MAX_COLOR_DEPTH</h2>
+<a id="a790cc430619a64faf356c303f8bdd3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a790cc430619a64faf356c303f8bdd3d4">&#9670;&nbsp;</a></span>VGA_COL_RED</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_COLOR_DEPTH&#160;&#160;&#160;0xff</td>
+          <td class="memname">#define VGA_COL_RED&#160;&#160;&#160;0xE0</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Maximum color value supported </dd></dl>
 
 </div>
 </div>
-<a id="a438bae4f2470f16db11433e45aa21be9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a438bae4f2470f16db11433e45aa21be9">&#9670;&nbsp;</a></span>MAX_RADIUS_SIZE</h2>
+<a id="a2ad592a88539ed90dd1fe6c33648a13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ad592a88539ed90dd1fe6c33648a13b">&#9670;&nbsp;</a></span>VGA_COL_WHITE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAX_RADIUS_SIZE&#160;&#160;&#160;25</td>
+          <td class="memname">#define VGA_COL_WHITE&#160;&#160;&#160;0xFF</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section note"><dt>Note</dt><dd>Max radius the circle can be without getting gaps in circle </dd></dl>
 
 </div>
 </div>
-<a id="abd71bac047ed33c94de6fffaaa8e0456"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd71bac047ed33c94de6fffaaa8e0456">&#9670;&nbsp;</a></span>OUTSIDE</h2>
+<a id="a76575b7810719497e2b15a6709c1b6f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76575b7810719497e2b15a6709c1b6f0">&#9670;&nbsp;</a></span>VGA_COL_YELLOW</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define OUTSIDE</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">z&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td>&#160;&#160;&#160;((<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &gt; z) || (<a class="el" href="stm32__ub__vga__screen_8c.html#a4dde988b1b2adba65ae3efa69f65d960">x</a> &lt; <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>))</td>
+          <td class="memname">#define VGA_COL_YELLOW&#160;&#160;&#160;0xFC</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -296,6 +267,50 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a196d22f276d5b3398e9c43dea9ccd259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a196d22f276d5b3398e9c43dea9ccd259">&#9670;&nbsp;</a></span>API_draw_bitmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int API_draw_bitmap </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x_lup</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y_lup</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bm_nr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Drawing bitmap to the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xy_lup</td><td>upper left corner position of the bitmap </td></tr>
+    <tr><td class="paramname">bm_nr</td><td>bitmap number</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if succesfull, otherwise -1 if error occured </dd></dl>
 
 </div>
 </div>
@@ -416,6 +431,17 @@ Variables</h2></td></tr>
 <p>Drawing line. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">x01</td><td>X coordinates of the points </td></tr>
+    <tr><td class="paramname">y01</td><td>Y coordinates of the points </td></tr>
+    <tr><td class="paramname">color</td><td>Color of the line </td></tr>
+    <tr><td class="paramname">weight</td><td>Thickness of the corresponding line </td></tr>
+    <tr><td class="paramname">reserved</td><td>Currently unused. Reserved for future use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>-1 if error occured, otherwise 0 (Also a call to Logger callback is sent if ptr isn't NULL)</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">x_12</td><td>X coordinates of the points </td></tr>
     <tr><td class="paramname">y_12</td><td>Y coordinates of the points </td></tr>
     <tr><td class="paramname">color</td><td>Color of the line </td></tr>
@@ -491,6 +517,19 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Drawing rectangle on the screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xy</td><td>upper left corner of the rectangle </td></tr>
+    <tr><td class="paramname">width</td><td>width of the rectangle </td></tr>
+    <tr><td class="paramname">height</td><td>height of the rectangle </td></tr>
+    <tr><td class="paramname">color</td><td>Color of the rectangle </td></tr>
+    <tr><td class="paramname">filled</td><td>Fill in the rectangle </td></tr>
+    <tr><td class="paramname">Weight</td><td>Weight of the lines in the unfilled rectangle. Unused in filled </td></tr>
+    <tr><td class="paramname">reserved1</td><td>Currently unused. Reserved for future use.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if succesfull, otherwise -1 if error occured</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">xy</td><td>upper left corner of the rectangle </td></tr>
@@ -586,6 +625,33 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a032ff1ca9021c5198e35cfdabc4c6f1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032ff1ca9021c5198e35cfdabc4c6f1a">&#9670;&nbsp;</a></span>API_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void API_Init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the system with Clocks and DMA for the Screen signal generation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+</div>
+</div>
 <a id="af08517372a598d7c6dc455aa73dac851"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af08517372a598d7c6dc455aa73dac851">&#9670;&nbsp;</a></span>API_register_logger_callback()</h2>
 
@@ -613,38 +679,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a02213bf221c6ca32d43438b58c39f516"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a02213bf221c6ca32d43438b58c39f516">&#9670;&nbsp;</a></span>API_Text</h2>
+<a id="a20044ea68044596c2320e0205b0c4c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20044ea68044596c2320e0205b0c4c9a">&#9670;&nbsp;</a></span>API_wait()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAPI__gfx__text.html">API_gfx_text</a> API_Text(<a class="el" href="stm32__ub__vga__screen_8h.html#ace7f348dc91111917772d3e19f8821d3">VGA_DISPLAY_X</a>, <a class="el" href="stm32__ub__vga__screen_8h.html#a9c3e46882b624fe1887d0ec6171d771b">VGA_DISPLAY_Y</a>, log_message_callback) </td>
+          <td class="memname">int API_wait </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stm32__ub__vga__screen_8h.html#ace7f348dc91111917772d3e19f8821d3">VGA_DISPLAY_X</a>&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>msecs</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="stm32__ub__vga__screen_8h.html#a9c3e46882b624fe1887d0ec6171d771b">VGA_DISPLAY_Y</a>&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">log_message_callback&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Waiting to next command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msecs</td><td>milliseconds to wait</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if wait was succesful, -1 if the timer had failed to count </dd></dl>
 
 </div>
 </div>
