@@ -466,7 +466,7 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>By default, The GPIO pins are configured in input floating mode (except JTAG pins). </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
   </table>
   </dd>
 </dl>
@@ -508,7 +508,7 @@ Functions</h2></td></tr>
 <p>Initializes the GPIOx peripheral according to the specified parameters in the GPIO_InitStruct. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_InitStruct</td><td>pointer to a <a class="el" href="structGPIO__InitTypeDef.html" title="GPIO Init structure definition">GPIO_InitTypeDef</a> structure that contains the configuration information for the specified GPIO peripheral. </td></tr>
   </table>
   </dd>
@@ -557,7 +557,7 @@ Functions</h2></td></tr>
 <p>Changes the mapping of the specified pin. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_PinSource</td><td>specifies the pin for the Alternate function. This parameter can be GPIO_PinSourcex where x can be (0..15). </td></tr>
     <tr><td class="paramname">GPIO_AFSelection</td><td>selects the pin to used as Alternate function. This parameter can be one of the following values: <ul>
 <li>GPIO_AF_RTC_50Hz: Connect RTC_50Hz pin to AF0 (default after reset) </li>
@@ -646,7 +646,7 @@ Functions</h2></td></tr>
 The configuration of the locked GPIO pins can no longer be modified until the next reset. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bit to be locked. This parameter can be any combination of GPIO_Pin_x where x can be (0..15). </td></tr>
   </table>
   </dd>
@@ -679,7 +679,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Reads the specified GPIO input data port. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
   </table>
   </dd>
 </dl>
@@ -721,7 +721,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Reads the specified input port pin. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bit to read. This parameter can be GPIO_Pin_x where x can be (0..15). </td></tr>
   </table>
   </dd>
@@ -754,7 +754,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Reads the specified GPIO output data port. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
   </table>
   </dd>
 </dl>
@@ -796,7 +796,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Reads the specified output data port bit. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bit to read. This parameter can be GPIO_Pin_x where x can be (0..15). </td></tr>
   </table>
   </dd>
@@ -840,7 +840,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <dl class="section note"><dt>Note</dt><dd>This functions uses GPIOx_BSRR register to allow atomic read/modify accesses. In this way, there is no risk of an IRQ occurring between the read and the modify access. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bits to be written. This parameter can be any combination of GPIO_Pin_x where x can be (0..15). </td></tr>
   </table>
   </dd>
@@ -884,7 +884,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <dl class="section note"><dt>Note</dt><dd>This functions uses GPIOx_BSRR register to allow atomic read/modify accesses. In this way, there is no risk of an IRQ occurring between the read and the modify access. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bits to be written. This parameter can be any combination of GPIO_Pin_x where x can be (0..15). </td></tr>
   </table>
   </dd>
@@ -959,7 +959,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Toggles the specified GPIO pins.. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>Specifies the pins to be toggled. </td></tr>
   </table>
   </dd>
@@ -1002,7 +1002,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Writes data to the specified GPIO data port. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">PortVal</td><td>specifies the value to be written to the port output data register. </td></tr>
   </table>
   </dd>
@@ -1051,7 +1051,7 @@ The configuration of the locked GPIO pins can no longer be modified until the ne
 <p>Sets or clears the selected data port bit. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">GPIOx</td><td>where x can be (A..I) to select the GPIO peripheral. </td></tr>
+    <tr><td class="paramname">GPIOx</td><td>where x can be (<a class="el" href="structA.html">A</a>..I) to select the GPIO peripheral. </td></tr>
     <tr><td class="paramname">GPIO_Pin</td><td>specifies the port bit to be written. This parameter can be one of GPIO_Pin_x where x can be (0..15). </td></tr>
     <tr><td class="paramname">BitVal</td><td>specifies the value to be written to the selected bit. This parameter can be one of the BitAction enum values: <ul>
 <li>Bit_RESET: to clear the port pin </li>

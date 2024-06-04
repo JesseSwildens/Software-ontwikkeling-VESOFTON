@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['u16_7835',['u16',['../group__Exported__types.html#gace9d960e74685e2cd84b36132dbbf8aa',1,'stm32f4xx.h']]],
-  ['u32_7836',['u32',['../group__Exported__types.html#gafaa62991928fb9fb18ff0db62a040aba',1,'stm32f4xx.h']]],
-  ['u8_7837',['u8',['../group__Exported__types.html#ga92c50087ca0e64fa93fc59402c55f8ca',1,'stm32f4xx.h']]],
-  ['uc16_7838',['uc16',['../group__Exported__types.html#gabc715ea3779494b5a4f53173a397f7cb',1,'stm32f4xx.h']]],
-  ['uc32_7839',['uc32',['../group__Exported__types.html#ga5b628e6a05856ff67e535fa391a57683',1,'stm32f4xx.h']]],
-  ['uc8_7840',['uc8',['../group__Exported__types.html#gac74022c74a461f810e0d4fdc9bfea480',1,'stm32f4xx.h']]]
+  ['default_5fclock_13600',['default_clock',['../namespaceCatch_1_1Benchmark.html#a59b234a6d6a3de86d696af3bfa855373',1,'Catch::Benchmark']]],
+  ['destructable_5fobject_13601',['destructable_object',['../namespaceCatch_1_1Benchmark.html#a36b7983f8fd2f2dd3ecc4e30c61966df',1,'Catch::Benchmark']]],
+  ['difference_5ftype_13602',['difference_type',['../classCatch_1_1TextFlow_1_1AnsiSkippingString_1_1const__iterator.html#aa4a066317341da75aa29a23fbdf1ac9b',1,'Catch::TextFlow::AnsiSkippingString::const_iterator::difference_type()'],['../classCatch_1_1TextFlow_1_1Column_1_1const__iterator.html#a3876bdcaa4185576671677e27eeb8a7c',1,'Catch::TextFlow::Column::const_iterator::difference_type()'],['../classCatch_1_1TextFlow_1_1Columns_1_1iterator.html#a2bcfcaf20b25fecd2120659d0f1137d4',1,'Catch::TextFlow::Columns::iterator::difference_type()'],['../classhas__different__begin__end__types_1_1iterator.html#abe64c97b784b7929f751e9b8ad055a7c',1,'has_different_begin_end_types::iterator::difference_type()'],['../classwith__mocked__iterator__access_1_1basic__iterator.html#a8a8cbcbdd5e96c234e79363ed6663b2e',1,'with_mocked_iterator_access::basic_iterator::difference_type()'],['../structCustomAllocator.html#afcadccbd862e794f02de44603ca38b02',1,'CustomAllocator::difference_type()'],['../classclara_1_1TextFlow_1_1Column_1_1iterator.html#afaec6a5acc8048643fedc731cf6b5484',1,'clara::TextFlow::Column::iterator::difference_type()'],['../classclara_1_1TextFlow_1_1Columns_1_1iterator.html#a5e97c0a449a309354e92dd3380b39689',1,'clara::TextFlow::Columns::iterator::difference_type()']]],
+  ['distancetype_13603',['DistanceType',['../namespaceCatch_1_1Detail.html#a61de43d49ee0d99db6bc911d12ff44da',1,'Catch::Detail']]]
 ];
