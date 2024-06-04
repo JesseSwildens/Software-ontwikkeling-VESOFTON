@@ -1,7 +1,7 @@
 #include "BL_callbacks.h"
 #include "API_simple_shapes.h"
+#include "BL_parser.h"
 #include "CHAL.h"
-#include "LL_parser.h"
 #include "bitmap.h"
 #include "bitmap_calib_large.h"
 #include "bitmap_dvd.h"
@@ -17,6 +17,10 @@
 #define SYSTICK_LOAD (SystemCoreClock / 1000000U)
 #define SYSTICK_DELAY_CALIB (SYSTICK_LOAD >> 1)
 
+/**
+ * @brief Delay in us function using systick
+ *
+ */
 #define DELAY_US(us)                                                \
     do                                                              \
     {                                                               \
@@ -26,6 +30,10 @@
             ;                                                       \
     } while (0)
 
+/**
+ * @brief Delay in ms function using systick
+ *
+ */
 #define DELAY_MS(ms)                                \
     do                                              \
     {                                               \
@@ -39,22 +47,40 @@
 #define ECHO_REPEATS
 
 using namespace std;
-// Define possible argument types
+
 using ArgType = std::variant<int, std::string>;
 extern std::deque<std::string> previous_commands_q;
 
+/**
+ * @brief template for checking the layout of the command
+ *
+ */
 struct CommandTemplate
 {
     std::string name;
     std::vector<std::string> expectedTypes;
 };
 
+/**
+ * @brief checks if sting is number
+ *
+ * @param s string to check
+ *
+ * @return 1 if number, 0 if not
+ *
+ */
 bool isNumber(const std::string& s)
 {
     return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
 }
 
-// Helper function to determine the type of an argument
+/**
+ * @brief Helper function to determine the type of an argument
+ *
+ * @param arg string to check
+ *
+ * @return argtype
+ */
 ArgType getArgType(const std::string& arg)
 {
     if (isNumber(arg))
@@ -67,6 +93,14 @@ ArgType getArgType(const std::string& arg)
     }
 }
 
+/**
+ * @brief function to check the order and length of an incomming command
+ *
+ * @param tokens vector<strings> of tokens of an incomming command
+ * @param cmdTemplate a template to check against for order of argtypes
+ *
+ * @return true if length and order matches the template
+ */
 bool validateArguments(const std::vector<std::string>& tokens, const CommandTemplate& cmdTemplate)
 {
     if (tokens.size() != cmdTemplate.expectedTypes.size() + 1)
@@ -86,11 +120,27 @@ bool validateArguments(const std::vector<std::string>& tokens, const CommandTemp
     return true;
 }
 
+/**
+ * @brief prints message + error origin
+ *
+ * @param str print string
+ * @param line line origin of call
+ * @param filename filename origin of call
+ *
+ * @return void
+ */
 void BL_base_log_message(std::string str, int line, std::string filename)
 {
     CHAL_UART2_SendString("[" + filename + ":" + std::to_string(line) + "] " + str + "\n");
 }
 
+/**
+ * @brief takes the color command string, processes it and returns the color integer associated with that color
+ *
+ * @param color check for valid colors
+ *
+ * @return if valid, return a color code, else return -1
+ */
 auto BL_get_valid_color(string color)
 {
     // might not be beautifull but it is O(1) averge so it is really fast.
@@ -117,6 +167,13 @@ auto BL_get_valid_color(string color)
     }
 }
 
+/**
+ * @brief function for clearing the screen
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_clearscherm(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -135,6 +192,13 @@ int BL_clearscherm(vector<string> tokens)
     return 0;
 }
 
+/**
+ * @brief function for drawing line
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_lijn(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -153,6 +217,13 @@ int BL_lijn(vector<string> tokens)
     return 0;
 }
 
+/**
+ * @brief function for drawing square
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_rechthoek(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -171,6 +242,13 @@ int BL_rechthoek(vector<string> tokens)
     return 0;
 }
 
+/**
+ * @brief function for drawing circle
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_cirkel(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -189,6 +267,13 @@ int BL_cirkel(vector<string> tokens)
     return 0;
 }
 
+/**
+ * @brief function for drawing bitmap
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_bitmap(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -209,7 +294,13 @@ int BL_bitmap(vector<string> tokens)
     return 0;
 }
 
-// it now also repeats errors :), every error should exclude from queue
+/**
+ * @brief function for repeating last command (MAX 50 commands)
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_herhaal(std::vector<std::string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -259,6 +350,13 @@ int BL_herhaal(std::vector<std::string> tokens)
     return 0;
 }
 
+/**
+ * @brief function for waiting
+ *
+ * @param  tokens vector<strings> of tokens of an incomming command
+ *
+ * @return if invalid arguments, return -1 else return 0
+ */
 int BL_wacht(vector<string> tokens)
 {
 #ifdef BL_DEBUG_COMMANDS
@@ -281,6 +379,13 @@ int BL_wacht(vector<string> tokens)
     return 0;
 }
 
+/**
+ * @brief helper function for retrieving valid bitmap
+ *
+ * @param bitmap integer associated with the desired bitmap
+ *
+ * @return void
+ */
 void* BL_get_valid_bitmap(int bitmap)
 {
     void* bitmaps[] = {
@@ -296,16 +401,4 @@ void* BL_get_valid_bitmap(int bitmap)
     }
 
     return bitmaps[bitmap];
-}
-
-int BL_istype(string s)
-{
-    for (int i = 0; i < (int)s.length(); i++)
-    {
-        if (isdigit(s[i]))
-        {
-            return 1;
-        }
-    }
-    return 0;
 }
