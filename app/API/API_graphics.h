@@ -1,5 +1,5 @@
-#ifndef __API_SIMPLESHAPES_H__
-#define __API_SIMPLESHAPES_H__
+#ifndef API_GRAPHICS_H
+#define API_GRAPHICS_H
 
 #ifdef __cplusplus
 extern "C"
@@ -96,8 +96,29 @@ extern "C"
      */
     int API_register_logger_callback(void (*pFunction)(const char* string, int len));
 
+    /**
+     * @brief Initialize the system with Clocks and DMA for the Screen signal generation
+     *
+     * @param None
+     *
+     * @return None
+     */
+    void API_Init(void);
+
+    /**
+     * @brief Supported colors for the VGA screen
+     */
+#define VGA_COL_BLACK 0x00
+#define VGA_COL_BLUE 0x03
+#define VGA_COL_GREEN 0x1C
+#define VGA_COL_RED 0xE0
+#define VGA_COL_WHITE 0xFF
+#define VGA_COL_CYAN 0x1F
+#define VGA_COL_MAGENTA 0xE3
+#define VGA_COL_YELLOW 0xFC
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif // API_GRAPHICS_H

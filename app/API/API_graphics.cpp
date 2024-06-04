@@ -1,9 +1,18 @@
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 
 #include "API_fonts.h"
 #include "API_gfx_text.h"
-#include "stm32_ub_vga_screen.h"
 
+#include "API_fonts.h"
+#include "API_gfx_text.h"
+
+#if __cplusplus
+extern "C"
+{
+#include "stm32_ub_vga_screen.h"
+#include "stm32f4xx.h"
+}
+#endif
 #include <math.h>
 #include <string>
 
@@ -374,4 +383,18 @@ int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, i
 static void log_message_callback(std::string msg)
 {
     log_message(msg);
+}
+
+/**
+ * @brief Initialize the system with Clocks and DMA for the Screen signal generation
+ *
+ * @param None
+ *
+ * @return None
+ */
+void API_Init(void)
+{
+    SystemInit(); // System speed to 168MHz
+
+    UB_VGA_Screen_Init(); // Init VGA-Screen
 }

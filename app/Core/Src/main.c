@@ -11,13 +11,9 @@
 //--------------------------------------------------------------
 
 #include "main.h"
-#include "bitmap.h"
-#include "bitmap_calib_large.h"
-#include "bitmap_dvd.h"
-#include "stm32_ub_vga_screen.h"
 #include <math.h>
 
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 
 #define BUFFER_SIZE 128
 // #define DEBUG_UART
@@ -27,9 +23,7 @@ uint8_t eventflagUART = 0;
 
 int main(void)
 {
-    SystemInit(); // System speed to 168MHz
-
-    UB_VGA_Screen_Init(); // Init VGA-Screen
+    API_Init();
 
     CHAL_init_uart();
 
@@ -38,7 +32,6 @@ int main(void)
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
     API_clearscreen(VGA_COL_BLUE);
-    // UB_VGA_DrawBitmapWithBackground(VGA_COL_GREEN, (unsigned char*)bitmap_calib_large, 240, 240, 0, 0);
 
     API_draw_circle(100, 200, 20, VGA_COL_YELLOW, 0);
     API_draw_circle(150, 200, 20, VGA_COL_CYAN, 1);

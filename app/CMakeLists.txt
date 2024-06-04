@@ -7,26 +7,15 @@ cmake_minimum_required(VERSION 3.22)
 # User is free to modify the file as much as necessary
 #
 
-# Setup compiler settings
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_EXTENSIONS ON)
-
-set(CMAKE_CXX_STANDARD 20)
-
-# Define the build type
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug")
-endif()
+# Set project build settings
+include(cmake/build-settings.cmake)
 
 # Set the project name
-set(CMAKE_PROJECT_NAME STMtest)
+set(CMAKE_PROJECT_NAME SoftwareOntwikkelingGroep8)
+set(CMAKE_LIB_NAME ${CMAKE_PROJECT_NAME}Lib)
 
 # Include toolchain file
 include("cmake/gcc-arm-none-eabi.cmake")
-
-# Enable compile command to ease indexing with e.g. clangd
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 # Enable CMake support for C++, C and ASM languages
 enable_language(CXX C ASM)
@@ -38,52 +27,59 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
 
-# Link directories setup
-target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined library search paths
-)
+# Create a library with which can be linked
+add_library(${CMAKE_LIB_NAME} STATIC)
 
-target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE 
-	USE_HAL_DRIVER 
-	STM32F407xx
+target_compile_definitions(${CMAKE_LIB_NAME} PRIVATE 
+    USE_HAL_DRIVER
+    STM32F407xx
     $<$<CONFIG:Debug>:DEBUG>
 )
 
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
-    ${CMAKE_SOURCE_DIR}/API/API_simple_shapes.cpp
-    ${CMAKE_SOURCE_DIR}/API/API_gfx_text.cpp
-    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/misc.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32_ub_vga_screen.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_dma.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_gpio.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_rcc.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32f4xx_tim.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32f4xx.c
     ${CMAKE_SOURCE_DIR}/Core/Src/CHAL.cpp
     ${CMAKE_SOURCE_DIR}/Core/Src/ASM_CHAL.s
-    ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32f407vgtx.s
+)
+
+target_sources(${CMAKE_LIB_NAME} PRIVATE
+    ${CMAKE_SOURCE_DIR}/API/text/API_gfx_text.cpp
+    ${CMAKE_SOURCE_DIR}/API/system/Startup/startup_stm32f407vgtx.s
+    ${CMAKE_SOURCE_DIR}/API/system/misc.c
+    ${CMAKE_SOURCE_DIR}/API/system/stm32_ub_vga_screen.c
+    ${CMAKE_SOURCE_DIR}/API/system/stm32f4xx_dma.c
+    ${CMAKE_SOURCE_DIR}/API/system/stm32f4xx_gpio.c
+    ${CMAKE_SOURCE_DIR}/API/system/stm32f4xx_rcc.c
+    ${CMAKE_SOURCE_DIR}/API/system/stm32f4xx_tim.c
+    ${CMAKE_SOURCE_DIR}/API/system/system_stm32f4xx.c
+)
+
+target_sources(${CMAKE_LIB_NAME} PUBLIC
+    ${CMAKE_SOURCE_DIR}/API/system/syscalls.c
+    ${CMAKE_SOURCE_DIR}/API/system/sysmem.c
+    ${CMAKE_SOURCE_DIR}/API/API_graphics.cpp
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/Core/Inc
-    ${CMAKE_SOURCE_DIR}/API/fonts
+    ${CMAKE_SOURCE_DIR}/API/system
     ${CMAKE_SOURCE_DIR}/API
 )
 
-# Add project symbols (macros)
-target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # Add user defined symbols
+target_include_directories(${CMAKE_LIB_NAME} PUBLIC
+    ${CMAKE_SOURCE_DIR}/API/fonts
+    ${CMAKE_SOURCE_DIR}/API/system
+    ${CMAKE_SOURCE_DIR}/API/text
+    ${CMAKE_SOURCE_DIR}/API/bitmaps
+    ${CMAKE_SOURCE_DIR}/API
 )
 
 # Add linked libraries
-target_link_libraries(${CMAKE_PROJECT_NAME}
-    # Add user defined libraries
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
+    ${CMAKE_LIB_NAME}
 )
 
 
@@ -94,6 +90,8 @@ if (CPPCHECK_EXE)
     message("System name: " ${CMAKE_HOST_SYSTEM_NAME})
 
     get_target_property(SOURCES_LIST ${CMAKE_PROJECT_NAME} SOURCES)
+    get_target_property(LIB_SOURCES_LIST ${CMAKE_LIB_NAME} SOURCES)
+    list(APPEND SOURCES_LIST LIB_SOURCES_LIST)
 
     list(FILTER SOURCES_LIST INCLUDE REGEX "^.\.cpp|\.c$")
 

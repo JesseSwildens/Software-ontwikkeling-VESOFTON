@@ -5,12 +5,13 @@
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_rcc.h"
 
+#include <stdint.h>
+
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 //  peripheral + AHB1 address + DMA1 base + stream 5 base
 #endif
 
 extern uint8_t in_inactive_region_flag;
-extern VGA_t VGA;
 
 #define TIMING_PADDING 10
 

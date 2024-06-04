@@ -1,6 +1,6 @@
 #include "API_gfx_text.h"
 
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 
 #include <iostream>
 
