@@ -33,7 +33,7 @@ class Stream:
         # reopen the port at a higher baudrate
         self.ser.ser.close()
         # zet je baudrate hier MIRKO
-        self.ser.ser.baudrate = 115200
+        self.ser.ser.baudrate = 2000000
         self.ser.ser.open()
 
     def disable(self) -> None:
@@ -86,14 +86,14 @@ class Stream:
             return
 
         _, frame = self.vid.read()
-        compressed_frame = self.bmap.convert_frame_bitmap(frame, 64)
+        compressed_frame = self.bmap.convert_frame_bitmap(frame, 200)
         encoded_frame = self.rle.encode_img(compressed_frame)
 
 
         if self.is_ready:
             start = time.time()
-            for data in encoded_frame:
-                print(data)
+            for idx, data in enumerate(encoded_frame):
+                # print([hex(x) for x in data])
                 self.ser.ser.write(bytes(data))
             self.frame_counter += 1
             self.is_ready = False

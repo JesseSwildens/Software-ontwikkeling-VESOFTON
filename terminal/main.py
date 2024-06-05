@@ -216,7 +216,7 @@ while dpg.is_dearpygui_running():
 
     # Streaming
     temp += 1
-    if (temp % 100) == 0:
+    if (temp % 5) == 0:
         strm.is_ready = True
     strm.run()
 
