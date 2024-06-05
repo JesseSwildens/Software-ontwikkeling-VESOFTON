@@ -13,6 +13,8 @@ extern "C"
 #include "arrow_left.h"
 #include "arrow_right.h"
 #include "arrow_up.h"
+#include "bitmap.h"
+#include "bitmap_dvd.h"
 #include "happy_smiley.h"
 #include "sad_smiley.h"
 
@@ -67,8 +69,8 @@ uint64_t Tick;
 #ifdef __cplusplus
 extern "C"
 {
-    extern unsigned char bitmap_calib[];
-    extern unsigned char bitmap_dvd[];
+    extern const unsigned char bitmap_calib[];
+    extern const unsigned char bitmap_dvd[];
     extern const unsigned char bitmap_arrow_down[];
     extern const unsigned char bitmap_arrow_up[];
     extern const unsigned char bitmap_arrow_left[];
