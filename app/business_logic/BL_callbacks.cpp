@@ -456,17 +456,15 @@ int BL_wacht(vector<string> tokens)
 #ifdef BL_DEBUG_COMMANDS
     log_message("wacht command");
 #endif
-    CommandTemplate cirkelTemplate = { "wacht", { "0" } };
+    CommandTemplate wachtTemplate = { "wacht", { "0" } };
 
-    if (!validateArguments(tokens, cirkelTemplate))
+    if (!validateArguments(tokens, wachtTemplate))
     {
         log_message("error: invalid arguments for cirkel command");
         return -1;
     }
-    // use systick delay here
-    // DELAY_MS(stoi(tokens[1]));
 
-    return 0;
+    return API_wait(std::stoi(tokens[1]));
 }
 
 /**
