@@ -18,10 +18,9 @@
 
 #include <math.h>
 
-#define BUFFER_SIZE 4096
 // #define DEBUG_UART
 
-uint8_t rx_buff[BUFFER_SIZE] __attribute__((section(".dma_mem")));
+extern uint8_t rx_buff[BUFFER_SIZE];
 uint8_t eventflagUART = 0;
 
 int main(void)

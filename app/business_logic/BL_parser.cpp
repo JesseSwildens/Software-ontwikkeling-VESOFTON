@@ -12,13 +12,11 @@
 #include <queue>
 #include <sstream>
 
-#define BUFFER_SIZE 25000
-
 using namespace std;
 
 extern std::queue<std::string> incoming_commands_q;
 std::deque<std::string> previous_commands_q;
-uint8_t rx_buff[BUFFER_SIZE];
+uint8_t rx_buff[BUFFER_SIZE] __attribute__((section(".dma_mem")));
 extern uint8_t tempMainBuffer[BUFFER_SIZE];
 extern uint8_t eventflagUART;
 float test = 0;

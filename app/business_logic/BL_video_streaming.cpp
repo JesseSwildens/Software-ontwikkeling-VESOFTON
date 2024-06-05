@@ -1,5 +1,5 @@
 #include "BL_video_streaming.h"
-#include "API_simple_shapes.h"
+#include "API_graphics.h"
 #include "BL_callbacks.h"
 #include "CHAL.h"
 #include <bits/stdc++.h>

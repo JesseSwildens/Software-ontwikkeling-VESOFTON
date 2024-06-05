@@ -9,6 +9,8 @@
 
 #define STORAGE_SIZE_REPEAT_COMMANDS 50
 
+#define BUFFER_SIZE 45000
+
 /**
  * @note Enum for available commands
  */
