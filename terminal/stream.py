@@ -23,7 +23,7 @@ class Stream:
         return self.is_streaming
 
     def enable(self, baudrate=2000000) -> None:
-        if baudrate is None:
+        if baudrate is None or baudrate == '':
             baudrate = 2000000
 
         self.is_streaming = True
@@ -40,13 +40,9 @@ class Stream:
         self.ser.ser.open()
 
     def disable(self) -> None:
-        self.ser.send('slowdrive')
-        cv.destroyWindow('Stream')
         self.is_streaming = False
-
-        self.ser.ser.close()
-        self.ser.ser.baudrate = 115200
-        self.ser.ser.open()
+        self.vid.release()
+        time.sleep(2)
 
     def add_verbose(self, frame, compressed):
         text = str(round((1 - self.rle.get_compression()) * 100, 2))
@@ -93,13 +89,10 @@ class Stream:
         encoded_frame = self.rle.encode_img(compressed_frame)
 
         if self.is_ready:
-            start = time.time()
             for idx, data in enumerate(encoded_frame):
-                # print([hex(x) for x in data])
                 self.ser.ser.write(bytes(data))
             self.frame_counter += 1
             self.is_ready = False
-            print(time.time() - start)
 
         frame = self.add_verbose(frame, compressed_frame)
         cv.imshow('Stream', frame)
