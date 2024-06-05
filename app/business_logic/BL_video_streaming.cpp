@@ -8,9 +8,9 @@
 #include <sstream>
 #include <string>
 
-#define BAUDRATE_VIDEO 912600
-#define H_RES_VIDEO 64
-#define V_RES_VIDEO 48
+#define BAUDRATE_VIDEO 2000000
+#define H_RES_VIDEO 128
+#define V_RES_VIDEO 96
 
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))

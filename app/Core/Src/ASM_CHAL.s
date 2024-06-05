@@ -64,7 +64,7 @@ ASMCHAL_GPIO_UART_init_ASM:
 ASMCHAL_event_call_back:
     push {r4-r11, lr}
     // Copy data from rx_buff to tempMainBuffer
-    mov r5, #4096                 // get buffer length
+    mov r5, #16384                 // get buffer length
     ldr r0, =tempMainBuffer    // Load address of tempMainBuffer
     ldr r1, =offset            // Load address of offset
     ldr r1, [r1]               // Load offset value into R1
