@@ -18,12 +18,14 @@
 #define BUFFER_SIZE 128
 // #define DEBUG_UART
 
-uint8_t rx_buff[BUFFER_SIZE];
+uint8_t rx_buff[BUFFER_SIZE] __attribute__((section(".dma_mem")));
 uint8_t eventflagUART = 0;
 
 int main(void)
 {
     API_Init();
+
+    API_InitTick();
 
     CHAL_init_uart();
 
@@ -69,4 +71,12 @@ void USART2_IRQHandler(void)
 {
     CHAL_clear_idledetect();
     eventflagUART = 1;
+}
+
+/**
+ * @brief Systick interrupt handler
+ */
+void SysTick_Handler(void)
+{
+    Tick++;
 }

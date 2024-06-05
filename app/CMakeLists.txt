@@ -17,8 +17,10 @@ set(CMAKE_LIB_NAME ${CMAKE_PROJECT_NAME}Lib)
 # Include toolchain file
 if(NOT CMAKE_UNIT_TEST)
     include("cmake/gcc-arm-none-eabi.cmake")
+    message("Build version: MCU")
 else()
     include("cmake/gcc.cmake")
+    message("Build version: Unit test")
 endif()
 
 # Enable CMake support for C++, C and ASM languages
@@ -36,14 +38,14 @@ endif()
 # Create a library with which can be linked
 add_library(${CMAKE_LIB_NAME} STATIC)
 
-target_compile_definitions(${CMAKE_LIB_NAME} PRIVATE 
-    USE_HAL_DRIVER
-    STM32F407xx
-    $<$<CONFIG:Debug>:DEBUG>
-)
-
 # Add sources to executable
 if(NOT CMAKE_UNIT_TEST)
+    target_compile_definitions(${CMAKE_LIB_NAME} PRIVATE 
+        USE_HAL_DRIVER
+        STM32F407xx
+        $<$<CONFIG:Debug>:DEBUG>
+    )
+
     target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/business_logic/business_logic.cpp
         ${CMAKE_SOURCE_DIR}/Core/Src/main.c
@@ -69,6 +71,11 @@ if(NOT CMAKE_UNIT_TEST)
         ${CMAKE_SOURCE_DIR}/API/API_graphics.cpp
     )
 else()
+    target_compile_definitions(${CMAKE_LIB_NAME} PRIVATE 
+        CMAKE_UNIT_TEST
+        $<$<CONFIG:Debug>:DEBUG>
+    )
+
     target_sources(${CMAKE_LIB_NAME} PUBLIC
         ${CMAKE_SOURCE_DIR}/API/text/API_gfx_text.cpp
         ${CMAKE_SOURCE_DIR}/API/API_graphics.cpp
