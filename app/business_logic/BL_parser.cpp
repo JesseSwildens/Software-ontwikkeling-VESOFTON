@@ -94,10 +94,19 @@ char BL_main_parser()
         {
 
             std::string commandString = incoming_commands_q.front();
-            if (BL_parse_single_string(commandString) == -1)
+            int BL_parse_return = BL_parse_single_string(commandString);
+            if (BL_parse_return == -1)
             {
                 incoming_commands_q.pop();
                 continue;
+            }
+            if (BL_parse_return == 2)
+            {
+                CHAL_disable_DMA(DMA1_Stream5);
+                DMA1_Stream5->NDTR = BUFFER_SIZE;
+                CHAL_enable_DMA(DMA1_Stream5);
+                memset(rx_buff, 0, BUFFER_SIZE);
+                break;
             }
 
             // logic for the repeat function

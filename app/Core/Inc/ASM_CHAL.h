@@ -8,7 +8,6 @@ typedef enum
 } ASMCHAL_StatusTypeDef;
 
 extern ASMCHAL_StatusTypeDef ASMCHAL_GPIO_UART_init_ASM(void);
-// extern char ASMCHAL_event_call_back(unsigned char* rx_buff, unsigned int bufferlength);
 
 #ifdef __cplusplus
 extern "C"
