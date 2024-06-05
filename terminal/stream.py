@@ -31,7 +31,7 @@ class Stream:
         # send a command to enable streaming on the STM
         self.ser.send('hyperdrive')
         # wait for the command to be transmitted, maybe wait for a response
-        time.sleep(0.01)
+        time.sleep(0.1)
 
         # reopen the port at a higher baudrate
         self.ser.ser.close()
