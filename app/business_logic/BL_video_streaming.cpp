@@ -9,8 +9,8 @@
 #include <string>
 
 #define BAUDRATE_VIDEO 2000000
-#define H_RES_VIDEO 128
-#define V_RES_VIDEO 96
+#define H_RES_VIDEO 200
+#define V_RES_VIDEO 150
 
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
@@ -24,6 +24,7 @@ int v_pos = 0;
 int BL_hyperdrive()
 {
 
+    API_clearscreen(VGA_COL_BLACK);
     CHAL_uart_config(BAUDRATE_VIDEO);
 
     RCC_ClocksTypeDef clocks;
@@ -65,7 +66,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
                 count = tempMainBuffer[cnt + frame_pointer];
                 for (int j = 0; j < count; j++)
                 {
-                    BL_set_pixel(pixel_count, v_pos, tempMainBuffer[cnt + 1 + frame_pointer]);
+                    BL_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[cnt + 1 + frame_pointer]);
                     pixel_count++;
                 }
                 cnt += 2;
@@ -85,7 +86,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
             int pixel_count = 0;
             for (int i = 0; i < H_RES_VIDEO; i++)
             {
-                BL_set_pixel(pixel_count, v_pos, tempMainBuffer[i + frame_pointer + 1]);
+                BL_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[i + frame_pointer + 1]);
                 pixel_count++;
             }
             frame_pointer += len + 2;

@@ -11,7 +11,7 @@
 #include <queue>
 #include <sstream>
 
-#define BUFFER_SIZE 16384
+#define BUFFER_SIZE 25000
 
 using namespace std;
 
