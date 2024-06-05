@@ -8,6 +8,9 @@ extern "C"
 {
 #endif
 
+    /**
+     * @note struct containing size and position of a bitmap
+     */
     typedef struct
     {
         int x; // x position top left
@@ -69,6 +72,17 @@ extern "C"
      */
     int API_draw_bitmap(int x_lup, int y_lup, int bm_nr);
 
+    /**
+     * @brief draws a bitmap
+     *
+     * @param bitmap pointer to the bitmap array
+     * @param bitmapWidth width of the bitmap
+     * @param bitmapHeight height of the bitmap
+     * @param x_offset x position of the top left corner of the bitmap
+     * @param y_offset y position of the top left corner of the bitmap
+     *
+     * @return bitmap position struct
+     */
     bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
 
     /**

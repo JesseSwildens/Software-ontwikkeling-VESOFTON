@@ -9,6 +9,9 @@
 
 #define STORAGE_SIZE_REPEAT_COMMANDS 50
 
+/**
+ * @note Enum for available commands
+ */
 enum commands
 {
     nocommand = 0,

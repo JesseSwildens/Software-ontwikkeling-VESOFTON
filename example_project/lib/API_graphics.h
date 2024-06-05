@@ -6,6 +6,9 @@ extern "C"
 {
 #endif
 
+    /**
+     * @note struct containing size and position of a bitmap
+     */
     typedef struct
     {
         int x; // x position top left

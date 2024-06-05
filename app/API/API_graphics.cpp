@@ -462,7 +462,19 @@ int API_wait(int msecs)
 
     return 0;
 }
-// Needs to be moved to API layer
+
+/**
+ * @brief draws a bitmap and changes background
+ *
+ * @param bgColor background color
+ * @param bitmap pointer to the bitmap array
+ * @param bitmapWidth width of the bitmap
+ * @param bitmapHeight height of the bitmap
+ * @param x_offset x position of the top left corner of the bitmap
+ * @param y_offset y position of the top left corner of the bitmap
+ *
+ * @return bitmap position struct
+ */
 bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
 {
     // Fill the entire screen with the background color
@@ -470,7 +482,17 @@ bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bi
     return API_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
 }
 
-// Needs to be moved to API layer
+/**
+ * @brief draws a bitmap
+ *
+ * @param bitmap pointer to the bitmap array
+ * @param bitmapWidth width of the bitmap
+ * @param bitmapHeight height of the bitmap
+ * @param x_offset x position of the top left corner of the bitmap
+ * @param y_offset y position of the top left corner of the bitmap
+ *
+ * @return bitmap position struct
+ */
 bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
 {
     uint16_t xp = 0, yp = 0;
@@ -496,7 +518,13 @@ bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitma
     return _bitmap;
 }
 
-// Needs to be moved to API layer
+/**
+ * @brief Clears a bitmap from the screen
+ *
+ * @param bitmap struct containing bitmap positions and size
+ *
+ * @return none
+ */
 void clear_previous_bitmap(bitmap_position* bitmap)
 {
     uint16_t xp, yp;
@@ -510,7 +538,13 @@ void clear_previous_bitmap(bitmap_position* bitmap)
     }
 }
 
-// Needs to be moved to API layer
+/**
+ * @brief Function to draw the DVD logo on the screen and make it move
+ *
+ * @param bitmap pointer to the bitmap array
+ *
+ * @return none
+ */
 void API_VGA_DVD_Screensaver(unsigned char* bitmap)
 {
     uint16_t bmp_width = 32;
