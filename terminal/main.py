@@ -156,7 +156,7 @@ with dpg.viewport_menu_bar():
                 dpg.set_item_user_data(f'{port.device}', ser)
         with dpg.menu(label='Hyperdrive Baudrate'):
             dpg.add_combo(
-                items=('115200', '128000', '921600'),
+                items=('115200', '128000', '921600', '2000000'),
                 tag='_baudrate_selector',
                 width=100,
             )

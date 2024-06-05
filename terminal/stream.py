@@ -22,9 +22,9 @@ class Stream:
     def is_enabled(self) -> bool:
         return self.is_streaming
 
-    def enable(self, baudrate=115200) -> None:
+    def enable(self, baudrate=2000000) -> None:
         if baudrate is None:
-            baudrate = 115200
+            baudrate = 2000000
 
         self.is_streaming = True
 
