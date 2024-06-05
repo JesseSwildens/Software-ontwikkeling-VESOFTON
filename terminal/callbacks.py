@@ -7,6 +7,7 @@ from display import add_display, clear_display
 from serial_handler import SerialHandler
 import stream
 
+
 def find_current_string():
     for idx in range(100):
         color = dpg.get_item_configuration(f'_import_{idx}')['color']
@@ -218,12 +219,14 @@ def ok_callback(_sender, app_data, _user_data):
     else:
         warning_popup()
 
-def open_stream_callback(_sender, _appdata, strm : stream.Stream):
+
+def open_stream_callback(_sender, _appdata, strm: stream.Stream):
     dpg.configure_item('_menu_open_stream', show=False)
     dpg.configure_item('_menu_close_stream', show=True)
-    strm.enable()
+    strm.enable(dpg.get_value('_baudrate_selector'))
 
-def close_stream_callback(_sender, _appdata, strm : stream.Stream):
+
+def close_stream_callback(_sender, _appdata, strm: stream.Stream):
     dpg.configure_item('_menu_open_stream', show=True)
     dpg.configure_item('_menu_close_stream', show=False)
     strm.disable()

@@ -22,7 +22,10 @@ class Stream:
     def is_enabled(self) -> bool:
         return self.is_streaming
 
-    def enable(self) -> None:
+    def enable(self, baudrate=115200) -> None:
+        if baudrate is None:
+            baudrate = 115200
+
         self.is_streaming = True
 
         # send a command to enable streaming on the STM
@@ -33,7 +36,7 @@ class Stream:
         # reopen the port at a higher baudrate
         self.ser.ser.close()
         # zet je baudrate hier MIRKO
-        self.ser.ser.baudrate = 2000000
+        self.ser.ser.baudrate = baudrate
         self.ser.ser.open()
 
     def disable(self) -> None:
@@ -88,7 +91,6 @@ class Stream:
         _, frame = self.vid.read()
         compressed_frame = self.bmap.convert_frame_bitmap(frame, 200)
         encoded_frame = self.rle.encode_img(compressed_frame)
-
 
         if self.is_ready:
             start = time.time()

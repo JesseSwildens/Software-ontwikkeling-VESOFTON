@@ -154,6 +154,12 @@ with dpg.viewport_menu_bar():
                     callback=callbacks.menu_callback,
                 )
                 dpg.set_item_user_data(f'{port.device}', ser)
+        with dpg.menu(label='Hyperdrive Baudrate'):
+            dpg.add_combo(
+                items=('115200', '128000', '921600'),
+                tag='_baudrate_selector',
+                width=100,
+            )
         with dpg.menu(label='Interval'):
             dpg.add_slider_int(
                 label='ms',
@@ -219,7 +225,6 @@ while dpg.is_dearpygui_running():
     if (temp % 5) == 0:
         strm.is_ready = True
     strm.run()
-
 
     dpg.render_dearpygui_frame()
 
