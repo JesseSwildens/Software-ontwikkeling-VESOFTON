@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 
-#define BAUDRATE_VIDEO 912600
+#define BAUDRATE_VIDEO 921600
 #define H_RES_VIDEO 64
 #define V_RES_VIDEO 48
 
