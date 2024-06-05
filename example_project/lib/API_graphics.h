@@ -7,6 +7,22 @@ extern "C"
 #endif
 
     /**
+     * @note struct containing size and position of a bitmap
+     */
+    typedef struct
+    {
+        int x; // x position top left
+        int y; // y position top left
+        int width;
+        int height;
+    } bitmap_position;
+
+    bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
+    bitmap_position API_VGA_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset);
+    void clear_previous_bitmap(bitmap_position* bitmap);
+    void API_VGA_DVD_Screensaver(unsigned char* bitmap);
+
+    /**
      * @brief Drawing text to the screen
      *
      * @param xy_lup upper left corner of the text
@@ -65,6 +81,13 @@ extern "C"
      * @param color color that is used to set the background and overwrite all previous images on the screen
      */
     int API_clearscreen(int color);
+
+    /**
+     * @brief fill screen to certain color
+     *
+     * @param color color that is used to set the background and overwrite all previous images on the screen
+     */
+    void API_VGA_FillScreen(char color);
 
     /**
      * @brief Drawing circle

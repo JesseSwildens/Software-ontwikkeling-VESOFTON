@@ -9,6 +9,7 @@ foreach (TEST ${TestSources})
     get_filename_component(TestName ${TEST} NAME_WE)
 
     add_executable (${TestName} main.cpp ${TEST})
+    target_include_directories(${TestName} PRIVATE ${CMAKE_SOURCE_DIR}/API/bitmaps)
 
     target_compile_definitions(${TestName} PRIVATE 
         CMAKE_UNIT_TEST

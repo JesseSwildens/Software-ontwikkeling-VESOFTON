@@ -1,6 +1,7 @@
 #ifndef BITMAP_H
 #define BITMAP_H
-unsigned char bitmap_calib[] = {
+
+const unsigned char bitmap_calib[] = {
     0xdb,
     0xdb,
     0xdb,

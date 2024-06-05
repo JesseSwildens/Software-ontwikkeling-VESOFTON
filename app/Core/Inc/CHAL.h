@@ -7,13 +7,17 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+#include <string>
+#endif
+
 #ifndef DMA1_Stream5
 #define DMA1_Stream5 0x40026088 //  peripheral + AHB1 address + DMA1 base + stream 5 base
 #endif
 
 extern uint8_t in_inactive_region_flag;
 
-#define TIMING_PADDING 10
+#define TIMING_PADDING 1
 
 #define DMA_Stream0_IT_MASK (uint32_t)(DMA_LISR_FEIF0 | DMA_LISR_DMEIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 | DMA_LISR_TCIF0)
 #define DMA_Stream1_IT_MASK (uint32_t)(DMA_Stream0_IT_MASK << 6)
@@ -113,4 +117,5 @@ extern "C"
     void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength);
 #ifdef __cplusplus
 }
+void CHAL_UART2_SendString(std::string str);
 #endif

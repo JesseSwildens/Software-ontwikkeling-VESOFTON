@@ -29,6 +29,10 @@
 #define VGA_COL_GREEN 0x1C
 #define VGA_COL_RED 0xE0
 #define VGA_COL_WHITE 0xFF
+#define VGA_COL_LIGHT_BLUE 0x5F
+#define VGA_COL_GRAY 0x49
+#define VGA_COL_BROWN 0x44
+#define VGA_COL_LIGHT_CYAN 0x5F
 
 #define VGA_COL_CYAN 0x1F
 #define VGA_COL_MAGENTA 0xE3
@@ -50,14 +54,6 @@ typedef struct
     uint32_t dma2_cr_reg; // Register constant CR-Register
 } VGA_t;
 extern VGA_t VGA;
-
-typedef struct
-{
-    uint16_t x; // x position top left
-    uint16_t y; // y position top left
-    uint16_t width;
-    uint16_t height;
-} bitmap_position;
 
 //--------------------------------------------------------------
 // Display RAM
@@ -127,10 +123,6 @@ extern uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y];
 void UB_VGA_Screen_Init(void);
 void UB_VGA_FillScreen(uint8_t color);
 void UB_VGA_SetPixel(uint16_t xp, uint16_t yp, uint8_t color);
-bitmap_position UB_VGA_DrawBitmapWithBackground(uint8_t bgColor, unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset);
-bitmap_position UB_VGA_DrawBitmap(unsigned char* bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset);
-void clear_previous_bitmap(bitmap_position* bitmap);
-void UB_VGA_DVD_Screensaver(unsigned char* bitmap);
 
 //--------------------------------------------------------------
 

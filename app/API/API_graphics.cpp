@@ -9,6 +9,15 @@
 #if __cplusplus
 extern "C"
 {
+#include "arrow_down.h"
+#include "arrow_left.h"
+#include "arrow_right.h"
+#include "arrow_up.h"
+#include "bitmap.h"
+#include "bitmap_dvd.h"
+#include "happy_smiley.h"
+#include "sad_smiley.h"
+
 #include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
 }
@@ -23,6 +32,8 @@ extern "C"
 
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
+#define bitmapHeight 32
+#define bitmapWidth 32
 
 #ifndef __FILE_NAME__
 #define __FILE_NAME__ "Testmessage"
@@ -40,6 +51,7 @@ extern "C"
 /**
  * @note Max radius the circle can be without getting gaps in circle
  */
+
 #define MAX_RADIUS_SIZE 25
 /**
  * @note Amount of points draw while drawing a circle
@@ -53,6 +65,22 @@ static void API_set_pixel(int, int, uint8_t);
 
 API_gfx_text API_Text(VGA_DISPLAY_X, VGA_DISPLAY_Y, log_message_callback);
 uint64_t Tick;
+
+#ifdef __cplusplus
+extern "C"
+{
+    extern const unsigned char bitmap_calib[];
+    extern const unsigned char bitmap_dvd[];
+    extern const unsigned char bitmap_arrow_down[];
+    extern const unsigned char bitmap_arrow_up[];
+    extern const unsigned char bitmap_arrow_left[];
+    extern const unsigned char bitmap_arrow_right[];
+    extern const unsigned char bitmap_happy_smiley[];
+    extern const unsigned char bitmap_sad_smiley[];
+
+    unsigned char* bitmaps_glob[] = { (unsigned char*)bitmap_calib, (unsigned char*)bitmap_dvd, (unsigned char*)bitmap_arrow_down, (unsigned char*)bitmap_arrow_up, (unsigned char*)bitmap_arrow_left, (unsigned char*)bitmap_arrow_right, (unsigned char*)bitmap_happy_smiley, (unsigned char*)bitmap_sad_smiley };
+}
+#endif
 
 /**
  * @brief Drawing line
@@ -86,7 +114,7 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
     {
         int temp = x0;
         x0 = y0;
-        y0 = x0;
+        y0 = temp;
         temp = x1;
         x1 = y1;
         y1 = temp;
@@ -456,5 +484,33 @@ int API_wait(int msecs)
     {
     }
 
+    return 0;
+}
+
+/**
+ * @brief draws a bitmap
+ *
+ * @param bitmap pointer to the bitmap array
+ * @param x_offset x position of the top left corner of the bitmap
+ * @param y_offset y position of the top left corner of the bitmap
+ *
+ * @return bitmap position struct
+ */
+int API_draw_bitmap(int bitmap, int x_offset, int y_offset)
+{
+    uint16_t xp = 0, yp = 0;
+    // Draw the bitmap at the top-left corner
+    for (yp = 0; yp < bitmapHeight; yp++)
+    {
+        for (xp = 0; xp < bitmapWidth; xp++)
+        {
+            // Calculate the pixel index in the bitmap array
+            uint16_t index = yp * bitmapWidth + xp;
+            // Get the color value from the bitmap
+            uint8_t color = bitmaps_glob[bitmap][index];
+            // Set the pixel on the screen
+            API_set_pixel(xp + x_offset, yp + y_offset, color);
+        }
+    }
     return 0;
 }

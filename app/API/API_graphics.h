@@ -9,6 +9,15 @@ extern "C"
 #endif
 
     /**
+     * @note struct containing size and position of a bitmap
+     */
+    typedef struct
+    {
+        int x; // x position top left
+        int y; // y position top left
+    } bitmap_position;
+
+    /**
      * @brief Drawing text to the screen
      *
      * @param xy_lup upper left corner of the text
@@ -52,14 +61,15 @@ extern "C"
     int API_draw_rectangle(int x, int y, int width, int height, int color, int filled, int weight, int reserved);
 
     /**
-     * @brief Drawing bitmap to the screen
+     * @brief draws a bitmap
      *
-     * @param xy_lup upper left corner position of the bitmap
-     * @param bm_nr bitmap number
+     * @param bitmap pointer to the bitmap array
+     * @param x_lup x position of the top left corner of the bitmap
+     * @param y_lup y position of the top left corner of the bitmap
      *
-     * @return 0 if succesfull, otherwise -1 if error occured
+     * @return bitmap position struct
      */
-    int API_draw_bitmap(int x_lup, int y_lup, int bm_nr);
+    int API_draw_bitmap(int bm_nr, int x_lup, int y_lup);
 
     /**
      * @brief clear screen to certain color

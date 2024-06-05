@@ -11,11 +11,14 @@
 //--------------------------------------------------------------
 
 #include "main.h"
-#include <math.h>
 
 #include "API_graphics.h"
+#include "BL_parser.h"
+#include "CHAL.h"
 
-#define BUFFER_SIZE 128
+#include <math.h>
+
+#define BUFFER_SIZE 4096
 // #define DEBUG_UART
 
 uint8_t rx_buff[BUFFER_SIZE] __attribute__((section(".dma_mem")));
@@ -33,13 +36,7 @@ int main(void)
 
     CHAL_DMA_config((uint32_t)&USART2->DR, (uint32_t)rx_buff, ARRAY_LEN(rx_buff));
 
-    API_clearscreen(VGA_COL_BLUE);
-
-    API_draw_circle(100, 200, 20, VGA_COL_YELLOW, 0);
-    API_draw_circle(150, 200, 20, VGA_COL_CYAN, 1);
-
-    API_draw_text(0, 0, VGA_COL_GREEN, "Hello C++ enjoyers!\nThis is Working!!!!", "FreeSerif", 1, 0, 0);
-    API_draw_text(50, 100, VGA_COL_RED, "Wrapping also works!", "FreeMono", 2, 2, 0);
+    UB_VGA_FillScreen(VGA_COL_WHITE); // Greyhhhhh
 
     while (1)
     {
@@ -47,7 +44,8 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
+                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
+                BL_main_parser();
                 eventflagUART = 0;
             }
         }

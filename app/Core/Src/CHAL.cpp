@@ -19,6 +19,7 @@ std::queue<std::string> incoming_commands_q;
 // both temp for video streaming
 uint8_t tempMainBuffer[2048];
 int offset = 0;
+int start = 0;
 
 /**
  * @brief Initializes the UART and GPIO interface by calling the GPIO and UART init functions.
@@ -167,6 +168,11 @@ void CHAL_UART2_SendString(char* string, uint16_t length)
     {
         CHAL_UART2_SendChar(string[i]);
     }
+}
+
+void CHAL_UART2_SendString(std::string str)
+{
+    CHAL_UART2_SendString((char*)str.c_str(), str.size());
 }
 
 /**
@@ -341,10 +347,22 @@ void CHAL_clear_idledetect()
  *
  * @return void This function does not return a value.
  */
+
+// circular buffer problem :)
 void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength)
 {
     string s = string((char*)rx_buff);
-    incoming_commands_q.push(s);
+    size_t line_feed_pos = s.find_first_of('\n');
+    size_t old_line_feed_pos = 0;
+    while (old_line_feed_pos != std::string::npos)
+    {
+        line_feed_pos = s.find_first_of('\n', old_line_feed_pos + 1);
+        std::string currentString = s.substr(old_line_feed_pos, line_feed_pos - old_line_feed_pos);
+        incoming_commands_q.push(currentString);
+        old_line_feed_pos = line_feed_pos + 1;
+        if (line_feed_pos == std::string::npos)
+            break;
+    }
 
 #ifdef ECHO_INCOMMING
     const std::string& back_command = incoming_commands_q.back();

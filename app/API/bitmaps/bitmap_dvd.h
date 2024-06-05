@@ -1,7 +1,7 @@
 #ifndef BITMAP_DVD_H
 #define BITMAP_DVD_H
 
-unsigned char bitmap_dvd[] = {
+const unsigned char bitmap_dvd[] = {
     0x0,
     0x0,
     0x0,
