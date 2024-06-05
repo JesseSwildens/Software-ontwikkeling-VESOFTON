@@ -13,6 +13,8 @@ extern "C"
 #include "arrow_left.h"
 #include "arrow_right.h"
 #include "arrow_up.h"
+#include "happy_smiley.h"
+#include "sad_smiley.h"
 
 #include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
@@ -71,8 +73,10 @@ extern "C"
     extern const unsigned char bitmap_arrow_up[];
     extern const unsigned char bitmap_arrow_left[];
     extern const unsigned char bitmap_arrow_right[];
+    extern const unsigned char bitmap_happy_smiley[];
+    extern const unsigned char bitmap_sad_smiley[];
 
-    unsigned char* bitmaps_glob[] = { (unsigned char*)bitmap_calib, (unsigned char*)bitmap_dvd, (unsigned char*)bitmap_arrow_down, (unsigned char*)bitmap_arrow_up, (unsigned char*)bitmap_arrow_left, (unsigned char*)bitmap_arrow_right };
+    unsigned char* bitmaps_glob[] = { (unsigned char*)bitmap_calib, (unsigned char*)bitmap_dvd, (unsigned char*)bitmap_arrow_down, (unsigned char*)bitmap_arrow_up, (unsigned char*)bitmap_arrow_left, (unsigned char*)bitmap_arrow_right, (unsigned char*)bitmap_happy_smiley, (unsigned char*)bitmap_sad_smiley };
 }
 #endif
 

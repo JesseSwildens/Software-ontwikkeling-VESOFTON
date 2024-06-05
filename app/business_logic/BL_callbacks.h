@@ -23,5 +23,4 @@ int BL_tekst(std::vector<std::string> tokens);
 void BL_base_log_message(std::string, int, std::string);
 auto BL_get_valid_color(std::string color);
 auto BL_get_valid_fontstyle(std::string font_style);
-void* BL_get_valid_bitmap(int bitmap);
 #endif

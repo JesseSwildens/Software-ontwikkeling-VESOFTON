@@ -475,31 +475,3 @@ int BL_wacht(vector<string> tokens)
 
     return API_wait(std::stoi(tokens[1]));
 }
-
-/**
- * @brief helper function for retrieving valid bitmap
- *
- * @param bitmap integer associated with the desired bitmap
- *
- * @return void
- */
-void* BL_get_valid_bitmap(int bitmap)
-{
-    void* bitmaps[] = {
-        bitmap_dvd,
-        bitmap_calib,
-        (void*)bitmap_arrow_down,
-        (void*)bitmap_arrow_up,
-        (void*)bitmap_arrow_left,
-        (void*)bitmap_arrow_right,
-
-    };
-
-    if (bitmap < 0 || bitmap >= int(sizeof(bitmaps) / sizeof(bitmaps[0])))
-    {
-        log_message("Invalid bitmap index");
-        return nullptr;
-    }
-
-    return bitmaps[bitmap];
-}
