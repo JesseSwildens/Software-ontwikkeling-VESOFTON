@@ -9,6 +9,11 @@
 #if __cplusplus
 extern "C"
 {
+#include "arrow_down.h"
+#include "arrow_left.h"
+#include "arrow_right.h"
+#include "arrow_up.h"
+
 #include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
 }
@@ -23,6 +28,8 @@ extern "C"
 
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
+#define bitmapHeight 32
+#define bitmapWidth 32
 
 #ifndef __FILE_NAME__
 #define __FILE_NAME__ "Testmessage"
@@ -32,10 +39,6 @@ extern "C"
 
 #define TICK_PRIORITY 15
 
-bitmap_position previous_bitmap;
-uint16_t x = 50, y = 50;
-uint16_t x_speed = 1, y_speed = 1;
-
 /**
  * @note Maximum color value supported
  */
@@ -44,6 +47,7 @@ uint16_t x_speed = 1, y_speed = 1;
 /**
  * @note Max radius the circle can be without getting gaps in circle
  */
+
 #define MAX_RADIUS_SIZE 25
 /**
  * @note Amount of points draw while drawing a circle
@@ -57,6 +61,20 @@ static void API_set_pixel(int, int, uint8_t);
 
 API_gfx_text API_Text(VGA_DISPLAY_X, VGA_DISPLAY_Y, log_message_callback);
 uint64_t Tick;
+
+#ifdef __cplusplus
+extern "C"
+{
+    extern unsigned char bitmap_calib[];
+    extern unsigned char bitmap_dvd[];
+    extern const unsigned char bitmap_arrow_down[];
+    extern const unsigned char bitmap_arrow_up[];
+    extern const unsigned char bitmap_arrow_left[];
+    extern const unsigned char bitmap_arrow_right[];
+
+    unsigned char* bitmaps_glob[] = { (unsigned char*)bitmap_calib, (unsigned char*)bitmap_dvd, (unsigned char*)bitmap_arrow_down, (unsigned char*)bitmap_arrow_up, (unsigned char*)bitmap_arrow_left, (unsigned char*)bitmap_arrow_right };
+}
+#endif
 
 /**
  * @brief Drawing line
@@ -464,25 +482,6 @@ int API_wait(int msecs)
 }
 
 /**
- * @brief draws a bitmap and changes background
- *
- * @param bgColor background color
- * @param bitmap pointer to the bitmap array
- * @param bitmapWidth width of the bitmap
- * @param bitmapHeight height of the bitmap
- * @param x_offset x position of the top left corner of the bitmap
- * @param y_offset y position of the top left corner of the bitmap
- *
- * @return bitmap position struct
- */
-bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
-{
-    // Fill the entire screen with the background color
-    API_clearscreen(bgColor);
-    return API_DrawBitmap(bitmap, bitmapWidth, bitmapHeight, x_offset, y_offset);
-}
-
-/**
  * @brief draws a bitmap
  *
  * @param bitmap pointer to the bitmap array
@@ -493,13 +492,9 @@ bitmap_position API_VGA_DrawBitmapWithBackground(char bgColor, unsigned char* bi
  *
  * @return bitmap position struct
  */
-bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitmapHeight, int x_offset, int y_offset)
+int API_draw_bitmap(int bitmap, int x_offset, int y_offset)
 {
     uint16_t xp = 0, yp = 0;
-    bitmap_position _bitmap;
-    _bitmap.width = bitmapWidth;
-    _bitmap.height = bitmapHeight;
-
     // Draw the bitmap at the top-left corner
     for (yp = 0; yp < bitmapHeight; yp++)
     {
@@ -508,70 +503,10 @@ bitmap_position API_DrawBitmap(unsigned char* bitmap, int bitmapWidth, int bitma
             // Calculate the pixel index in the bitmap array
             uint16_t index = yp * bitmapWidth + xp;
             // Get the color value from the bitmap
-            uint8_t color = bitmap[index];
+            uint8_t color = bitmaps_glob[bitmap][index];
             // Set the pixel on the screen
             API_set_pixel(xp + x_offset, yp + y_offset, color);
         }
     }
-    _bitmap.x = xp + x_offset;
-    _bitmap.y = yp + y_offset;
-    return _bitmap;
-}
-
-/**
- * @brief Clears a bitmap from the screen
- *
- * @param bitmap struct containing bitmap positions and size
- *
- * @return none
- */
-void clear_previous_bitmap(bitmap_position* bitmap)
-{
-    uint16_t xp, yp;
-
-    for (yp = bitmap->y - bitmap->width; yp < bitmap->width / 80 + bitmap->y; yp++)
-    {
-        for (xp = bitmap->x - bitmap->height; xp < bitmap->height / 80 + bitmap->x; xp++)
-        {
-            API_set_pixel(xp, yp, VGA_COL_BLACK);
-        }
-    }
-}
-
-/**
- * @brief Function to draw the DVD logo on the screen and make it move
- *
- * @param bitmap pointer to the bitmap array
- *
- * @return none
- */
-void API_VGA_DVD_Screensaver(unsigned char* bitmap)
-{
-    uint16_t bmp_width = 32;
-    uint16_t bmp_height = 32;
-    uint32_t rage_against_the_compiler;
-
-    // Clear previous bitmap position
-    clear_previous_bitmap(&previous_bitmap);
-
-    // Update position
-    x += x_speed;
-    y += y_speed;
-
-    // Bounce off walls
-    if (x <= 0 || x >= VGA_DISPLAY_X - bmp_width)
-    {
-        x_speed = -x_speed;
-    }
-    if (y <= 0 || y >= VGA_DISPLAY_Y - bmp_height)
-    {
-        y_speed = -y_speed;
-    }
-
-    // Draw new bitmap position
-    previous_bitmap = API_DrawBitmap(bitmap, bmp_width, bmp_height, (uint16_t)x, (uint16_t)y);
-
-    // Delay
-    for (rage_against_the_compiler = 0; rage_against_the_compiler < 200000; rage_against_the_compiler++)
-        ;
+    return 0;
 }

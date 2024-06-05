@@ -2,9 +2,19 @@
 #include "API_graphics.h"
 #include "BL_parser.h"
 #include "CHAL.h"
+
+#if __cplusplus
+extern "C"
+{
+#include "arrow_down.h"
+#include "arrow_left.h"
+#include "arrow_right.h"
+#include "arrow_up.h"
 #include "bitmap.h"
-#include "bitmap_calib_large.h"
 #include "bitmap_dvd.h"
+}
+#endif
+
 #include <algorithm>
 #include <functional>
 #include <iostream>
@@ -342,11 +352,10 @@ int BL_bitmap(vector<string> tokens)
         log_message("error: invalid arguments for bitmap command");
         return -1;
     }
-    void* bitmap = BL_get_valid_bitmap(stoi(tokens[3]));
-    if (bitmap != nullptr)
-        API_DrawBitmap((unsigned char*)bitmap, 32, 32, stoi(tokens[1]), stoi(tokens[2]));
-    else
-        return -1;
+    // void* bitmap = BL_get_valid_bitmap(stoi(tokens[3]));
+    // if (bitmap != nullptr)
+    API_draw_bitmap(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]));
+    // else return -1;
     return 0;
 }
 
@@ -477,9 +486,13 @@ int BL_wacht(vector<string> tokens)
 void* BL_get_valid_bitmap(int bitmap)
 {
     void* bitmaps[] = {
-        const_cast<unsigned char*>(bitmap_calib_large),
         bitmap_dvd,
-        bitmap_calib
+        bitmap_calib,
+        (void*)bitmap_arrow_down,
+        (void*)bitmap_arrow_up,
+        (void*)bitmap_arrow_left,
+        (void*)bitmap_arrow_right,
+
     };
 
     if (bitmap < 0 || bitmap >= int(sizeof(bitmaps) / sizeof(bitmaps[0])))

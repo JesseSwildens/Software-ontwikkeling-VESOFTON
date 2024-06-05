@@ -35,7 +35,7 @@ extern "C"
      *
      * @return 0 if succesfull, otherwise -1 if error occured
      */
-    // int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved);
+    int API_draw_text(int x_lup, int y_lup, int color, char* text, char* fontname, int fontsize, int fontstyle, int reserved);
 
     /**
      * @brief Drawing line

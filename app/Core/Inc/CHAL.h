@@ -115,7 +115,6 @@ extern "C"
     void CHAL_clear_idledetect();
     void CHAL_event_call_back(uint8_t* rx_buff, uint16_t bufferlength);
     void CHAL_push_to_q(uint8_t* rx_buff, uint16_t bufferlength);
-    void enableFPU();
 #ifdef __cplusplus
 }
 void CHAL_UART2_SendString(std::string str);
