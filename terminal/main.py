@@ -1,4 +1,5 @@
 import sys
+import time
 
 import callbacks
 import dearpygui.dearpygui as dpg
@@ -187,6 +188,14 @@ with dpg.viewport_menu_bar():
             callback=callbacks.close_stream_callback,
             user_data=strm,
         )
+        with dpg.menu(label='Frequency'):
+            dpg.add_slider_float(
+                label='Target Hz',
+                tag='_frequency',
+                min_value=0.01,
+                max_value=10,
+                default_value=0.5,
+            )
     with dpg.menu(label='Tools'):
         dpg.add_menu_item(
             label='Show Metrics',
@@ -213,7 +222,8 @@ dpg.show_viewport()
 dpg.set_primary_window('_primary', True)
 
 # Render loop
-temp = 0
+current_time = time.time()
+last_frame_time = current_time
 while dpg.is_dearpygui_running():
     # Serial
     data = ser.poll()
@@ -221,9 +231,10 @@ while dpg.is_dearpygui_running():
         add_display(data)
 
     # Streaming
-    temp += 1
-    if (temp % 10) == 0:
+    current_time = time.time()
+    if (current_time - last_frame_time) > (1 / dpg.get_value('_frequency')):
         strm.is_ready = True
+        last_frame_time = time.time()
     strm.run()
 
     dpg.render_dearpygui_frame()
