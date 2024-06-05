@@ -485,8 +485,6 @@ int API_wait(int msecs)
  * @brief draws a bitmap
  *
  * @param bitmap pointer to the bitmap array
- * @param bitmapWidth width of the bitmap
- * @param bitmapHeight height of the bitmap
  * @param x_offset x position of the top left corner of the bitmap
  * @param y_offset y position of the top left corner of the bitmap
  *
