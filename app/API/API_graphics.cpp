@@ -14,7 +14,9 @@ extern "C"
 }
 #endif
 
+#ifndef CMAKE_UNIT_TEST
 #include "stm32f4xx_conf.h"
+#endif
 
 #include <math.h>
 #include <string>
@@ -414,10 +416,11 @@ void API_Init(void)
  */
 void API_InitTick(void)
 {
+#ifndef CMAKE_UNIT_TEST
     SysTick_Config(SystemCoreClock / 1000); // Clk frequency -> milliseconds
 
     NVIC_SetPriority(SysTick_IRQn, TICK_PRIORITY);
-
+#endif
     Tick = 0;
 }
 
