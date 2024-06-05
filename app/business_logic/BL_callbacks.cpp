@@ -156,6 +156,7 @@ auto BL_get_valid_color(string color)
         { "lichtblauw", VGA_COL_LIGHT_BLUE },
         { "grijs", VGA_COL_GRAY },
         { "bruin", VGA_COL_BROWN },
+        { "lichtcyaan", VGA_COL_LIGHT_CYAN },
     };
 
     auto it = color_map.find(color);
@@ -183,7 +184,7 @@ auto BL_get_valid_fontstyle(string font_style)
     static const std::unordered_map<std::string, int> font_style_map = {
         { "normaal", 0 },
         { "cursief", 1 },
-        { "bold", 2 },
+        { "vet", 2 },
     };
 
     auto it = font_style_map.find(font_style);
