@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 
-#define BAUDRATE_VIDEO 921600
+#define BAUDRATE_VIDEO 912600
 #define H_RES_VIDEO 64
 #define V_RES_VIDEO 48
 
@@ -44,58 +44,6 @@ int BL_hyperdrive()
 
     return -1;
 }
-
-// void BL_video_stream(unsigned char* tempMainBuffer, int size)
-// {
-//     (void)size;
-//     BL_set_pixel(240, 320, 0x49);
-//     if ((tempMainBuffer[0] != 0) && (tempMainBuffer[0] != 1))
-//     {
-//         log_message("Error receiving data for video streaming");
-//     }
-
-//     int timeout = 0;
-//     while ((frame_pointer < size) && (timeout < 100000))
-//     {
-//         if ((tempMainBuffer[frame_pointer] == 1))
-//         {
-//             int len = tempMainBuffer[frame_pointer + 2];
-//             v_pos = tempMainBuffer[frame_pointer + 1];
-//             if (v_pos == 47)
-//                 log_message("working");
-//             int pixel_count = 0;
-
-//             for (int i = 3; i < len; i++)
-//             {
-//                 if ((i % 2) == 1)
-//                 {
-//                     int cnt = tempMainBuffer[i];
-//                     for (int j = 0; j < cnt; j++)
-//                     {
-//                         BL_set_pixel(pixel_count, v_pos, tempMainBuffer[i + 1 + frame_pointer]);
-//                         pixel_count++;
-//                         if (pixel_count > 64)
-//                             log_message("out of bounds");
-//                     }
-//                 }
-//             }
-//             frame_pointer += len + 3;
-//         }
-//         if ((tempMainBuffer[frame_pointer] == 0))
-//         {
-//             int len = H_RES_VIDEO;
-//             v_pos = tempMainBuffer[frame_pointer + 1];
-//             if ((v_pos == 0) && (frame_pointer > 0))
-//             {
-//                 frame_pointer = 0;
-//                 memset(tempMainBuffer, 0, size);
-//                 break;
-//             }
-//             frame_pointer += len + 2;
-//         }
-//         timeout++;
-//     }
-// }
 
 void BL_video_stream(unsigned char* tempMainBuffer, int size)
 {
@@ -147,6 +95,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
             log_message("video our of line");
         }
     }
+    offset = frame_pointer;
 }
 
 static void BL_set_pixel(int x, int y, uint8_t color)

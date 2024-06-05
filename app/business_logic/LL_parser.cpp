@@ -50,7 +50,7 @@ char BL_main_parser()
     }
     else
     {
-        offset = 0; // set pointer of tempmainbuffer to zero for every new line
+        // offset = 0; // set pointer of tempmainbuffer to zero for every new line
         ASMCHAL_event_call_back(rx_buff, BUFFER_SIZE);
         BL_video_stream(tempMainBuffer, BUFFER_SIZE);
         CHAL_disable_DMA(DMA1_Stream5); // to change the NDTR register the DMA NEEDS to be disabled first.
