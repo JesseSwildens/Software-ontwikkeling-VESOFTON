@@ -70,12 +70,14 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">API_graphics.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+</div>
 <p><a href="API__graphics_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -124,9 +126,20 @@ Functions</h2></td></tr>
 <tr class="memitem:af08517372a598d7c6dc455aa73dac851"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851">API_register_logger_callback</a> (void(*pFunction)(const char *string, int len))</td></tr>
 <tr class="memdesc:af08517372a598d7c6dc455aa73dac851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback that can be used to transfer messages from this layer to other layers. Otherwise logger functionality it is disregarded and not used.  <a href="API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851">More...</a><br /></td></tr>
 <tr class="separator:af08517372a598d7c6dc455aa73dac851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0af8702344e8d77df997dab92b0492"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#abe0af8702344e8d77df997dab92b0492">API_get_tick</a> (void)</td></tr>
+<tr class="memdesc:abe0af8702344e8d77df997dab92b0492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Tick count.  <a href="API__graphics_8h.html#abe0af8702344e8d77df997dab92b0492">More...</a><br /></td></tr>
+<tr class="separator:abe0af8702344e8d77df997dab92b0492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">API_InitTick</a> (void)</td></tr>
+<tr class="memdesc:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enabling systick for the timekeeping.  <a href="API__graphics_8h.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">More...</a><br /></td></tr>
+<tr class="separator:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a">API_Init</a> (void)</td></tr>
 <tr class="memdesc:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the system with Clocks and DMA for the Screen signal generation.  <a href="API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a">More...</a><br /></td></tr>
 <tr class="separator:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a05ecc4762d0b393adc3ab2fa83666532"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a05ecc4762d0b393adc3ab2fa83666532">Tick</a></td></tr>
+<tr class="separator:a05ecc4762d0b393adc3ab2fa83666532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a9fee0c95dea1cdd3eeb3605ece528a8a"></a>
@@ -625,6 +638,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abe0af8702344e8d77df997dab92b0492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0af8702344e8d77df997dab92b0492">&#9670;&nbsp;</a></span>API_get_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t API_get_tick </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current Tick count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint64_t current Tick </dd></dl>
+
+</div>
+</div>
 <a id="a032ff1ca9021c5198e35cfdabc4c6f1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a032ff1ca9021c5198e35cfdabc4c6f1a">&#9670;&nbsp;</a></span>API_Init()</h2>
 
@@ -642,6 +682,33 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialize the system with Clocks and DMA for the Screen signal generation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+</div>
+</div>
+<a id="ae8ad8cd0b162e3d7c15c64b7636a61a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ad8cd0b162e3d7c15c64b7636a61a3">&#9670;&nbsp;</a></span>API_InitTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void API_InitTick </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enabling systick for the timekeeping. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">None</td><td></td></tr>
@@ -703,6 +770,29 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if wait was succesful, -1 if the timer had failed to count </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a05ecc4762d0b393adc3ab2fa83666532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ecc4762d0b393adc3ab2fa83666532">&#9670;&nbsp;</a></span>Tick</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t Tick</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

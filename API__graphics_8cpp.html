@@ -79,6 +79,7 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="API__graphics_8h_source.html">API_graphics.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="API__fonts_8h_source.html">API_fonts.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="API__gfx__text_8h_source.html">API_gfx_text.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32f4xx__conf_8h_source.html">stm32f4xx_conf.h</a>&quot;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><table class="memberdecls">
@@ -92,6 +93,8 @@ Macros</h2></td></tr>
 <tr class="separator:a1f027784d7427e627ed2c94f0cc65b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4481483a683b4a7fe71f939d83c5806"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#af4481483a683b4a7fe71f939d83c5806">log_message</a>(message)&#160;&#160;&#160;(base_log_message(message, __LINE__, <a class="el" href="API__graphics_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d">__FILE_NAME__</a>))</td></tr>
 <tr class="separator:af4481483a683b4a7fe71f939d83c5806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8af3ac7c659af0d2fa50b33382bb2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a0a8af3ac7c659af0d2fa50b33382bb2d">TICK_PRIORITY</a>&#160;&#160;&#160;15</td></tr>
+<tr class="separator:a0a8af3ac7c659af0d2fa50b33382bb2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7258b939251e993229b3f14c21cb2fae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a7258b939251e993229b3f14c21cb2fae">MAX_COLOR_DEPTH</a>&#160;&#160;&#160;0xff</td></tr>
 <tr class="separator:a7258b939251e993229b3f14c21cb2fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a438bae4f2470f16db11433e45aa21be9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a438bae4f2470f16db11433e45aa21be9">MAX_RADIUS_SIZE</a>&#160;&#160;&#160;25</td></tr>
@@ -122,11 +125,22 @@ Functions</h2></td></tr>
 <tr class="memitem:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a032ff1ca9021c5198e35cfdabc4c6f1a">API_Init</a> (void)</td></tr>
 <tr class="memdesc:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the system with Clocks and DMA for the Screen signal generation.  <a href="API__graphics_8cpp.html#a032ff1ca9021c5198e35cfdabc4c6f1a">More...</a><br /></td></tr>
 <tr class="separator:a032ff1ca9021c5198e35cfdabc4c6f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">API_InitTick</a> (void)</td></tr>
+<tr class="memdesc:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enabling systick for the timekeeping.  <a href="API__graphics_8cpp.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">More...</a><br /></td></tr>
+<tr class="separator:ae8ad8cd0b162e3d7c15c64b7636a61a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0af8702344e8d77df997dab92b0492"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#abe0af8702344e8d77df997dab92b0492">API_get_tick</a> (void)</td></tr>
+<tr class="memdesc:abe0af8702344e8d77df997dab92b0492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Tick count.  <a href="API__graphics_8cpp.html#abe0af8702344e8d77df997dab92b0492">More...</a><br /></td></tr>
+<tr class="separator:abe0af8702344e8d77df997dab92b0492"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20044ea68044596c2320e0205b0c4c9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a20044ea68044596c2320e0205b0c4c9a">API_wait</a> (int msecs)</td></tr>
+<tr class="memdesc:a20044ea68044596c2320e0205b0c4c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waiting to next command.  <a href="API__graphics_8cpp.html#a20044ea68044596c2320e0205b0c4c9a">More...</a><br /></td></tr>
+<tr class="separator:a20044ea68044596c2320e0205b0c4c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a02213bf221c6ca32d43438b58c39f516"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAPI__gfx__text.html">API_gfx_text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a02213bf221c6ca32d43438b58c39f516">API_Text</a> (<a class="el" href="system_2stm32__ub__vga__screen_8h.html#ace7f348dc91111917772d3e19f8821d3">VGA_DISPLAY_X</a>, <a class="el" href="system_2stm32__ub__vga__screen_8h.html#a9c3e46882b624fe1887d0ec6171d771b">VGA_DISPLAY_Y</a>, log_message_callback)</td></tr>
 <tr class="separator:a02213bf221c6ca32d43438b58c39f516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05ecc4762d0b393adc3ab2fa83666532"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a05ecc4762d0b393adc3ab2fa83666532">Tick</a></td></tr>
+<tr class="separator:a05ecc4762d0b393adc3ab2fa83666532"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a1f027784d7427e627ed2c94f0cc65b2d"></a>
@@ -268,6 +282,20 @@ Variables</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td>&#160;&#160;&#160;((<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a> &gt; z) || (<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a> &lt; <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a8af3ac7c659af0d2fa50b33382bb2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8af3ac7c659af0d2fa50b33382bb2d">&#9670;&nbsp;</a></span>TICK_PRIORITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TICK_PRIORITY&#160;&#160;&#160;15</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -588,6 +616,33 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="abe0af8702344e8d77df997dab92b0492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0af8702344e8d77df997dab92b0492">&#9670;&nbsp;</a></span>API_get_tick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t API_get_tick </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the current Tick count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uint64_t current Tick </dd></dl>
+
+</div>
+</div>
 <a id="a032ff1ca9021c5198e35cfdabc4c6f1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a032ff1ca9021c5198e35cfdabc4c6f1a">&#9670;&nbsp;</a></span>API_Init()</h2>
 
@@ -605,6 +660,33 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialize the system with Clocks and DMA for the Screen signal generation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
+</div>
+</div>
+<a id="ae8ad8cd0b162e3d7c15c64b7636a61a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ad8cd0b162e3d7c15c64b7636a61a3">&#9670;&nbsp;</a></span>API_InitTick()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void API_InitTick </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enabling systick for the timekeeping. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">None</td><td></td></tr>
@@ -642,6 +724,33 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a20044ea68044596c2320e0205b0c4c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20044ea68044596c2320e0205b0c4c9a">&#9670;&nbsp;</a></span>API_wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int API_wait </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>msecs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Waiting to next command. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msecs</td><td>milliseconds to wait</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if wait was succesful, -1 if the timer had failed to count </dd></dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a02213bf221c6ca32d43438b58c39f516"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a02213bf221c6ca32d43438b58c39f516">&#9670;&nbsp;</a></span>API_Text</h2>
@@ -671,6 +780,20 @@ Variables</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05ecc4762d0b393adc3ab2fa83666532"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05ecc4762d0b393adc3ab2fa83666532">&#9670;&nbsp;</a></span>Tick</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t Tick</td>
         </tr>
       </table>
 </div><div class="memdoc">
