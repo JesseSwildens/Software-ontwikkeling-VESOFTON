@@ -12,7 +12,9 @@ extern "C"
 #include "stm32_ub_vga_screen.h"
 #include "stm32f4xx.h"
 }
-#endif #include "stm32f4xx_conf.h"
+#endif
+
+#include "stm32f4xx_conf.h"
 
 #include <math.h>
 #include <string>

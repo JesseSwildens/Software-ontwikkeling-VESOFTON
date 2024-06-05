@@ -136,7 +136,7 @@ SECTIONS
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
     
-  } >RAM AT> FLASH
+  } >CCMRAM AT> FLASH
 
   /* Uninitialized data section into "RAM" Ram type memory */
   . = ALIGN(4);
@@ -152,7 +152,7 @@ SECTIONS
     . = ALIGN(4);
     _ebss = .;         /* define a global symbol at bss end */
     __bss_end__ = _ebss;
-  } >RAM
+  } >CCMRAM
 
   /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
   ._user_heap_stack :
@@ -162,6 +162,13 @@ SECTIONS
     PROVIDE ( _end = . );
     . = . + _Min_Heap_Size;
     . = . + _Min_Stack_Size;
+    . = ALIGN(8);
+  } >CCMRAM
+
+  .dma_mem :
+  {
+    . = ALIGN(8);
+    *(.dma_mem)
     . = ALIGN(8);
   } >RAM
 

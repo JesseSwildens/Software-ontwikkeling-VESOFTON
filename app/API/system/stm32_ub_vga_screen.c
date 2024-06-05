@@ -31,7 +31,7 @@ void P_VGA_InitDMA(void);
 //--------------------------------------------------------------
 // Exported variables
 //--------------------------------------------------------------
-uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y];
+uint8_t VGA_RAM1[(VGA_DISPLAY_X + 1) * VGA_DISPLAY_Y] __attribute__((section(".dma_mem")));
 VGA_t VGA;
 
 bitmap_position previous_bitmap;

@@ -18,7 +18,7 @@
 #define BUFFER_SIZE 128
 // #define DEBUG_UART
 
-uint8_t rx_buff[BUFFER_SIZE];
+uint8_t rx_buff[BUFFER_SIZE] __attribute__((section(".dma_mem")));
 uint8_t eventflagUART = 0;
 
 int main(void)
