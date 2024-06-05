@@ -90,7 +90,7 @@ int API_draw_line(int x0, int y0, int x1, int y1, int color, int weight, int res
     {
         int temp = x0;
         x0 = y0;
-        y0 = x0;
+        y0 = temp;
         temp = x1;
         x1 = y1;
         y1 = temp;
