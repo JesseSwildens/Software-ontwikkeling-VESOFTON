@@ -2,9 +2,6 @@
 
 # Software-ontwikkeling-VESOFTON
 
-# Docs
-https://jesseswildens.github.io/Software-ontwikkeling-VESOFTON/
-
 # Style guide in IDE
 In VSCode add the following lines to ```.vscode/settings.json```
 ```
