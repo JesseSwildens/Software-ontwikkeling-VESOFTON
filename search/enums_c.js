@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['showdurations_13716',['ShowDurations',['../namespaceCatch.html#afcb41c3350d3488c0efb02816a8867c8',1,'Catch::ShowDurations()'],['../namespaceCatch.html#afcb41c3350d3488c0efb02816a8867c8',1,'Catch::ShowDurations()']]]
+  ['showdurations_13834',['ShowDurations',['../namespaceCatch.html#afcb41c3350d3488c0efb02816a8867c8',1,'Catch::ShowDurations()'],['../namespaceCatch.html#afcb41c3350d3488c0efb02816a8867c8',1,'Catch::ShowDurations()']]]
 ];

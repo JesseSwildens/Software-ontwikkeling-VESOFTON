@@ -105,6 +105,8 @@ Functions</h2></td></tr>
 <tr class="memitem:aca1ef0de865f2f1417b1995d8d3f558c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#aca1ef0de865f2f1417b1995d8d3f558c">CHAL_UART2_SendString</a> (char *string, uint16_t length)</td></tr>
 <tr class="memdesc:aca1ef0de865f2f1417b1995d8d3f558c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a string over UART in blocking mode.  <a href="CHAL_8cpp.html#aca1ef0de865f2f1417b1995d8d3f558c">More...</a><br /></td></tr>
 <tr class="separator:aca1ef0de865f2f1417b1995d8d3f558c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a57f64d22e111716ba671be129283f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a7a57f64d22e111716ba671be129283f1">CHAL_UART2_SendString</a> (std::string str)</td></tr>
+<tr class="separator:a7a57f64d22e111716ba671be129283f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL_disable_DMA</a> (<a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *<a class="el" href="catch__reporter__tap_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a>)</td></tr>
 <tr class="memdesc:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables a specified DMA stream.  <a href="CHAL_8cpp.html#a953e4af68f6fb2f74acb37f3e952f3ed">More...</a><br /></td></tr>
 <tr class="separator:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +140,8 @@ Variables</h2></td></tr>
 <tr class="separator:ac104fba9a946368e2e03eb387a93fe72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed7ea92f45bd273dde380a45ddced592"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#aed7ea92f45bd273dde380a45ddced592">offset</a> = 0</td></tr>
 <tr class="separator:aed7ea92f45bd273dde380a45ddced592"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37722a150250e2a5a98e5e0d11e53449"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449">start</a> = 0</td></tr>
+<tr class="separator:a37722a150250e2a5a98e5e0d11e53449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>UART and DMA initialization functions. </p>
@@ -446,7 +450,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 <a id="aca1ef0de865f2f1417b1995d8d3f558c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca1ef0de865f2f1417b1995d8d3f558c">&#9670;&nbsp;</a></span>CHAL_UART2_SendString()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aca1ef0de865f2f1417b1995d8d3f558c">&#9670;&nbsp;</a></span>CHAL_UART2_SendString() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,6 +486,24 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Create a non-blocking version </dd></dl>
+
+</div>
+</div>
+<a id="a7a57f64d22e111716ba671be129283f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a57f64d22e111716ba671be129283f1">&#9670;&nbsp;</a></span>CHAL_UART2_SendString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CHAL_UART2_SendString </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -539,6 +561,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int offset = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37722a150250e2a5a98e5e0d11e53449"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37722a150250e2a5a98e5e0d11e53449">&#9670;&nbsp;</a></span>start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int start = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">

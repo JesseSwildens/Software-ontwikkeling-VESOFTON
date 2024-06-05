@@ -69,6 +69,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -80,6 +81,11 @@ $(function() {
 </div>
 <p><a href="API__graphics_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbitmap__position.html">bitmap_position</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a9fee0c95dea1cdd3eeb3605ece528a8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a9fee0c95dea1cdd3eeb3605ece528a8a">VGA_COL_BLACK</a>&#160;&#160;&#160;0x00</td></tr>
@@ -108,16 +114,16 @@ Functions</h2></td></tr>
 <tr class="memitem:affd176868e09b8e99a9eada73dc45e91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91">API_draw_line</a> (int x0, int y0, int x1, int y1, int color, int weight, int reserved)</td></tr>
 <tr class="memdesc:affd176868e09b8e99a9eada73dc45e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing line.  <a href="API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91">More...</a><br /></td></tr>
 <tr class="separator:affd176868e09b8e99a9eada73dc45e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42b64e0565aa76e4f8074f879cb5df28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">API_draw_rectangle</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int width, int height, int color, int filled, int weight, int reserved)</td></tr>
+<tr class="memitem:a42b64e0565aa76e4f8074f879cb5df28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">API_draw_rectangle</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int y, int width, int height, int color, int filled, int weight, int reserved)</td></tr>
 <tr class="memdesc:a42b64e0565aa76e4f8074f879cb5df28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing rectangle on the screen.  <a href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">More...</a><br /></td></tr>
 <tr class="separator:a42b64e0565aa76e4f8074f879cb5df28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a196d22f276d5b3398e9c43dea9ccd259"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a196d22f276d5b3398e9c43dea9ccd259">API_draw_bitmap</a> (int x_lup, int y_lup, int bm_nr)</td></tr>
-<tr class="memdesc:a196d22f276d5b3398e9c43dea9ccd259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing bitmap to the screen.  <a href="API__graphics_8h.html#a196d22f276d5b3398e9c43dea9ccd259">More...</a><br /></td></tr>
-<tr class="separator:a196d22f276d5b3398e9c43dea9ccd259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ba0c9aa23537bf68521fd5d1ac4124c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a6ba0c9aa23537bf68521fd5d1ac4124c">API_draw_bitmap</a> (int bm_nr, int x_lup, int y_lup)</td></tr>
+<tr class="memdesc:a6ba0c9aa23537bf68521fd5d1ac4124c"><td class="mdescLeft">&#160;</td><td class="mdescRight">draws a bitmap  <a href="API__graphics_8h.html#a6ba0c9aa23537bf68521fd5d1ac4124c">More...</a><br /></td></tr>
+<tr class="separator:a6ba0c9aa23537bf68521fd5d1ac4124c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944">API_clearscreen</a> (int color)</td></tr>
 <tr class="memdesc:ac5d34bcb0d84db1190d4b876a3f65944"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear screen to certain color  <a href="API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944">More...</a><br /></td></tr>
 <tr class="separator:ac5d34bcb0d84db1190d4b876a3f65944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_draw_circle</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int <a class="el" href="stm32__ub__vga__screen_8c.html#ab0580f504a7428539be299fa71565f30">y</a>, int radius, int color, int filled)</td></tr>
+<tr class="memitem:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_draw_circle</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int y, int radius, int color, int filled)</td></tr>
 <tr class="memdesc:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing circle.  <a href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">More...</a><br /></td></tr>
 <tr class="separator:aafb5c2810f8084bed6b20e4c398f0fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20044ea68044596c2320e0205b0c4c9a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8h.html#a20044ea68044596c2320e0205b0c4c9a">API_wait</a> (int msecs)</td></tr>
@@ -283,8 +289,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a196d22f276d5b3398e9c43dea9ccd259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a196d22f276d5b3398e9c43dea9ccd259">&#9670;&nbsp;</a></span>API_draw_bitmap()</h2>
+<a id="a6ba0c9aa23537bf68521fd5d1ac4124c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ba0c9aa23537bf68521fd5d1ac4124c">&#9670;&nbsp;</a></span>API_draw_bitmap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -293,19 +299,19 @@ Variables</h2></td></tr>
           <td class="memname">int API_draw_bitmap </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>x_lup</em>, </td>
+          <td class="paramname"><em>bitmap</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>y_lup</em>, </td>
+          <td class="paramname"><em>x_offset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>bm_nr</em>&#160;</td>
+          <td class="paramname"><em>y_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -315,15 +321,25 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Drawing bitmap to the screen. </p>
+<p>draws a bitmap </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">xy_lup</td><td>upper left corner position of the bitmap </td></tr>
-    <tr><td class="paramname">bm_nr</td><td>bitmap number</td></tr>
+    <tr><td class="paramname">bitmap</td><td>pointer to the bitmap array </td></tr>
+    <tr><td class="paramname">x_lup</td><td>x position of the top left corner of the bitmap </td></tr>
+    <tr><td class="paramname">y_lup</td><td>y position of the top left corner of the bitmap</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if succesfull, otherwise -1 if error occured </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>bitmap position struct</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bitmap</td><td>pointer to the bitmap array </td></tr>
+    <tr><td class="paramname">x_offset</td><td>x position of the top left corner of the bitmap </td></tr>
+    <tr><td class="paramname">y_offset</td><td>y position of the top left corner of the bitmap</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bitmap position struct </dd></dl>
 
 </div>
 </div>

@@ -93,10 +93,10 @@ $(function() {
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">namespace </span>Detail {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Clock, <span class="keyword">typename</span> Fun, <span class="keyword">typename</span>... Args&gt;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="namespaceCatch_1_1Benchmark.html#a78b8882d96c79839eabcc1ff44daeafa">TimingOf</a>&lt;Fun, Args...&gt; <a class="code" href="namespaceCatch_1_1Benchmark_1_1Detail.html#a1effa40e15b6b2c9cec48b3b734da8a4">measure</a>(Fun&amp;&amp; fun, Args&amp;&amp;... args) {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <span class="keyword">auto</span> start = Clock::now();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <span class="keyword">auto</span> <a class="code" href="CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449">start</a> = Clock::now();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keyword">auto</span>&amp;&amp; r = <a class="code" href="namespaceCatch_1_1Benchmark_1_1Detail.html#abe0ffc409d126e1e7f4573c16abcbf84">Detail::complete_invoke</a>(fun, <a class="code" href="catch__amalgamated_8hpp.html#acedf14a4dca7fdf78bd48b59bc4d954a">CATCH_FORWARD</a>(args)...);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keyword">auto</span> end = Clock::now();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keyword">auto</span> delta = end - start;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keyword">auto</span> delta = end - <a class="code" href="CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449">start</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">return</span> { delta, <a class="code" href="catch__amalgamated_8hpp.html#acedf14a4dca7fdf78bd48b59bc4d954a">CATCH_FORWARD</a>(r), 1 };</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            }</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        } <span class="comment">// namespace Detail</span></div>
@@ -104,6 +104,7 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;} <span class="comment">// namespace Catch</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// CATCH_MEASURE_HPP_INCLUDED</span></div>
+<div class="ttc" id="aCHAL_8cpp_html_a37722a150250e2a5a98e5e0d11e53449"><div class="ttname"><a href="CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449">start</a></div><div class="ttdeci">int start</div><div class="ttdef"><b>Definition:</b> CHAL.cpp:22</div></div>
 <div class="ttc" id="acatch__amalgamated_8hpp_html_acedf14a4dca7fdf78bd48b59bc4d954a"><div class="ttname"><a href="catch__amalgamated_8hpp.html#acedf14a4dca7fdf78bd48b59bc4d954a">CATCH_FORWARD</a></div><div class="ttdeci">#define CATCH_FORWARD(...)</div><div class="ttdoc">Replacement for std::forward with better compile time performance.</div><div class="ttdef"><b>Definition:</b> catch_amalgamated.hpp:592</div></div>
 <div class="ttc" id="acatch__complete__invoke_8hpp_html"><div class="ttname"><a href="catch__complete__invoke_8hpp.html">catch_complete_invoke.hpp</a></div></div>
 <div class="ttc" id="acatch__move__and__forward_8hpp_html"><div class="ttname"><a href="catch__move__and__forward_8hpp.html">catch_move_and_forward.hpp</a></div></div>

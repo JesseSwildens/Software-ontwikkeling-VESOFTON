@@ -90,8 +90,6 @@ $(function() {
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVGA__t.html">VGA_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbitmap__position.html">bitmap_position</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -105,6 +103,14 @@ Macros</h2></td></tr>
 <tr class="separator:a790cc430619a64faf356c303f8bdd3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ad592a88539ed90dd1fe6c33648a13b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a2ad592a88539ed90dd1fe6c33648a13b">VGA_COL_WHITE</a>&#160;&#160;&#160;0xFF</td></tr>
 <tr class="separator:a2ad592a88539ed90dd1fe6c33648a13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ba4fa390cd2588f7eda1cb00d251ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a28ba4fa390cd2588f7eda1cb00d251ce">VGA_COL_LIGHT_BLUE</a>&#160;&#160;&#160;0x5F</td></tr>
+<tr class="separator:a28ba4fa390cd2588f7eda1cb00d251ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d6fe9b05dffe892c693d6cbdb3bdc94"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a4d6fe9b05dffe892c693d6cbdb3bdc94">VGA_COL_GRAY</a>&#160;&#160;&#160;0x49</td></tr>
+<tr class="separator:a4d6fe9b05dffe892c693d6cbdb3bdc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c55e697abe70bd280e9ce5059ff6370"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a5c55e697abe70bd280e9ce5059ff6370">VGA_COL_BROWN</a>&#160;&#160;&#160;0x44</td></tr>
+<tr class="separator:a5c55e697abe70bd280e9ce5059ff6370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1696722e55ba25438cec5c53d2eddb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#af1696722e55ba25438cec5c53d2eddb3">VGA_COL_LIGHT_CYAN</a>&#160;&#160;&#160;0x5F</td></tr>
+<tr class="separator:af1696722e55ba25438cec5c53d2eddb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39a87dbbf6639be1a1312dbe9229c4a8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a39a87dbbf6639be1a1312dbe9229c4a8">VGA_COL_CYAN</a>&#160;&#160;&#160;0x1F</td></tr>
 <tr class="separator:a39a87dbbf6639be1a1312dbe9229c4a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9498759c02ab7d643c9af53a70d15ad5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a9498759c02ab7d643c9af53a70d15ad5">VGA_COL_MAGENTA</a>&#160;&#160;&#160;0xE3</td></tr>
@@ -158,14 +164,6 @@ Functions</h2></td></tr>
 <tr class="separator:a8afc87fd0f1737d58c7ee92629be9c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd52b52c87572b4bfad9637ec34e621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a1fd52b52c87572b4bfad9637ec34e621">UB_VGA_SetPixel</a> (uint16_t xp, uint16_t yp, uint8_t color)</td></tr>
 <tr class="separator:a1fd52b52c87572b4bfad9637ec34e621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac12e6feb96622f36d683a6acfe74b8a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbitmap__position.html">bitmap_position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#ac12e6feb96622f36d683a6acfe74b8a6">UB_VGA_DrawBitmapWithBackground</a> (uint8_t bgColor, unsigned char *bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)</td></tr>
-<tr class="separator:ac12e6feb96622f36d683a6acfe74b8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5013dc75c19f595548668cccb93d339c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbitmap__position.html">bitmap_position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a5013dc75c19f595548668cccb93d339c">UB_VGA_DrawBitmap</a> (unsigned char *bitmap, uint16_t bitmapWidth, uint16_t bitmapHeight, uint16_t x_offset, uint16_t y_offset)</td></tr>
-<tr class="separator:a5013dc75c19f595548668cccb93d339c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c5b9d435f9fb837e9c984a196ce3405"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#a5c5b9d435f9fb837e9c984a196ce3405">clear_previous_bitmap</a> (<a class="el" href="structbitmap__position.html">bitmap_position</a> *bitmap)</td></tr>
-<tr class="separator:a5c5b9d435f9fb837e9c984a196ce3405"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4c590adc50c5a9cafe2249abca19b33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="system_2stm32__ub__vga__screen_8h.html#ae4c590adc50c5a9cafe2249abca19b33">UB_VGA_DVD_Screensaver</a> (unsigned char *bitmap)</td></tr>
-<tr class="separator:ae4c590adc50c5a9cafe2249abca19b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -217,6 +215,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a5c55e697abe70bd280e9ce5059ff6370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c55e697abe70bd280e9ce5059ff6370">&#9670;&nbsp;</a></span>VGA_COL_BROWN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VGA_COL_BROWN&#160;&#160;&#160;0x44</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a39a87dbbf6639be1a1312dbe9229c4a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a39a87dbbf6639be1a1312dbe9229c4a8">&#9670;&nbsp;</a></span>VGA_COL_CYAN</h2>
 
@@ -231,6 +243,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a4d6fe9b05dffe892c693d6cbdb3bdc94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d6fe9b05dffe892c693d6cbdb3bdc94">&#9670;&nbsp;</a></span>VGA_COL_GRAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VGA_COL_GRAY&#160;&#160;&#160;0x49</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="acd643373461ea57a495e8403ba41eab7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acd643373461ea57a495e8403ba41eab7">&#9670;&nbsp;</a></span>VGA_COL_GREEN</h2>
 
@@ -239,6 +265,34 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define VGA_COL_GREEN&#160;&#160;&#160;0x1C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28ba4fa390cd2588f7eda1cb00d251ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28ba4fa390cd2588f7eda1cb00d251ce">&#9670;&nbsp;</a></span>VGA_COL_LIGHT_BLUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VGA_COL_LIGHT_BLUE&#160;&#160;&#160;0x5F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1696722e55ba25438cec5c53d2eddb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1696722e55ba25438cec5c53d2eddb3">&#9670;&nbsp;</a></span>VGA_COL_LIGHT_CYAN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VGA_COL_LIGHT_CYAN&#160;&#160;&#160;0x5F</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -554,140 +608,6 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a5c5b9d435f9fb837e9c984a196ce3405"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c5b9d435f9fb837e9c984a196ce3405">&#9670;&nbsp;</a></span>clear_previous_bitmap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void clear_previous_bitmap </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structbitmap__position.html">bitmap_position</a> *&#160;</td>
-          <td class="paramname"><em>bitmap</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5013dc75c19f595548668cccb93d339c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5013dc75c19f595548668cccb93d339c">&#9670;&nbsp;</a></span>UB_VGA_DrawBitmap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structbitmap__position.html">bitmap_position</a> UB_VGA_DrawBitmap </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>bitmap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>bitmapWidth</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>bitmapHeight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>x_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>y_offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac12e6feb96622f36d683a6acfe74b8a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac12e6feb96622f36d683a6acfe74b8a6">&#9670;&nbsp;</a></span>UB_VGA_DrawBitmapWithBackground()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structbitmap__position.html">bitmap_position</a> UB_VGA_DrawBitmapWithBackground </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>bgColor</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>bitmap</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>bitmapWidth</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>bitmapHeight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>x_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>y_offset</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae4c590adc50c5a9cafe2249abca19b33"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4c590adc50c5a9cafe2249abca19b33">&#9670;&nbsp;</a></span>UB_VGA_DVD_Screensaver()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UB_VGA_DVD_Screensaver </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>bitmap</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a8afc87fd0f1737d58c7ee92629be9c92"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8afc87fd0f1737d58c7ee92629be9c92">&#9670;&nbsp;</a></span>UB_VGA_FillScreen()</h2>
 

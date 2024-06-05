@@ -1,7 +1,7 @@
 var searchData=
 [
   ['_5f_19',['_',['../namespacetestConfigureExperimentalRedirect.html#a7e35c47e48c442aaadb9d8b686edf7de',1,'testConfigureExperimentalRedirect._()'],['../namespacetestConfigureDisableStringification.html#a29d5a8e857351569f6944a50d645c2a8',1,'testConfigureDisableStringification._()'],['../namespacetestConfigureDisable.html#af11c1c19062c24fb4b59a06716a8cf1c',1,'testConfigureDisable._()'],['../namespacetestConfigureDefaultReporter.html#a08b0aca488765465bbbdfa44979c3055',1,'testConfigureDefaultReporter._()']]],
-  ['_5f_5fattribute_5f_5f_20',['__attribute__',['../stm32__ub__vga__screen_8c.html#a9824a3ef7e43e5bb143f37e0b702a506',1,'__attribute__((section(&quot;.dma_mem&quot;))):&#160;stm32_ub_vga_screen.c'],['../syscalls_8c.html#af9aace1b44b73111e15aa39f06f43456',1,'__attribute__((weak)):&#160;syscalls.c'],['../main_8c.html#aa6b32c7c491e16413be7a348ea349b8f',1,'__attribute__((section(&quot;.dma_mem&quot;))):&#160;main.c']]],
+  ['_5f_5fattribute_5f_5f_20',['__attribute__',['../syscalls_8c.html#af9aace1b44b73111e15aa39f06f43456',1,'__attribute__((weak)):&#160;syscalls.c'],['../stm32__ub__vga__screen_8c.html#a9824a3ef7e43e5bb143f37e0b702a506',1,'__attribute__((section(&quot;.dma_mem&quot;))):&#160;stm32_ub_vga_screen.c'],['../main_8c.html#aa6b32c7c491e16413be7a348ea349b8f',1,'__attribute__((section(&quot;.dma_mem&quot;))):&#160;main.c']]],
   ['_5f_5fcm4_5fcmsis_5fversion_21',['__CM4_CMSIS_VERSION',['../group__CMSIS__core__definitions.html#gacb6f5d2c3271c95d0a02fd06723af25d',1,'core_cm4.h']]],
   ['_5f_5fcm4_5fcmsis_5fversion_5fmain_22',['__CM4_CMSIS_VERSION_MAIN',['../group__CMSIS__core__definitions.html#ga90ffc8179476f80347379bfe29639edc',1,'core_cm4.h']]],
   ['_5f_5fcm4_5fcmsis_5fversion_5fsub_23',['__CM4_CMSIS_VERSION_SUB',['../group__CMSIS__core__definitions.html#gafc7392964da961a44e916fcff7add532',1,'core_cm4.h']]],
@@ -10,7 +10,7 @@ var searchData=
   ['_5f_5fcore_5fcm4_5fh_5fgeneric_26',['__CORE_CM4_H_GENERIC',['../core__cm4_8h.html#a041c3808b4c105d23b90b54646e2eeb6',1,'core_cm4.h']]],
   ['_5f_5fcore_5fcm4_5fsimd_5fh_27',['__CORE_CM4_SIMD_H',['../core__cm4__simd_8h.html#a23558801c2fdaeaa254e1c0aaab92365',1,'core_cm4_simd.h']]],
   ['_5f_5fcortex_5fm_28',['__CORTEX_M',['../group__CMSIS__core__definitions.html#ga63ea62503c88acab19fcf3d5743009e3',1,'core_cm4.h']]],
-  ['_5f_5ffile_5fname_5f_5f_29',['__FILE_NAME__',['../API__graphics_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d',1,'API_graphics.cpp']]],
+  ['_5f_5ffile_5fname_5f_5f_29',['__FILE_NAME__',['../API__graphics_8cpp.html#a1f027784d7427e627ed2c94f0cc65b2d',1,'__FILE_NAME__():&#160;API_graphics.cpp'],['../BL__callbacks_8h.html#a1f027784d7427e627ed2c94f0cc65b2d',1,'__FILE_NAME__():&#160;BL_callbacks.h']]],
   ['_5f_5ffpu_5fpresent_30',['__FPU_PRESENT',['../group__Configuration__section__for__CMSIS.html#gac1ba8a48ca926bddc88be9bfd7d42641',1,'stm32f4xx.h']]],
   ['_5f_5fhas_5finclude_31',['__has_include',['../CMakeCCompilerId_8c.html#ae5510d82e4946f1656f4969911c54736',1,'__has_include():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#ae5510d82e4946f1656f4969911c54736',1,'__has_include():&#160;CMakeCXXCompilerId.cpp']]],
   ['_5f_5fi_32',['__I',['../group__CMSIS__core__definitions.html#gaf63697ed9952cc71e1225efe205f6cd3',1,'core_cm4.h']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verifyregistration_10604',['VerifyRegistration',['../namespaceVerifyRegistration.html',1,'']]]
+  ['verifyregistration_10676',['VerifyRegistration',['../namespaceVerifyRegistration.html',1,'']]]
 ];
