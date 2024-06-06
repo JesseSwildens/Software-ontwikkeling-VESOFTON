@@ -88,9 +88,9 @@ char BL_main_parser()
 {
     if (video_stream_flag == 0)
     {
+        CHAL_push_to_q(rx_buff, BUFFER_SIZE);
         while (!incoming_commands_q.empty())
         {
-
             std::string commandString = incoming_commands_q.front();
             int BL_parse_return = BL_parse_single_string(commandString);
             if (BL_parse_return == -1)

@@ -43,7 +43,6 @@ int main(void)
         {
             if (eventflagUART == 1)
             {
-                CHAL_push_to_q(rx_buff, BUFFER_SIZE);
                 BL_main_parser();
                 eventflagUART = 0;
             }
