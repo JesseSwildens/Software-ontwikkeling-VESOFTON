@@ -87,6 +87,8 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ab6e2996d6352840db182f0a4ea9a2f76"><td class="memItemLeft" align="right" valign="top">uint8_t <a class="el" href="BL__parser_8cpp.html#ac0da16fdad8dd2b6cbf4dd4428dd86c8">tempMainBuffer</a>[4096]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#ab6e2996d6352840db182f0a4ea9a2f76">__attribute__</a> ((section(&quot;.dma_mem&quot;)))</td></tr>
+<tr class="separator:ab6e2996d6352840db182f0a4ea9a2f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa7be4e5be306b11426df9f112455e2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#afa7be4e5be306b11426df9f112455e2a">CHAL_init_uart</a> (void)</td></tr>
 <tr class="memdesc:afa7be4e5be306b11426df9f112455e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the UART and GPIO interface by calling the GPIO and UART init functions.  <a href="CHAL_8cpp.html#afa7be4e5be306b11426df9f112455e2a">More...</a><br /></td></tr>
 <tr class="separator:afa7be4e5be306b11426df9f112455e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +130,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a2718437cceccea28ea971f88256f4cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a2718437cceccea28ea971f88256f4cf8">CHAL_clear_idledetect</a> ()</td></tr>
 <tr class="memdesc:a2718437cceccea28ea971f88256f4cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the idle line detection of the UART.  <a href="CHAL_8cpp.html#a2718437cceccea28ea971f88256f4cf8">More...</a><br /></td></tr>
 <tr class="separator:a2718437cceccea28ea971f88256f4cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a95e2ee1987bfe74df3d84fff8a5ecc85">CHAL_push_to_q</a> (uint8_t *rx_buff, uint16_t bufferlength)</td></tr>
+<tr class="memitem:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a95e2ee1987bfe74df3d84fff8a5ecc85">CHAL_push_to_q</a> (uint8_t *<a class="el" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a>, uint16_t bufferlength)</td></tr>
 <tr class="memdesc:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structA.html">A</a> new polled function to move the data from the DMA receive buffer to a queue.  <a href="CHAL_8cpp.html#a95e2ee1987bfe74df3d84fff8a5ecc85">More...</a><br /></td></tr>
 <tr class="separator:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -136,16 +138,30 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a73272eb3ed57889713d8a0c566839d33"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a73272eb3ed57889713d8a0c566839d33">incoming_commands_q</a></td></tr>
 <tr class="separator:a73272eb3ed57889713d8a0c566839d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac104fba9a946368e2e03eb387a93fe72"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#ac104fba9a946368e2e03eb387a93fe72">tempMainBuffer</a> [2048]</td></tr>
-<tr class="separator:ac104fba9a946368e2e03eb387a93fe72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed7ea92f45bd273dde380a45ddced592"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#aed7ea92f45bd273dde380a45ddced592">offset</a> = 0</td></tr>
-<tr class="separator:aed7ea92f45bd273dde380a45ddced592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37722a150250e2a5a98e5e0d11e53449"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449">start</a> = 0</td></tr>
 <tr class="separator:a37722a150250e2a5a98e5e0d11e53449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>UART and DMA initialization functions. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ab6e2996d6352840db182f0a4ea9a2f76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e2996d6352840db182f0a4ea9a2f76">&#9670;&nbsp;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t <a class="el" href="BL__parser_8cpp.html#ac0da16fdad8dd2b6cbf4dd4428dd86c8">tempMainBuffer</a> [4096] __attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(section(&quot;.dma_mem&quot;))&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2718437cceccea28ea971f88256f4cf8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2718437cceccea28ea971f88256f4cf8">&#9670;&nbsp;</a></span>CHAL_clear_idledetect()</h2>
 
@@ -553,20 +569,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aed7ea92f45bd273dde380a45ddced592"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed7ea92f45bd273dde380a45ddced592">&#9670;&nbsp;</a></span>offset</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int offset = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a37722a150250e2a5a98e5e0d11e53449"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a37722a150250e2a5a98e5e0d11e53449">&#9670;&nbsp;</a></span>start</h2>
 
@@ -575,20 +577,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int start = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac104fba9a946368e2e03eb387a93fe72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac104fba9a946368e2e03eb387a93fe72">&#9670;&nbsp;</a></span>tempMainBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t tempMainBuffer[2048]</td>
         </tr>
       </table>
 </div><div class="memdoc">

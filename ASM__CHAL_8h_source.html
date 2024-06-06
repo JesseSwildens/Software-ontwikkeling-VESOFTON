@@ -82,14 +82,24 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3a3e236ea6383c1f2b8426f5a87f2057d1">    8</a></span>&#160;} <a class="code" href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3">ASMCHAL_StatusTypeDef</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04">   10</a></span>&#160;<span class="keyword">extern</span> <a class="code" href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3">ASMCHAL_StatusTypeDef</a> <a class="code" href="ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04">ASMCHAL_GPIO_UART_init_ASM</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">   11</a></span>&#160;<span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code" href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">ASMCHAL_event_call_back</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* rx_buff, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> bufferlength);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ASM_CHAL_H</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">   16</a></span>&#160;    <span class="keyword">extern</span> <span class="keywordtype">char</span> <a class="code" href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">ASMCHAL_event_call_back</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* <a class="code" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> bufferlength);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ASM_CHAL_H</span></div>
 <div class="ttc" id="aASM__CHAL_8h_html_a457af8f71d995958756b979eb297116d"><div class="ttname"><a href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">ASMCHAL_event_call_back</a></div><div class="ttdeci">char ASMCHAL_event_call_back(unsigned char *rx_buff, unsigned int bufferlength)</div></div>
 <div class="ttc" id="aASM__CHAL_8h_html_a8bddac7bf136471e2324977442d3f2c3"><div class="ttname"><a href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3">ASMCHAL_StatusTypeDef</a></div><div class="ttdeci">ASMCHAL_StatusTypeDef</div><div class="ttdef"><b>Definition:</b> ASM_CHAL.h:5</div></div>
 <div class="ttc" id="aASM__CHAL_8h_html_a8bddac7bf136471e2324977442d3f2c3a2737dea61b4a1921d1003df4988cd4c5"><div class="ttname"><a href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3a2737dea61b4a1921d1003df4988cd4c5">ASM_CHAL_OK</a></div><div class="ttdeci">@ ASM_CHAL_OK</div><div class="ttdef"><b>Definition:</b> ASM_CHAL.h:6</div></div>
 <div class="ttc" id="aASM__CHAL_8h_html_a8bddac7bf136471e2324977442d3f2c3a3e236ea6383c1f2b8426f5a87f2057d1"><div class="ttname"><a href="ASM__CHAL_8h.html#a8bddac7bf136471e2324977442d3f2c3a3e236ea6383c1f2b8426f5a87f2057d1">ASM_CHAL_ERROR</a></div><div class="ttdeci">@ ASM_CHAL_ERROR</div><div class="ttdef"><b>Definition:</b> ASM_CHAL.h:7</div></div>
 <div class="ttc" id="aASM__CHAL_8h_html_af64aab2f8cb734f7395b1cdab1513d04"><div class="ttname"><a href="ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04">ASMCHAL_GPIO_UART_init_ASM</a></div><div class="ttdeci">ASMCHAL_StatusTypeDef ASMCHAL_GPIO_UART_init_ASM(void)</div></div>
+<div class="ttc" id="amain_8c_html_a01f1b19dd2b36d56f7c132ab18cb8e54"><div class="ttname"><a href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a></div><div class="ttdeci">uint8_t rx_buff[4096]</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

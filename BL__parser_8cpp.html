@@ -79,9 +79,10 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="BL__parser_8h_source.html">BL_parser.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="API__graphics_8h_source.html">API_graphics.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ASM__CHAL_8h_source.html">ASM_CHAL.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="BL__callbacks_8h_source.html">BL_callbacks.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="BL__video__streaming_8h_source.html">BL_video_streaming.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="CHAL_8h_source.html">CHAL.h</a>&quot;</code><br />
-<code>#include &quot;stm32_ub_vga_screen.h&quot;</code><br />
 <code>#include &lt;bits/stdc++.h&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
@@ -101,6 +102,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa6b32c7c491e16413be7a348ea349b8f"><td class="memItemLeft" align="right" valign="top">uint8_t <a class="el" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a>[<a class="el" href="BL__parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#aa6b32c7c491e16413be7a348ea349b8f">__attribute__</a> ((section(&quot;.dma_mem&quot;)))</td></tr>
+<tr class="separator:aa6b32c7c491e16413be7a348ea349b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7ec09f45c707d866a51db4ca2456ff5"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0">commands</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#ab7ec09f45c707d866a51db4ca2456ff5">BL_convert_command</a> (string str)</td></tr>
 <tr class="separator:ab7ec09f45c707d866a51db4ca2456ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57764ba74dd7cc32ab9f52ee4f111ad6"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#a57764ba74dd7cc32ab9f52ee4f111ad6">BL_main_parser</a> ()</td></tr>
@@ -131,8 +134,16 @@ Variables</h2></td></tr>
 <tr class="separator:a73272eb3ed57889713d8a0c566839d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a093f385028325de1c7a12e3277bad2"><td class="memItemLeft" align="right" valign="top">std::deque&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#a4a093f385028325de1c7a12e3277bad2">previous_commands_q</a></td></tr>
 <tr class="separator:a4a093f385028325de1c7a12e3277bad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0da16fdad8dd2b6cbf4dd4428dd86c8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#ac0da16fdad8dd2b6cbf4dd4428dd86c8">tempMainBuffer</a> [<a class="el" href="BL__parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td></tr>
+<tr class="separator:ac0da16fdad8dd2b6cbf4dd4428dd86c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c5a026390b20507a4d3d664dae28f27"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#a1c5a026390b20507a4d3d664dae28f27">eventflagUART</a></td></tr>
+<tr class="separator:a1c5a026390b20507a4d3d664dae28f27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e5b2735ea7d76e72758c20d2c3eb08a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#a2e5b2735ea7d76e72758c20d2c3eb08a">test</a> = 0</td></tr>
 <tr class="separator:a2e5b2735ea7d76e72758c20d2c3eb08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa750d4a863609d81abd3e6f7c06118ff"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#aa750d4a863609d81abd3e6f7c06118ff">video_stream_flag</a> = 0</td></tr>
+<tr class="separator:aa750d4a863609d81abd3e6f7c06118ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7ea92f45bd273dde380a45ddced592"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#aed7ea92f45bd273dde380a45ddced592">offset</a></td></tr>
+<tr class="separator:aed7ea92f45bd273dde380a45ddced592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc0544f609f4c96c9bdfb907a9f6a22e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structcmd__struct__t.html">cmd_struct_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="BL__parser_8cpp.html#abc0544f609f4c96c9bdfb907a9f6a22e">cmdhandler</a></td></tr>
 <tr class="separator:abc0544f609f4c96c9bdfb907a9f6a22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -153,6 +164,24 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa6b32c7c491e16413be7a348ea349b8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6b32c7c491e16413be7a348ea349b8f">&#9670;&nbsp;</a></span>__attribute__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t <a class="el" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a> [<a class="el" href="BL__parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>] __attribute__ </td>
+          <td>(</td>
+          <td class="paramtype">(section(&quot;.dma_mem&quot;))&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab7ec09f45c707d866a51db4ca2456ff5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab7ec09f45c707d866a51db4ca2456ff5">&#9670;&nbsp;</a></span>BL_convert_command()</h2>
 
@@ -389,21 +418,43 @@ Variables</h2></td></tr>
 <div class="line">}</div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_a197471de59b0a049bba283dbbeee22d0"><div class="ttname"><a href="BL__callbacks_8cpp.html#a197471de59b0a049bba283dbbeee22d0">BL_cirkel</a></div><div class="ttdeci">int BL_cirkel(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for drawing circle</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:279</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_a384385578cd2fc382829793f0ce79fff"><div class="ttname"><a href="BL__callbacks_8cpp.html#a384385578cd2fc382829793f0ce79fff">BL_herhaal</a></div><div class="ttdeci">int BL_herhaal(std::vector&lt; std::string &gt; tokens)</div><div class="ttdoc">function for repeating last command (MAX 50 commands)</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:380</div></div>
-<div class="ttc" id="aBL__callbacks_8cpp_html_a59f1f7220bae6c84608f3efea295f4bf"><div class="ttname"><a href="BL__callbacks_8cpp.html#a59f1f7220bae6c84608f3efea295f4bf">BL_wacht</a></div><div class="ttdeci">int BL_wacht(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for waiting</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:436</div></div>
+<div class="ttc" id="aBL__callbacks_8cpp_html_a59f1f7220bae6c84608f3efea295f4bf"><div class="ttname"><a href="BL__callbacks_8cpp.html#a59f1f7220bae6c84608f3efea295f4bf">BL_wacht</a></div><div class="ttdeci">int BL_wacht(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for waiting</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:437</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_a91c1d1c08741f72710348fe1f8c1c924"><div class="ttname"><a href="BL__callbacks_8cpp.html#a91c1d1c08741f72710348fe1f8c1c924">BL_bitmap</a></div><div class="ttdeci">int BL_bitmap(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for drawing bitmap</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:316</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_ab7f57dfbca0198a28410a649272081ae"><div class="ttname"><a href="BL__callbacks_8cpp.html#ab7f57dfbca0198a28410a649272081ae">BL_rechthoek</a></div><div class="ttdeci">int BL_rechthoek(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for drawing square</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:242</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_abbdb6e0b8d89aceed79b85bb4f86b33d"><div class="ttname"><a href="BL__callbacks_8cpp.html#abbdb6e0b8d89aceed79b85bb4f86b33d">BL_lijn</a></div><div class="ttdeci">int BL_lijn(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for drawing line</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:217</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_ae7a047bd56cf900182d0578739a7d977"><div class="ttname"><a href="BL__callbacks_8cpp.html#ae7a047bd56cf900182d0578739a7d977">BL_tekst</a></div><div class="ttdeci">int BL_tekst(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for drawing bitmap</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:342</div></div>
 <div class="ttc" id="aBL__callbacks_8cpp_html_afd1090a825a5b0610cf19814e569cce5"><div class="ttname"><a href="BL__callbacks_8cpp.html#afd1090a825a5b0610cf19814e569cce5">BL_clearscherm</a></div><div class="ttdeci">int BL_clearscherm(vector&lt; string &gt; tokens)</div><div class="ttdoc">function for clearing the screen</div><div class="ttdef"><b>Definition:</b> BL_callbacks.cpp:192</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a23417b75e11adee8a0959fe16c19f0a7"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a23417b75e11adee8a0959fe16c19f0a7">herhaal</a></div><div class="ttdeci">@ herhaal</div><div class="ttdef"><b>Definition:</b> BL_parser.h:24</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a5308a7a69e38caca569a2a6d9772b81e"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a5308a7a69e38caca569a2a6d9772b81e">rechthoek</a></div><div class="ttdeci">@ rechthoek</div><div class="ttdef"><b>Definition:</b> BL_parser.h:20</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a84615d55b4dde2e706e178b3ef824bb3"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a84615d55b4dde2e706e178b3ef824bb3">clearscherm</a></div><div class="ttdeci">@ clearscherm</div><div class="ttdef"><b>Definition:</b> BL_parser.h:18</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a998253d40e4c3cf2725ca6121cc904e4"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a998253d40e4c3cf2725ca6121cc904e4">bitmap</a></div><div class="ttdeci">@ bitmap</div><div class="ttdef"><b>Definition:</b> BL_parser.h:22</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0aa4c33f36ed157a7afdcb014a10e42d4b"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0aa4c33f36ed157a7afdcb014a10e42d4b">wacht</a></div><div class="ttdeci">@ wacht</div><div class="ttdef"><b>Definition:</b> BL_parser.h:23</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0abbd80f5b3aeae14bc5c8039d1b98b8d3"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0abbd80f5b3aeae14bc5c8039d1b98b8d3">tekst</a></div><div class="ttdeci">@ tekst</div><div class="ttdef"><b>Definition:</b> BL_parser.h:21</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0abc490248361b31434b3b1e9335aba3b2"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0abc490248361b31434b3b1e9335aba3b2">cirkel</a></div><div class="ttdeci">@ cirkel</div><div class="ttdef"><b>Definition:</b> BL_parser.h:25</div></div>
-<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0adebc56589936fde95feb5e5e36d69edd"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0adebc56589936fde95feb5e5e36d69edd">lijn</a></div><div class="ttdeci">@ lijn</div><div class="ttdef"><b>Definition:</b> BL_parser.h:19</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a23417b75e11adee8a0959fe16c19f0a7"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a23417b75e11adee8a0959fe16c19f0a7">herhaal</a></div><div class="ttdeci">@ herhaal</div><div class="ttdef"><b>Definition:</b> BL_parser.h:26</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a5308a7a69e38caca569a2a6d9772b81e"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a5308a7a69e38caca569a2a6d9772b81e">rechthoek</a></div><div class="ttdeci">@ rechthoek</div><div class="ttdef"><b>Definition:</b> BL_parser.h:22</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a84615d55b4dde2e706e178b3ef824bb3"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a84615d55b4dde2e706e178b3ef824bb3">clearscherm</a></div><div class="ttdeci">@ clearscherm</div><div class="ttdef"><b>Definition:</b> BL_parser.h:20</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0a998253d40e4c3cf2725ca6121cc904e4"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0a998253d40e4c3cf2725ca6121cc904e4">bitmap</a></div><div class="ttdeci">@ bitmap</div><div class="ttdef"><b>Definition:</b> BL_parser.h:24</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0aa4c33f36ed157a7afdcb014a10e42d4b"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0aa4c33f36ed157a7afdcb014a10e42d4b">wacht</a></div><div class="ttdeci">@ wacht</div><div class="ttdef"><b>Definition:</b> BL_parser.h:25</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0abbd80f5b3aeae14bc5c8039d1b98b8d3"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0abbd80f5b3aeae14bc5c8039d1b98b8d3">tekst</a></div><div class="ttdeci">@ tekst</div><div class="ttdef"><b>Definition:</b> BL_parser.h:23</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0abc490248361b31434b3b1e9335aba3b2"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0abc490248361b31434b3b1e9335aba3b2">cirkel</a></div><div class="ttdeci">@ cirkel</div><div class="ttdef"><b>Definition:</b> BL_parser.h:27</div></div>
+<div class="ttc" id="aBL__parser_8h_html_a033f2c2ba101d1649bd36de7783782f0adebc56589936fde95feb5e5e36d69edd"><div class="ttname"><a href="BL__parser_8h.html#a033f2c2ba101d1649bd36de7783782f0adebc56589936fde95feb5e5e36d69edd">lijn</a></div><div class="ttdeci">@ lijn</div><div class="ttdef"><b>Definition:</b> BL_parser.h:21</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>filling the structure for commands and function </dd></dl>
+
+</div>
+</div>
+<a id="a1c5a026390b20507a4d3d664dae28f27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c5a026390b20507a4d3d664dae28f27">&#9670;&nbsp;</a></span>eventflagUART</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t eventflagUART</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -429,6 +480,28 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aed7ea92f45bd273dde380a45ddced592"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed7ea92f45bd273dde380a45ddced592">&#9670;&nbsp;</a></span>offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int offset</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a4a093f385028325de1c7a12e3277bad2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4a093f385028325de1c7a12e3277bad2">&#9670;&nbsp;</a></span>previous_commands_q</h2>
 
@@ -443,6 +516,28 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ac0da16fdad8dd2b6cbf4dd4428dd86c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0da16fdad8dd2b6cbf4dd4428dd86c8">&#9670;&nbsp;</a></span>tempMainBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t tempMainBuffer[<a class="el" href="BL__parser_8h.html#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2e5b2735ea7d76e72758c20d2c3eb08a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e5b2735ea7d76e72758c20d2c3eb08a">&#9670;&nbsp;</a></span>test</h2>
 
@@ -451,6 +546,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">float test = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa750d4a863609d81abd3e6f7c06118ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa750d4a863609d81abd3e6f7c06118ff">&#9670;&nbsp;</a></span>video_stream_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char video_stream_flag = 0</td>
         </tr>
       </table>
 </div><div class="memdoc">
