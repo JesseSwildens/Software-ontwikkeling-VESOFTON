@@ -3,7 +3,7 @@ For the usage of the api layer, is this project an example of how to implement a
 
 ## Usage
 To build this project, you'd first have to build the main project in the ```app``` folder. To build that project look in the readme for the usage or using the doxygen page usage on the navigation bar.
-When building of the app project is succesfull get in the build folder the ```SoftwareOntwikkelingLib.a``` file and copy into the ```Lib``` Folder in this project and rename the file to ```graphics_lib.a``` Or any other name when changing the line:
+When building of the app project is successful get in the build folder the ```libSoftwareOntwikkelingLib.a``` file and copy into the ```Lib``` Folder in this project and rename the file to ```graphics_lib.a``` Or any other name when changing the line:
 ```target_link_libraries(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/graphics_lib.a)```
 to the desired name on the end of the line:
 ```target_link_libraries(${CMAKE_PROJECT_NAME} ${CMAKE_SOURCE_DIR}/lib/desired filename.a)```

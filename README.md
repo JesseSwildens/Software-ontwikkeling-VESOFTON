@@ -2,16 +2,16 @@
 
 # Usage
 In this repository are two projects that contain buildable source code depending on what the purpose is of the application. In the `app` Folder is the main project with extra features for an application and logic layer. This also includes a uart interface to test the API layer from a terminal.
-For only using the API layer, `example_project` contains a demo project with sample code that, using a library build in the `app` project can be staticly linked into the example project.
+For only using the API layer, `example_project` contains a demo project with sample code that, using a library build in the `app` project can be statically linked into the example project.
 In each of these folders is a readme on how to build these projects.
 
 # Contributing guidelines
 Contributing to the project comes with the following steps:
 
 ## Glossary
-Two words will be used to strictness of the guidelines below. These two words are to be interepeted as follows:
+Two words will be used to strictness of the guidelines below. These two words are to be interpreted as follows:
 
-*Must*: Guideline must be followed at all times. Excpetions are exceptionally rare and must be discussed with the team.
+*Must*: Guideline must be followed at all times. Exceptions are exceptionally rare and must be discussed with the team.
 
 *Should*: Guideline should be followed as much as possible. Exceptions are possible.
 
