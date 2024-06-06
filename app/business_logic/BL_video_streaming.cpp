@@ -15,8 +15,6 @@
 #define BETWEEN(x, y, z) ((x < z) && (x > y))
 #define OUTSIDE(x, y, z) ((x > z) || (x < y))
 
-static void BL_set_pixel(int x, int y, uint8_t color);
-
 int frame_pointer = 0;
 int offset = 0;
 int v_pos = 0;
@@ -66,7 +64,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
                 count = tempMainBuffer[cnt + frame_pointer];
                 for (int j = 0; j < count; j++)
                 {
-                    BL_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[cnt + 1 + frame_pointer]);
+                    API_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[cnt + 1 + frame_pointer]);
                     pixel_count++;
                 }
                 cnt += 2;
@@ -86,7 +84,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
             int pixel_count = 0;
             for (int i = 0; i < H_RES_VIDEO; i++)
             {
-                BL_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[i + frame_pointer + 1]);
+                API_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[i + frame_pointer + 1]);
                 pixel_count++;
             }
             frame_pointer += len + 2;
@@ -97,11 +95,4 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
         }
     }
     offset = frame_pointer;
-}
-
-static void BL_set_pixel(int x, int y, uint8_t color)
-{
-    if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
-        return;
-    VGA_RAM1[(y * (VGA_DISPLAY_X + 1)) + x] = color;
 }

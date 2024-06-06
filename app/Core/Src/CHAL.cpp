@@ -5,6 +5,7 @@
  */
 
 #include "CHAL.h"
+#include "BL_parser.h"
 #include "string.h"
 #include <cstdio>
 #include <queue>
@@ -17,7 +18,7 @@ using namespace std;
 std::queue<std::string> incoming_commands_q;
 
 // both temp for video streaming
-uint8_t tempMainBuffer[4096] __attribute__((section(".dma_mem")));
+uint8_t tempMainBuffer[BUFFER_SIZE];
 int start = 0;
 
 /**
