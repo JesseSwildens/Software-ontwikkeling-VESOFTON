@@ -66,7 +66,7 @@ void BL_video_stream(unsigned char* tempMainBuffer, int size)
                 count = tempMainBuffer[cnt + frame_pointer];
                 for (int j = 0; j < count; j++)
                 {
-                    BL_set_pixel(pixel_count, v_pos, tempMainBuffer[cnt + 1 + frame_pointer]);
+                    BL_set_pixel(pixel_count + 50, v_pos + 50, tempMainBuffer[cnt + 1 + frame_pointer]);
                     pixel_count++;
                 }
                 cnt += 2;
