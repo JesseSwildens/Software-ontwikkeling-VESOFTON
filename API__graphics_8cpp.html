@@ -117,6 +117,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af08517372a598d7c6dc455aa73dac851"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#af08517372a598d7c6dc455aa73dac851">API_register_logger_callback</a> (void(*pFunction)(const char *string, int len))</td></tr>
 <tr class="memdesc:af08517372a598d7c6dc455aa73dac851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a callback that can be used to transfer messages from this layer to other layers. Otherwise logger functionality it is disregarded and not used.  <a href="API__graphics_8cpp.html#af08517372a598d7c6dc455aa73dac851">More...</a><br /></td></tr>
 <tr class="separator:af08517372a598d7c6dc455aa73dac851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36629157622f6679d913d73b314ef2a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a36629157622f6679d913d73b314ef2a6">API_set_pixel</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int y, uint8_t color)</td></tr>
+<tr class="memdesc:a36629157622f6679d913d73b314ef2a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw pixel to screen.  <a href="API__graphics_8cpp.html#a36629157622f6679d913d73b314ef2a6">More...</a><br /></td></tr>
+<tr class="separator:a36629157622f6679d913d73b314ef2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42b64e0565aa76e4f8074f879cb5df28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="API__graphics_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28">API_draw_rectangle</a> (int <a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>, int y, int width, int height, int color, int filled, int weight, int reserved)</td></tr>
 <tr class="memdesc:a42b64e0565aa76e4f8074f879cb5df28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drawing rectangle on the screen.  <a href="API__graphics_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28">More...</a><br /></td></tr>
 <tr class="separator:a42b64e0565aa76e4f8074f879cb5df28"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -801,6 +804,51 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Integer 0 if succesfull otherwise -1 </dd></dl>
+
+</div>
+</div>
+<a id="a36629157622f6679d913d73b314ef2a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36629157622f6679d913d73b314ef2a6">&#9670;&nbsp;</a></span>API_set_pixel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void API_set_pixel </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw pixel to screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>X position on screen </td></tr>
+    <tr><td class="paramname">y</td><td>y position on screen </td></tr>
+    <tr><td class="paramname">color</td><td>color to set the pixel to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
 </div>
 </div>

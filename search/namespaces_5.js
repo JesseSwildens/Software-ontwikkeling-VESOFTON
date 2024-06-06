@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fixwhitespace_10667',['fixWhitespace',['../namespacefixWhitespace.html',1,'']]],
-  ['foo_10668',['foo',['../namespacefoo.html',1,'']]]
+  ['fixwhitespace_10668',['fixWhitespace',['../namespacefixWhitespace.html',1,'']]],
+  ['foo_10669',['foo',['../namespacefoo.html',1,'']]]
 ];

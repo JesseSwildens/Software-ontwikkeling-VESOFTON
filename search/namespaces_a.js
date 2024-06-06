@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['patchrelease_10675',['patchRelease',['../namespacepatchRelease.html',1,'']]]
+  ['patchrelease_10676',['patchRelease',['../namespacepatchRelease.html',1,'']]]
 ];
