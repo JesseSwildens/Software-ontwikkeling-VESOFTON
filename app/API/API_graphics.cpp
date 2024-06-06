@@ -61,7 +61,6 @@ extern "C"
 static void (*logger_callback)(const char* message, int length) = nullptr;
 static void base_log_message(std::string message, int line, std::string filename);
 static void log_message_callback(std::string);
-static void API_set_pixel(int, int, uint8_t);
 
 API_gfx_text API_Text(VGA_DISPLAY_X, VGA_DISPLAY_Y, log_message_callback);
 uint64_t Tick;
@@ -280,7 +279,7 @@ int API_register_logger_callback(void (*pFunction)(const char* string, int len))
  *
  * @return None
  */
-static void API_set_pixel(int x, int y, uint8_t color)
+void API_set_pixel(int x, int y, uint8_t color)
 {
     if (OUTSIDE(x, 0, VGA_DISPLAY_X) || OUTSIDE(y, 0, VGA_DISPLAY_Y))
         return;

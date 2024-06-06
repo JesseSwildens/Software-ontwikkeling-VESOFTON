@@ -135,6 +135,8 @@ extern "C"
      */
     void API_Init(void);
 
+    void API_set_pixel(int, int, uint8_t);
+
     /**
      * @brief Supported colors for the VGA screen
      */
