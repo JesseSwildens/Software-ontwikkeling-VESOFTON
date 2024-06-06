@@ -1,15 +1,20 @@
 import sys
+import time
 
 import callbacks
 import dearpygui.dearpygui as dpg
 from display import add_display, init_display
 from serial_handler import SerialHandler
+from stream import Stream
 
 if not sys.version_info >= (3, 6):
     raise EnvironmentError('Python version too old')
 
 # Serial
 ser = SerialHandler()
+
+# stream
+strm = Stream(ser)
 
 # set up a viewport
 dpg.create_context()
@@ -150,6 +155,12 @@ with dpg.viewport_menu_bar():
                     callback=callbacks.menu_callback,
                 )
                 dpg.set_item_user_data(f'{port.device}', ser)
+        with dpg.menu(label='Hyperdrive Baudrate'):
+            dpg.add_combo(
+                items=('115200', '128000', '921600', '2000000'),
+                tag='_baudrate_selector',
+                width=100,
+            )
         with dpg.menu(label='Interval'):
             dpg.add_slider_int(
                 label='ms',
@@ -161,6 +172,29 @@ with dpg.viewport_menu_bar():
                 else dpg.set_value(
                     '_interval_slider', dpg.get_value('_interval_slider')
                 ),
+            )
+    with dpg.menu(label='Stream', show=False, tag='_menu_stream'):
+        dpg.add_menu_item(
+            label='Open Stream',
+            tag='_menu_open_stream',
+            show=False,
+            callback=callbacks.open_stream_callback,
+            user_data=strm,
+        )
+        dpg.add_menu_item(
+            label='Close Stream',
+            tag='_menu_close_stream',
+            show=False,
+            callback=callbacks.close_stream_callback,
+            user_data=strm,
+        )
+        with dpg.menu(label='Frequency'):
+            dpg.add_slider_float(
+                label='Target Hz',
+                tag='_frequency',
+                min_value=0.01,
+                max_value=10,
+                default_value=0.5,
             )
     with dpg.menu(label='Tools'):
         dpg.add_menu_item(
@@ -188,10 +222,21 @@ dpg.show_viewport()
 dpg.set_primary_window('_primary', True)
 
 # Render loop
+current_time = time.time()
+last_frame_time = current_time
 while dpg.is_dearpygui_running():
+    # Serial
     data = ser.poll()
     if data is not None:
         add_display(data)
+
+    # Streaming
+    current_time = time.time()
+    if (current_time - last_frame_time) > (1 / dpg.get_value('_frequency')):
+        strm.is_ready = True
+        last_frame_time = time.time()
+    strm.run()
+
     dpg.render_dearpygui_frame()
 
 dpg.destroy_context()
