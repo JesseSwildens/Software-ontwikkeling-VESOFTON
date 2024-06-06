@@ -100,10 +100,10 @@ char BL_main_parser()
             }
             if (BL_parse_return == 2)
             {
-                CHAL_disable_DMA(DMA1_Stream5);
-                DMA1_Stream5->NDTR = BUFFER_SIZE;
-                CHAL_enable_DMA(DMA1_Stream5);
-                memset(rx_buff, 0, BUFFER_SIZE);
+                CHAL_disable_DMA(DMA1_Stream5); // to change the NDTR register the DMA NEEDS to be disabled first.
+                DMA1_Stream5->NDTR = BUFFER_SIZE; // reset RX-buff pointer to start
+                CHAL_enable_DMA(DMA1_Stream5); // restart the DMA for UART reception
+                memset(rx_buff, 0, BUFFER_SIZE); // reset rx_buff for new reception
                 break;
             }
 

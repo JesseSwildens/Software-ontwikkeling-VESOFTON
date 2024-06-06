@@ -20,7 +20,7 @@
 
 // #define DEBUG_UART
 
-extern uint8_t rx_buff[BUFFER_SIZE];
+extern uint8_t rx_buff[4096];
 uint8_t eventflagUART = 0;
 
 int main(void)
