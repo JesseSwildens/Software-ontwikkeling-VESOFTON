@@ -9,6 +9,8 @@
 
 #define STORAGE_SIZE_REPEAT_COMMANDS 50
 
+#define BUFFER_SIZE 25000
+
 /**
  * @note Enum for available commands
  */
@@ -23,6 +25,7 @@ enum commands
     wacht = 6,
     herhaal = 7,
     cirkel = 8,
+    hyperdrive = 9,
 };
 
 #ifdef __cplusplus

@@ -49,6 +49,7 @@ if(NOT CMAKE_UNIT_TEST)
     target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         ${CMAKE_SOURCE_DIR}/business_logic/BL_callbacks.cpp
         ${CMAKE_SOURCE_DIR}/business_logic/BL_parser.cpp
+        ${CMAKE_SOURCE_DIR}/business_logic/BL_video_streaming.cpp
         ${CMAKE_SOURCE_DIR}/Core/Src/main.c
         ${CMAKE_SOURCE_DIR}/Core/Src/CHAL.cpp
         ${CMAKE_SOURCE_DIR}/Core/Src/ASM_CHAL.s

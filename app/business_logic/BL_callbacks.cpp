@@ -420,6 +420,7 @@ int BL_herhaal(std::vector<std::string> tokens)
             log_message("repeated command: " + front_command);
 #endif
             BL_parse_single_string(front_command); // Process the command
+            API_wait(500);
         }
     }
 
