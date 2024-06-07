@@ -10,6 +10,7 @@ Class: EV6A
 
 # High Level Design
 ![image](doxygen\img\HighLevelDesign.png)
+<!-- descent parser is niet helemaal gelukt haha -->
 
 ## Application layer
 The application layer's function is fluid. Any "module" can be placed here, it's important that the output of this layer is human readable strings, as defined by the project requirements.
@@ -37,7 +38,7 @@ First, it only checks the first word of the sentence to retrieve the command. Th
 
 Secondly, if the command is valid, it tokenizes the string and returns a vector of strings containing each token. Additionally, this removes all white spaces and comma's from each token. 
 
-Thirdly, the tokens and the command is send to a function which iterates through a list of command handlers and if it finds a handler with a command matching the given input it executes the associated function with the provided tokens as arguments.
+Thirdly, the tokens and the command is send to a function which iterates through a list of command handlers and if it finds a handler with a command matching the given input it executes the associated function with the provided tokens as arguments. This can be seen below.
 
  ```
 
@@ -63,30 +64,6 @@ Thirdly, the tokens and the command is send to a function which iterates through
 };
 ```
 
-To create a more modular code, each command in the script has its own callback function which all have the same layout as can be seen below. It starts off by creating a template of the arguments. For example `"lijn, 10, 10, 20, 20, groen, 2"` has a template of `{ "0", "0", "0", "0", std::string(), "0" }`. This template is then used to check if the order, length and argument type of the incoming arguments are valid.
-
-If the arguments are valid it is allowed to call the API function associated with the incoming command. 
-
-```
-int BL_lijn(vector<string> tokens)
-{
-#ifdef BL_DEBUG_COMMANDS
-    log_message("lijn command");
-#endif
-    CommandTemplate lijnTemplate = { "lijn", { "0", "0", "0", "0", std::string(), "0" } };
-
-    if (!validateArguments(tokens, lijnTemplate))
-    {
-        log_message("error: invalid arguments for lijn command");
-        return -1;
-    }
-
-    auto color = BL_get_valid_color(tokens[5]);
-    API_draw_line(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), stoi(tokens[4]), color, stoi(tokens[6]), 0);
-    return 0;
-}
-```
-
 If one wants to add a command, the command first needs to be added to the enum that can be seen below (which can be found in BL_parser.h).
 ```
 enum commands
@@ -110,6 +87,43 @@ It can than be added in the cmdhandler vector by adding the follwing line.
 ```
 Once this is done, the callback needs to be added in the BL_callbacks.cpp. 
 
+To create a more modular code, each callback function has the same layout as can be seen below. It starts off by creating a template of the arguments. For example `"lijn, 10, 10, 20, 20, groen, 2"` has a template of `{ "0", "0", "0", "0", std::string(), "0" }`. This template is then used to check if the order, length and argument type of the incoming arguments are valid.
+
+If the arguments are valid it is allowed to call the API function associated with the incoming command. To add a command, change the template and the API call in addition to any necessary helper functions.
+
+```
+int BL_callback_name(vector<string> tokens)
+{
+#ifdef BL_DEBUG_COMMANDS
+    log_message("callback_name command");
+#endif
+    CommandTemplate command_name_Template = { "command_name", { "0", "0", "0", "0", std::string(), "0" } };
+
+    if (!validateArguments(tokens, command_name_Template))
+    {
+        log_message("error: invalid arguments for command_name command");
+        return -1;
+    }
+
+    auto color = BL_get_valid_color(tokens[5]);
+    API_callback_name(stoi(tokens[1]), stoi(tokens[2]), stoi(tokens[3]), stoi(tokens[4]), color, stoi(tokens[6]), 0);
+    return 0;
+}
+```
+Multiple templates can be used if additional arguments are allowed, but are not in the requirements. This can be done by creating the extra template and changing the (checking argument for validity) if statement to the following:
+```
+    CommandTemplate command_Template = { "name", { "0", "0", "0", "0", std::string(), "0" } };
+    CommandTemplate command_Template_alternative = { "name", { "0", "0", "0", "0", std::string(), "0", "0" } };
+
+    bool val_arg_norm = (!validateArguments(tokens, command_Template));
+    bool val_arg_alt = (!validateArguments(tokens, command_Template_alternative));
+
+    if (val_arg_norm == val_arg_alt)
+    {
+        log_message("error: invalid arguments for command_name command");
+        return -1;
+    }
+```
 
 
 ## API-layer
