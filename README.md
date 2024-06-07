@@ -1,26 +1,17 @@
 ![Software build](https://github.com/JesseSwildens/Software-ontwikkeling-VESOFTON/actions/workflows/main.yml/badge.svg?branch=main)
 
-# Software-ontwikkeling-VESOFTON
-
-# Docs
-https://jesseswildens.github.io/Software-ontwikkeling-VESOFTON/
-
-# Style guide in IDE
-In VSCode add the following lines to ```.vscode/settings.json```
-```
-    "C_Cpp.formatting": "clangFormat",
-    "C_Cpp.clang_format_style": "file:${workspaceFolder}/app/.clang-format",
-    "editor.formatOnSave": true
-```
-
+# Usage
+In this repository are two projects that contain buildable source code depending on what the purpose is of the application. In the `app` Folder is the main project with extra features for an application and logic layer. This also includes a uart interface to test the API layer from a terminal.
+For only using the API layer, `example_project` contains a demo project with sample code that, using a library build in the `app` project can be statically linked into the example project.
+In each of these folders is a readme on how to build these projects.
 
 # Contributing guidelines
 Contributing to the project comes with the following steps:
 
 ## Glossary
-Two words will be used to strictness of the guidelines below. These two words are to be interepeted as follows:
+Two words will be used to strictness of the guidelines below. These two words are to be interpreted as follows:
 
-*Must*: Guideline must be followed at all times. Excpetions are exceptionally rare and must be discussed with the team.
+*Must*: Guideline must be followed at all times. Exceptions are exceptionally rare and must be discussed with the team.
 
 *Should*: Guideline should be followed as much as possible. Exceptions are possible.
 
@@ -74,3 +65,12 @@ All *functions* part of the API must contain the prefix `API_`.
 Other important prefixes:
 - `BL_`, Business Layer
 - `AL_`, Application Layer
+
+### Style guide
+To comply with the style guidelines used in this project, a clang format file has been placed inside the repository with which code can be formatted.
+In Visual Studio Code add the following lines to ```.vscode/settings.json```
+```
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.clang_format_style": "file:${workspaceFolder}/app/.clang-format",
+    "editor.formatOnSave": true
+```
