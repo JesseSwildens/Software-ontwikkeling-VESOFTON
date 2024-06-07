@@ -29,3 +29,17 @@ make all -j$(nproc)
 After which a file named `libSoftwareOntwikkelingLib.a` is build which can be copied to other projects to be used to statically link into other applications.
 For testing the API layer `SoftwareOntwikkelingGroep8.elf` gets build which can be flashed using most common GDB servers, to test using the UART.
 See the docs page for the supported commands.
+
+## CLI (Unit test)
+When trying to run the unit tests only the listed items under unit testing are required. Just like in the MCU Firmware a build folder with cmake needs to be made.
+But by adding a flag to the cmake command some files get exchanged for mock files as these tests are run on the host PC so at the time of writing the most common architecture is x86.
+Therefore peripherals like for the NVIC or DMA aren't possible to be written to and are exchanged for other function calls.</br>
+To build and run the unit test run the following commands from the root folder:
+```
+mkdir app/build-unit-test
+cd app/build-unit-test
+cmake .. -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_UNIT_TEST=TRUE
+make all -j$(nproc)
+ctest
+```
+This should generate a xml report with the name `results_{test_case_name}.xml` for each test in the build folder.
