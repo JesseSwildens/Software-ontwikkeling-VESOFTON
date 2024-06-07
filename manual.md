@@ -140,8 +140,8 @@ An example would be something like a color depth that is larger than supported t
 Error is critical impediments to the working of the driver, and therefore in most functions returning error codes with not performing the task that gets called.
 An example would be drawing outside the screen.
 
-# Scripts
-The implemented scripts are as follows:
+# Script commands
+The implemented script commands are as follows:
 - text, x, y, kleur, tekst, fontnaam\*, fontgrootte, fontstijl
 - lijn, x1, y1, x2, y2, kleur, dikte
 - rechthoek, x, y, breedte, hoogte, kleur, gevuld
