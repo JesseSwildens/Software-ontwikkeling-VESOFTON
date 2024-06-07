@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['log_5fmessage_14481',['log_message',['../API__graphics_8cpp.html#af4481483a683b4a7fe71f939d83c5806',1,'log_message():&#160;API_graphics.cpp'],['../BL__callbacks_8h.html#af4481483a683b4a7fe71f939d83c5806',1,'log_message():&#160;BL_callbacks.h']]]
+  ['pi_826',['PI',['../BL__parser_8cpp.html#a598a3330b3c21701223ee0ca14316eca',1,'BL_parser.cpp']]],
+  ['platform_5fid_827',['PLATFORM_ID',['../CMakeCCompilerId_8c.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCXXCompilerId.cpp']]],
+  ['progmem_828',['PROGMEM',['../Adafruit__GFX_8h.html#a0e8f24b2cc1712c00907fbf75a2557b5',1,'Adafruit_GFX.h']]]
 ];

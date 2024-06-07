@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -20,12 +25,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="placeholder.jpg"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Software Ontwikkeling
    &#160;<span id="projectnumber">0</span>
    </div>
-   <div id="projectbrief">placeholder</div>
+   <div id="projectbrief">VGA image generation using three layer model</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CHAL_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,21 +84,16 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_532b70cea5e722f89f49332a716ee57b.html">Core</a></li><li class="navelem"><a class="el" href="dir_2a5d092add181b36c93f89dd899f5d43.html">Inc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">CHAL.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="CHAL_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="misc_8h.html">misc.h</a>&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;stm32_ub_vga_screen.h&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stm32f4xx__dma_8h.html">stm32f4xx_dma.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stm32f4xx__rcc_8h.html">stm32f4xx_rcc.h</a>&quot;</span></div>
+<a href="CHAL_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;misc.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stm32__ub__vga__screen_8h.html">stm32_ub_vga_screen.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="stm32f4xx_8h.html">stm32f4xx.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_dma.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
@@ -143,7 +160,7 @@ $(function() {
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
 <div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structCHAL__UART__HandleTypeDef.html">   70</a></span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structCHAL__UART__HandleTypeDef.html#ab831718ce5fd18d4c69e2318282e4571">   72</a></span>&#160;        <a class="code" href="structUSART__TypeDef.html">USART_TypeDef</a>* <a class="code" href="structCHAL__UART__HandleTypeDef.html#ab831718ce5fd18d4c69e2318282e4571">Instance</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structCHAL__UART__HandleTypeDef.html#ab831718ce5fd18d4c69e2318282e4571">   72</a></span>&#160;        USART_TypeDef* <a class="code" href="structCHAL__UART__HandleTypeDef.html#ab831718ce5fd18d4c69e2318282e4571">Instance</a>;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
 <div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structCHAL__UART__HandleTypeDef.html#a3733169e7db87a43ab9909c14eda439f">   74</a></span>&#160;        <a class="code" href="structCHAL__UART__InitTypeDef.html">CHAL_UART_InitTypeDef</a> <a class="code" href="structCHAL__UART__HandleTypeDef.html#a3733169e7db87a43ab9909c14eda439f">init</a>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
@@ -179,8 +196,8 @@ $(function() {
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    uint8_t <a class="code" href="CHAL_8h.html#a1c242a36873fdf73e1cc61643eca13f1">CHAL_UART2_get_char</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a2c6acbec6c127f7f867fc45d23ee7922">CHAL_UART2_SendChar</a>(<span class="keywordtype">char</span> c);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#aca1ef0de865f2f1417b1995d8d3f558c">CHAL_UART2_SendString</a>(<span class="keywordtype">char</span>* <span class="keywordtype">string</span>, uint16_t length);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL_disable_DMA</a>(<a class="code" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a>* <a class="code" href="catch__amalgamated_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a>);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">CHAL_enable_DMA</a>(<a class="code" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a>* <a class="code" href="catch__amalgamated_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL_disable_DMA</a>(DMA_Stream_TypeDef* stream);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">CHAL_enable_DMA</a>(DMA_Stream_TypeDef* stream);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    uint8_t <a class="code" href="CHAL_8h.html#afc09b56d3ee94fc3f4a37bd4e7b142f3">CHAL_DMA_Init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="CHAL_8h.html#a2f98013a7ce7ca372b3b3729039a085d">CHAL_DMA_config</a>(uint32_t srcAdd, uint32_t destAdd, uint16_t datasize);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    uint8_t <a class="code" href="CHAL_8h.html#ad5ae978e22bba8d84dcb0a3d8567d4b0">CHAL_clear_status_regs</a>();</div>
@@ -213,11 +230,9 @@ $(function() {
 <div class="ttc" id="aCHAL_8h_html_aec6d3536a659b64b73cbd18d5869aae4"><div class="ttname"><a href="CHAL_8h.html#aec6d3536a659b64b73cbd18d5869aae4">CHAL_event_call_back</a></div><div class="ttdeci">void CHAL_event_call_back(uint8_t *rx_buff, uint16_t bufferlength)</div></div>
 <div class="ttc" id="aCHAL_8h_html_afa7be4e5be306b11426df9f112455e2a"><div class="ttname"><a href="CHAL_8h.html#afa7be4e5be306b11426df9f112455e2a">CHAL_init_uart</a></div><div class="ttdeci">void CHAL_init_uart(void)</div><div class="ttdoc">Initializes the UART and GPIO interface by calling the GPIO and UART init functions.</div><div class="ttdef"><b>Definition:</b> CHAL.cpp:35</div></div>
 <div class="ttc" id="aCHAL_8h_html_afc09b56d3ee94fc3f4a37bd4e7b142f3"><div class="ttname"><a href="CHAL_8h.html#afc09b56d3ee94fc3f4a37bd4e7b142f3">CHAL_DMA_Init</a></div><div class="ttdeci">uint8_t CHAL_DMA_Init(void)</div><div class="ttdoc">Sets the requires bits of the DMA to enable DMA with UART in circular mode.</div><div class="ttdef"><b>Definition:</b> CHAL.cpp:223</div></div>
-<div class="ttc" id="acatch__amalgamated_8cpp_html_aeacb68b8c7e9ae9b97ab9c6ab41940cb"><div class="ttname"><a href="catch__amalgamated_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a></div><div class="ttdeci">std::ostream &amp; stream</div><div class="ttdef"><b>Definition:</b> catch_amalgamated.cpp:8679</div></div>
 <div class="ttc" id="amain_8c_html_a01f1b19dd2b36d56f7c132ab18cb8e54"><div class="ttname"><a href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a></div><div class="ttdeci">uint8_t rx_buff[4096]</div></div>
-<div class="ttc" id="amisc_8h_html"><div class="ttname"><a href="misc_8h.html">misc.h</a></div><div class="ttdoc">This file contains all the functions prototypes for the miscellaneous firmware library functions (add...</div></div>
-<div class="ttc" id="astm32f4xx__dma_8h_html"><div class="ttname"><a href="stm32f4xx__dma_8h.html">stm32f4xx_dma.h</a></div><div class="ttdoc">This file contains all the functions prototypes for the DMA firmware library.</div></div>
-<div class="ttc" id="astm32f4xx__rcc_8h_html"><div class="ttname"><a href="stm32f4xx__rcc_8h.html">stm32f4xx_rcc.h</a></div><div class="ttdoc">This file contains all the functions prototypes for the RCC firmware library.</div></div>
+<div class="ttc" id="astm32__ub__vga__screen_8h_html"><div class="ttname"><a href="stm32__ub__vga__screen_8h.html">stm32_ub_vga_screen.h</a></div></div>
+<div class="ttc" id="astm32f4xx_8h_html"><div class="ttname"><a href="stm32f4xx_8h.html">stm32f4xx.h</a></div></div>
 <div class="ttc" id="astructCHAL__DMA__Base__Registers_html"><div class="ttname"><a href="structCHAL__DMA__Base__Registers.html">CHAL_DMA_Base_Registers</a></div><div class="ttdef"><b>Definition:</b> CHAL.h:96</div></div>
 <div class="ttc" id="astructCHAL__DMA__Base__Registers_html_a4543d255d25ca9655cb76e0aa0a079de"><div class="ttname"><a href="structCHAL__DMA__Base__Registers.html#a4543d255d25ca9655cb76e0aa0a079de">CHAL_DMA_Base_Registers::Reserved0</a></div><div class="ttdeci">volatile uint32_t Reserved0</div><div class="ttdef"><b>Definition:</b> CHAL.h:98</div></div>
 <div class="ttc" id="astructCHAL__DMA__Base__Registers_html_aa717ac46a42dd9c4023bda3f08eab568"><div class="ttname"><a href="structCHAL__DMA__Base__Registers.html#aa717ac46a42dd9c4023bda3f08eab568">CHAL_DMA_Base_Registers::ISR</a></div><div class="ttdeci">volatile uint32_t ISR</div><div class="ttdef"><b>Definition:</b> CHAL.h:97</div></div>
@@ -252,12 +267,14 @@ $(function() {
 <div class="ttc" id="astructCHAL__UART__InitTypeDef_html_a9ebd380d12518f257d9566bfee0e9457"><div class="ttname"><a href="structCHAL__UART__InitTypeDef.html#a9ebd380d12518f257d9566bfee0e9457">CHAL_UART_InitTypeDef::BaudRate</a></div><div class="ttdeci">uint32_t BaudRate</div><div class="ttdef"><b>Definition:</b> CHAL.h:61</div></div>
 <div class="ttc" id="astructCHAL__UART__InitTypeDef_html_ab603b3fff08e7c955baab232da02ef60"><div class="ttname"><a href="structCHAL__UART__InitTypeDef.html#ab603b3fff08e7c955baab232da02ef60">CHAL_UART_InitTypeDef::Mode</a></div><div class="ttdeci">uint32_t Mode</div><div class="ttdef"><b>Definition:</b> CHAL.h:65</div></div>
 <div class="ttc" id="astructCHAL__UART__InitTypeDef_html_af174704e6e39953e2aebe0b75ea1a42b"><div class="ttname"><a href="structCHAL__UART__InitTypeDef.html#af174704e6e39953e2aebe0b75ea1a42b">CHAL_UART_InitTypeDef::HwFlowCtl</a></div><div class="ttdeci">uint32_t HwFlowCtl</div><div class="ttdef"><b>Definition:</b> CHAL.h:66</div></div>
-<div class="ttc" id="astructDMA__Stream__TypeDef_html"><div class="ttname"><a href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a></div><div class="ttdoc">DMA Controller.</div><div class="ttdef"><b>Definition:</b> stm32f4xx.h:467</div></div>
-<div class="ttc" id="astructUSART__TypeDef_html"><div class="ttname"><a href="structUSART__TypeDef.html">USART_TypeDef</a></div><div class="ttdoc">Universal Synchronous Asynchronous Receiver Transmitter.</div><div class="ttdef"><b>Definition:</b> stm32f4xx.h:913</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_532b70cea5e722f89f49332a716ee57b.html">Core</a></li><li class="navelem"><a class="el" href="dir_2a5d092add181b36c93f89dd899f5d43.html">Inc</a></li><li class="navelem"><a class="el" href="CHAL_8h.html">CHAL.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

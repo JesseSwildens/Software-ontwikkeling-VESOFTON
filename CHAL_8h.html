@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -20,12 +25,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="placeholder.jpg"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Software Ontwikkeling
    &#160;<span id="projectnumber">0</span>
    </div>
-   <div id="projectbrief">placeholder</div>
+   <div id="projectbrief">VGA image generation using three layer model</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('CHAL_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,11 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_532b70cea5e722f89f49332a716ee57b.html">Core</a></li><li class="navelem"><a class="el" href="dir_2a5d092add181b36c93f89dd899f5d43.html">Inc</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
@@ -78,11 +95,11 @@ $(function() {
 <div class="title">CHAL.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="misc_8h_source.html">misc.h</a>&quot;</code><br />
-<code>#include &quot;stm32_ub_vga_screen.h&quot;</code><br />
-<code>#include &quot;stm32f4xx.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="stm32f4xx__dma_8h_source.html">stm32f4xx_dma.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="stm32f4xx__rcc_8h_source.html">stm32f4xx_rcc.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;misc.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32__ub__vga__screen_8h_source.html">stm32_ub_vga_screen.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="stm32f4xx_8h_source.html">stm32f4xx.h</a>&quot;</code><br />
+<code>#include &quot;stm32f4xx_dma.h&quot;</code><br />
+<code>#include &quot;stm32f4xx_rcc.h&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div>
 <p><a href="CHAL_8h_source.html">Go to the source code of this file.</a></p>
@@ -108,13 +125,13 @@ Macros</h2></td></tr>
 <tr class="separator:ac3abc20f80e25c19b02104ad34eae652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a697259653ad39814fe73ae1fdf2b7d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a9a697259653ad39814fe73ae1fdf2b7d">TIMING_PADDING</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a9a697259653ad39814fe73ae1fdf2b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a11ce367da8e19eb27cf7f129da4b3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga79bcc3f8e773206a66aba95c6f889d6f">DMA_LISR_FEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga72de97ebc9d063dceb38bada91c44878">DMA_LISR_DMEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gad43cdafa5acfcd683b7a2ee8976dd8ba">DMA_LISR_TEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga6181727d13abbc46283ff22ce359e3b9">DMA_LISR_HTIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gadbc3f7e52c0688bed4b71fa37666901d">DMA_LISR_TCIF0</a>)</td></tr>
+<tr class="memitem:a0a11ce367da8e19eb27cf7f129da4b3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(DMA_LISR_FEIF0 | DMA_LISR_DMEIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 | DMA_LISR_TCIF0)</td></tr>
 <tr class="separator:a0a11ce367da8e19eb27cf7f129da4b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a145798f7c0cffc0effe3b6588f7a5812"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a0a11ce367da8e19eb27cf7f129da4b3d">DMA_Stream0_IT_MASK</a> &lt;&lt; 6)</td></tr>
 <tr class="separator:a145798f7c0cffc0effe3b6588f7a5812"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceb30b7dcde1275d843ea932a00f44d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#aceb30b7dcde1275d843ea932a00f44d7">DMA_Stream5_IT_MASK</a>&#160;&#160;&#160;(uint32_t)(<a class="el" href="CHAL_8h.html#a145798f7c0cffc0effe3b6588f7a5812">DMA_Stream1_IT_MASK</a> | (uint32_t)0x20000000)</td></tr>
 <tr class="separator:aceb30b7dcde1275d843ea932a00f44d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a841615a63f4a3aa18337897953874909"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a841615a63f4a3aa18337897953874909">ARRAY_LEN</a>(<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>)&#160;&#160;&#160;(sizeof(<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>) / sizeof((<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>)[0]))</td></tr>
+<tr class="memitem:a841615a63f4a3aa18337897953874909"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a841615a63f4a3aa18337897953874909">ARRAY_LEN</a>(x)&#160;&#160;&#160;(sizeof(x) / sizeof((x)[0]))</td></tr>
 <tr class="separator:a841615a63f4a3aa18337897953874909"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87d52017421534f636cd6a53fe9b5408"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a87d52017421534f636cd6a53fe9b5408">CHAL_DMA_IT_TC</a>&#160;&#160;&#160;0x00000010</td></tr>
 <tr class="separator:a87d52017421534f636cd6a53fe9b5408"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -158,10 +175,10 @@ Functions</h2></td></tr>
 <tr class="memitem:aca1ef0de865f2f1417b1995d8d3f558c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#aca1ef0de865f2f1417b1995d8d3f558c">CHAL_UART2_SendString</a> (char *string, uint16_t length)</td></tr>
 <tr class="memdesc:aca1ef0de865f2f1417b1995d8d3f558c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a string over UART in blocking mode.  <a href="CHAL_8h.html#aca1ef0de865f2f1417b1995d8d3f558c">More...</a><br /></td></tr>
 <tr class="separator:aca1ef0de865f2f1417b1995d8d3f558c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL_disable_DMA</a> (<a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *<a class="el" href="catch__reporter__tap_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a>)</td></tr>
+<tr class="memitem:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL_disable_DMA</a> (DMA_Stream_TypeDef *stream)</td></tr>
 <tr class="memdesc:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables a specified DMA stream.  <a href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">More...</a><br /></td></tr>
 <tr class="separator:a953e4af68f6fb2f74acb37f3e952f3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a220e02d9f5547a48d91d2f68468204b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">CHAL_enable_DMA</a> (<a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *<a class="el" href="catch__reporter__tap_8cpp.html#aeacb68b8c7e9ae9b97ab9c6ab41940cb">stream</a>)</td></tr>
+<tr class="memitem:a220e02d9f5547a48d91d2f68468204b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">CHAL_enable_DMA</a> (DMA_Stream_TypeDef *stream)</td></tr>
 <tr class="memdesc:a220e02d9f5547a48d91d2f68468204b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a specified DMA stream.  <a href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">More...</a><br /></td></tr>
 <tr class="separator:a220e02d9f5547a48d91d2f68468204b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc09b56d3ee94fc3f4a37bd4e7b142f3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#afc09b56d3ee94fc3f4a37bd4e7b142f3">CHAL_DMA_Init</a> (void)</td></tr>
@@ -182,7 +199,7 @@ Functions</h2></td></tr>
 <tr class="memitem:aec6d3536a659b64b73cbd18d5869aae4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#aec6d3536a659b64b73cbd18d5869aae4">CHAL_event_call_back</a> (uint8_t *<a class="el" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a>, uint16_t bufferlength)</td></tr>
 <tr class="separator:aec6d3536a659b64b73cbd18d5869aae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CHAL_8h.html#a95e2ee1987bfe74df3d84fff8a5ecc85">CHAL_push_to_q</a> (uint8_t *<a class="el" href="main_8c.html#a01f1b19dd2b36d56f7c132ab18cb8e54">rx_buff</a>, uint16_t bufferlength)</td></tr>
-<tr class="memdesc:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structA.html">A</a> new polled function to move the data from the DMA receive buffer to a queue.  <a href="CHAL_8h.html#a95e2ee1987bfe74df3d84fff8a5ecc85">More...</a><br /></td></tr>
+<tr class="memdesc:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="mdescLeft">&#160;</td><td class="mdescRight">A new polled function to move the data from the DMA receive buffer to a queue.  <a href="CHAL_8h.html#a95e2ee1987bfe74df3d84fff8a5ecc85">More...</a><br /></td></tr>
 <tr class="separator:a95e2ee1987bfe74df3d84fff8a5ecc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -201,8 +218,8 @@ Variables</h2></td></tr>
           <td class="memname">#define ARRAY_LEN</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a></td><td>)</td>
-          <td>&#160;&#160;&#160;(sizeof(<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>) / sizeof((<a class="el" href="catch__amalgamated_8cpp.html#a6abfb3eb1e8098e09b8a4d1fc295b265">x</a>)[0]))</td>
+          <td class="paramname">x</td><td>)</td>
+          <td>&#160;&#160;&#160;(sizeof(x) / sizeof((x)[0]))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -286,7 +303,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DMA_Stream0_IT_MASK&#160;&#160;&#160;(uint32_t)(<a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga79bcc3f8e773206a66aba95c6f889d6f">DMA_LISR_FEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga72de97ebc9d063dceb38bada91c44878">DMA_LISR_DMEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gad43cdafa5acfcd683b7a2ee8976dd8ba">DMA_LISR_TEIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#ga6181727d13abbc46283ff22ce359e3b9">DMA_LISR_HTIF0</a> | <a class="el" href="group__Peripheral__Registers__Bits__Definition.html#gadbc3f7e52c0688bed4b71fa37666901d">DMA_LISR_TCIF0</a>)</td>
+          <td class="memname">#define DMA_Stream0_IT_MASK&#160;&#160;&#160;(uint32_t)(DMA_LISR_FEIF0 | DMA_LISR_DMEIF0 | DMA_LISR_TEIF0 | DMA_LISR_HTIF0 | DMA_LISR_TCIF0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -437,7 +454,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void CHAL_disable_DMA </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *&#160;</td>
+          <td class="paramtype">DMA_Stream_TypeDef *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
           <td></td>
         </tr>
@@ -449,7 +466,7 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>This function needs to be called if ANY of the registers of the DMA controller is set or cleared manually.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stream</td><td><a class="el" href="structA.html">A</a> pointer to the DMA stream to be disabled. This should be a valid pointer to a <a class="el" href="structDMA__Stream__TypeDef.html" title="DMA Controller.">DMA_Stream_TypeDef</a> structure.</td></tr>
+    <tr><td class="paramname">stream</td><td>A pointer to the DMA stream to be disabled. This should be a valid pointer to a DMA_Stream_TypeDef structure.</td></tr>
   </table>
   </dd>
 </dl>
@@ -526,7 +543,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void CHAL_enable_DMA </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structDMA__Stream__TypeDef.html">DMA_Stream_TypeDef</a> *&#160;</td>
+          <td class="paramtype">DMA_Stream_TypeDef *&#160;</td>
           <td class="paramname"><em>stream</em></td><td>)</td>
           <td></td>
         </tr>
@@ -537,7 +554,7 @@ Variables</h2></td></tr>
 <p>This function enables the given DMA stream by setting the relevant enable bit in the DMA control register. It ensures that the DMA stream is properly disabled before any further configuration or usage.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">stream</td><td><a class="el" href="structA.html">A</a> pointer to the DMA stream to be disabled. This should be a valid pointer to a <a class="el" href="structDMA__Stream__TypeDef.html" title="DMA Controller.">DMA_Stream_TypeDef</a> structure.</td></tr>
+    <tr><td class="paramname">stream</td><td>A pointer to the DMA stream to be disabled. This should be a valid pointer to a DMA_Stream_TypeDef structure.</td></tr>
   </table>
   </dd>
 </dl>
@@ -663,7 +680,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="structA.html">A</a> new polled function to move the data from the DMA receive buffer to a queue. </p>
+<p>A new polled function to move the data from the DMA receive buffer to a queue. </p>
 <p>The data is send to a larger array to form a queue that can be used by the following layers.</p>
 <p>The function can handle one line at a time (until LF)</p>
 <dl class="section return"><dt>Returns</dt><dd>void This function does not return a value. </dd></dl>
@@ -811,9 +828,13 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d422163b96683743ed3963d4aac17747.html">app</a></li><li class="navelem"><a class="el" href="dir_532b70cea5e722f89f49332a716ee57b.html">Core</a></li><li class="navelem"><a class="el" href="dir_2a5d092add181b36c93f89dd899f5d43.html">Inc</a></li><li class="navelem"><a class="el" href="CHAL_8h.html">CHAL.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

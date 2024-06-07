@@ -1,0 +1,27 @@
+var classAPI__gfx__text =
+[
+    [ "API_gfx_text", "classAPI__gfx__text.html#a97dd419261053cb03a4c1b67c9181c37", null ],
+    [ "~API_gfx_text", "classAPI__gfx__text.html#a692195bd910f7a7ec337cf4277d863a8", null ],
+    [ "calculate_character_offset", "classAPI__gfx__text.html#abc4d4f6b28287f3a8fc21d6f37ad634e", null ],
+    [ "draw_character", "classAPI__gfx__text.html#aa07699a7244c46671a2b15f4490fe387", null ],
+    [ "get_selected_font_name", "classAPI__gfx__text.html#a94ff67ba1ec8c1399efb35f7d1a78a2a", null ],
+    [ "register_logging_callback", "classAPI__gfx__text.html#aa4ec1b48b131c2fe802f8dc87f6b5fe6", null ],
+    [ "select_font", "classAPI__gfx__text.html#a90030772f8eebbd9add1891d1ff69203", null ],
+    [ "set_cursor", "classAPI__gfx__text.html#a64f8e645cebd2278214252aa66267d1a", null ],
+    [ "set_font_size", "classAPI__gfx__text.html#a1cf877e9b304c1eeecd4c27cab0347b0", null ],
+    [ "set_text_color", "classAPI__gfx__text.html#a14aa0b26940632ec682e8c07d3a72b0b", null ],
+    [ "operator<<", "classAPI__gfx__text.html#a6278f8cb9734a296452195adf7fe5129", null ],
+    [ "m_color", "classAPI__gfx__text.html#af819e8f76590b786477713701ce2018f", null ],
+    [ "m_cursor_x", "classAPI__gfx__text.html#ac26589ea381f3cd31707675acab99332", null ],
+    [ "m_cursor_y", "classAPI__gfx__text.html#ad212cb280e063a2f7ff1ff585585ce4c", null ],
+    [ "m_fonts", "classAPI__gfx__text.html#a2748eff1d6a1f9430de3d6612641f649", null ],
+    [ "m_logger", "classAPI__gfx__text.html#a8f6f312ba0b49d58701ea564759aa10a", null ],
+    [ "m_selected_font", "classAPI__gfx__text.html#ad6658376dfe54b484dc3678a03bbb1d6", null ],
+    [ "m_text_size", "classAPI__gfx__text.html#a1b90afd1067361d1ab796b54c9135dee", null ],
+    [ "m_x_max", "classAPI__gfx__text.html#ac7e61bd84f38abf02258f32ac5d443ee", null ],
+    [ "m_x_offset", "classAPI__gfx__text.html#ae713ddc5133b4559e13fa007ec92b9a6", null ],
+    [ "m_xpos", "classAPI__gfx__text.html#ac466cdb2b177544a378c4d1bfb200fdd", null ],
+    [ "m_y_max", "classAPI__gfx__text.html#a15ffad5dfa8a7adeedf6337a46477cee", null ],
+    [ "m_y_offset", "classAPI__gfx__text.html#ad38960fa78f85a7980d70a84c4ca740c", null ],
+    [ "m_ypos", "classAPI__gfx__text.html#a5680a9aec4c603ed0f2555d0ca2db5dd", null ]
+];

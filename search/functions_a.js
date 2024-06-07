@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['jsonarraywriter_11894',['JsonArrayWriter',['../classCatch_1_1JsonArrayWriter.html#aa099b3a40527db49a5947a9a89834c92',1,'Catch::JsonArrayWriter::JsonArrayWriter(std::ostream &amp;os)'],['../classCatch_1_1JsonArrayWriter.html#aea49a119e2f6022d2398389b7bd0ffde',1,'Catch::JsonArrayWriter::JsonArrayWriter(std::ostream &amp;os, std::uint64_t indent_level)'],['../classCatch_1_1JsonArrayWriter.html#ab43752e5fd4739ef20c490caeccfd545',1,'Catch::JsonArrayWriter::JsonArrayWriter(JsonArrayWriter &amp;&amp;source) noexcept']]],
-  ['jsonobjectwriter_11895',['JsonObjectWriter',['../classCatch_1_1JsonObjectWriter.html#ad73e1e546a1d214d49abb6984c231049',1,'Catch::JsonObjectWriter::JsonObjectWriter(std::ostream &amp;os)'],['../classCatch_1_1JsonObjectWriter.html#a2e470f1eb8fab688fcf3edbcb42299c3',1,'Catch::JsonObjectWriter::JsonObjectWriter(std::ostream &amp;os, std::uint64_t indent_level)'],['../classCatch_1_1JsonObjectWriter.html#a8ed2917cc2092b1647497be27292c5d6',1,'Catch::JsonObjectWriter::JsonObjectWriter(JsonObjectWriter &amp;&amp;source) noexcept']]],
-  ['jsonreporter_11896',['JsonReporter',['../classCatch_1_1JsonReporter.html#a1b8f15445a8917da923ca6978ec04b1b',1,'Catch::JsonReporter']]],
-  ['jsonvaluewriter_11897',['JsonValueWriter',['../classCatch_1_1JsonValueWriter.html#a90c31ca045868faf7decb3567b1985f7',1,'Catch::JsonValueWriter::JsonValueWriter(std::ostream &amp;os)'],['../classCatch_1_1JsonValueWriter.html#adead5e25d419aa006484cff11c54540a',1,'Catch::JsonValueWriter::JsonValueWriter(std::ostream &amp;os, std::uint64_t indent_level)']]],
-  ['junitreporter_11898',['JunitReporter',['../classCatch_1_1JunitReporter.html#ad367918f93081de6215d6382f4888c62',1,'Catch::JunitReporter']]]
+  ['select_5ffont_667',['select_font',['../classAPI__gfx__text.html#a90030772f8eebbd9add1891d1ff69203',1,'API_gfx_text']]],
+  ['set_5fcursor_668',['set_cursor',['../classAPI__gfx__text.html#a64f8e645cebd2278214252aa66267d1a',1,'API_gfx_text']]],
+  ['set_5ffont_5fsize_669',['set_font_size',['../classAPI__gfx__text.html#a1cf877e9b304c1eeecd4c27cab0347b0',1,'API_gfx_text']]],
+  ['set_5ftext_5fcolor_670',['set_text_color',['../classAPI__gfx__text.html#a14aa0b26940632ec682e8c07d3a72b0b',1,'API_gfx_text']]],
+  ['systeminit_671',['SystemInit',['../stm32f4xx_8h.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;vga_mock.c'],['../vga__mock_8c.html#a93f514700ccf00d08dbdcff7f1224eb2',1,'SystemInit(void):&#160;vga_mock.c']]],
+  ['systick_5fhandler_672',['SysTick_Handler',['../main_8c.html#ab5e09814056d617c521549e542639b7e',1,'main.c']]]
 ];

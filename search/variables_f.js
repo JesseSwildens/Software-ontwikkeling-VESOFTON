@@ -1,27 +1,8 @@
 var searchData=
 [
-  ['oar1_13416',['OAR1',['../structI2C__TypeDef.html#ad218fdcb9606477c1d63f8ee38d3c5c9',1,'I2C_TypeDef']]],
-  ['oar2_13417',['OAR2',['../structI2C__TypeDef.html#a03189e2a57c81ae5d103739b72f52c93',1,'I2C_TypeDef']]],
-  ['odr_13418',['ODR',['../structGPIO__TypeDef.html#a6fb78f4a978a36032cdeac93ac3c9c8b',1,'GPIO_TypeDef']]],
-  ['offset_13419',['offset',['../BL__video__streaming_8cpp.html#aed7ea92f45bd273dde380a45ddced592',1,'offset():&#160;BL_video_streaming.cpp'],['../BL__parser_8cpp.html#aed7ea92f45bd273dde380a45ddced592',1,'offset():&#160;BL_video_streaming.cpp']]],
-  ['optcr_13420',['OPTCR',['../structFLASH__TypeDef.html#a54026c3b5bc2059f1b187acb6c4817ac',1,'FLASH_TypeDef']]],
-  ['options_13421',['options',['../classconanfile_1_1CatchConan.html#ad625969ad81ce74c3a77f0cb80d43eaa',1,'conanfile::CatchConan']]],
-  ['optkeyr_13422',['OPTKEYR',['../structFLASH__TypeDef.html#a793cd13a4636c9785fdb99316f7fd7ab',1,'FLASH_TypeDef']]],
-  ['or_13423',['OR',['../structTIM__TypeDef.html#a145760563b46fcdeedddf7c92ee68d61',1,'TIM_TypeDef']]],
-  ['original_13424',['original',['../structCatch_1_1Tag.html#af589567e86a42fac84b69f4371b67dea',1,'Catch::Tag']]],
-  ['ospeedr_13425',['OSPEEDR',['../structGPIO__TypeDef.html#a0d233d720f18ae2050f9131fa6faf7c6',1,'GPIO_TypeDef']]],
-  ['otyper_13426',['OTYPER',['../structGPIO__TypeDef.html#a910885e4d881c3a459dd11640237107f',1,'GPIO_TypeDef']]],
-  ['outlier_5fvariance_13427',['outlier_variance',['../structCatch_1_1Benchmark_1_1Detail_1_1bootstrap__analysis.html#a5b362e21a4fea483371fe3d80f63676d',1,'Catch::Benchmark::Detail::bootstrap_analysis::outlier_variance()'],['../structCatch_1_1Benchmark_1_1SampleAnalysis.html#a3b6f7fac3cd345ea6276c11267562c09',1,'Catch::Benchmark::SampleAnalysis::outlier_variance()']]],
-  ['outliers_13428',['outliers',['../structCatch_1_1Benchmark_1_1SampleAnalysis.html#a7956e4b789b3909d269b5d756b61c063',1,'Catch::Benchmark::SampleAnalysis::outliers()'],['../structCatch_1_1Benchmark_1_1EnvironmentEstimate.html#a6cf37d807f3f3b1350adaa7cc3280ba3',1,'Catch::Benchmark::EnvironmentEstimate::outliers()'],['../structCatch_1_1BenchmarkStats.html#a1287a52bd41715dde01e267fd76414b2',1,'Catch::BenchmarkStats::outliers()']]],
-  ['outliervariance_13429',['outlierVariance',['../structCatch_1_1BenchmarkStats.html#a9d3ea6132bd9d311497a9c59c8229f89',1,'Catch::BenchmarkStats']]],
-  ['output_5fbase_5fpath_13430',['output_base_path',['../namespaceVerifyRegistration.html#a131e07f4bf2a3b606312b386118166e4',1,'VerifyRegistration']]],
-  ['output_5fcpp_13431',['output_cpp',['../namespacegenerateAmalgamatedFiles.html#af637664d8cd73b17bd68850e9056c71c',1,'generateAmalgamatedFiles']]],
-  ['output_5fdir_13432',['output_dir',['../namespacetestBazelReporter.html#a28527bbf7071b5ef11b2f23c4758f1a9',1,'testBazelReporter.output_dir()'],['../namespacetestBazelSharding.html#a1f5faa0f828b93bebb3185c8779d3f3c',1,'testBazelSharding.output_dir()']]],
-  ['output_5ffile_13433',['output_file',['../namespacetestConfigureDefaultReporter.html#a347b7dcb6fae7bc450735c6119243492',1,'testConfigureDefaultReporter']]],
-  ['output_5fheader_13434',['output_header',['../namespacegenerateAmalgamatedFiles.html#a52bd1f801d6f417b149bbb4b56f017b0',1,'generateAmalgamatedFiles']]],
-  ['outputdirbasepath_13435',['outputDirBasePath',['../namespaceapprovalTests.html#a489a4cf9abbc18abdf9175731f2d1950',1,'approvalTests']]],
-  ['outputdirpath_13436',['outputDirPath',['../namespaceapprovalTests.html#a6c2eeb7441d950d8f56c3a898297d23b',1,'approvalTests']]],
-  ['outputfilename_13437',['outputFilename',['../structCatch_1_1ProcessedReporterSpec.html#a50eea1b716979aedede2073523573cc2',1,'Catch::ProcessedReporterSpec']]],
-  ['overallresult_13438',['overallResult',['../namespaceapprovalTests.html#a5b988c09ad10a33b109b47667fc0f0ed',1,'approvalTests']]],
-  ['oversampling_13439',['OverSampling',['../structCHAL__UART__InitTypeDef.html#a28e16cbd3f2e7f9657e14806ecc5838a',1,'CHAL_UART_InitTypeDef']]]
+  ['speed_756',['Speed',['../structCHAL__GPIO__InitTypeDef.html#a832bd9f247f849badf3fa7d60fc90b79',1,'CHAL_GPIO_InitTypeDef']]],
+  ['start_757',['start',['../CHAL_8cpp.html#a37722a150250e2a5a98e5e0d11e53449',1,'CHAL.cpp']]],
+  ['stopbits_758',['StopBits',['../structCHAL__UART__InitTypeDef.html#a6c698b240edc3f7e28b03a81f5d44b95',1,'CHAL_UART_InitTypeDef']]],
+  ['streambaseaddress_759',['StreamBaseAddress',['../structCHAL__DMA__handler.html#a08aeb6d67309ddc71209f710b07d6b6a',1,'CHAL_DMA_handler']]],
+  ['streamindex_760',['StreamIndex',['../structCHAL__DMA__handler.html#ab43e976a2c1e1f9bab6dbc6041709040',1,'CHAL_DMA_handler']]]
 ];

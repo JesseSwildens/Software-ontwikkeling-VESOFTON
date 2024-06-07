@@ -1,0 +1,25 @@
+var API__graphics_8h =
+[
+    [ "bitmap_position", "structbitmap__position.html", "structbitmap__position" ],
+    [ "VGA_COL_BLACK", "API__graphics_8h.html#a9fee0c95dea1cdd3eeb3605ece528a8a", null ],
+    [ "VGA_COL_BLUE", "API__graphics_8h.html#a9314f832988df57045bf9790f18de6fa", null ],
+    [ "VGA_COL_CYAN", "API__graphics_8h.html#a39a87dbbf6639be1a1312dbe9229c4a8", null ],
+    [ "VGA_COL_GREEN", "API__graphics_8h.html#acd643373461ea57a495e8403ba41eab7", null ],
+    [ "VGA_COL_MAGENTA", "API__graphics_8h.html#a9498759c02ab7d643c9af53a70d15ad5", null ],
+    [ "VGA_COL_RED", "API__graphics_8h.html#a790cc430619a64faf356c303f8bdd3d4", null ],
+    [ "VGA_COL_WHITE", "API__graphics_8h.html#a2ad592a88539ed90dd1fe6c33648a13b", null ],
+    [ "VGA_COL_YELLOW", "API__graphics_8h.html#a76575b7810719497e2b15a6709c1b6f0", null ],
+    [ "API_clearscreen", "API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944", null ],
+    [ "API_draw_bitmap", "API__graphics_8h.html#a6ba0c9aa23537bf68521fd5d1ac4124c", null ],
+    [ "API_draw_circle", "API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8", null ],
+    [ "API_draw_line", "API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91", null ],
+    [ "API_draw_rectangle", "API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28", null ],
+    [ "API_draw_text", "API__graphics_8h.html#a49a806ab1f245ac4914337f6d7999439", null ],
+    [ "API_get_tick", "API__graphics_8h.html#abe0af8702344e8d77df997dab92b0492", null ],
+    [ "API_Init", "API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a", null ],
+    [ "API_InitTick", "API__graphics_8h.html#ae8ad8cd0b162e3d7c15c64b7636a61a3", null ],
+    [ "API_register_logger_callback", "API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851", null ],
+    [ "API_set_pixel", "API__graphics_8h.html#a7c4d0b6aec069cef92a6ae06810b9736", null ],
+    [ "API_wait", "API__graphics_8h.html#a20044ea68044596c2320e0205b0c4c9a", null ],
+    [ "Tick", "API__graphics_8h.html#a05ecc4762d0b393adc3ab2fa83666532", null ]
+];

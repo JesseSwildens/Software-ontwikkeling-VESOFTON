@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['pi_14487',['PI',['../BL__parser_8cpp.html#a598a3330b3c21701223ee0ca14316eca',1,'BL_parser.cpp']]],
-  ['platform_5fid_14488',['PLATFORM_ID',['../CMakeCCompilerId_8c.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCXXCompilerId.cpp']]],
-  ['progmem_14489',['PROGMEM',['../Adafruit__GFX_8h.html#a0e8f24b2cc1712c00907fbf75a2557b5',1,'Adafruit_GFX.h']]]
+  ['usart2_5fbase_5faddress_836',['USART2_BASE_ADDRESS',['../CHAL_8h.html#a4845766e4b9aa8b3c91bbf4a71652106',1,'CHAL.h']]],
+  ['usart3_5fbase_5faddress_837',['USART3_BASE_ADDRESS',['../CHAL_8h.html#a9e02b7c4b403ce34263c64d5964ce5d4',1,'CHAL.h']]]
 ];

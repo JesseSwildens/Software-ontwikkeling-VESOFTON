@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['max_5fcircle_5fpoints_14482',['MAX_CIRCLE_POINTS',['../API__graphics_8cpp.html#ae8c38ccaa079ad648999dd3bc827aeb5',1,'API_graphics.cpp']]],
-  ['max_5fcolor_5fdepth_14483',['MAX_COLOR_DEPTH',['../API__graphics_8cpp.html#a7258b939251e993229b3f14c21cb2fae',1,'API_graphics.cpp']]],
-  ['max_5fradius_5fsize_14484',['MAX_RADIUS_SIZE',['../API__graphics_8cpp.html#a438bae4f2470f16db11433e45aa21be9',1,'API_graphics.cpp']]],
-  ['method_5fas_5ftest_5fcase_14485',['METHOD_AS_TEST_CASE',['../catch__amalgamated_8hpp.html#add790b4107e8b013f21b0272be7bcc76',1,'METHOD_AS_TEST_CASE():&#160;catch_amalgamated.hpp'],['../catch__test__macros_8hpp.html#add790b4107e8b013f21b0272be7bcc76',1,'METHOD_AS_TEST_CASE():&#160;catch_test_macros.hpp']]]
+  ['storage_5fsize_5frepeat_5fcommands_829',['STORAGE_SIZE_REPEAT_COMMANDS',['../BL__parser_8h.html#afa73e321bc21d00c1087a83515ebf6be',1,'BL_parser.h']]],
+  ['stringify_830',['STRINGIFY',['../CMakeCCompilerId_8c.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCXXCompilerId.cpp']]],
+  ['stringify_5fhelper_831',['STRINGIFY_HELPER',['../CMakeCCompilerId_8c.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCXXCompilerId.cpp']]],
+  ['systick_5fdelay_5fcalib_832',['SYSTICK_DELAY_CALIB',['../BL__callbacks_8cpp.html#ac05b3f94a286309107ad95961fb9488a',1,'BL_callbacks.cpp']]],
+  ['systick_5fload_833',['SYSTICK_LOAD',['../BL__callbacks_8cpp.html#a40c03741132f793b632dfa5266f9fc48',1,'BL_callbacks.cpp']]]
 ];

@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -20,12 +25,12 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="placeholder.jpg"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Software Ontwikkeling
    &#160;<span id="projectnumber">0</span>
    </div>
-   <div id="projectbrief">placeholder</div>
+   <div id="projectbrief">VGA image generation using three layer model</div>
   </td>
  </tr>
  </tbody>
@@ -49,6 +54,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('globals_func.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,69 +89,296 @@ $(function() {
 
 <h3><a id="index__5F"></a>- _ -</h3><ul>
 <li>__attribute__()
-: <a class="el" href="syscalls_8c.html#af9aace1b44b73111e15aa39f06f43456">syscalls.c</a>
-, <a class="el" href="BL__parser_8cpp.html#aa6b32c7c491e16413be7a348ea349b8f">BL_parser.cpp</a>
-, <a class="el" href="stm32__ub__vga__screen_8c.html#a9824a3ef7e43e5bb143f37e0b702a506">stm32_ub_vga_screen.c</a>
+: <a class="el" href="BL__parser_8cpp.html#aa6b32c7c491e16413be7a348ea349b8f">BL_parser.cpp</a>
 </li>
-<li>__io_getchar()
-: <a class="el" href="syscalls_8c.html#ad0122671640a3af49792ddaa59e8294e">syscalls.c</a>
+</ul>
+
+
+<h3><a id="index_a"></a>- a -</h3><ul>
+<li>API_clearscreen()
+: <a class="el" href="API__graphics_8h.html#ac5d34bcb0d84db1190d4b876a3f65944">API_graphics.h</a>
+, <a class="el" href="API__graphics_8cpp.html#ac5d34bcb0d84db1190d4b876a3f65944">API_graphics.cpp</a>
 </li>
-<li>__io_putchar()
-: <a class="el" href="syscalls_8c.html#aa53ed4b191897a1bfc205aa1da005d24">syscalls.c</a>
+<li>API_draw_bitmap()
+: <a class="el" href="API__graphics_8cpp.html#a1a60e909c51d3fbfb429cf85cec829ec">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a6ba0c9aa23537bf68521fd5d1ac4124c">API_graphics.h</a>
 </li>
-<li>_close()
-: <a class="el" href="syscalls_8c.html#a5aab5e2acfd600e3667dc915a2bbc7cb">syscalls.c</a>
+<li>API_draw_circle()
+: <a class="el" href="API__graphics_8cpp.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#aafb5c2810f8084bed6b20e4c398f0fc8">API_graphics.h</a>
 </li>
-<li>_execve()
-: <a class="el" href="syscalls_8c.html#ad2a07db8fdf26151eb98ba5711fad8c5">syscalls.c</a>
+<li>API_draw_line()
+: <a class="el" href="API__graphics_8cpp.html#affd176868e09b8e99a9eada73dc45e91">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#affd176868e09b8e99a9eada73dc45e91">API_graphics.h</a>
 </li>
-<li>_exit()
-: <a class="el" href="syscalls_8c.html#abc96bd69b58b2deaddb484478d911c1b">syscalls.c</a>
+<li>API_draw_rectangle()
+: <a class="el" href="API__graphics_8cpp.html#a42b64e0565aa76e4f8074f879cb5df28">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a42b64e0565aa76e4f8074f879cb5df28">API_graphics.h</a>
 </li>
-<li>_fork()
-: <a class="el" href="syscalls_8c.html#a6cb6331c9d166180903d5fb78b9c9dd7">syscalls.c</a>
+<li>API_draw_text()
+: <a class="el" href="API__graphics_8cpp.html#a49a806ab1f245ac4914337f6d7999439">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a49a806ab1f245ac4914337f6d7999439">API_graphics.h</a>
 </li>
-<li>_fstat()
-: <a class="el" href="syscalls_8c.html#a41eef54307912a82d20e71c3d47315aa">syscalls.c</a>
+<li>API_get_tick()
+: <a class="el" href="API__graphics_8h.html#abe0af8702344e8d77df997dab92b0492">API_graphics.h</a>
+, <a class="el" href="API__graphics_8cpp.html#abe0af8702344e8d77df997dab92b0492">API_graphics.cpp</a>
 </li>
-<li>_getpid()
-: <a class="el" href="syscalls_8c.html#a945e539df8e0f66d3c73c533fe1968ee">syscalls.c</a>
+<li>API_Init()
+: <a class="el" href="API__graphics_8cpp.html#a032ff1ca9021c5198e35cfdabc4c6f1a">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a032ff1ca9021c5198e35cfdabc4c6f1a">API_graphics.h</a>
 </li>
-<li>_isatty()
-: <a class="el" href="syscalls_8c.html#ad3134a3dc296622b8d1c5456e481505b">syscalls.c</a>
+<li>API_InitTick()
+: <a class="el" href="API__graphics_8cpp.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#ae8ad8cd0b162e3d7c15c64b7636a61a3">API_graphics.h</a>
 </li>
-<li>_kill()
-: <a class="el" href="syscalls_8c.html#a062a5101199c3128edd5170f2575bb10">syscalls.c</a>
+<li>API_register_logger_callback()
+: <a class="el" href="API__graphics_8cpp.html#af08517372a598d7c6dc455aa73dac851">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#af08517372a598d7c6dc455aa73dac851">API_graphics.h</a>
 </li>
-<li>_link()
-: <a class="el" href="syscalls_8c.html#a31da4cd5328defa76a9e2246992aba12">syscalls.c</a>
+<li>API_set_pixel()
+: <a class="el" href="API__graphics_8cpp.html#a36629157622f6679d913d73b314ef2a6">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a7c4d0b6aec069cef92a6ae06810b9736">API_graphics.h</a>
 </li>
-<li>_lseek()
-: <a class="el" href="syscalls_8c.html#a7a61311bdf1cb025fc07dc2bdae22ce4">syscalls.c</a>
+<li>API_wait()
+: <a class="el" href="API__graphics_8cpp.html#a20044ea68044596c2320e0205b0c4c9a">API_graphics.cpp</a>
+, <a class="el" href="API__graphics_8h.html#a20044ea68044596c2320e0205b0c4c9a">API_graphics.h</a>
 </li>
-<li>_open()
-: <a class="el" href="syscalls_8c.html#a270c9113047edd8d64186710ad76062b">syscalls.c</a>
+<li>ASMCHAL_event_call_back()
+: <a class="el" href="ASM__CHAL_8h.html#a457af8f71d995958756b979eb297116d">ASM_CHAL.h</a>
 </li>
-<li>_sbrk()
-: <a class="el" href="sysmem_8c.html#afcc86b0f227230278459bfaa6e3a2961">sysmem.c</a>
+<li>ASMCHAL_GPIO_UART_init_ASM()
+: <a class="el" href="ASM__CHAL_8h.html#af64aab2f8cb734f7395b1cdab1513d04">ASM_CHAL.h</a>
 </li>
-<li>_stat()
-: <a class="el" href="syscalls_8c.html#a4711e961db985ed2c850a8be6597af50">syscalls.c</a>
+</ul>
+
+
+<h3><a id="index_b"></a>- b -</h3><ul>
+<li>BL_base_log_message()
+: <a class="el" href="BL__callbacks_8h.html#ac77ba66555d14eabec6b5b5f2b62daca">BL_callbacks.h</a>
+, <a class="el" href="BL__callbacks_8cpp.html#a5004d7162fbd5f4b9b30ebd21c0da762">BL_callbacks.cpp</a>
 </li>
-<li>_times()
-: <a class="el" href="syscalls_8c.html#aaf727ebf57cd64d6c58b23e6ee4a4a69">syscalls.c</a>
+<li>BL_bitmap()
+: <a class="el" href="BL__callbacks_8cpp.html#a91c1d1c08741f72710348fe1f8c1c924">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#a606c1a7aa15ca1fed9c4aecba79a8ad1">BL_callbacks.h</a>
 </li>
-<li>_unlink()
-: <a class="el" href="syscalls_8c.html#a70b2f211d665cded5637065aa2bb89dc">syscalls.c</a>
+<li>BL_cirkel()
+: <a class="el" href="BL__callbacks_8cpp.html#a197471de59b0a049bba283dbbeee22d0">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#a1412aa73ebde5d9569d8025448f0e2d8">BL_callbacks.h</a>
 </li>
-<li>_wait()
-: <a class="el" href="syscalls_8c.html#aeef0c3372d04caa1bcc99fed2ab6ec72">syscalls.c</a>
+<li>BL_clearscherm()
+: <a class="el" href="BL__callbacks_8cpp.html#afd1090a825a5b0610cf19814e569cce5">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#ad0032ec1951deba07695ba88b7a71b51">BL_callbacks.h</a>
+</li>
+<li>BL_convert_command()
+: <a class="el" href="BL__parser_8cpp.html#ab7ec09f45c707d866a51db4ca2456ff5">BL_parser.cpp</a>
+</li>
+<li>BL_get_command()
+: <a class="el" href="BL__parser_8cpp.html#a3528205f022c70e035361bea36d78596">BL_parser.cpp</a>
+</li>
+<li>BL_get_valid_color()
+: <a class="el" href="BL__callbacks_8cpp.html#af8745a1044fc1d42ab648795e87850aa">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#a78dbb470fd46fbf16a5c680524445391">BL_callbacks.h</a>
+</li>
+<li>BL_get_valid_fontstyle()
+: <a class="el" href="BL__callbacks_8cpp.html#a01f3f4a8d461bf5ea0f6861b86f45268">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#aac68c4f2e7b1b5450dc8ea486a3bfd22">BL_callbacks.h</a>
+</li>
+<li>BL_handle_commands()
+: <a class="el" href="BL__parser_8cpp.html#a17b5118b60d4afe7ca5394debd11d96b">BL_parser.cpp</a>
+</li>
+<li>BL_herhaal()
+: <a class="el" href="BL__callbacks_8cpp.html#a384385578cd2fc382829793f0ce79fff">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#a384385578cd2fc382829793f0ce79fff">BL_callbacks.h</a>
+</li>
+<li>BL_hyperdrive()
+: <a class="el" href="BL__video__streaming_8cpp.html#ac075e6e32d33deff374cc362f144ddfc">BL_video_streaming.cpp</a>
+, <a class="el" href="BL__video__streaming_8h.html#ac075e6e32d33deff374cc362f144ddfc">BL_video_streaming.h</a>
+</li>
+<li>BL_istype()
+: <a class="el" href="BL__callbacks_8h.html#ab4c83c0fcfe9565a807c237fe7b55e21">BL_callbacks.h</a>
+</li>
+<li>BL_lijn()
+: <a class="el" href="BL__callbacks_8cpp.html#abbdb6e0b8d89aceed79b85bb4f86b33d">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#ae4d28e9025ec3a2265d2c39ade043e6d">BL_callbacks.h</a>
+</li>
+<li>BL_main_parser()
+: <a class="el" href="BL__parser_8cpp.html#a57764ba74dd7cc32ab9f52ee4f111ad6">BL_parser.cpp</a>
+, <a class="el" href="BL__parser_8h.html#a57764ba74dd7cc32ab9f52ee4f111ad6">BL_parser.h</a>
+</li>
+<li>BL_parse_single_string()
+: <a class="el" href="BL__parser_8cpp.html#a8394eb2b5417872407e14a1c45a5ee06">BL_parser.cpp</a>
+</li>
+<li>BL_rechthoek()
+: <a class="el" href="BL__callbacks_8h.html#ad8dcbc27f4557f493d788a9da1266d29">BL_callbacks.h</a>
+, <a class="el" href="BL__callbacks_8cpp.html#ab7f57dfbca0198a28410a649272081ae">BL_callbacks.cpp</a>
+</li>
+<li>BL_remove_white_space()
+: <a class="el" href="BL__parser_8cpp.html#a0598fd68eb61e8ec0b18d5cd615d04d5">BL_parser.cpp</a>
+</li>
+<li>BL_save_repeat_commands()
+: <a class="el" href="BL__parser_8cpp.html#ac2d3f917a2a5ea12a0a29ad894372639">BL_parser.cpp</a>
+</li>
+<li>BL_tekst()
+: <a class="el" href="BL__callbacks_8cpp.html#ae7a047bd56cf900182d0578739a7d977">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#a896422de39135b11254a8f94e3055ff3">BL_callbacks.h</a>
+</li>
+<li>BL_tokenize()
+: <a class="el" href="BL__parser_8cpp.html#a370e6afaaf793eb727a5357e0ecd6611">BL_parser.cpp</a>
+</li>
+<li>BL_video_stream()
+: <a class="el" href="BL__video__streaming_8cpp.html#a38aeac2f07ef6c5abe2add6023deb299">BL_video_streaming.cpp</a>
+</li>
+<li>BL_wacht()
+: <a class="el" href="BL__callbacks_8cpp.html#a59f1f7220bae6c84608f3efea295f4bf">BL_callbacks.cpp</a>
+, <a class="el" href="BL__callbacks_8h.html#aad266773d0948fcc43df9097ad36919e">BL_callbacks.h</a>
+</li>
+</ul>
+
+
+<h3><a id="index_c"></a>- c -</h3><ul>
+<li>CHAL_clear_idledetect()
+: <a class="el" href="CHAL_8cpp.html#a2718437cceccea28ea971f88256f4cf8">CHAL.cpp</a>
+, <a class="el" href="CHAL_8h.html#a2718437cceccea28ea971f88256f4cf8">CHAL.h</a>
+</li>
+<li>CHAL_clear_status_regs()
+: <a class="el" href="CHAL_8h.html#ad5ae978e22bba8d84dcb0a3d8567d4b0">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#ad5ae978e22bba8d84dcb0a3d8567d4b0">CHAL.cpp</a>
+</li>
+<li>CHAL_disable_DMA()
+: <a class="el" href="CHAL_8h.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a953e4af68f6fb2f74acb37f3e952f3ed">CHAL.cpp</a>
+</li>
+<li>CHAL_DMA_config()
+: <a class="el" href="CHAL_8h.html#a2f98013a7ce7ca372b3b3729039a085d">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a2f98013a7ce7ca372b3b3729039a085d">CHAL.cpp</a>
+</li>
+<li>CHAL_DMA_Init()
+: <a class="el" href="CHAL_8h.html#afc09b56d3ee94fc3f4a37bd4e7b142f3">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#afc09b56d3ee94fc3f4a37bd4e7b142f3">CHAL.cpp</a>
+</li>
+<li>CHAL_enable_DMA()
+: <a class="el" href="CHAL_8h.html#a220e02d9f5547a48d91d2f68468204b1">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a220e02d9f5547a48d91d2f68468204b1">CHAL.cpp</a>
+</li>
+<li>CHAL_event_call_back()
+: <a class="el" href="CHAL_8h.html#aec6d3536a659b64b73cbd18d5869aae4">CHAL.h</a>
+</li>
+<li>CHAL_GPIO_UART_init()
+: <a class="el" href="CHAL_8h.html#a3012092a42f67992777385032706d958">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a3012092a42f67992777385032706d958">CHAL.cpp</a>
+</li>
+<li>CHAL_init_DMA_timers()
+: <a class="el" href="CHAL_8h.html#a67ff5645b1376655db3cf664074ef899">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a67ff5645b1376655db3cf664074ef899">CHAL.cpp</a>
+</li>
+<li>CHAL_init_uart()
+: <a class="el" href="CHAL_8h.html#afa7be4e5be306b11426df9f112455e2a">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#afa7be4e5be306b11426df9f112455e2a">CHAL.cpp</a>
+</li>
+<li>CHAL_push_to_q()
+: <a class="el" href="CHAL_8h.html#a95e2ee1987bfe74df3d84fff8a5ecc85">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a95e2ee1987bfe74df3d84fff8a5ecc85">CHAL.cpp</a>
+</li>
+<li>CHAL_UART2_get_char()
+: <a class="el" href="CHAL_8h.html#a1c242a36873fdf73e1cc61643eca13f1">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a1c242a36873fdf73e1cc61643eca13f1">CHAL.cpp</a>
+</li>
+<li>CHAL_UART2_SendChar()
+: <a class="el" href="CHAL_8h.html#a2c6acbec6c127f7f867fc45d23ee7922">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a2c6acbec6c127f7f867fc45d23ee7922">CHAL.cpp</a>
+</li>
+<li>CHAL_UART2_SendString()
+: <a class="el" href="CHAL_8h.html#aca1ef0de865f2f1417b1995d8d3f558c">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#aca1ef0de865f2f1417b1995d8d3f558c">CHAL.cpp</a>
+</li>
+<li>CHAL_uart_config()
+: <a class="el" href="CHAL_8h.html#a5dff1bc709ae53293df402d7a1d9a8ef">CHAL.h</a>
+, <a class="el" href="CHAL_8cpp.html#a5dff1bc709ae53293df402d7a1d9a8ef">CHAL.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_d"></a>- d -</h3><ul>
+<li>DMA1_Stream5_IRQHandler()
+: <a class="el" href="main_8c.html#ac201b60d58b0eba2ce0b55710eb3c4d0">main.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>for()
+: <a class="el" href="001-SquareTestcase_8cpp.html#ac038166feb335c9fca53232954c5e1e9">001-SquareTestcase.cpp</a>
+, <a class="el" href="002-textTestcase_8cpp.html#ac038166feb335c9fca53232954c5e1e9">002-textTestcase.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_g"></a>- g -</h3><ul>
+<li>getArgType()
+: <a class="el" href="BL__callbacks_8cpp.html#a555e460dda978a65531f44a22f1584df">BL_callbacks.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_i"></a>- i -</h3><ul>
+<li>isNumber()
+: <a class="el" href="BL__callbacks_8cpp.html#aaa3b01d6b7b6b5bf4b868b37fcf3ac6f">BL_callbacks.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_m"></a>- m -</h3><ul>
+<li>main()
+: <a class="el" href="CMakeCCompilerId_8c.html#a0ddf1224851353fc92bfbff6f499fa97">CMakeCCompilerId.c</a>
+, <a class="el" href="CMakeCXXCompilerId_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">CMakeCXXCompilerId.cpp</a>
+, <a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main.c</a>
+, <a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_r"></a>- r -</h3><ul>
+<li>REQUIRE()
+: <a class="el" href="001-SquareTestcase_8cpp.html#a12bbae524b55e04e72808b3af9a6b21b">001-SquareTestcase.cpp</a>
+, <a class="el" href="002-textTestcase_8cpp.html#a12bbae524b55e04e72808b3af9a6b21b">002-textTestcase.cpp</a>
+</li>
+</ul>
+
+
+<h3><a id="index_s"></a>- s -</h3><ul>
+<li>SystemInit()
+: <a class="el" href="stm32f4xx_8h.html#a93f514700ccf00d08dbdcff7f1224eb2">stm32f4xx.h</a>
+, <a class="el" href="vga__mock_8c.html#a93f514700ccf00d08dbdcff7f1224eb2">vga_mock.c</a>
+</li>
+<li>SysTick_Handler()
+: <a class="el" href="main_8c.html#ab5e09814056d617c521549e542639b7e">main.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>UB_VGA_Screen_Init()
+: <a class="el" href="stm32__ub__vga__screen_8h.html#aa63128722f952ece5176141e8a99b6c1">stm32_ub_vga_screen.h</a>
+, <a class="el" href="vga__mock_8c.html#aa63128722f952ece5176141e8a99b6c1">vga_mock.c</a>
+</li>
+<li>USART2_IRQHandler()
+: <a class="el" href="main_8c.html#a0ca6fd0e6f77921dd1123539857ba0a8">main.c</a>
+</li>
+</ul>
+
+
+<h3><a id="index_v"></a>- v -</h3><ul>
+<li>validateArguments()
+: <a class="el" href="BL__callbacks_8cpp.html#aa977c3777934e3ad64e4549946c9e657">BL_callbacks.cpp</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>
